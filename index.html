@@ -1,210 +1,184 @@
-<!-- ==================== OperationDom • HERO (v2) ==================== -->
+<!-- ================= OperationDom • Ref-Driven HERO (SZA/Doja inspired) ================= -->
 <section id="opdom-hero" aria-label="OperationDom — Hero">
   <style>
-    /* ===== Theme (tweak) ===== */
+    #opdom-hero, #opdom-hero * { box-sizing: border-box; }
     #opdom-hero{
-      --ink:#0d0d12;              /* primary text (near-black) */
-      --sub:#5e6070;             /* secondary */
-      --paper:#0a0a0f;           /* page fallback */
-      --rose:#ee6ea9;            /* rose-pink accent */
-      --lilac:#b79bff;           /* lilac glow */
-      --gold:#f3d27a;            /* soft gold */
-      --milk:#fff7f1;            /* warm white for chips */
-      --line:rgba(255,255,255,.16);
+      --ink:#fff;               /* primary text on dark */
+      --dim:#d9d9e3;            /* secondary */
+      --edge:#6b6bff;           /* cool accent */
+      --hot:#ff6bb3;            /* warm accent */
+      --line:rgba(255,255,255,.18);
       --glass:rgba(255,255,255,.08);
       --max:1200px;
-    }
-    #opdom-hero, #opdom-hero *{ box-sizing:border-box; }
-    #opdom-hero{
-      color:#fff; background:#0a0a0f; position:relative; overflow:hidden;
-      font:16px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+      color:var(--ink);
+      background:#0b0b10;
+      position:relative;
+      overflow:hidden;
+      font:16px/1.5 Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
       isolation:isolate;
     }
 
-    /* ===== Luxe pastel field (no “yngkody” cream/red) ===== */
-    .aura{
-      position:absolute; inset:-25% -10% -10% -20%; z-index:0; filter: blur(44px) saturate(115%);
-      background:
-        radial-gradient(640px 460px at 18% 18%, rgba(183,155,255,.42) 0%, transparent 60%),
-        radial-gradient(520px 380px at 78% 8%,  rgba(238,110,169,.40) 0%, transparent 62%),
-        radial-gradient(760px 520px at 80% 78%, rgba(243,210,122,.38) 0%, transparent 60%),
-        linear-gradient(180deg, #111018, #0a0a0f 60%);
-      animation: slowFloat 24s ease-in-out infinite alternate;
+    /* ===== Full-bleed media ===== */
+    .media{
+      position:absolute; inset:0; z-index:0; pointer-events:none;
     }
-    @keyframes slowFloat{
-      0%{ transform:translate3d(0,0,0) scale(1); }
-      100%{ transform:translate3d(0,-2%,0) scale(1.03); }
+    .media video, .media img{
+      width:100%; height:100%; object-fit:cover; display:block; filter: contrast(1.02) saturate(1.08) brightness(.92);
     }
-    #opdom-hero::after{
-      content:""; position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.3;
-      background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.12"/></svg>');
-      mix-blend-mode:overlay;
+    .overlay{
+      position:absolute; inset:0; z-index:0;
+      background: radial-gradient(1200px 800px at 20% 15%, rgba(107,107,255,.30), transparent 55%),
+                  radial-gradient(1000px 700px at 80% 85%, rgba(255,107,179,.22), transparent 55%),
+                  linear-gradient(180deg, rgba(5,6,10,.25), rgba(5,6,10,.55) 60%, rgba(5,6,10,.85));
+      mix-blend-mode:normal;
     }
 
     /* ===== Layout ===== */
-    .wrap{ position:relative; z-index:1; max-width:var(--max); margin:auto;
-      padding:clamp(18px,3.5vw,32px); padding-top:clamp(84px,12vh,128px); padding-bottom:clamp(54px,10vh,96px);
-      display:grid; gap:clamp(20px,4vw,38px); grid-template-columns: 1.15fr 1fr;
+    .wrap{
+      position:relative; z-index:1; margin:auto; max-width:var(--max);
+      padding:clamp(18px,3.5vw,32px);
+      padding-top:clamp(84px,16vh,160px);
+      padding-bottom:clamp(48px,12vh,120px);
+      display:grid; gap:clamp(18px,3vw,26px);
+      grid-template-columns: 1.1fr .9fr;
+      align-items:end;
     }
-    @media (max-width: 980px){ .wrap{ grid-template-columns:1fr; } }
+    @media (max-width: 980px){
+      .wrap{ grid-template-columns:1fr; align-items:center; padding-top:clamp(72px,18vh,132px); }
+    }
 
-    /* ===== Left (copy) ===== */
-    .tag{
-      display:inline-flex; align-items:center; gap:10px; padding:8px 12px; border-radius:999px;
-      background:linear-gradient( to right, rgba(183,155,255,.22), rgba(238,110,169,.20) );
-      border:1px solid var(--line); color:#fff; font-weight:650; letter-spacing:.1em; text-transform:uppercase; font-size:.78rem;
+    /* ===== Left: minimal copy (Doja/SZA style) ===== */
+    .lockup{
+      max-width: 56ch;
+      text-shadow: 0 1px 0 rgba(0,0,0,.25);
+    }
+    .brand{
+      display:inline-flex; gap:10px; align-items:center;
+      padding:8px 12px; border-radius:999px;
+      background:linear-gradient(90deg, rgba(255,255,255,.08), transparent);
+      border:1px solid var(--line);
+      font-weight:700; letter-spacing:.08em; text-transform:uppercase; font-size:.78rem;
       backdrop-filter: blur(6px);
     }
-    .title{
-      margin:14px 0 10px; font-size:clamp(36px, 6vw, 74px); line-height:.98; font-weight:850; letter-spacing:.2px;
+    h1{
+      margin:.45em 0 .25em;
+      font-size: clamp(40px, 7.2vw, 104px);
+      line-height:.95; font-weight:900; letter-spacing:.2px;
     }
-    .title .soft{ color:#fff; text-shadow:0 0 26px rgba(183,155,255,.28); }
-    .title .edge{
-      color:transparent; -webkit-text-stroke:1px rgba(255,255,255,.7);
-      text-shadow:0 0 30px rgba(243,210,122,.22);
+    .tagline{
+      font-size: clamp(16px,1.3vw,19px);
+      color: var(--dim);
+      max-width: 50ch;
     }
-    .sub{ color:var(--milk); opacity:.96; font-weight:520; font-size:clamp(16px,1.2vw,18px); max-width:62ch; }
 
-    .chip{
-      margin-top:18px; display:inline-flex; align-items:center; gap:10px;
-      background:linear-gradient(to right, rgba(255,247,241,.12), rgba(255,247,241,.06));
-      border:1px solid var(--line); padding:10px 14px; border-radius:14px; backdrop-filter: blur(6px);
-      min-height:42px; color:#fff; font-weight:650;
+    /* ===== CTA Blocks (oversized like the refs) ===== */
+    .ctas{
+      display:grid; gap:10px; margin-top:18px;
+      grid-template-columns: repeat(3, minmax(0,1fr));
     }
-    .chip svg{ flex:0 0 auto; }
-    .chip .q{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:72ch; }
+    @media (max-width: 720px){ .ctas{ grid-template-columns:1fr 1fr; } }
+    @media (max-width: 480px){ .ctas{ grid-template-columns:1fr; } }
 
-    .ctas{ display:flex; flex-wrap:wrap; gap:12px; margin-top:22px; }
-    .btn{
-      --b:rgba(255,255,255,.18);
-      display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:14px;
-      border:1px solid var(--b); text-decoration:none; color:#fff; font-weight:800;
-      background:linear-gradient( to right, rgba(183,155,255,.25), rgba(238,110,169,.25) );
-      box-shadow: 0 12px 28px rgba(0,0,0,.18), inset 0 0 0 999px rgba(255,255,255,.02);
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    .cta{
+      display:flex; align-items:center; justify-content:center;
+      height:56px; border-radius:12px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, var(--glass), transparent);
+      text-decoration:none; color:var(--ink); font-weight:900; font-size:1.02rem;
+      transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+      box-shadow: 0 14px 36px rgba(0,0,0,.18), inset 0 0 0 999px rgba(255,255,255,.02);
     }
-    .btn:hover{ transform:translateY(-2px); border-color:rgba(255,255,255,.35); box-shadow: 0 16px 32px rgba(0,0,0,.22); }
-    .btn.alt{ background:linear-gradient( to right, rgba(243,210,122,.22), rgba(255,247,241,.10) ); }
-    .btn.ghost{ background:transparent; border-color:rgba(255,255,255,.28); }
+    .cta:hover{ transform: translateY(-2px); border-color:rgba(255,255,255,.34); box-shadow:0 18px 42px rgba(0,0,0,.24); }
+    .cta.listen{ background-image: linear-gradient(90deg, rgba(107,107,255,.18), rgba(255,107,179,.18)); }
+    .cta.tour{ background-image: linear-gradient(90deg, rgba(255,107,179,.18), rgba(107,107,255,.12)); }
+    .cta.shop{ background-image: linear-gradient(90deg, rgba(107,107,255,.10), rgba(255,255,255,.04)); }
 
-    .socials{ margin-top:18px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+    /* ===== Right: promo tile (album/press shot) ===== */
+    .tile{
+      display:grid; gap:12px;
+      grid-template-rows: minmax(260px, 44vh) auto;
+    }
+    .card{
+      position:relative; overflow:hidden; border-radius:18px; border:1px solid var(--line);
+      background:#1113; box-shadow:0 18px 44px rgba(0,0,0,.35);
+    }
+    .card img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .card::after{
+      content:""; position:absolute; inset:0; pointer-events:none;
+      background: conic-gradient(from 0deg, transparent 0 40%, rgba(255,255,255,.18) 50%, transparent 70%);
+      mix-blend-mode:screen; opacity:.5;
+    }
+    .strip{
+      display:flex; justify-content:space-between; align-items:center; gap:12px;
+      padding:10px 12px; border-radius:12px; border:1px solid var(--line);
+      background:linear-gradient(180deg, var(--glass), transparent);
+    }
+    .strip b{ font-weight:900; }
+    .strip .mini{ color:var(--dim); font-weight:600; }
+
+    /* ===== Social rail (small, like the refs) ===== */
+    .socials{
+      margin-top:16px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+    }
     .socials a{
       display:inline-grid; place-items:center; width:38px; height:38px; border-radius:10px;
-      border:1px solid var(--line); color:#fff; background:linear-gradient(180deg, var(--glass), transparent);
-      text-decoration:none; backdrop-filter: blur(6px);
-      transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease;
+      border:1px solid var(--line); background:linear-gradient(180deg, var(--glass), transparent);
+      color:var(--ink); text-decoration:none; backdrop-filter: blur(6px);
+      transition: transform .16s ease, border-color .16s ease;
     }
-    .socials a:hover{ transform:translateY(-1px); border-color:rgba(255,255,255,.38); box-shadow:0 8px 16px rgba(0,0,0,.22);}
-    .handle{ color:var(--milk); margin-left:6px; opacity:.85; font-weight:650; }
+    .socials a:hover{ transform:translateY(-1px); border-color:rgba(255,255,255,.36); }
+    .handle{ color:var(--dim); font-weight:700; }
 
-    .foot{ display:flex; gap:16px; align-items:center; margin-top:18px; color:var(--milk); opacity:.88; font-size:.92rem; flex-wrap:wrap; }
-    .sep{ opacity:.35; }
-
-    /* ===== Right (photo wall) ===== */
-    .wall{
-      position:relative; min-height:540px; display:grid; gap:12px;
-      grid-template-areas:
-        "a b"
-        "a c";
-    }
-    @media (max-width:980px){ .wall{ min-height:420px; } }
-    .ph{ position:relative; overflow:hidden; border-radius:18px; border:1px solid var(--line); background:#1113;
-         box-shadow:0 18px 44px rgba(0,0,0,.35); }
-    .ph img{ width:100%; height:100%; display:block; object-fit:cover; transform:scale(1.03); }
-    .a{ grid-area:a; aspect-ratio:3/4; }
-    .b{ grid-area:b; aspect-ratio:1/1; }
-    .c{ grid-area:c; aspect-ratio:4/3; }
-    .ph::after{
-      content:""; position:absolute; inset:0; pointer-events:none; border-radius:inherit; padding:1px;
-      background: conic-gradient(from 0deg, transparent 0 30%, rgba(183,155,255,.22) 40%, transparent 60%, rgba(238,110,169,.20) 75%, transparent 100%);
-      mix-blend-mode:screen; opacity:.6;
-      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude;
-    }
+    /* ===== Legal micro ===== */
+    .micro{ margin-top:14px; color:var(--dim); font-size:.9rem; }
   </style>
 
-  <div class="aura" aria-hidden="true"></div>
+  <!-- ===== BACKGROUND MEDIA ===== -->
+  <div class="media" aria-hidden="true">
+    <!-- If you have a silent loop video, use the video tag below and remove the img -->
+    <!-- <video src="assets/dom-hero-bg.mp4" autoplay muted playsinline loop></video> -->
+    <img src="assets/dom-hero-bg.jpg" alt="">
+  </div>
+  <div class="overlay" aria-hidden="true"></div>
 
   <div class="wrap">
-    <!-- ===== Copy ===== -->
-    <div class="left">
-      <span class="tag">OperationDom • Soul × Style</span>
+    <!-- ===== LEFT: COPY + CTAs ===== -->
+    <div class="lockup">
+      <span class="brand">OperationDom</span>
+      <h1>Soft & strong.<br/>Spiritual & sexy.</h1>
+      <p class="tagline">Modern muse energy with a voice that cuts and a presence that owns the room.</p>
 
-      <h1 class="title">
-        <span class="soft">Where soul meets style—</span><br/>
-        <span class="edge">soft & strong, spiritual & sexy.</span>
-      </h1>
+      <nav class="ctas" aria-label="Primary">
+        <a class="cta listen" href="https://tr.ee/Otksl-V1bJ" target="_blank" rel="noopener">Listen</a>
+        <a class="cta tour" href="https://tr.ee/HwA9uB7wJ2" target="_blank" rel="noopener">Tour</a>
+        <a class="cta shop" href="#shop">Shop</a>
+      </nav>
 
-      <p class="sub">
-        OperationDom is a fusion of raw emotion, magnetic energy, and refined artistry.
-        With a voice that cuts through the noise and a presence that commands the room,
-        Dom blends confidence, vulnerability, and divine feminine power into every performance.
-        This isn’t just music—it’s a movement.
-      </p>
-
-      <!-- Rotating pull-quote (from form) -->
-      <div class="chip" role="note" aria-live="polite">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M7 11h4v7H5v-5c0-4.418 3.582-8 8-8" stroke="white" opacity=".85" stroke-width="1.6" stroke-linecap="round"/>
-          <path d="M17 11h4v7h-6v-5c0-4.418 3.582-8 8-8" stroke="white" opacity=".65" stroke-width="1.6" stroke-linecap="round"/>
-        </svg>
-        <span class="q" id="opdom-q">“I don’t chase. I align — and what’s meant for me finds me.”</span>
-      </div>
-
-      <!-- CTAs -->
-      <div class="ctas">
-        <a class="btn" href="https://tr.ee/Otksl-V1bJ" target="_blank" rel="noopener">Listen</a>
-        <a class="btn alt" href="mailto:kody@transverbapp.com?subject=OperationDom%20Booking">Book Dom</a>
-        <a class="btn ghost" href="https://tr.ee/tDLjdF82UW" target="_blank" rel="noopener">Rates</a>
-      </div>
-
-      <!-- Socials from form -->
-      <div class="socials" aria-label="OperationDom social links">
+      <div class="socials" aria-label="Socials">
         <a href="https://www.instagram.com/operationdom" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="white" opacity=".75"/><circle cx="12" cy="12" r="4.2" stroke="white" opacity=".9"/><circle cx="17.3" cy="6.7" r="1.2" fill="white" opacity=".9"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="white" opacity=".8"/><circle cx="12" cy="12" r="4.2" stroke="white" opacity=".95"/><circle cx="17.3" cy="6.7" r="1.2" fill="white"/></svg>
         </a>
-        <a href="https://tr.ee/HwA9uB7wJ2" target="_blank" rel="noopener" aria-label="YouTube">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="3" stroke="white" opacity=".75"/><path d="M10 9.5v5l4.5-2.5L10 9.5Z" fill="white" opacity=".9"/></svg>
+        <a href="https://open.spotify.com/artist/..." target="_blank" rel="noopener" aria-label="Spotify">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="white" opacity=".85"/><path d="M7.2 10.2c3.1-.6 6.4-.2 9 .9M7.6 12.9c2.6-.4 5.3-.1 7.6.8M8 15.3c2-.3 4.1 0 5.9.6" stroke="white" opacity=".95" stroke-linecap="round"/></svg>
         </a>
         <a href="https://music.apple.com/us/artist/operationdom/1824111226" target="_blank" rel="noopener" aria-label="Apple Music">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 4v9.5a3.2 3.2 0 1 1-1.6-2.77V6.2L19 5.2v6.3a3.2 3.2 0 1 1-1.6-2.77V4.9L15 4Z" fill="white" opacity=".9"/></svg>
-        </a>
-        <a href="https://tr.ee/Otksl-V1bJ" target="_blank" rel="noopener" aria-label="Spotify">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="white" opacity=".75"/><path d="M7.2 10.2c3.1-.6 6.4-.2 9 .9M7.6 12.9c2.6-.4 5.3-.1 7.6.8M8 15.3c2-.3 4.1 0 5.9.6" stroke="white" opacity=".9" stroke-linecap="round"/></svg>
-        </a>
-        <a href="https://tr.ee/1SIhr4qw5y" target="_blank" rel="noopener" aria-label="SoundCloud">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 15V9M8 16V7M10 16.5V6.5M12 17V6M14 16.5V8.5M16 16v-3.5M18 16v-2M20 16v-1" stroke="white" opacity=".9" stroke-linecap="round"/><path d="M6 16h14a2 2 0 0 0 0-4h-.7a5.6 5.6 0 0 0-5.6-5.1 5.6 5.6 0 0 0-2.7.7" stroke="white" opacity=".75" stroke-linecap="round"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 4v9.5a3.2 3.2 0 1 1-1.6-2.77V6.2L19 5.2v6.3a3.2 3.2 0 1 1-1.6-2.77V4.9L15 4Z" fill="white" /></svg>
         </a>
         <span class="handle">@operationdom</span>
       </div>
 
-      <div class="foot">
-        <span>NYC • Worldwide</span><span class="sep">•</span>
-        <span>Bold, bougie, beautifully unapologetic</span>
-      </div>
+      <div class="micro">NYC • Worldwide</div>
     </div>
 
-    <!-- ===== Photos (swap src paths to your repo) ===== -->
-    <div class="right">
-      <div class="wall">
-        <figure class="ph a"><img src="assets/dom-hero-01.jpg" alt="OperationDom in spotlight — live performance"></figure>
-        <figure class="ph b"><img src="assets/dom-hero-02.jpg" alt="Close-up glam with edge"></figure>
-        <figure class="ph c"><img src="assets/dom-hero-03.jpg" alt="Studio session focus at the mic"></figure>
+    <!-- ===== RIGHT: PROMO TILE (album/press shot or carousel host) ===== -->
+    <aside class="tile">
+      <figure class="card">
+        <img src="assets/dom-press-01.jpg" alt="OperationDom — press image">
+      </figure>
+      <div class="strip">
+        <b>New single</b> <span class="mini">Listen now →</span>
       </div>
-    </div>
+    </aside>
   </div>
-
-  <!-- Rotating quotes (from the form) -->
-  <script>
-    (function(){
-      const qs = [
-        "I don’t chase. I align — and what’s meant for me finds me.",
-        "Luxury is my lifestyle, but peace is my priority.",
-        "Soft doesn’t mean weak. It means powerful enough to stay calm in chaos.",
-        "My confidence isn’t arrogance — it’s evidence of self-work.",
-        "I’m not in competition. I’m in alignment."
-      ];
-      const el = document.getElementById('opdom-q'); let i=0;
-      setInterval(()=>{ i=(i+1)%qs.length; el.textContent = '“' + qs[i] + '”'; }, 3600);
-    })();
-  </script>
 </section>

@@ -8,14 +8,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
+     :root {
       --bg: #050506;
-      --accent-egg: #d7ffe1;
-      --accent-blue: #4ab8ff;
-      --accent-pink: #ff4bba;
-      --text-main: #fdfdfd;
-      --muted: #c7c2dd;
+      --accent-egg: #ffffff;
+      --accent-blue: #ffffff;
+      --accent-pink: #ffffff;
+      --text-main: #ffffff;
+      --muted: #ffffff;
     }
+
 
     * {
       box-sizing: border-box;
@@ -275,30 +276,33 @@
       white-space: nowrap;
     }
 
-    .btn-primary {
-        color: #000;
-        background-color: #ffffff;
-        border: 2px solid #ffffff;
-        padding: 13px 28px;
-        font-family: "Plus Jakarta Sans", sans-serif;
-        font-weight: 700;
-        font-size: 0.95rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        box-shadow: 0 10px 26px rgba(0,0,0,0.6);
-        transition: 0.2s ease;
-      }
-      
-      .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 16px 40px rgba(0,0,0,1);
-      }
+  .btn-primary {
+  color: #ffffff;                       /* white text */
+  background-color: transparent;        /* no fill */
+  border: 2px solid #ffffff;            /* white outline */
+  border-radius: 0;
+  padding: 13px 28px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: none;
+  transition: 0.2s ease;
+}
 
-    .btn-ghost {
-      color: var(--accent-egg);
-      background-color: transparent;
-      border: 2px solid rgba(215,255,225,0.95);
-    }
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(0,0,0,1);
+}
+
+.btn-ghost {
+  color: #ffffff;
+  background-color: transparent;
+  border: 2px solid #ffffff;
+  border-radius: 0;
+}
+
 
     .btn-ghost:hover {
       transform: translateY(-2px);
@@ -315,6 +319,26 @@
       color: rgba(235,235,235,0.75);
     }
 
+/* buttons */
+.btn-primary,
+.btn-ghost {
+  border-radius: 0; /* was 8px */
+}
+
+/* cart chip */
+.hero-cart {
+  border-radius: 0;
+}
+
+/* badge on the image */
+.hero-badge {
+  border-radius: 0;
+}
+
+/* small name tag on the image */
+.hero-signature {
+  border-radius: 0;
+}
 
     .hero-cta-group {
       display: flex;

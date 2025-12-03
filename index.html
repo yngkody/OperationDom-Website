@@ -4,19 +4,19 @@
   <meta charset="UTF-8" />
   <title>OperationDom Hero</title>
 
-  <!-- Groovy / 70s-ish Google fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Lobster&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Modern, heavy, free fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --bg: #05030a;
-      --bg-accent-1: #1a1035;  /* deeper purple */
-      --bg-accent-2: #141b3f;  /* deeper blue */
-      --accent-egg: #d7ffe1;   /* eggshell green */
-      --accent-blue: #35d1ff;  /* richer neon aqua */
-      --accent-pink: #ff4bba;  /* punchier magenta */
+      --bg-accent-1: #17122c;  /* deep plum */
+      --bg-accent-2: #0c1935;  /* midnight blue */
+      --accent-egg: #d7ffe1;
+      --accent-blue: #3cc4ff;
+      --accent-pink: #ff4bba;
       --text-main: #fdfdfd;
-      --muted: #d3c5f3;
+      --muted: #d6cfee;
     }
 
     * {
@@ -28,7 +28,7 @@
     body {
       background: var(--bg);
       color: var(--text-main);
-      font-family: "Karla", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       min-height: 100vh;
       overflow-x: hidden;
     }
@@ -45,17 +45,16 @@
       overflow: hidden;
     }
 
-    /* deeper / richer gradient background */
+    /* background gradient – a bit cleaner / richer */
     .hero::before {
       content: "";
       position: absolute;
       inset: -10%;
       background:
-        radial-gradient(circle at 10% 0%, rgba(215,255,225,0.06), transparent 55%),
-        radial-gradient(circle at 90% 20%, rgba(53,209,255,0.2), transparent 55%),
-        radial-gradient(circle at 20% 80%, rgba(255,75,186,0.35), transparent 60%),
-        linear-gradient(125deg, var(--bg-accent-1), var(--bg-accent-2));
-      opacity: 1;
+        radial-gradient(circle at 15% 0%, rgba(215,255,225,0.05), transparent 55%),
+        radial-gradient(circle at 85% 20%, rgba(60,196,255,0.16), transparent 55%),
+        radial-gradient(circle at 25% 80%, rgba(255,75,186,0.28), transparent 60%),
+        linear-gradient(120deg, var(--bg-accent-1), var(--bg-accent-2));
       z-index: -3;
     }
 
@@ -65,18 +64,18 @@
       inset: -10%;
       background-image: repeating-linear-gradient(
         90deg,
-        rgba(255,255,255,0.04) 0,
-        rgba(255,255,255,0.04) 1px,
+        rgba(255,255,255,0.03) 0,
+        rgba(255,255,255,0.03) 1px,
         transparent 1px,
         transparent 3px
       );
       mix-blend-mode: soft-light;
-      opacity: 0.3;
+      opacity: 0.25;
       pointer-events: none;
       z-index: -2;
     }
 
-    /* GIANT BACKGROUND WORD – smaller */
+    /* GIANT BACKGROUND WORD – smaller + impact-style */
     .hero-bg-word {
       position: absolute;
       inset: 0;
@@ -89,15 +88,14 @@
     }
 
     .hero-bg-word span {
-      font-family: "Shrikhand", system-ui;
-      font-size: clamp(5.5rem, 18vw, 13rem); /* was bigger before */
-      letter-spacing: 0.08em;
+      font-family: "Anton", sans-serif;
+      font-size: clamp(4.2rem, 14vw, 10rem);
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: rgba(255, 75, 186, 0.55);
+      color: rgba(255, 75, 186, 0.4);
       text-shadow:
-        0 0 44px rgba(0, 0, 0, 0.9),
-        0 0 8px rgba(0, 0, 0, 0.8);
-      transform: translateY(8%);
+        0 14px 40px rgba(0,0,0,0.9);
+      transform: translateY(12%);
       white-space: nowrap;
     }
 
@@ -107,10 +105,11 @@
       align-items: center;
       justify-content: center;
       gap: clamp(32px, 6vw, 80px);
-      font-family: "Shrikhand", system-ui;
+      font-family: "Space Grotesk", system-ui;
       font-size: 0.95rem;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
+      font-weight: 700;
       position: relative;
       z-index: 5;
       margin-bottom: 18px;
@@ -156,42 +155,49 @@
 
     .hero-tagline {
       font-size: 0.85rem;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--accent-egg);
-      margin-bottom: 16px;
+      margin-bottom: 18px;
+      font-weight: 600;
     }
 
     .hero-headline {
-      font-family: "Shrikhand", system-ui;
-      font-size: clamp(2.8rem, 5vw, 3.8rem);
-      letter-spacing: 0.12em;
+      font-family: "Anton", sans-serif;
+      font-size: clamp(3rem, 5vw, 4rem);
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       line-height: 1.02;
-      margin-bottom: 18px;
+      margin-bottom: 10px;
     }
 
-    /* “IN FULL EFFECT” – less corny font + deeper neon */
+    /* “IN FULL EFFECT” – no script, caps italic grotesk */
     .hero-script-overlay {
       display: inline-block;
-      position: relative;
-      font-family: "Lobster", cursive;
-      font-size: clamp(1.4rem, 2.4vw, 2rem);
-      margin-left: 8px;
-      transform: translateY(-10px) rotate(-5deg);
+      margin-top: 4px;
+      font-family: "Space Grotesk", sans-serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
       color: var(--accent-blue);
-      text-shadow:
-        0 0 14px rgba(53,209,255,0.9),
-        0 0 32px rgba(53,209,255,0.7);
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(3,8,20,0.8);
+      border: 1px solid rgba(60,196,255,0.8);
+      box-shadow: 0 0 20px rgba(60,196,255,0.35);
+      width: fit-content;
     }
 
     .hero-subhead {
       max-width: 34rem;
       font-size: 1.02rem;
-      line-height: 1.75;
+      line-height: 1.8;
       color: var(--muted);
+      margin-top: 18px;
       margin-bottom: 22px;
-      font-weight: 500; /* heavier */
+      font-weight: 600; /* thicker */
     }
 
     .hero-subhead strong {
@@ -202,10 +208,10 @@
     .hero-detail {
       font-size: 0.9rem;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: rgba(215,255,225,0.9);
+      letter-spacing: 0.16em;
+      color: rgba(215,255,225,0.95);
       margin-bottom: 32px;
-      font-weight: 500;
+      font-weight: 700;
     }
 
     .hero-ctas {
@@ -219,51 +225,54 @@
     .btn-ghost {
       position: relative;
       border-radius: 999px;
-      padding: 12px 32px;
-      font-family: "Shrikhand", system-ui;
+      padding: 13px 34px;
+      font-family: "Space Grotesk", sans-serif;
       font-size: 0.9rem;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.18em;
+      font-weight: 700;
       border: none;
       cursor: pointer;
       transition: transform 150ms ease-out, box-shadow 150ms ease-out, background 150ms ease-out, border-color 150ms ease-out;
       display: inline-flex;
       align-items: center;
-      justify-content: center; /* ensures text fully centered */
+      justify-content: center;
       gap: 8px;
       white-space: nowrap;
     }
 
-    /* New richer gradient for BOOK A SHOW */
+    /* More refined gradient – only two colors */
     .btn-primary {
       color: #050308;
-      background: linear-gradient(130deg, #d7ffe1 0%, #35d1ff 40%, #ff4bba 100%);
-      box-shadow: 0 14px 34px rgba(0,0,0,0.7);
+      background: linear-gradient(120deg, #d7ffe1 0%, #ff4bba 100%);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.75);
     }
 
     .btn-primary:hover {
       transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 18px 46px rgba(0,0,0,0.9);
+      box-shadow: 0 18px 46px rgba(0,0,0,0.95);
     }
 
     .btn-ghost {
       color: var(--accent-egg);
-      background: transparent;
-      border: 2px solid rgba(215,255,225,0.9); /* thicker outline */
+      background: rgba(5,3,15,0.6);
+      border: 2px solid rgba(215,255,225,0.95);
       backdrop-filter: blur(18px);
     }
 
     .btn-ghost:hover {
       transform: translateY(-2px);
-      background: rgba(5,3,10,0.6);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.8);
+      background: rgba(5,3,10,0.8);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.85);
     }
 
     .btn-caption {
-      font-size: 0.75rem;
-      letter-spacing: 0.14em;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.74rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(215,255,225,0.85);
+      color: rgba(215,255,225,0.9);
+      font-weight: 600;
     }
 
     .hero-cta-group {
@@ -283,16 +292,16 @@
 
     .hero-orb {
       position: relative;
-      width: min(420px, 80vw);
+      width: min(400px, 78vw);
       aspect-ratio: 1 / 1;
       border-radius: 50%;
       background:
-        radial-gradient(circle at 20% 20%, rgba(215,255,225,0.35), transparent 55%),
-        radial-gradient(circle at 80% 80%, rgba(53,209,255,0.45), transparent 60%),
-        radial-gradient(circle at 50% 100%, rgba(255,75,186,0.8), transparent 60%),
-        radial-gradient(circle at 50% 0%, rgba(9,5,15,0.95), rgba(2,1,6,1));
+        radial-gradient(circle at 20% 20%, rgba(215,255,225,0.3), transparent 55%),
+        radial-gradient(circle at 80% 80%, rgba(60,196,255,0.4), transparent 60%),
+        radial-gradient(circle at 50% 100%, rgba(255,75,186,0.75), transparent 60%),
+        radial-gradient(circle at 50% 0%, rgba(9,5,15,0.96), rgba(2,1,6,1));
       box-shadow:
-        0 0 0 1px rgba(255,255,255,0.08),
+        0 0 0 1px rgba(255,255,255,0.06),
         0 26px 80px rgba(0,0,0,1);
       overflow: hidden;
       transform-style: preserve-3d;
@@ -304,7 +313,7 @@
       content: "";
       position: absolute;
       inset: -10%;
-      background: radial-gradient(circle at 10% 0%, rgba(255,255,255,0.18), transparent 55%);
+      background: radial-gradient(circle at 10% 0%, rgba(255,255,255,0.16), transparent 55%);
       mix-blend-mode: screen;
       opacity: 0.9;
       pointer-events: none;
@@ -325,7 +334,7 @@
       width: 110%;
       object-fit: cover;
       object-position: center;
-      filter: contrast(1.12) saturate(1.18);
+      filter: contrast(1.08) saturate(1.12);
       transform: translateY(6%);
     }
 
@@ -333,16 +342,18 @@
       position: absolute;
       right: 4%;
       bottom: 4%;
-      padding: 9px 16px;
+      padding: 9px 18px;
       border-radius: 999px;
-      background: rgba(5,3,10,0.85);
-      border: 2px solid rgba(215,255,225,0.9); /* thicker outline */
-      font-size: 0.7rem;
-      letter-spacing: 0.16em;
+      background: rgba(5,3,10,0.9);
+      border: 2px solid rgba(215,255,225,0.95);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       display: flex;
       align-items: center;
       gap: 6px;
+      font-weight: 700;
     }
 
     .hero-badge-dot {
@@ -355,15 +366,17 @@
 
     .hero-signature {
       position: absolute;
-      left: -10%;
+      left: -6%;
       top: 8%;
-      font-family: "Lobster", cursive;
-      font-size: clamp(1.8rem, 2.6vw, 2.2rem);
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
       color: var(--accent-pink);
-      text-shadow:
-        0 0 10px rgba(255,75,186,0.9),
-        0 0 28px rgba(255,75,186,0.7);
-      transform: rotate(-12deg);
+      background: rgba(5,3,12,0.9);
+      padding: 5px 12px;
+      border-radius: 999px;
     }
 
     /* SOCIAL / CART */
@@ -379,27 +392,33 @@
     }
 
     .hero-top-right a {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
       color: var(--accent-egg);
       text-decoration: none;
       opacity: 0.9;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.7rem;
     }
 
     .hero-cart {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 12px;
+      padding: 6px 16px;
       border-radius: 999px;
-      border: 2px solid rgba(215,255,225,0.9); /* thicker outline */
-      background: rgba(5,3,10,0.7);
+      border: 2px solid rgba(215,255,225,0.95);
+      background: rgba(5,3,10,0.8);
       font-size: 0.8rem;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
     }
 
-    .hero-cart span {
-      font-family: "Shrikhand", system-ui;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      font-size: 0.65rem;
+    .hero-cart strong {
+      font-weight: 700;
     }
 
     /* RESPONSIVE */
@@ -413,7 +432,7 @@
       }
       .hero-bg-word span {
         transform: translateY(18%);
-        opacity: 0.7;
+        opacity: 0.6;
       }
       .hero {
         padding-top: 70px;
@@ -427,13 +446,10 @@
         flex-wrap: wrap;
       }
       .hero-headline {
-        font-size: 2.2rem;
-      }
-      .hero-script-overlay {
-        font-size: 1.3rem;
+        font-size: 2.4rem;
       }
       .hero-orb {
-        width: 82vw;
+        width: 80vw;
       }
       .hero-top-right {
         top: 18px;
@@ -446,7 +462,7 @@
 
 <section class="hero">
 
-  <!-- giant pink background word -->
+  <!-- giant background word -->
   <div class="hero-bg-word">
     <span>OPERATIONDOM</span>
   </div>
@@ -461,8 +477,8 @@
 
   <!-- socials / cart -->
   <div class="hero-top-right">
-    <a href="#" aria-label="Instagram">@</a>
-    <a href="#" aria-label="Facebook">f</a>
+    <a href="#" aria-label="Instagram">IG</a>
+    <a href="#" aria-label="Facebook">FB</a>
     <div class="hero-cart">
       <span>cart</span>
       <strong>0</strong>
@@ -475,10 +491,8 @@
     <div class="hero-copy">
       <div class="hero-tagline">LIVE. LOUD. IN LINGERIE &amp; LEATHER.</div>
 
-      <h1 class="hero-headline">
-        OPERATIONDOM
-        <span class="hero-script-overlay">in full effect</span>
-      </h1>
+      <h1 class="hero-headline">OPERATIONDOM</h1>
+      <div class="hero-script-overlay">IN FULL EFFECT</div>
 
       <p class="hero-subhead">
         Where <strong>soul slides into sin and style</strong>. Velvet vocals, bass that bites,
@@ -496,14 +510,14 @@
             BOOK A SHOW
             <span>↗</span>
           </button>
-          <span class="btn-caption">clubs · festivals · private nights</span>
+          <span class="btn-caption">CLUBS · FESTIVALS · PRIVATE NIGHTS</span>
         </div>
 
         <div class="hero-cta-group">
           <button class="btn-ghost">
             WATCH A PERFORMANCE
           </button>
-          <span class="btn-caption">3 minutes of proof she’s the headliner</span>
+          <span class="btn-caption">3 MINUTES OF PROOF SHE’S THE HEADLINER</span>
         </div>
       </div>
     </div>
@@ -511,11 +525,11 @@
     <!-- right: visual -->
     <div class="hero-visual">
       <div class="hero-orb" id="domOrb">
-        <div class="hero-signature">Dom Vic</div>
+        <div class="hero-signature">DOM VIC</div>
 
         <div class="hero-image-wrap">
           <!-- replace src with Dom’s photo -->
-          <img src="hero.jpg" alt="OperationDom press photo" />
+          <img src="dom-hero.jpg" alt="OperationDom press photo" />
         </div>
 
         <div class="hero-badge">
@@ -529,7 +543,7 @@
 </section>
 
 <script>
-  // Tiny JS: parallax tilt on the orb
+  // parallax tilt on the orb
   (function () {
     const orb = document.getElementById('domOrb');
     if (!orb) return;

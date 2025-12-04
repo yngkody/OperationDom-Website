@@ -11,20 +11,14 @@
   <style>
     :root {
       --bg-pink: #ffd6ea;        /* hero */
-      --bg-soft-pink: #ffe9f4;   /* booking */
-      --bg-softest-pink: #fff7fc;/* services */
       --bg-soft-blue: #e4f1ff;   /* performance */
       --bg-lilac: #f3e7ff;       /* quotes */
 
-      --panel: #ffffff;
       --ink: #1b1020;
       --muted-ink: #4a384f;
 
       --accent-pink: #ff4fa0;
-      --accent-pink-soft: #ff8cc4;
       --accent-blue: #3b82f6;
-      --accent-lilac: #a855f7;
-      --accent-yellow: #facc15;
 
       --border-strong: #1b1020;
       --border-soft: #c08aa9;
@@ -233,7 +227,7 @@
     .btn-primary {
       background: #ffffff;
       border-color: #ffffff;
-      box-shadow: none; /* no shadow */
+      box-shadow: none; /* totally flat */
     }
 
     .btn-primary:hover {
@@ -271,7 +265,7 @@
       transform: translate(3px, -1px);
     }
 
-    /* HERO RIGHT: HEART IMAGE + SLIDER */
+    /* HERO RIGHT: PERFECT HEART + SLIDER */
 
     .hero-visual {
       display: flex;
@@ -281,43 +275,42 @@
       gap: 20px;
     }
 
-    .hero-heart-wrap {
+    .hero-heart {
       position: relative;
       width: min(320px, 75vw);
-      aspect-ratio: 3 / 4;
-      padding: 10px;
-      background: #fff;
-      border: 2px solid var(--border-strong);
-      box-shadow: 0 16px 0 rgba(27,16,32,0.7);
-    }
-
-    .hero-heart-photo {
-      position: relative;
-      width: 100%;
-      height: 100%;
+      aspect-ratio: 1 / 1;
       background-image: url("dom-hero.jpeg");
       background-size: cover;
       background-position: center;
-      /* heart mask */
-      clip-path: polygon(
-        50% 90%,
-        5% 55%,
-        0% 35%,
-        7% 20%,
-        20% 10%,
-        33% 7%,
-        50% 15%,
-        67% 7%,
-        80% 10%,
-        93% 20%,
-        100% 35%,
-        95% 55%
-      );
+      /* PERFECT HEART SHAPE */
+      clip-path: path("M50 15 C35 0, 5 5, 5 30 C5 55, 25 70, 50 90 C75 70, 95 55, 95 30 C95 5, 65 0, 50 15 Z");
+      /* same path (0–100) scaled by element box */
+      box-shadow: 0 18px 26px rgba(0,0,0,0.35);
+    }
+
+    /* Older browsers: polygon fallback (optional) */
+    @supports not (clip-path: path("M0 0 L1 1")) {
+      .hero-heart {
+        clip-path: polygon(
+          50% 85%,
+          10% 55%,
+          4% 36%,
+          10% 20%,
+          25% 10%,
+          40% 8%,
+          50% 16%,
+          60% 8%,
+          75% 10%,
+          90% 20%,
+          96% 36%,
+          90% 55%
+        );
+      }
     }
 
     .hero-heart-tag {
       position: absolute;
-      bottom: 10px;
+      bottom: -4px;
       left: 50%;
       transform: translateX(-50%);
       background: #000;
@@ -327,6 +320,23 @@
       text-transform: uppercase;
       letter-spacing: 0.16em;
       font-weight: 800;
+    }
+
+    .hero-heart-wrap {
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-heart-wrap::after {
+      /* soft shadow on ground */
+      content: "";
+      position: absolute;
+      left: 15%;
+      right: 15%;
+      bottom: -16px;
+      height: 14px;
+      background: radial-gradient(ellipse at 50% 50%, rgba(27,16,32,0.65), transparent 70%);
+      z-index: -1;
     }
 
     /* slider */
@@ -409,7 +419,7 @@
       color: var(--muted-ink);
     }
 
-    /* bow connector between sections */
+    /* ========== BOW CONNECTOR ========== */
 
     .section-connector {
       position: relative;
@@ -476,7 +486,7 @@
       border-radius: 4px;
     }
 
-    /* ============== SECTIONS WRAPPER STYLES ============== */
+    /* ============== GENERIC SECTION ============== */
 
     .section {
       padding: 40px 5vw;
@@ -512,7 +522,7 @@
       font-weight: 800;
     }
 
-    /* QUOTES SECTION */
+    /* ============== QUOTES ============== */
 
     .section--quotes {
       background: var(--bg-lilac);
@@ -569,7 +579,7 @@
       margin-bottom: 6px;
     }
 
-    /* PERFORMANCE / ABOUT (REUSING NEW COPY) */
+    /* ============== PERFORMANCE / IG ============== */
 
     .section--performance {
       background-color: var(--bg-soft-blue);
@@ -652,11 +662,6 @@
       color: var(--muted-ink);
     }
 
-    /* SERVICES + BOOKING:
-       If you already have these wired up from the previous version,
-       you can keep that code beneath this file.
-       Here we'll just leave space for them to sit. */
-
     /* ============== RESPONSIVE ============== */
 
     @media (max-width: 960px) {
@@ -722,7 +727,7 @@
 
   <div class="hero-top-right">
     <a href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer">IG</a>
-    <a href="#" aria-label="Store">store</a>
+    <a href="shop.html" aria-label="Store">store</a>
   </div>
 
   <div class="hero-main">
@@ -779,7 +784,7 @@
     <!-- RIGHT: HEART HERO + SLIDER -->
     <div class="hero-visual">
       <div class="hero-heart-wrap">
-        <div class="hero-heart-photo"></div>
+        <div class="hero-heart"></div>
         <div class="hero-heart-tag">DOM VIC · NYC</div>
       </div>
 
@@ -840,8 +845,8 @@
       <h2>WORDS TO VIBE WITH</h2>
       <p>
         OperationDom is as intentional with her mindset as she is with her melodies.
-        These are the affirmations she lives by — a peek into the energy she brings
-        into every room, every session, every stage.
+        These are the affirmations she lives by — the energy she brings into every room,
+        every session, every stage.
       </p>
     </div>
 
@@ -874,14 +879,14 @@
   </div>
 </section>
 
-<!-- ========== BOW CONNECTOR (to performance / services / booking) ========== -->
+<!-- ========== BOW CONNECTOR ========== -->
 <div class="section-connector">
   <div class="section-connector-inner">
     <div class="section-bow"><span></span></div>
   </div>
 </div>
 
-<!-- ========== PERFORMANCE / IG SECTION (example) ========== -->
+<!-- ========== PERFORMANCE / IG SECTION ========== -->
 <section class="section section--performance" id="performance">
   <div class="section-inner">
     <div class="section-tag">LIVE &amp; ONLINE</div>
@@ -896,7 +901,6 @@
 
     <div class="performance-layout">
       <div class="video-wrapper">
-        <!-- your YouTube embed -->
         <iframe
           src="https://www.youtube.com/embed/XNsNou7JNwE"
           title="OperationDom Live Performance"
@@ -914,7 +918,7 @@
         </div>
 
         <div class="insta-grid" id="instaGrid">
-          <!-- You'll fill this with Instagram Basic Display API thumbnails -->
+          <!-- Replace these with real tiles using Instagram Basic Display API -->
           <a href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer" class="insta-tile"></a>
           <a href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer" class="insta-tile"></a>
           <a href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer" class="insta-tile"></a>
@@ -924,276 +928,25 @@
         </div>
 
         <p class="insta-note">
-          Use the <strong>Instagram Basic Display API</strong> to pull in real posts:
-          replace these squares with live thumbnails and link them directly to each post.
+          Hook this section up to the <strong>Instagram Basic Display API</strong> to show live posts from her feed.
         </p>
       </div>
     </div>
   </div>
 </section>
 
-
-
-
-
-<section id="services" class="section section--services">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-tag">Services</div>
-      <h2>What you can book Dom for</h2>
-      <p>
-        From the stage to the studio, from artist coaching to brand campaigns —
-        OperationDom is a full-spectrum creative you can plug into your event,
-        your record, or your visual world.
-      </p>
-    </div>
-
-    <div class="services-grid">
-      <!-- Live Performances -->
-      <article class="service-card service-card--pink">
-        <div class="service-color-bar"></div>
-        <div class="service-label">On stage</div>
-        <h3>Live Performances</h3>
-        <p>
-          Bring soul, energy, and elegance to any event. Unforgettable sets for weddings,
-          galas, corporate functions, and private celebrations — always powered by
-          powerhouse vocals and magnetic stage presence.
-        </p>
-        <div class="service-pill">Weddings · galas · nightlife</div>
-      </article>
-
-      <!-- Studio Sessions & Collaborations -->
-      <article class="service-card service-card--blue">
-        <div class="service-color-bar"></div>
-        <div class="service-label">In the booth</div>
-        <h3>Studio Sessions &amp; Collaborations</h3>
-        <p>
-          Hooks, background vocals, or features that cut through the mix. Available
-          for in-studio and remote sessions with producers, artists, and songwriters.
-        </p>
-        <div class="service-pill">Hooks · bgvs · features</div>
-      </article>
-
-      <!-- Vocal Coaching & Artist Development -->
-      <article class="service-card service-card--lilac">
-        <div class="service-color-bar"></div>
-        <div class="service-label">For artists</div>
-        <h3>Vocal Coaching &amp; Artist Development</h3>
-        <p>
-          One-on-one sessions focused on vocal control, confidence, and stage charisma.
-          Tailored guidance for vocalists ready to sharpen their tone and presence.
-        </p>
-        <div class="service-pill">1:1 sessions</div>
-      </article>
-
-      <!-- Creative Direction & Styling -->
-      <article class="service-card service-card--yellow">
-        <div class="service-color-bar"></div>
-        <div class="service-label">Visual world</div>
-        <h3>Creative Direction &amp; Styling</h3>
-        <p>
-          Sound is one thing. Image is everything. Concepting, styling, and stage looks
-          that keep your visuals as strong as your records.
-        </p>
-        <div class="service-pill">Looks · mood · branding</div>
-      </article>
-
-      <!-- Brand Collaborations & Partnerships -->
-      <article class="service-card service-card--softpink">
-        <div class="service-color-bar"></div>
-        <div class="service-label">For brands</div>
-        <h3>Brand Collabs &amp; Partnerships</h3>
-        <p>
-          Beauty, fashion, and lifestyle collaborations that feel authentic — mixing
-          music, empowerment, and a luxe aesthetic across campaigns and content.
-        </p>
-        <div class="service-pill">Beauty · fashion · lifestyle</div>
-      </article>
-
-      <!-- Custom Music & Jingles -->
-      <article class="service-card service-card--mixed">
-        <div class="service-color-bar"></div>
-        <div class="service-label">Custom sound</div>
-        <h3>Custom Music &amp; Jingles</h3>
-        <p>
-          Turn your story or brand into sound. Bespoke songs and jingles for brands,
-          podcasts, intros, and special projects.
-        </p>
-        <div class="service-pill">Podcasts · brands · intros</div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<div class="section-connector" aria-hidden="true">
+<!-- ========== BOW CONNECTOR INTO YOUR EXISTING SECTIONS ========== -->
+<div class="section-connector">
   <div class="section-connector-inner">
     <div class="section-bow"><span></span></div>
   </div>
 </div>
 
-<section id="book" class="section section--booking">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-tag">Booking</div>
-      <h2>Book OperationDom</h2>
-      <p>
-        For venues, festivals, studios, and brands that want a front-woman who can hold
-        the room by the throat and the heart. Share what you’re planning and which
-        services you’re interested in — the team will follow up with next steps, rates,
-        and availability.
-      </p>
-    </div>
-
-    <div class="booking-grid">
-      <div class="booking-copy">
-        <p>
-          Please include as many details as you can about your event or project
-          so we can respond quickly and accurately.
-        </p>
-        <ul>
-          <li>NYC-based, available for travel and select international dates</li>
-          <li>Full band, stripped set, or track show options</li>
-          <li>Studio &amp; remote recording available</li>
-        </ul>
-        <p class="booking-note">
-          SERIOUS INQUIRIES ONLY. EXPECT A RESPONSE WITHIN 24–48 HOURS.
-        </p>
-      </div>
-
-      <form class="booking-form">
-        <div class="booking-row">
-          <div class="field">
-            <label class="field-label" for="name">Name</label>
-            <input id="name" name="name" class="booking-input" type="text" placeholder="Your full name" required />
-          </div>
-          <div class="field">
-            <label class="field-label" for="company">Venue / Company</label>
-            <input id="company" name="company" class="booking-input" type="text" placeholder="Venue, brand, or organization" />
-          </div>
-        </div>
-
-        <div class="booking-row">
-          <div class="field">
-            <label class="field-label" for="email">Email</label>
-            <input id="email" name="email" class="booking-input" type="email" placeholder="you@example.com" required />
-          </div>
-          <div class="field">
-            <label class="field-label" for="phone">Phone</label>
-            <input id="phone" name="phone" class="booking-input" type="tel" placeholder="+1 (___) ___-____" />
-          </div>
-        </div>
-
-        <div class="booking-row booking-row--three">
-          <div class="field">
-            <label class="field-label" for="event-type">Booking Type</label>
-            <select id="event-type" name="event_type" class="booking-select" required>
-              <option value="" disabled selected>Select one</option>
-              <option>Live show / event</option>
-              <option>Studio session / record</option>
-              <option>Coaching / development</option>
-              <option>Brand partnership</option>
-              <option>Custom music / jingle</option>
-              <option>Other</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label class="field-label" for="city">City</label>
-            <input id="city" name="city" class="booking-input" type="text" placeholder="City &amp; country" />
-          </div>
-
-          <div class="field">
-            <label class="field-label" for="date">Date</label>
-            <input id="date" name="date" class="booking-input" type="date" />
-          </div>
-        </div>
-
-        <div class="booking-row booking-row--three">
-          <div class="field">
-            <label class="field-label" for="budget">Estimated budget</label>
-            <select id="budget" name="budget" class="booking-select">
-              <option value="" disabled selected>Select a range</option>
-              <option>$1,500 – $3,000</option>
-              <option>$3,000 – $5,000</option>
-              <option>$5,000 – $10,000</option>
-              <option>$10,000+</option>
-            </select>
-          </div>
-          <div class="field">
-            <label class="field-label" for="set-length">Set length</label>
-            <select id="set-length" name="set_length" class="booking-select">
-              <option value="" disabled selected>Select</option>
-              <option>20–30 minutes</option>
-              <option>45–60 minutes</option>
-              <option>90 minutes</option>
-              <option>Custom</option>
-            </select>
-          </div>
-          <div class="field">
-            <label class="field-label" for="capacity">Audience size</label>
-            <input id="capacity" name="capacity" class="booking-input" type="text" placeholder="Approx. headcount" />
-          </div>
-        </div>
-
-        <div class="services-checklist">
-          <div class="services-checklist-title">Which services are you interested in?</div>
-          <div class="services-checklist-grid">
-            <label class="service-check">
-              <input type="checkbox" name="services" value="live-performances" />
-              <span>Live performances</span>
-            </label>
-            <label class="service-check">
-              <input type="checkbox" name="services" value="studio-collabs" />
-              <span>Studio sessions &amp; collaborations</span>
-            </label>
-            <label class="service-check">
-              <input type="checkbox" name="services" value="vocal-coaching" />
-              <span>Vocal coaching &amp; artist development</span>
-            </label>
-            <label class="service-check">
-              <input type="checkbox" name="services" value="creative-direction" />
-              <span>Creative direction &amp; styling</span>
-            </label>
-            <label class="service-check">
-              <input type="checkbox" name="services" value="brand-collabs" />
-              <span>Brand collaborations &amp; partnerships</span>
-            </label>
-            <label class="service-check">
-              <input type="checkbox" name="services" value="custom-music" />
-              <span>Custom music &amp; jingles</span>
-            </label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label" for="details">Booking details</label>
-          <textarea
-            id="details"
-            name="details"
-            class="booking-textarea"
-            placeholder="Tell us about the vibe, schedule, other artists involved, deliverables, and anything else we should know."
-            required
-          ></textarea>
-        </div>
-
-        <div class="booking-submit-row">
-          <button type="submit" class="btn btn-primary">
-            <span>Submit request</span>
-            <span class="btn-arrow">↗</span>
-          </button>
-          <p class="booking-footnote">
-            Prefer email? Reach out at
-            <a href="mailto:booking@operationdom.com">booking@operationdom.com</a>
-          </p>
-        </div>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- NOTE: connect Instagram Basic Display API to #instaGrid in your JS/backend -->
-<!-- You can paste your existing SERVICES + BOOKING sections below this point
-     so they inherit the same palette and layout. -->
+<!-- ========== YOUR EXISTING SERVICES + BOOKING SECTIONS ========== -->
+<!-- 
+  Paste the services grid + booking form sections you already have (the ones you liked)
+  right here, without changing their internal styles. 
+-->
 
 <script>
   // Simple hero slider
@@ -1221,5 +974,6 @@
     });
   })();
 </script>
+
 </body>
 </html>

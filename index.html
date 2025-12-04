@@ -374,13 +374,13 @@
     /* slider */
 
     .hero-slider {
-      width: 100%;
-      max-width: 420px;
-      border: 2px solid var(--border-strong);
-      background: #ffe9f4;
-      padding: 10px 10px 12px;
-      box-shadow: var(--shadow-strong);
-    }
+  width: 100%;
+  max-width: 560px;        /* <-- make it bigger */
+  border: 2px solid var(--border-strong);
+  background: #ffe9f4;
+  padding: 12px 12px 14px; /* tiny bump for breathing room */
+  box-shadow: var(--shadow-strong);
+}
 
     .hero-slider-header {
       display: flex;
@@ -1097,46 +1097,47 @@
       </div>
     </div>
 
-    <!-- RIGHT: CIRCLE + SLIDER, CENTERED -->
-    <div class="hero-visual">
-      <div class="hero-heart-wrap">
-        <div class="hero-heart-photo"></div>
-        <div class="hero-heart-tag">OperationDOM · NYC</div>
+ <div class="hero-visual">
+  <div class="hero-slider">
+    <div class="hero-slider-header">
+      <span>ON STAGE &amp; IN HER ELEMENT</span>
+      <div class="hero-slider-controls">
+        <button class="slider-btn" id="sliderPrev" aria-label="Previous photo">‹</button>
+        <button class="slider-btn" id="sliderNext" aria-label="Next photo">›</button>
       </div>
+    </div>
 
-      <div class="hero-slider">
-        <div class="hero-slider-header">
-          <span>ON STAGE &amp; IN HER ELEMENT</span>
-          <div class="hero-slider-controls">
-            <button class="slider-btn" id="sliderPrev" aria-label="Previous photo">‹</button>
-            <button class="slider-btn" id="sliderNext" aria-label="Next photo">›</button>
+    <div class="hero-slider-viewport">
+      <div class="hero-slider-track" id="sliderTrack">
+        <div class="hero-slide">
+          <div class="hero-slide-frame">
+            <img src="hero.jpg" alt="OperationDom live performance photo 1">
           </div>
         </div>
-
-        <div class="hero-slider-viewport">
-          <div class="hero-slider-track" id="sliderTrack">
-            <div class="hero-slide">
-              <div class="hero-slide-frame">
-                <img src="hero.jpg" alt="OperationDom live performance photo 1">
-              </div>
-            </div>
-            <div class="hero-slide">
-              <div class="hero-slide-frame">
-                <img src="gala.jpeg" alt="OperationDom performing at a gala">
-              </div>
-            </div>
-            <div class="hero-slide">
-              <div class="hero-slide-frame">
-                <img src="headshot.jpeg" alt="OperationDom studio headshot">
-              </div>
-            </div>
-            <div class="hero-slide">
-              <div class="hero-slide-frame">
-                <img src="nicks.jpg" alt="OperationDom live at Nick's">
-              </div>
-            </div>
+        <div class="hero-slide">
+          <div class="hero-slide-frame">
+            <img src="gala.jpeg" alt="OperationDom performing at a gala">
           </div>
         </div>
+        <div class="hero-slide">
+          <div class="hero-slide-frame">
+            <img src="dom-hero.jpeg" alt="OperationDom studio headshot">
+          </div>
+        </div>
+        <div class="hero-slide">
+          <div class="hero-slide-frame">
+            <img src="nicks.jpg" alt="OperationDom live at Nick's">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-slider-caption">
+      swipe through the moments · more on @operationdom
+    </div>
+  </div>
+</div>
+
 
         <div class="hero-slider-caption">
           swipe through the moments · more on @operationdom

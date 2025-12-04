@@ -281,35 +281,57 @@
       gap: 20px;
     }
 
+/* CIRCLE + HEART RING */
+
 .hero-heart-wrap {
   position: relative;
   width: min(320px, 75vw);
-  aspect-ratio: 1 / 1; /* perfect circle */
-  border-radius: 50%;
-  overflow: hidden;
+  aspect-ratio: 1 / 1;         /* <-- perfect circle container */
   display: flex;
   align-items: center;
   justify-content: center;
+  /* remove background / border / shadow so only the photo + hearts show */
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
 }
 
-/* big circular image */
+/* circular photo inside */
 .hero-heart-photo {
-  width: 100%;
-  height: 100%;
+  width: 78%;
+  height: 78%;
+  border-radius: 50%;
+  overflow: hidden;
   background-image: url("dom-hero.jpeg");
   background-size: cover;
   background-position: center;
-  border-radius: 50%;
+  background-repeat: no-repeat;
 }
 
-/* hearts container */
+/* tag under the circle */
+.hero-heart-tag {
+  position: absolute;
+  bottom: -26px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #000;
+  color: #fff;
+  padding: 3px 10px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 800;
+}
+
+/* container for the small hearts */
 .heart-ring {
   position: absolute;
   inset: 0;
   pointer-events: none;
 }
 
-/* individual small hearts */
+/* base heart shape */
 .heart-ring span {
   position: absolute;
   width: 20px;
@@ -319,10 +341,10 @@
   border-radius: 4px;
 }
 
-/* heart shape using pseudo elements */
+/* create the lobes of the heart */
 .heart-ring span::before,
 .heart-ring span::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 20px;
   height: 20px;

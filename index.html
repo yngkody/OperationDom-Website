@@ -281,68 +281,67 @@
       gap: 20px;
     }
 
-    /* UPDATED: no white box, no border, just the heart */
-    .hero-heart-wrap {
-      position: relative;
-      width: min(320px, 75vw);
-      aspect-ratio: 3 / 4;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      background: transparent;
-      border: none;
-      box-shadow: none;
-    }
-
-    .hero-heart-photo {
+.hero-heart-wrap {
   position: relative;
+  width: min(320px, 75vw);
+  aspect-ratio: 1 / 1; /* perfect circle */
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* big circular image */
+.hero-heart-photo {
   width: 100%;
   height: 100%;
   background-image: url("dom-hero.jpeg");
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-
-  /* smoother, more rounded heart */
-  clip-path: polygon(
-    50% 12%,
-    63% 4%,
-    78% 7%,
-    89% 17%,
-    96% 31%,
-    97% 45%,
-    93% 59%,
-    84% 71%,
-    71% 81%,
-    57% 89%,
-    50% 92%,
-    43% 89%,
-    29% 81%,
-    16% 71%,
-    7% 59%,
-    3% 45%,
-    4% 31%,
-    11% 17%,
-    22% 7%,
-    37% 4%
-  );
+  border-radius: 50%;
 }
 
+/* hearts container */
+.heart-ring {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
 
-    .hero-heart-tag {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translate(-50%, 60%);
-      background: #000;
-      color: #fff;
-      padding: 3px 10px;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-weight: 800;
-    }
+/* individual small hearts */
+.heart-ring span {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: var(--accent-pink);
+  transform: rotate(-45deg);
+  border-radius: 4px;
+}
+
+/* heart shape using pseudo elements */
+.heart-ring span::before,
+.heart-ring span::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: var(--accent-pink);
+  border-radius: 50%;
+}
+
+/* left circle */
+.heart-ring span::before {
+  top: -10px;
+  left: 0;
+}
+
+/* right circle */
+.heart-ring span::after {
+  top: 0;
+  left: 10px;
+}
+
 
     /* slider */
 

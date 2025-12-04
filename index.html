@@ -107,6 +107,52 @@
       border-bottom-color: var(--ink);
     }
 
+    /* subtle outlined hearts around nav */
+    .nav-heart {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #ffc7e3;
+      border-radius: 4px;
+      transform: rotate(-45deg);
+      background: transparent;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .nav-heart::before,
+    .nav-heart::after {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #ffc7e3;
+      border-radius: 50%;
+      background: transparent;
+    }
+
+    .nav-heart::before {
+      top: -10px;
+      left: -2px;
+    }
+
+    .nav-heart::after {
+      top: -2px;
+      left: 8px;
+    }
+
+    .nav-heart--left {
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%) rotate(-45deg);
+    }
+
+    .nav-heart--right {
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%) rotate(-45deg);
+    }
+
     .hero-top-right {
       position: absolute;
       top: 18px;
@@ -127,21 +173,14 @@
     }
 
     .hero-main {
-  position: relative;
-  z-index: 1;
-  margin-top: 30px;
-
-  /* NEW: center the whole grid and cap its width */
-  max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
-
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.05fr);
-  gap: 32px;
-  align-items: center;
-}
-
+      position: relative;
+      z-index: 1;
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.05fr);
+      gap: 32px;
+      align-items: center;
+    }
 
     .hero-copy {
       max-width: 560px;
@@ -278,149 +317,59 @@
       transform: translate(3px, -1px);
     }
 
-    /* HERO RIGHT: HEART IMAGE + SLIDER */
+    /* HERO RIGHT: CIRCLE + SLIDER WRAP */
 
     .hero-visual {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  justify-self: center;   /* <— add this line */
-}
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      justify-self: center;
+      width: 100%;
+    }
 
+    /* CIRCLE */
 
-/* CIRCLE + HEART RING */
+    .hero-heart-wrap {
+      position: relative;
+      width: min(320px, 75vw);
+      aspect-ratio: 1 / 1; /* perfect circle container */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      margin: 0 auto;
+      max-width: 100%;
+    }
 
-.hero-heart-wrap {
-  position: relative;
-  width: min(380px, 80vw);  /* was 320px – now bigger */
-  aspect-ratio: 1 / 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  padding: 0;
-}
+    .hero-heart-photo {
+      width: 78%;
+      height: 78%;
+      border-radius: 50%;
+      overflow: hidden;
+      background-image: url("dom-hero.jpeg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
 
-.hero-heart-photo {
-  width: 86%;              /* was ~78% – fills more of the circle */
-  height: 86%;
-  border-radius: 50%;
-  overflow: hidden;
-  background-image: url("dom-hero.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-
-/* tag under the circle */
-.hero-heart-tag {
-  position: absolute;
-  bottom: -26px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #000;
-  color: #fff;
-  padding: 3px 10px;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-weight: 800;
-}
-
-/* container for the small hearts */
-.heart-ring {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-    /* pastel colors per heart */
-.heart-ring span:nth-child(1),
-.heart-ring span:nth-child(1)::before,
-.heart-ring span:nth-child(1)::after {
-  background: #ffb6da; /* pastel pink */
-}
-
-.heart-ring span:nth-child(2),
-.heart-ring span:nth-child(2)::before,
-.heart-ring span:nth-child(2)::after {
-  background: #f3e7ff; /* lilac */
-}
-
-.heart-ring span:nth-child(3),
-.heart-ring span:nth-child(3)::before,
-.heart-ring span:nth-child(3)::after {
-  background: #e4f1ff; /* soft blue */
-}
-
-.heart-ring span:nth-child(4),
-.heart-ring span:nth-child(4)::before,
-.heart-ring span:nth-child(4)::after {
-  background: #fff7d1; /* soft yellow */
-}
-
-.heart-ring span:nth-child(5),
-.heart-ring span:nth-child(5)::before,
-.heart-ring span:nth-child(5)::after {
-  background: #ffe9f4; /* light blush */
-}
-
-.heart-ring span:nth-child(6),
-.heart-ring span:nth-child(6)::before,
-.heart-ring span:nth-child(6)::after {
-  background: #d3b8ff; /* deeper lilac */
-}
-
-.heart-ring span:nth-child(7),
-.heart-ring span:nth-child(7)::before,
-.heart-ring span:nth-child(7)::after {
-  background: #a9c9ff; /* sky blue */
-}
-
-.heart-ring span:nth-child(8),
-.heart-ring span:nth-child(8)::before,
-.heart-ring span:nth-child(8)::after {
-  background: #ffc7e3; /* candy pink */
-}
-
-
-/* base heart shape */
-.heart-ring span {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: var(--accent-pink);
-  transform: rotate(-45deg);
-  border-radius: 4px;
-}
-
-/* create the lobes of the heart */
-.heart-ring span::before,
-.heart-ring span::after {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: var(--accent-pink);
-  border-radius: 50%;
-}
-
-/* left circle */
-.heart-ring span::before {
-  top: -10px;
-  left: 0;
-}
-
-/* right circle */
-.heart-ring span::after {
-  top: 0;
-  left: 10px;
-}
-
+    .hero-heart-tag {
+      position: absolute;
+      bottom: -26px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #000;
+      color: #fff;
+      padding: 3px 10px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 800;
+    }
 
     /* slider */
 
@@ -881,6 +830,7 @@
       border: 2px solid var(--border-strong);
       box-shadow: var(--shadow-strong);
       padding: 20px 18px 22px;
+      width: 100%;
     }
 
     .booking-row {
@@ -998,30 +948,29 @@
 
     /* ============== RESPONSIVE ============== */
 
-   @media (max-width: 960px) {
-  .hero-main {
-    grid-template-columns: 1fr;
-  }
+    @media (max-width: 960px) {
+      .hero-main {
+        grid-template-columns: 1fr;
+      }
 
-  .hero-visual {
-    order: -1;  /* image first */
-  }
+      .hero-visual {
+        order: -1;  /* image first */
+      }
 
-  .hero-copy {
-    order: 2;   /* text after */
-  }
+      .hero-copy {
+        order: 2;   /* text after */
+      }
 
-  .hero-top-right {
-    position: static;
-    justify-content: flex-end;
-    margin-top: 10px;
-  }
+      .hero-top-right {
+        position: static;
+        justify-content: flex-end;
+        margin-top: 10px;
+      }
 
-  .performance-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
+      .performance-layout {
+        grid-template-columns: 1fr;
+      }
+    }
 
     @media (max-width: 720px) {
       .hero {
@@ -1047,6 +996,20 @@
       .services-checklist-grid {
         grid-template-columns: 1fr;
       }
+
+      /* booking: text above, form full-width */
+      .booking-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .booking-copy {
+        order: -1;
+      }
+
+      .booking-form {
+        width: 100%;
+      }
     }
 
     @media (max-width: 540px) {
@@ -1070,15 +1033,16 @@
 <!-- ========== HERO ========== -->
 <section class="hero" id="top">
   <nav class="hero-nav">
+    <span class="nav-heart nav-heart--left" aria-hidden="true"></span>
     <a href="#performance">live</a>
     <a href="#services">services</a>
     <a href="#book">book dom</a>
     <a href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer">instagram</a>
+    <span class="nav-heart nav-heart--right" aria-hidden="true"></span>
   </nav>
 
   <div class="hero-top-right">
     <a href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer">IG</a>
-    <!-- UPDATED: store goes to shop.html -->
     <a href="shop.html" aria-label="Store">store</a>
   </div>
 
@@ -1133,35 +1097,12 @@
       </div>
     </div>
 
-    <!-- RIGHT: HEART HERO + SLIDER -->
-   <div class="hero-heart-wrap">
-  <!-- small hearts around the circle -->
-  <div class="heart-ring">
-    <!-- top -->
-    <span style="top: -6px; left: 50%; transform: translateX(-50%) rotate(-45deg);"></span>
-    <!-- top-right -->
-    <span style="top: 12%; right: -4px;"></span>
-    <!-- middle-right -->
-    <span style="top: 50%; right: -8px; transform: translateY(-50%) rotate(-45deg);"></span>
-    <!-- bottom-right -->
-    <span style="bottom: 12%; right: -4px;"></span>
-    <!-- bottom -->
-    <span style="bottom: -6px; left: 50%; transform: translateX(-50%) rotate(-45deg);"></span>
-    <!-- bottom-left -->
-    <span style="bottom: 12%; left: -4px;"></span>
-    <!-- middle-left -->
-    <span style="top: 50%; left: -8px; transform: translateY(-50%) rotate(-45deg);"></span>
-    <!-- top-left -->
-    <span style="top: 12%; left: -4px;"></span>
-  </div>
-
-  <!-- circular photo -->
-  <div class="hero-heart-photo"></div>
-
-  <div class="hero-heart-tag">OperationDOM · NYC</div>
-</div>
-
-
+    <!-- RIGHT: CIRCLE + SLIDER, CENTERED -->
+    <div class="hero-visual">
+      <div class="hero-heart-wrap">
+        <div class="hero-heart-photo"></div>
+        <div class="hero-heart-tag">OperationDOM · NYC</div>
+      </div>
 
       <div class="hero-slider">
         <div class="hero-slider-header">

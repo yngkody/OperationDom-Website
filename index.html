@@ -11,14 +11,20 @@
   <style>
     :root {
       --bg-pink: #ffd6ea;        /* hero */
+      --bg-soft-pink: #ffe9f4;   /* booking */
+      --bg-softest-pink: #fff7fc;/* services */
       --bg-soft-blue: #e4f1ff;   /* performance */
       --bg-lilac: #f3e7ff;       /* quotes */
 
+      --panel: #ffffff;
       --ink: #1b1020;
       --muted-ink: #4a384f;
 
       --accent-pink: #ff4fa0;
+      --accent-pink-soft: #ff8cc4;
       --accent-blue: #3b82f6;
+      --accent-lilac: #a855f7;
+      --accent-yellow: #facc15;
 
       --border-strong: #1b1020;
       --border-soft: #c08aa9;
@@ -227,7 +233,7 @@
     .btn-primary {
       background: #ffffff;
       border-color: #ffffff;
-      box-shadow: none; /* totally flat */
+      box-shadow: none; /* no shadow */
     }
 
     .btn-primary:hover {
@@ -265,7 +271,7 @@
       transform: translate(3px, -1px);
     }
 
-    /* HERO RIGHT: PERFECT HEART + SLIDER */
+    /* HERO RIGHT: HEART IMAGE + SLIDER */
 
     .hero-visual {
       display: flex;
@@ -275,44 +281,56 @@
       gap: 20px;
     }
 
-    .hero-heart {
+    /* UPDATED: no white box, no border, just the heart */
+    .hero-heart-wrap {
       position: relative;
       width: min(320px, 75vw);
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 3 / 4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+    }
+
+    .hero-heart-photo {
+      position: relative;
+      width: 100%;
+      height: 100%;
       background-image: url("dom-hero.jpeg");
       background-size: cover;
       background-position: center;
-      /* PERFECT HEART SHAPE */
-      clip-path: path("M50 15 C35 0, 5 5, 5 30 C5 55, 25 70, 50 90 C75 70, 95 55, 95 30 C95 5, 65 0, 50 15 Z");
-      /* same path (0–100) scaled by element box */
-      box-shadow: 0 18px 26px rgba(0,0,0,0.35);
-    }
-
-    /* Older browsers: polygon fallback (optional) */
-    @supports not (clip-path: path("M0 0 L1 1")) {
-      .hero-heart {
-        clip-path: polygon(
-          50% 85%,
-          10% 55%,
-          4% 36%,
-          10% 20%,
-          25% 10%,
-          40% 8%,
-          50% 16%,
-          60% 8%,
-          75% 10%,
-          90% 20%,
-          96% 36%,
-          90% 55%
-        );
-      }
+      background-repeat: no-repeat;
+      /* cleaner, more symmetric heart shape */
+      clip-path: polygon(
+        50% 15%,
+        61% 7%,
+        75% 7%,
+        88% 15%,
+        94% 28%,
+        94% 40%,
+        90% 52%,
+        82% 63%,
+        71% 74%,
+        50% 92%,
+        29% 74%,
+        18% 63%,
+        10% 52%,
+        6% 40%,
+        6% 28%,
+        12% 15%,
+        25% 7%,
+        39% 7%
+      );
     }
 
     .hero-heart-tag {
       position: absolute;
-      bottom: -4px;
+      bottom: 0;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translate(-50%, 60%);
       background: #000;
       color: #fff;
       padding: 3px 10px;
@@ -320,23 +338,6 @@
       text-transform: uppercase;
       letter-spacing: 0.16em;
       font-weight: 800;
-    }
-
-    .hero-heart-wrap {
-      position: relative;
-      display: inline-block;
-    }
-
-    .hero-heart-wrap::after {
-      /* soft shadow on ground */
-      content: "";
-      position: absolute;
-      left: 15%;
-      right: 15%;
-      bottom: -16px;
-      height: 14px;
-      background: radial-gradient(ellipse at 50% 50%, rgba(27,16,32,0.65), transparent 70%);
-      z-index: -1;
     }
 
     /* slider */
@@ -419,7 +420,7 @@
       color: var(--muted-ink);
     }
 
-    /* ========== BOW CONNECTOR ========== */
+    /* bow connector between sections */
 
     .section-connector {
       position: relative;
@@ -486,7 +487,7 @@
       border-radius: 4px;
     }
 
-    /* ============== GENERIC SECTION ============== */
+    /* ============== SECTIONS WRAPPER STYLES ============== */
 
     .section {
       padding: 40px 5vw;
@@ -522,7 +523,7 @@
       font-weight: 800;
     }
 
-    /* ============== QUOTES ============== */
+    /* QUOTES SECTION */
 
     .section--quotes {
       background: var(--bg-lilac);
@@ -579,7 +580,7 @@
       margin-bottom: 6px;
     }
 
-    /* ============== PERFORMANCE / IG ============== */
+    /* PERFORMANCE / ABOUT */
 
     .section--performance {
       background-color: var(--bg-soft-blue);
@@ -662,6 +663,257 @@
       color: var(--muted-ink);
     }
 
+    /* ============== SERVICES SECTION ============== */
+
+    .section--services {
+      background: var(--bg-softest-pink);
+      border-top: 2px solid var(--border-soft);
+    }
+
+    .services-grid {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .service-card {
+      position: relative;
+      background: var(--panel);
+      border: 2px solid var(--border-strong);
+      box-shadow: var(--shadow-soft);
+      padding: 16px 16px 18px;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .service-color-bar {
+      height: 6px;
+      width: 100%;
+      margin: -16px -16px 12px;
+      border-bottom: 2px solid var(--border-strong);
+    }
+
+    .service-card--pink .service-color-bar {
+      background: linear-gradient(90deg, #ffe4f3, #ffb6da);
+    }
+
+    .service-card--blue .service-color-bar {
+      background: linear-gradient(90deg, #e0f0ff, #a9c9ff);
+    }
+
+    .service-card--lilac .service-color-bar {
+      background: linear-gradient(90deg, #f3e7ff, #d3b8ff);
+    }
+
+    .service-card--yellow .service-color-bar {
+      background: linear-gradient(90deg, #fff7d1, #ffe38b);
+    }
+
+    .service-card--softpink .service-color-bar {
+      background: linear-gradient(90deg, #ffe9f4, #ffc7e3);
+    }
+
+    .service-card--mixed .service-color-bar {
+      background: linear-gradient(90deg, #ffe4f3, #e0f0ff, #fff7d1);
+    }
+
+    .service-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 800;
+      color: var(--muted-ink);
+    }
+
+    .service-card h3 {
+      margin-top: 4px;
+      margin-bottom: 4px;
+      font-size: 1.05rem;
+    }
+
+    .service-card p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      font-weight: 600;
+    }
+
+    .service-pill {
+      display: inline-flex;
+      align-self: flex-start;
+      margin-top: auto;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: #fff7fc;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 800;
+      color: var(--muted-ink);
+    }
+
+    /* ============== BOOKING SECTION ============== */
+
+    .section--booking {
+      background: var(--bg-soft-pink);
+      border-top: 2px solid var(--border-soft);
+    }
+
+    .booking-grid {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: 28px;
+      align-items: flex-start;
+    }
+
+    .booking-copy p {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+
+    .booking-copy ul {
+      margin: 10px 0 12px;
+      padding-left: 18px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .booking-copy li {
+      margin-bottom: 4px;
+    }
+
+    .booking-note {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .booking-form {
+      background: var(--panel);
+      border: 2px solid var(--border-strong);
+      box-shadow: var(--shadow-strong);
+      padding: 20px 18px 22px;
+    }
+
+    .booking-row {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .booking-row--three .field {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    .field {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .field-label {
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .booking-input,
+    .booking-select,
+    .booking-textarea {
+      width: 100%;
+      border: 2px solid var(--border-soft);
+      background: #ffffff;
+      padding: 8px 10px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      border-radius: 0;
+      outline: none;
+      color: var(--ink);
+    }
+
+    .booking-input::placeholder,
+    .booking-textarea::placeholder {
+      color: #a58ca5;
+      font-weight: 500;
+    }
+
+    .booking-input:focus,
+    .booking-select:focus,
+    .booking-textarea:focus {
+      border-color: var(--accent-pink);
+    }
+
+    .booking-textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .services-checklist {
+      margin: 10px 0 12px;
+      border-top: 1px dashed var(--border-soft);
+      padding-top: 10px;
+    }
+
+    .services-checklist-title {
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 8px;
+    }
+
+    .services-checklist-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px 18px;
+    }
+
+    .service-check {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .service-check input {
+      accent-color: var(--accent-pink);
+    }
+
+    .service-check span {
+      font-weight: 600;
+    }
+
+    .booking-submit-row {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 18px;
+    }
+
+    .booking-footnote {
+      font-size: 0.8rem;
+      color: var(--muted-ink);
+      max-width: 260px;
+    }
+
+    .booking-footnote a {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
     /* ============== RESPONSIVE ============== */
 
     @media (max-width: 960px) {
@@ -682,6 +934,14 @@
       .performance-layout {
         grid-template-columns: 1fr;
       }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .booking-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 720px) {
@@ -695,6 +955,18 @@
 
       .quotes-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .booking-row {
+        flex-direction: column;
+      }
+
+      .services-checklist-grid {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -727,6 +999,7 @@
 
   <div class="hero-top-right">
     <a href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer">IG</a>
+    <!-- UPDATED: store goes to shop.html -->
     <a href="shop.html" aria-label="Store">store</a>
   </div>
 
@@ -784,7 +1057,7 @@
     <!-- RIGHT: HEART HERO + SLIDER -->
     <div class="hero-visual">
       <div class="hero-heart-wrap">
-        <div class="hero-heart"></div>
+        <div class="hero-heart-photo"></div>
         <div class="hero-heart-tag">DOM VIC · NYC</div>
       </div>
 
@@ -845,8 +1118,8 @@
       <h2>WORDS TO VIBE WITH</h2>
       <p>
         OperationDom is as intentional with her mindset as she is with her melodies.
-        These are the affirmations she lives by — the energy she brings into every room,
-        every session, every stage.
+        These are the affirmations she lives by — a peek into the energy she brings
+        into every room, every session, every stage.
       </p>
     </div>
 
@@ -879,7 +1152,7 @@
   </div>
 </section>
 
-<!-- ========== BOW CONNECTOR ========== -->
+<!-- ========== BOW CONNECTOR (to performance / services / booking) ========== -->
 <div class="section-connector">
   <div class="section-connector-inner">
     <div class="section-bow"><span></span></div>
@@ -918,7 +1191,6 @@
         </div>
 
         <div class="insta-grid" id="instaGrid">
-          <!-- Replace these with real tiles using Instagram Basic Display API -->
           <a href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer" class="insta-tile"></a>
           <a href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer" class="insta-tile"></a>
           <a href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer" class="insta-tile"></a>
@@ -928,25 +1200,14 @@
         </div>
 
         <p class="insta-note">
-          Hook this section up to the <strong>Instagram Basic Display API</strong> to show live posts from her feed.
+          Use the <strong>Instagram Basic Display API</strong> to pull in real posts:
+          replace these squares with live thumbnails and link them directly to each post.
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== BOW CONNECTOR INTO YOUR EXISTING SECTIONS ========== -->
-<div class="section-connector">
-  <div class="section-connector-inner">
-    <div class="section-bow"><span></span></div>
-  </div>
-</div>
-
-<!-- ========== YOUR EXISTING SERVICES + BOOKING SECTIONS ========== -->
-<!-- 
-  Paste the services grid + booking form sections you already have (the ones you liked)
-  right here, without changing their internal styles. 
--->
 <section id="services" class="section section--services">
   <div class="section-inner">
     <div class="section-header">
@@ -1096,7 +1357,7 @@
 
         <div class="booking-row booking-row--three">
           <div class="field">
-            <label class="field-label" for="event-type">Booking type</label>
+            <label class="field-label" for="event-type">Booking Type</label>
             <select id="event-type" name="event_type" class="booking-select" required>
               <option value="" disabled selected>Select one</option>
               <option>Live show / event</option>
@@ -1228,6 +1489,5 @@
     });
   })();
 </script>
-
 </body>
 </html>

@@ -8,6 +8,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Anton&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <style>
     :root {
       --bg: #05030a;
@@ -15,7 +17,7 @@
       --accent-magenta: #e11d8f;    /* stage magenta */
       --text-main: #ffffff;
       --muted: rgba(226, 226, 241, 0.95);
-      --border-soft: rgba(255, 255, 255, 0.35);
+      --border-soft: rgba(255, 255, 255, 0.45);
       --border-strong: rgba(255, 255, 255, 0.98);
     }
 
@@ -45,7 +47,7 @@
       text-transform: uppercase;
     }
 
-    /* ========== BACKGROUND PATH LINES ========== */
+    /* ========== BACKGROUND RIBBON LINES ========== */
 
     .path-lines {
       position: fixed;
@@ -54,20 +56,23 @@
       height: 100%;
       pointer-events: none;
       z-index: -5;
-      opacity: 0.45;
+      opacity: 0.55;
     }
 
-    .path-lines path {
+    .path-lines path.ribbon-line {
       fill: none;
-      stroke: rgba(53, 87, 255, 0.45);
-      stroke-width: 3;
+      stroke: rgba(255, 255, 255, 0.55);
+      stroke-width: 5;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
 
-    .path-lines path:nth-child(2) {
-      stroke: rgba(225, 29, 143, 0.5);
-      stroke-width: 2.5;
+    .path-lines text {
+      fill: rgba(255, 255, 255, 0.7);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
     }
 
     /* ========== HERO ========== */
@@ -82,14 +87,15 @@
       overflow: hidden;
     }
 
-    /* Flat black with faint blue/magenta grid */
+    /* Flat black with faint blue/magenta glow */
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 10% 0%, rgba(53,87,255,0.22), transparent 55%),
-                  radial-gradient(circle at 90% 100%, rgba(225,29,143,0.22), transparent 60%),
-                  #05030a;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(53,87,255,0.22), transparent 55%),
+        radial-gradient(circle at 90% 100%, rgba(225,29,143,0.22), transparent 60%),
+        #05030a;
       z-index: -3;
     }
 
@@ -97,7 +103,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      opacity: 0.32;
+      opacity: 0.18;
       background-image:
         repeating-linear-gradient(
           to right,
@@ -136,10 +142,30 @@
       font-size: clamp(3.8rem, 11vw, 8rem);
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.04);
+      color: rgba(255, 255, 255, 0.035);
       transform: translateY(18%);
       white-space: nowrap;
       animation: heroBgDrift 18s ease-in-out infinite alternate;
+    }
+
+    /* Abstract hero image layer */
+    .hero-abstract {
+      position: absolute;
+      right: 0;
+      top: 20%;
+      width: 40vw;
+      max-width: 520px;
+      opacity: 0.22;
+      mix-blend-mode: screen;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .hero-abstract img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: contrast(1.1) saturate(1.3);
     }
 
     /* NAV – 70s bubbly, but clean */
@@ -147,15 +173,16 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: clamp(32px, 6vw, 80px);
+      gap: clamp(20px, 5vw, 60px);
       font-family: "Shrikhand", system-ui;
-      font-size: 1rem;
+      font-size: 0.95rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       font-weight: 700;
       position: relative;
       z-index: 5;
       margin-bottom: 18px;
+      flex-wrap: wrap;
     }
 
     .hero-nav a {
@@ -266,40 +293,21 @@
       position: relative;
       color: var(--accent-blue);
       text-shadow:
-        0 0 10px rgba(53,87,255,0.9),
-        0 0 22px rgba(53,87,255,0.7);
+        0 0 8px rgba(53,87,255,0.7),
+        0 0 18px rgba(53,87,255,0.55);
     }
 
-    /* Blue grid glow just around "DOM" */
+    /* FAINT glow only – no grid box */
     .hero-headline-dom::after {
       content: "";
       position: absolute;
-      inset: -8px -4px;
-      background-image:
-        repeating-linear-gradient(
-          to right,
-          rgba(53,87,255,0.85) 0,
-          rgba(53,87,255,0.85) 2px,
-          transparent 2px,
-          transparent 10px
-        ),
-        repeating-linear-gradient(
-          to bottom,
-          rgba(53,87,255,0.7) 0,
-          rgba(53,87,255,0.7) 2px,
-          transparent 2px,
-          transparent 10px
-        );
-      opacity: 0.4;
+      inset: -6px -4px;
+      background: radial-gradient(circle, rgba(53,87,255,0.5), transparent 65%);
+      opacity: 0.6;
       mix-blend-mode: screen;
       z-index: -1;
-      border: 2px solid rgba(53,87,255,0.7);
-      box-shadow:
-        0 0 20px rgba(53,87,255,0.8),
-        0 0 40px rgba(53,87,255,0.6);
+      filter: blur(4px);
     }
-
-    /* remove old hero-wide static band; focus is on DOM now */
 
     .hero-script-overlay {
       margin-top: 10px;
@@ -319,7 +327,7 @@
       color: var(--muted);
       margin-top: 18px;
       margin-bottom: 22px;
-      font-weight: 600; /* heavier paragraph */
+      font-weight: 600; /* heavier */
       font-family: "Plus Jakarta Sans", sans-serif;
     }
 
@@ -558,7 +566,7 @@
       font-size: 1rem;
       line-height: 1.8;
       color: rgba(230,230,240,0.98);
-      font-weight: 600; /* heavier paragraph */
+      font-weight: 600;
     }
 
     .performance-highlight {
@@ -744,7 +752,7 @@
       color: rgba(230,230,240,0.98);
       margin-bottom: 14px;
       max-width: 34rem;
-      font-weight: 600; /* heavier paragraph */
+      font-weight: 600;
     }
 
     .booking-copy ul {
@@ -882,26 +890,29 @@
     }
 
     /* RESPONSIVE */
-    @media (max-width: 900px) {
+
+    @media (max-width: 1024px) {
       .hero-main {
         grid-template-columns: 1fr;
         margin-top: 40px;
       }
       .hero-visual {
         order: -1;
+        justify-content: flex-start;
       }
-      .hero-bg-word span {
-        transform: translateY(24%);
-        opacity: 0.45;
+      .hero-orb {
+        width: min(420px, 80vw);
+        margin-bottom: 10px;
       }
-      .hero {
-        padding-top: 70px;
+      .hero-abstract {
+        top: 55%;
+        width: 75vw;
+        right: -10vw;
+        opacity: 0.2;
       }
-
       .performance-layout {
         grid-template-columns: 1fr;
       }
-
       .booking-grid {
         grid-template-columns: 1fr;
       }
@@ -913,24 +924,40 @@
       }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
+      .hero {
+        padding-top: 72px;
+        padding-inline: 16px;
+      }
       .hero-nav {
-        font-size: 0.86rem;
-        gap: 18px;
-        flex-wrap: wrap;
+        font-size: 0.8rem;
+        gap: 14px;
+      }
+      .hero-top-right {
+        top: 16px;
+        right: 16px;
       }
       .hero-headline {
-        font-size: 2.3rem;
+        font-size: 2.25rem;
       }
       .hero-orb {
         width: 80vw;
       }
-      .hero-top-right {
-        top: 18px;
-        right: 16px;
+      .hero-bg-word span {
+        transform: translateY(24%);
+        opacity: 0.4;
       }
       .insta-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .performance {
+        padding-inline: 16px;
+      }
+      .booking {
+        padding-inline: 16px;
+      }
+      .path-lines {
+        opacity: 0.25;
       }
     }
 
@@ -947,29 +974,32 @@
         transform: translateY(20%) translateX(6px);
       }
     }
-
-    @keyframes staticShift {
-      0% {
-        transform: translate3d(0,0,0);
-        opacity: 0.16;
-      }
-      50% {
-        transform: translate3d(1px,-1px,0);
-        opacity: 0.26;
-      }
-      100% {
-        transform: translate3d(-1px,1px,0);
-        opacity: 0.18;
-      }
-    }
   </style>
 </head>
 <body>
 
 <!-- PATH LINES CONNECTING SECTIONS -->
-<svg class="path-lines" viewBox="0 0 1440 320" aria-hidden="true">
-  <path d="M-20 40 C 200 80, 340 20, 520 60 S 880 160, 1120 120 1460 200, 1500 260" />
-  <path d="M-40 200 C 160 260, 360 220, 560 260 S 960 340, 1220 280 1500 260, 1520 300" />
+<svg class="path-lines" viewBox="0 0 1440 400" aria-hidden="true">
+  <defs>
+    <path id="ribbonPath1" class="ribbon-line"
+      d="M-60 60 C 160 20, 320 80, 520 60 S 880 120, 1120 90 1520 140, 1500 220" />
+    <path id="ribbonPath2" class="ribbon-line"
+      d="M-40 260 C 200 320, 380 260, 620 300 S 980 360, 1240 310 1520 300, 1480 360" />
+  </defs>
+
+  <use href="#ribbonPath1" class="ribbon-line" />
+  <use href="#ribbonPath2" class="ribbon-line" />
+
+  <text dy="-6">
+    <textPath href="#ribbonPath1" startOffset="5%">
+      #OPERATIONDOM   •   #SINGER   •   #VOCALIST   •   #LIVE   •   #NYC   •   #FRONTWOMAN   •   #RNB   •   #ROCK
+    </textPath>
+  </text>
+  <text dy="10">
+    <textPath href="#ribbonPath2" startOffset="15%">
+      #HEADLINER   •   #STAGEKILLER   •   #PERFORMER   •   #INFULLEFFECT
+    </textPath>
+  </text>
 </svg>
 
 <section class="hero">
@@ -977,6 +1007,12 @@
   <!-- subtle background word -->
   <div class="hero-bg-word">
     <span>OPERATIONDOM</span>
+  </div>
+
+  <!-- abstract hero image (swap URL or host locally if you want) -->
+  <div class="hero-abstract">
+    <img src="https://images.pexels.com/photos/167404/pexels-photo-167404.jpeg?auto=compress&cs=tinysrgb&w=1200"
+         alt="Abstract colorful light texture" />
   </div>
 
   <!-- minimal SVG accent -->
@@ -1049,7 +1085,7 @@
         <div class="hero-signature">DOM VIC</div>
 
         <div class="hero-image-wrap">
-          <!-- replace src with Dom’s photo -->
+          <!-- Dom’s hero image -->
           <img src="dom-hero.jpg" alt="OperationDom press photo" />
         </div>
 
@@ -1097,16 +1133,10 @@
         </div>
 
         <div class="insta-grid" id="instaGrid">
-          <!-- Fallback static tiles (replace with real thumbnails if you have them) -->
-          <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer"></a>
-          <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer"></a>
-          <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer"></a>
-          <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer"></a>
-          <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer"></a>
-          <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer"></a>
+          <!-- Will be filled by JS from your Basic Display API backend -->
         </div>
 
-        <p class="insta-empty-note">
+        <p class="insta-empty-note" id="instaNote">
           Live clips, behind-the-scenes chaos, and full glam moments are updated regularly on Instagram.
         </p>
       </div>
@@ -1268,36 +1298,45 @@
     orb.addEventListener('mouseleave', resetTilt);
   })();
 
-  // Instagram grid JS stub – for real posts, you need thumbnails + links
-  // Example if you have local images:
-  /*
-  (function(){
+  // Instagram Basic Display API – frontend hook.
+  // You'll create a backend route (e.g. /api/instagram) that returns:
+  // { data: [{ permalink, media_url, thumbnail_url?, caption }, ...] }
+  (async function () {
     const grid = document.getElementById('instaGrid');
+    const note = document.getElementById('instaNote');
     if (!grid) return;
 
-    const posts = [
-      { url: 'https://www.instagram.com/p/XXX1/', thumb: 'insta-1.jpg', alt: 'Dom live 1' },
-      { url: 'https://www.instagram.com/p/XXX2/', thumb: 'insta-2.jpg', alt: 'Dom live 2' },
-      ...
-    ];
+    try {
+      const res = await fetch('/api/instagram'); // your backend endpoint
+      if (!res.ok) throw new Error('Failed to fetch Instagram feed');
+      const json = await res.json();
 
-    grid.innerHTML = "";
-    posts.slice(0, 6).forEach(p => {
-      const a = document.createElement('a');
-      a.href = p.url;
-      a.target = "_blank";
-      a.rel = "noreferrer";
-      a.className = "insta-tile";
+      const posts = json.data || [];
+      if (!posts.length) {
+        note.textContent = 'Instagram is quiet right now — check back soon or follow @operationdom for live updates.';
+        return;
+      }
 
-      const img = document.createElement('img');
-      img.src = p.thumb;
-      img.alt = p.alt || "";
+      grid.innerHTML = "";
+      posts.slice(0, 6).forEach(p => {
+        const a = document.createElement('a');
+        a.href = p.permalink;
+        a.target = "_blank";
+        a.rel = "noreferrer";
+        a.className = "insta-tile";
 
-      a.appendChild(img);
-      grid.appendChild(a);
-    });
+        const img = document.createElement('img');
+        img.src = p.thumbnail_url || p.media_url;
+        img.alt = (p.caption || 'Instagram post from @operationdom').slice(0, 100);
+
+        a.appendChild(img);
+        grid.appendChild(a);
+      });
+    } catch (err) {
+      console.error(err);
+      note.textContent = 'Unable to load the Instagram grid right now. Tap through to Instagram to see more.';
+    }
   })();
-  */
 </script>
 
 </body>

@@ -947,6 +947,260 @@
   Paste the services grid + booking form sections you already have (the ones you liked)
   right here, without changing their internal styles. 
 -->
+<section id="services" class="section section--services">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Services</div>
+      <h2>What you can book Dom for</h2>
+      <p>
+        From the stage to the studio, from artist coaching to brand campaigns —
+        OperationDom is a full-spectrum creative you can plug into your event,
+        your record, or your visual world.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <!-- Live Performances -->
+      <article class="service-card service-card--pink">
+        <div class="service-color-bar"></div>
+        <div class="service-label">On stage</div>
+        <h3>Live Performances</h3>
+        <p>
+          Bring soul, energy, and elegance to any event. Unforgettable sets for weddings,
+          galas, corporate functions, and private celebrations — always powered by
+          powerhouse vocals and magnetic stage presence.
+        </p>
+        <div class="service-pill">Weddings · galas · nightlife</div>
+      </article>
+
+      <!-- Studio Sessions & Collaborations -->
+      <article class="service-card service-card--blue">
+        <div class="service-color-bar"></div>
+        <div class="service-label">In the booth</div>
+        <h3>Studio Sessions &amp; Collaborations</h3>
+        <p>
+          Hooks, background vocals, or features that cut through the mix. Available
+          for in-studio and remote sessions with producers, artists, and songwriters.
+        </p>
+        <div class="service-pill">Hooks · bgvs · features</div>
+      </article>
+
+      <!-- Vocal Coaching & Artist Development -->
+      <article class="service-card service-card--lilac">
+        <div class="service-color-bar"></div>
+        <div class="service-label">For artists</div>
+        <h3>Vocal Coaching &amp; Artist Development</h3>
+        <p>
+          One-on-one sessions focused on vocal control, confidence, and stage charisma.
+          Tailored guidance for vocalists ready to sharpen their tone and presence.
+        </p>
+        <div class="service-pill">1:1 sessions</div>
+      </article>
+
+      <!-- Creative Direction & Styling -->
+      <article class="service-card service-card--yellow">
+        <div class="service-color-bar"></div>
+        <div class="service-label">Visual world</div>
+        <h3>Creative Direction &amp; Styling</h3>
+        <p>
+          Sound is one thing. Image is everything. Concepting, styling, and stage looks
+          that keep your visuals as strong as your records.
+        </p>
+        <div class="service-pill">Looks · mood · branding</div>
+      </article>
+
+      <!-- Brand Collaborations & Partnerships -->
+      <article class="service-card service-card--softpink">
+        <div class="service-color-bar"></div>
+        <div class="service-label">For brands</div>
+        <h3>Brand Collabs &amp; Partnerships</h3>
+        <p>
+          Beauty, fashion, and lifestyle collaborations that feel authentic — mixing
+          music, empowerment, and a luxe aesthetic across campaigns and content.
+        </p>
+        <div class="service-pill">Beauty · fashion · lifestyle</div>
+      </article>
+
+      <!-- Custom Music & Jingles -->
+      <article class="service-card service-card--mixed">
+        <div class="service-color-bar"></div>
+        <div class="service-label">Custom sound</div>
+        <h3>Custom Music &amp; Jingles</h3>
+        <p>
+          Turn your story or brand into sound. Bespoke songs and jingles for brands,
+          podcasts, intros, and special projects.
+        </p>
+        <div class="service-pill">Podcasts · brands · intros</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="section-connector" aria-hidden="true">
+  <div class="section-connector-inner">
+    <div class="section-bow"><span></span></div>
+  </div>
+</div>
+
+<section id="book" class="section section--booking">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Booking</div>
+      <h2>Book OperationDom</h2>
+      <p>
+        For venues, festivals, studios, and brands that want a front-woman who can hold
+        the room by the throat and the heart. Share what you’re planning and which
+        services you’re interested in — the team will follow up with next steps, rates,
+        and availability.
+      </p>
+    </div>
+
+    <div class="booking-grid">
+      <div class="booking-copy">
+        <p>
+          Please include as many details as you can about your event or project
+          so we can respond quickly and accurately.
+        </p>
+        <ul>
+          <li>NYC-based, available for travel and select international dates</li>
+          <li>Full band, stripped set, or track show options</li>
+          <li>Studio &amp; remote recording available</li>
+        </ul>
+        <p class="booking-note">
+          SERIOUS INQUIRIES ONLY. EXPECT A RESPONSE WITHIN 24–48 HOURS.
+        </p>
+      </div>
+
+      <form class="booking-form">
+        <div class="booking-row">
+          <div class="field">
+            <label class="field-label" for="name">Name</label>
+            <input id="name" name="name" class="booking-input" type="text" placeholder="Your full name" required />
+          </div>
+          <div class="field">
+            <label class="field-label" for="company">Venue / Company</label>
+            <input id="company" name="company" class="booking-input" type="text" placeholder="Venue, brand, or organization" />
+          </div>
+        </div>
+
+        <div class="booking-row">
+          <div class="field">
+            <label class="field-label" for="email">Email</label>
+            <input id="email" name="email" class="booking-input" type="email" placeholder="you@example.com" required />
+          </div>
+          <div class="field">
+            <label class="field-label" for="phone">Phone</label>
+            <input id="phone" name="phone" class="booking-input" type="tel" placeholder="+1 (___) ___-____" />
+          </div>
+        </div>
+
+        <div class="booking-row booking-row--three">
+          <div class="field">
+            <label class="field-label" for="event-type">Booking type</label>
+            <select id="event-type" name="event_type" class="booking-select" required>
+              <option value="" disabled selected>Select one</option>
+              <option>Live show / event</option>
+              <option>Studio session / record</option>
+              <option>Coaching / development</option>
+              <option>Brand partnership</option>
+              <option>Custom music / jingle</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="city">City</label>
+            <input id="city" name="city" class="booking-input" type="text" placeholder="City &amp; country" />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="date">Date</label>
+            <input id="date" name="date" class="booking-input" type="date" />
+          </div>
+        </div>
+
+        <div class="booking-row booking-row--three">
+          <div class="field">
+            <label class="field-label" for="budget">Estimated budget</label>
+            <select id="budget" name="budget" class="booking-select">
+              <option value="" disabled selected>Select a range</option>
+              <option>$1,500 – $3,000</option>
+              <option>$3,000 – $5,000</option>
+              <option>$5,000 – $10,000</option>
+              <option>$10,000+</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field-label" for="set-length">Set length</label>
+            <select id="set-length" name="set_length" class="booking-select">
+              <option value="" disabled selected>Select</option>
+              <option>20–30 minutes</option>
+              <option>45–60 minutes</option>
+              <option>90 minutes</option>
+              <option>Custom</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field-label" for="capacity">Audience size</label>
+            <input id="capacity" name="capacity" class="booking-input" type="text" placeholder="Approx. headcount" />
+          </div>
+        </div>
+
+        <div class="services-checklist">
+          <div class="services-checklist-title">Which services are you interested in?</div>
+          <div class="services-checklist-grid">
+            <label class="service-check">
+              <input type="checkbox" name="services" value="live-performances" />
+              <span>Live performances</span>
+            </label>
+            <label class="service-check">
+              <input type="checkbox" name="services" value="studio-collabs" />
+              <span>Studio sessions &amp; collaborations</span>
+            </label>
+            <label class="service-check">
+              <input type="checkbox" name="services" value="vocal-coaching" />
+              <span>Vocal coaching &amp; artist development</span>
+            </label>
+            <label class="service-check">
+              <input type="checkbox" name="services" value="creative-direction" />
+              <span>Creative direction &amp; styling</span>
+            </label>
+            <label class="service-check">
+              <input type="checkbox" name="services" value="brand-collabs" />
+              <span>Brand collaborations &amp; partnerships</span>
+            </label>
+            <label class="service-check">
+              <input type="checkbox" name="services" value="custom-music" />
+              <span>Custom music &amp; jingles</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="details">Booking details</label>
+          <textarea
+            id="details"
+            name="details"
+            class="booking-textarea"
+            placeholder="Tell us about the vibe, schedule, other artists involved, deliverables, and anything else we should know."
+            required
+          ></textarea>
+        </div>
+
+        <div class="booking-submit-row">
+          <button type="submit" class="btn btn-primary">
+            <span>Submit request</span>
+            <span class="btn-arrow">↗</span>
+          </button>
+          <p class="booking-footnote">
+            Prefer email? Reach out at
+            <a href="mailto:booking@operationdom.com">booking@operationdom.com</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
 
 <script>
   // Simple hero slider

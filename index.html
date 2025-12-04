@@ -1030,6 +1030,45 @@
         grid-template-columns: 1fr;
       }
     }
+
+    .hero-cute-cloud {
+  position: relative;
+  margin-bottom: 14px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.hero-cute-cloud span {
+  position: relative;
+  padding: 10px 18px;
+  background: #fff8ff; /* soft pastel cloud */
+  border: 2px solid var(--border-strong);
+  color: var(--accent-pink);  /* cute pink text */
+  font-family: "Shrikhand", cursive;
+  font-size: 0.95rem;
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+}
+
+/* little bubble tail */
+.hero-cute-cloud span::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  background: #fff8ff;
+  border: 2px solid var(--border-strong);
+  border-top: none;
+  border-left: none;
+  transform: translateX(-50%) rotate(45deg);
+  box-shadow: var(--shadow-soft);
+}
+
   </style>
 </head>
 <body>
@@ -1099,7 +1138,10 @@
       </div>
     </div>
 
- <div class="hero-visual">
+<div class="hero-visual">
+  <div class="hero-cute-cloud">
+    <span>Dom in Her Element ✧˖°💗</span>
+  </div>
   <div class="hero-slider">
     <div class="hero-slider-header">
       <span>ON STAGE &amp; IN HER ELEMENT</span>

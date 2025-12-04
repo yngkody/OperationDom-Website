@@ -4,21 +4,30 @@
   <meta charset="UTF-8" />
   <title>OperationDom – Official Site</title>
 
-  <!-- Fonts: 70s bubbly nav + Impact-style headings + modern body -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Anton&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
     :root {
-      --bg: #05030a;
-      --accent-blue: #3557ff;
-      --accent-magenta: #e11d8f;
+      /* Bubblegum / stage vibes */
+      --bg: #120216;
+      --bg-soft: #1b0420;
+      --bubble-pink: #ff68b8;
+      --bubble-pink-soft: #ffc4e5;
+      --bubble-lilac: #c4b5fd;
+      --bubble-lilac-soft: #e4ddff;
+      --bubble-blue: #7dd3fc;
+      --bubble-blue-soft: #dbeafe;
+      --accent-blue: #4f70ff;
+      --accent-magenta: #ff3baf;
       --text-main: #ffffff;
-      --muted: rgba(226, 226, 241, 0.95);
-      --border-soft: rgba(255, 255, 255, 0.35);
-      --border-strong: rgba(255, 255, 255, 0.98);
+      --text-soft: #ffffff;
+      --border-soft: rgba(255, 255, 255, 0.5);
+      --border-strong: rgba(255, 255, 255, 1);
+      --shadow-strong: 0 24px 60px rgba(0, 0, 0, 0.9);
     }
 
     * {
@@ -32,7 +41,7 @@
     }
 
     body {
-      background: var(--bg);
+      background: radial-gradient(circle at 10% 0%, #2c0642 0%, #120216 42%, #090111 100%);
       color: var(--text-main);
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       min-height: 100vh;
@@ -40,38 +49,56 @@
       position: relative;
     }
 
-    h1, h2, h3, .booking-tag, .performance-tag {
+    h1, h2, h3, .booking-tag, .performance-tag, .services-tag {
       font-family: "Anton", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       letter-spacing: 0.16em;
       text-transform: uppercase;
     }
 
-    /* ========== BACKGROUND PATH "RIBBON" ========== */
+    /* GLOBAL BODY COPY – make everything heavier + white */
+    p,
+    .hero-subhead,
+    .hero-detail,
+    .performance-heading p,
+    .services-header p,
+    .service-card p,
+    .booking-copy p,
+    .booking-copy li {
+      font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-weight: 700;
+      color: var(--text-soft);
+    }
+
+    /* ========== RIBBON / PATH LINES ========== */
 
     .path-lines {
       position: fixed;
       inset: 0;
-      width: 100%;
-      height: 100%;
       pointer-events: none;
       z-index: -5;
-      opacity: 0.98;
+      opacity: 0.9;
+    }
+
+    .path-lines svg {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
 
     .path-lines path {
       fill: none;
-      stroke: rgba(255, 255, 255, 0.8);
+      stroke: rgba(255, 255, 255, 0.9);
       stroke-width: 7;
       stroke-linecap: round;
       stroke-linejoin: round;
-      filter: drop-shadow(0 0 10px rgba(255,255,255,0.35));
+      filter: drop-shadow(0 0 12px rgba(255,255,255,0.45));
     }
 
     .path-lines text {
-      fill: rgba(10,10,15,0.95);
+      fill: #120216;
       font-family: "Space Grotesk", system-ui, sans-serif;
-      font-size: 13px;
-      letter-spacing: 0.35em;
+      font-size: 10px;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
     }
 
@@ -87,15 +114,14 @@
       overflow: hidden;
     }
 
-    /* Flat black with faint blue/magenta glow + grid */
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at 10% 0%, rgba(53,87,255,0.25), transparent 55%),
-        radial-gradient(circle at 90% 100%, rgba(225,29,143,0.25), transparent 60%),
-        #05030a;
+        radial-gradient(circle at 0% 0%, rgba(255,104,184,0.24), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(79,112,255,0.25), transparent 60%);
+      mix-blend-mode: screen;
       z-index: -3;
     }
 
@@ -103,28 +129,16 @@
       content: "";
       position: absolute;
       inset: 0;
-      opacity: 0.22;
+      opacity: 0.16;
       background-image:
-        repeating-linear-gradient(
-          to right,
-          rgba(255, 255, 255, 0.18) 0,
-          rgba(255, 255, 255, 0.18) 1px,
-          transparent 1px,
-          transparent 32px
-        ),
-        repeating-linear-gradient(
-          to bottom,
-          rgba(255, 255, 255, 0.18) 0,
-          rgba(255, 255, 255, 0.18) 1px,
-          transparent 1px,
-          transparent 32px
-        );
+        linear-gradient(to right, rgba(255,255,255,0.18) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.18) 1px, transparent 1px);
+      background-size: 32px 32px;
       mix-blend-mode: soft-light;
       pointer-events: none;
       z-index: -2;
     }
 
-    /* GIANT BACKGROUND WORD */
     .hero-bg-word {
       position: absolute;
       inset: 0;
@@ -139,16 +153,17 @@
     .hero-bg-word span {
       font-family: "Space Grotesk", sans-serif;
       font-weight: 700;
-      font-size: clamp(3.3rem, 10vw, 7rem);
+      font-size: clamp(3rem, 9vw, 6.5rem);
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.03);
+      color: rgba(255, 255, 255, 0.05);
       transform: translateY(18%);
       white-space: nowrap;
       animation: heroBgDrift 18s ease-in-out infinite alternate;
     }
 
-    /* NAV – 70s bubbly, but clean */
+    /* NAV */
+
     .hero-nav {
       display: flex;
       align-items: center;
@@ -180,7 +195,7 @@
       bottom: -4px;
       width: 0;
       height: 2px;
-      background: linear-gradient(90deg, var(--accent-blue), var(--accent-magenta));
+      background: linear-gradient(90deg, var(--bubble-pink), var(--bubble-blue));
       transition: width 200ms ease-out;
     }
 
@@ -189,6 +204,7 @@
     }
 
     /* TOP RIGHT */
+
     .hero-top-right {
       position: absolute;
       top: 18px;
@@ -202,13 +218,13 @@
 
     .hero-top-right a {
       font-family: "Space Grotesk", sans-serif;
-      font-weight: 600;
+      font-weight: 700;
       color: #ffffff;
       text-decoration: none;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       font-size: 0.7rem;
-      opacity: 0.9;
+      opacity: 0.95;
     }
 
     .hero-cart {
@@ -217,29 +233,54 @@
       gap: 6px;
       padding: 7px 14px;
       border: 2px solid rgba(255,255,255,0.9);
-      background: rgba(10,10,12,0.9);
+      background: rgba(18,2,22,0.92);
       font-size: 0.8rem;
       font-family: "Space Grotesk", sans-serif;
       font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      border-radius: 0;
+      border-radius: 999px;
     }
 
     .hero-cart strong {
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    /* MAIN LAYOUT */
+    /* CORNER ASSETS */
+
+    .corner-accent {
+      position: absolute;
+      width: 72px;
+      height: 72px;
+      pointer-events: none;
+    }
+
+    .corner-accent--hero {
+      top: 18px;
+      left: 5vw;
+    }
+
+    .corner-accent--booking {
+      bottom: 24px;
+      right: 5vw;
+    }
+
+    .corner-accent path {
+      stroke: rgba(255,255,255,0.7);
+      stroke-width: 2;
+      fill: none;
+    }
+
+    /* MAIN HERO LAYOUT */
+
     .hero-main {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
       gap: clamp(28px, 5vw, 60px);
       align-items: center;
-      margin-top: clamp(28px, 5vh, 48px);
+      margin-top: clamp(28px, 5vh, 52px);
     }
 
-    /* LEFT: COPY */
     .hero-copy {
       position: relative;
       z-index: 3;
@@ -247,22 +288,22 @@
 
     .hero-tagline {
       font-size: 0.8rem;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
       color: #ffffff;
       margin-bottom: 18px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .hero-headline {
       position: relative;
       font-weight: 700;
-      font-size: clamp(2.4rem, 5vw, 3.5rem);
+      font-size: clamp(2.4rem, 5vw, 3.4rem);
       line-height: 1.02;
       margin-bottom: 10px;
       display: inline-flex;
       flex-wrap: wrap;
-      gap: 0.28em;
+      gap: 0.3em;
     }
 
     .hero-headline-main {
@@ -270,47 +311,41 @@
     }
 
     .hero-headline-dom {
-      color: var(--accent-blue);
+      color: var(--bubble-blue-soft);
       text-shadow:
-        0 0 8px rgba(53,87,255,0.85),
-        0 0 20px rgba(53,87,255,0.6);
+        0 0 10px rgba(79,112,255,0.9),
+        0 0 24px rgba(79,112,255,0.65);
     }
 
     .hero-script-overlay {
       margin-top: 10px;
       font-family: "Space Grotesk", sans-serif;
       font-style: italic;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 0.9rem;
       letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: var(--accent-blue);
+      color: var(--bubble-pink-soft);
     }
 
     .hero-subhead {
       max-width: 34rem;
       font-size: 1rem;
-      line-height: 1.8;
-      color: var(--muted);
+      line-height: 1.9;
       margin-top: 18px;
       margin-bottom: 22px;
-      font-weight: 600;
-      font-family: "Plus Jakarta Sans", sans-serif;
     }
 
     .hero-subhead strong {
+      font-weight: 800;
       color: #ffffff;
-      font-weight: 700;
     }
 
     .hero-detail {
       font-size: 0.9rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      color: rgba(255,255,255,0.9);
       margin-bottom: 32px;
-      font-weight: 700;
-      font-family: "Plus Jakarta Sans", sans-serif;
     }
 
     .hero-ctas {
@@ -329,7 +364,7 @@
       font-size: 0.9rem;
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      font-weight: 700;
+      font-weight: 800;
       border: none;
       cursor: pointer;
       transition: transform 150ms ease-out, box-shadow 150ms ease-out, background 150ms ease-out, border-color 150ms ease-out;
@@ -338,28 +373,26 @@
       justify-content: center;
       gap: 8px;
       white-space: nowrap;
-      border-radius: 0;
+      border-radius: 999px;
       text-decoration: none;
       color: inherit;
       background: none;
     }
 
-    /* BOOK A SHOW: white background */
     .btn-primary {
-      color: #000000;
+      color: #120216;
       background-color: #ffffff;
       border: 2px solid #ffffff;
       font-family: "Plus Jakarta Sans", sans-serif;
-      font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.08em;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.8);
-      transition: 0.2s ease;
+      font-weight: 800;
+      font-size: 0.96rem;
+      letter-spacing: 0.1em;
+      box-shadow: 0 14px 36px rgba(0,0,0,0.9);
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 16px 40px rgba(0,0,0,1);
+      box-shadow: 0 18px 48px rgba(0,0,0,1);
     }
 
     .btn-ghost {
@@ -370,35 +403,36 @@
 
     .btn-ghost:hover {
       transform: translateY(-2px);
-      background-color: rgba(10,10,14,0.9);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.9);
+      background-color: rgba(18,2,22,0.92);
+      box-shadow: 0 12px 32px rgba(0,0,0,1);
     }
 
     .btn-caption {
       font-family: "Plus Jakarta Sans", sans-serif;
       font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
+      font-weight: 700;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(235,235,235,0.9);
+      color: rgba(255,255,255,0.9);
     }
 
     .hero-cta-group {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 5px;
     }
 
     .btn-arrow {
       display: inline-block;
       transition: transform 0.18s ease-out;
     }
+
     .btn-primary:hover .btn-arrow,
     .booking-submit:hover .btn-arrow {
       transform: translateX(3px) translateY(-1px);
     }
 
-    /* RIGHT: VISUAL */
+    /* HERO VISUAL: NO CROP CIRCLE, COLLAGE PANEL */
 
     .hero-visual {
       position: relative;
@@ -410,44 +444,46 @@
       text-align: center;
     }
 
-    /* mobile-only label around the photo */
     .hero-mobile-tagline {
       display: none;
-      font-family: "Plus Jakarta Sans", sans-serif;
       font-size: 0.8rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(230,230,245,0.95);
+      color: rgba(255,255,255,0.9);
       margin-bottom: 12px;
-      border: 1px solid rgba(255,255,255,0.45);
+      border: 1px solid rgba(255,255,255,0.6);
       padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(18,2,22,0.9);
     }
 
-    .hero-orb {
+    .hero-panel {
       position: relative;
-      width: min(420px, 80vw);
-      aspect-ratio: 1 / 1;
-      border-radius: 50%;
+      width: min(460px, 88vw);
+      aspect-ratio: 4 / 5;
+      border-radius: 32px;
       overflow: hidden;
-      background-color: #05030d;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.95);
+      background: radial-gradient(circle at 0 0, rgba(255,200,240,0.4), transparent 60%),
+                  radial-gradient(circle at 100% 100%, rgba(145,205,255,0.4), transparent 60%),
+                  #1b0420;
+      box-shadow: var(--shadow-strong);
       transform-style: preserve-3d;
-      transform: perspective(1200px) rotateX(8deg) rotateY(-8deg);
+      transform: perspective(1200px) rotateX(6deg) rotateY(-8deg);
       transition: transform 220ms ease-out;
       margin: 0 auto;
     }
 
-    /* Collage inside orb */
     .hero-image-collage {
       position: absolute;
-      inset: 8%;
-      border-radius: 50%;
-      overflow: hidden;
-      background: radial-gradient(circle at 20% 0%, rgba(53,87,255,0.25), transparent 60%);
+      inset: 10%;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 6px;
     }
 
     .hero-img {
-      position: absolute;
+      position: relative;
       overflow: hidden;
       border-radius: 18px;
     }
@@ -460,49 +496,66 @@
     }
 
     .hero-img-main {
-      inset: 14% 10% 12% 10%;
+      grid-column: 1 / 2;
+      grid-row: 1 / 3;
     }
 
     .hero-img-alt1 {
-      top: 4%;
-      right: -4%;
-      width: 42%;
-      height: 38%;
-      transform: rotate(6deg);
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
     }
 
     .hero-img-alt2 {
-      bottom: -6%;
-      left: -6%;
-      width: 46%;
-      height: 40%;
-      transform: rotate(-8deg);
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
     }
 
+    /* sticker-style extras */
     .hero-img-alt3 {
-      top: -6%;
-      left: 0%;
-      width: 34%;
-      height: 32%;
-      transform: rotate(-4deg);
+      position: absolute;
+      top: 4%;
+      left: 4%;
+      width: 32%;
+      height: 26%;
+      border-radius: 999px;
+      overflow: hidden;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.6);
     }
 
     .hero-img-alt4 {
-      bottom: 2%;
-      right: 4%;
-      width: 32%;
-      height: 32%;
-      transform: rotate(5deg);
+      position: absolute;
+      bottom: 6%;
+      right: 10%;
+      width: 30%;
+      height: 24%;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.6);
+    }
+
+    .hero-signature {
+      position: absolute;
+      left: 10%;
+      top: 6%;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 800;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #120216;
+      background: #fff;
+      padding: 5px 12px;
+      border-radius: 999px;
     }
 
     .hero-badge {
       position: absolute;
       bottom: 8%;
-      right: 8%;
-      padding: 8px 18px;
+      left: 10%;
+      padding: 7px 16px;
       font-size: 0.75rem;
-      border-radius: 0;
-      background: rgba(5,5,8,0.9);
+      border-radius: 999px;
+      background: rgba(18,2,22,0.96);
       border: 1px solid rgba(255,255,255,0.9);
       font-family: "Space Grotesk", sans-serif;
       letter-spacing: 0.18em;
@@ -511,54 +564,24 @@
       align-items: center;
       gap: 6px;
       font-weight: 700;
+      color: #ffffff;
     }
 
     .hero-badge-dot {
       width: 7px;
       height: 7px;
       border-radius: 999px;
-      background: #ffffff;
+      background: var(--bubble-pink);
     }
 
-    .hero-signature {
-      position: absolute;
-      left: 8%;
-      top: 8%;
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 700;
-      font-size: 0.78rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #ffffff;
-      background: rgba(5,5,8,0.9);
-      padding: 5px 10px;
-      border-radius: 0;
-    }
-
-    /* Minimal SVG corner asset */
-    .corner-accent {
-      position: absolute;
-      width: 72px;
-      height: 72px;
-      pointer-events: none;
-      opacity: 0.4;
-    }
-    .corner-accent--hero {
-      top: 18px;
-      left: 5vw;
-    }
-    .corner-accent--booking {
-      bottom: 24px;
-      right: 5vw;
-    }
-
-    /* ========== PERFORMANCE / VIDEO + INSTAGRAM ========== */
+    /* ========== PERFORMANCE SECTION ========== */
 
     .performance {
       position: relative;
       padding: 56px 5vw 40px;
-      border-top: 1px solid rgba(255,255,255,0.18);
+      border-top: 1px solid rgba(255,255,255,0.2);
       overflow: hidden;
+      background: radial-gradient(circle at 10% 0%, rgba(255,200,240,0.12), transparent 60%);
     }
 
     .performance-inner {
@@ -579,7 +602,7 @@
     .performance-tag {
       font-size: 0.85rem;
       padding-bottom: 8px;
-      border-bottom: 1px solid rgba(255,255,255,0.35);
+      border-bottom: 2px solid rgba(255,255,255,0.7);
       width: fit-content;
     }
 
@@ -589,15 +612,14 @@
     }
 
     .performance-heading p {
-      font-family: "Plus Jakarta Sans", sans-serif;
       font-size: 0.98rem;
-      line-height: 1.8;
-      color: rgba(230,230,240,0.98);
-      font-weight: 600;
+      line-height: 1.85;
+      margin-top: 4px;
     }
 
     .performance-highlight {
-      font-weight: 700;
+      font-weight: 800;
+      color: var(--bubble-pink-soft);
     }
 
     .performance-layout {
@@ -611,9 +633,11 @@
       position: relative;
       width: 100%;
       aspect-ratio: 16 / 9;
+      border-radius: 28px;
       border: 2px solid var(--border-soft);
-      background: #020108;
+      background: #090015;
       overflow: hidden;
+      box-shadow: var(--shadow-strong);
     }
 
     .performance-video-wrap iframe {
@@ -638,23 +662,22 @@
     }
 
     .insta-handle {
-      font-family: "Plus Jakarta Sans", sans-serif;
       font-size: 0.85rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      opacity: 0.9;
-      font-weight: 600;
+      opacity: 0.95;
+      font-weight: 800;
     }
 
     .insta-view-link {
-      font-family: "Plus Jakarta Sans", sans-serif;
       font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: #ffffff;
       text-decoration: none;
-      border-bottom: 1px solid rgba(255,255,255,0.8);
       padding-bottom: 1px;
+      border-bottom: 1px solid rgba(255,255,255,0.9);
+      font-weight: 700;
     }
 
     .insta-grid {
@@ -668,10 +691,11 @@
       width: 100%;
       padding-bottom: 100%;
       overflow: hidden;
-      background: radial-gradient(circle at 0 0, rgba(53,87,255,0.45), transparent 55%),
-                  radial-gradient(circle at 100% 100%, rgba(225,29,143,0.45), transparent 55%),
-                  #05030a;
-      border: 1px solid rgba(255,255,255,0.4);
+      background: radial-gradient(circle at 0 0, rgba(255,200,240,0.5), transparent 60%),
+                  radial-gradient(circle at 100% 100%, rgba(145,205,255,0.5), transparent 60%),
+                  #1b0420;
+      border-radius: 16px;
+      border: 1.5px solid rgba(255,255,255,0.7);
       cursor: pointer;
     }
 
@@ -686,14 +710,14 @@
     }
 
     .insta-tile:hover img {
-      transform: scale(1.04);
+      transform: scale(1.05);
     }
 
     .insta-tile::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.45), transparent);
+      background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
       opacity: 0;
       transition: opacity 0.2s ease-out;
     }
@@ -703,10 +727,8 @@
     }
 
     .insta-empty-note {
-      font-family: "Plus Jakarta Sans", sans-serif;
-      font-size: 0.78rem;
-      color: rgba(230,230,240,0.8);
-      font-weight: 500;
+      font-size: 0.82rem;
+      line-height: 1.6;
     }
 
     /* ========== SERVICES SECTION ========== */
@@ -714,8 +736,9 @@
     .services {
       position: relative;
       padding: 60px 5vw 56px;
-      border-top: 1px solid rgba(255,255,255,0.18);
+      border-top: 1px solid rgba(255,255,255,0.2);
       overflow: hidden;
+      background: radial-gradient(circle at 100% 0%, rgba(124,179,255,0.16), transparent 60%);
     }
 
     .services-inner {
@@ -733,7 +756,7 @@
     .services-tag {
       font-size: 0.85rem;
       padding-bottom: 8px;
-      border-bottom: 1px solid rgba(255,255,255,0.35);
+      border-bottom: 2px solid rgba(255,255,255,0.75);
       width: fit-content;
     }
 
@@ -743,41 +766,76 @@
     }
 
     .services-header p {
-      font-family: "Plus Jakarta Sans", sans-serif;
       font-size: 0.98rem;
-      line-height: 1.7;
-      color: rgba(230,230,240,0.98);
-      font-weight: 600;
+      line-height: 1.8;
       margin-top: 8px;
     }
 
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
+      gap: 20px;
       margin-top: 10px;
     }
 
     .service-card {
       position: relative;
       padding: 18px 18px 20px;
-      border: 1.5px solid rgba(255,255,255,0.45);
-      background: radial-gradient(circle at 0 0, rgba(53,87,255,0.25), transparent 55%),
-                  radial-gradient(circle at 100% 100%, rgba(225,29,143,0.25), transparent 55%),
-                  rgba(4,4,10,0.96);
+      border-radius: 22px;
       display: flex;
       flex-direction: column;
       gap: 10px;
       overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.8);
+      border: 2px solid rgba(255,255,255,0.8);
+      transform: translateY(0);
+      transition: transform 0.18s ease-out, box-shadow 0.18s ease-out;
     }
 
     .service-card::before {
       content: "";
       position: absolute;
       inset: 0;
-      border-top: 2px solid rgba(255,255,255,0.9);
-      opacity: 0.16;
+      opacity: 0.18;
+      background: linear-gradient(135deg, rgba(255,255,255,0.7), transparent 55%);
+      mix-blend-mode: screen;
       pointer-events: none;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 55px rgba(0,0,0,1);
+    }
+
+    /* different candy colors per card */
+    .service-card--pink {
+      background: radial-gradient(circle at 0 0, var(--bubble-pink-soft), transparent 60%),
+                  #3c0722;
+    }
+
+    .service-card--blue {
+      background: radial-gradient(circle at 100% 0, var(--bubble-blue-soft), transparent 60%),
+                  #051b32;
+    }
+
+    .service-card--lilac {
+      background: radial-gradient(circle at 0 100%, var(--bubble-lilac-soft), transparent 60%),
+                  #211247;
+    }
+
+    .service-card--peach {
+      background: radial-gradient(circle at 100% 100%, #ffd1b5, transparent 60%),
+                  #3a1020;
+    }
+
+    .service-card--mint {
+      background: radial-gradient(circle at 0 0, #c7ffd7, transparent 60%),
+                  #123329;
+    }
+
+    .service-card--rose {
+      background: radial-gradient(circle at 50% 0, #ffd6f2, transparent 60%),
+                  #321227;
     }
 
     .service-icon {
@@ -795,25 +853,20 @@
       font-size: 0.9rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .service-card p {
-      font-family: "Plus Jakarta Sans", sans-serif;
       font-size: 0.9rem;
-      line-height: 1.7;
-      color: rgba(230,230,240,0.98);
-      font-weight: 500;
+      line-height: 1.75;
     }
 
     .service-pill {
       margin-top: auto;
-      font-family: "Plus Jakarta Sans", sans-serif;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(240,240,250,0.9);
-      opacity: 0.85;
+      opacity: 0.95;
     }
 
     /* ========== BOOKING SECTION ========== */
@@ -821,30 +874,20 @@
     .booking {
       position: relative;
       padding: 56px 5vw 80px;
-      border-top: 1px solid rgba(255,255,255,0.18);
+      border-top: 1px solid rgba(255,255,255,0.2);
       overflow: hidden;
+      background: radial-gradient(circle at 50% 100%, rgba(255,200,240,0.16), transparent 60%);
     }
 
     .booking::before {
       content: "";
       position: absolute;
       inset: 0;
-      opacity: 0.13;
+      opacity: 0.12;
       background-image:
-        repeating-linear-gradient(
-          to right,
-          rgba(255,255,255,0.1) 0,
-          rgba(255,255,255,0.1) 1px,
-          transparent 1px,
-          transparent 32px
-        ),
-        repeating-linear-gradient(
-          to bottom,
-          rgba(255,255,255,0.1) 0,
-          rgba(255,255,255,0.1) 1px,
-          transparent 1px,
-          transparent 32px
-        );
+        linear-gradient(to right, rgba(255,255,255,0.16) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.16) 1px, transparent 1px);
+      background-size: 32px 32px;
       mix-blend-mode: soft-light;
       pointer-events: none;
       z-index: -1;
@@ -861,7 +904,7 @@
     .booking-tag {
       font-size: 0.85rem;
       padding-bottom: 8px;
-      border-bottom: 1px solid rgba(255,255,255,0.35);
+      border-bottom: 2px solid rgba(255,255,255,0.8);
       width: fit-content;
     }
 
@@ -879,23 +922,17 @@
     }
 
     .booking-copy p {
-      font-family: "Plus Jakarta Sans", sans-serif;
       font-size: 0.98rem;
-      line-height: 1.7;
-      color: rgba(230,230,240,0.98);
+      line-height: 1.8;
       margin-bottom: 14px;
       max-width: 34rem;
-      font-weight: 600;
     }
 
     .booking-copy ul {
       list-style: none;
       margin: 10px 0 14px;
       padding: 0;
-      font-family: "Plus Jakarta Sans", sans-serif;
       font-size: 0.92rem;
-      color: rgba(230,230,240,0.95);
-      font-weight: 500;
     }
 
     .booking-copy li {
@@ -915,9 +952,7 @@
       font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      color: rgba(225,225,240,0.8);
       margin-top: 10px;
-      font-weight: 600;
     }
 
     .booking-email {
@@ -932,7 +967,9 @@
       display: flex;
       flex-direction: column;
       gap: 14px;
-      background: rgba(5,5,12,0.92);
+      background: rgba(18,2,22,0.96);
+      border-radius: 26px;
+      box-shadow: var(--shadow-strong);
     }
 
     .booking-form-row {
@@ -944,16 +981,14 @@
     .booking-field {
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 6px;
     }
 
     .booking-label {
-      font-family: "Plus Jakarta Sans", sans-serif;
       font-size: 0.8rem;
-      font-weight: 700;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: rgba(230,230,245,0.95);
+      letter-spacing: 0.2em;
     }
 
     .booking-input,
@@ -961,29 +996,30 @@
     .booking-textarea {
       font-family: "Plus Jakarta Sans", sans-serif;
       font-size: 0.95rem;
-      font-weight: 600;
-      padding: 11px 12px;
-      background: rgba(4,4,10,0.85);
+      font-weight: 700;
+      padding: 12px 12px;
+      background: #120216;
       border: 2px solid var(--border-soft);
       color: #fff;
       outline: none;
-      border-radius: 0;
+      border-radius: 999px;
+    }
+
+    .booking-textarea {
+      border-radius: 18px;
+      min-height: 110px;
+      resize: vertical;
     }
 
     .booking-input::placeholder,
     .booking-textarea::placeholder {
-      color: rgba(210,210,230,0.7);
+      color: rgba(230,230,245,0.75);
     }
 
     .booking-input:focus,
     .booking-select:focus,
     .booking-textarea:focus {
       border-color: var(--border-strong);
-    }
-
-    .booking-textarea {
-      min-height: 110px;
-      resize: vertical;
     }
 
     .booking-meta-row {
@@ -1002,19 +1038,17 @@
     }
 
     .booking-submit {
-      border-radius: 0;
+      border-radius: 999px;
       padding-inline: 22px;
       background-color: #ffffff;
-      color: #000;
+      color: #120216;
     }
 
     .booking-footnote {
-      font-family: "Plus Jakarta Sans", sans-serif;
       font-size: 0.78rem;
       letter-spacing: 0.09em;
       text-transform: uppercase;
-      color: rgba(225,225,240,0.8);
-      font-weight: 500;
+      font-weight: 700;
     }
 
     .booking-footnote a {
@@ -1033,7 +1067,7 @@
 
       .hero-main {
         grid-template-columns: 1fr;
-        margin-top: 32px;
+        margin-top: 30px;
         row-gap: 32px;
       }
 
@@ -1041,13 +1075,14 @@
         order: -1;
       }
 
-      .hero-orb {
-        width: min(360px, 80vw);
+      .hero-panel {
+        width: min(380px, 88vw);
+        transform: perspective(1000px) rotateX(4deg) rotateY(-4deg);
       }
 
       .hero-bg-word span {
         transform: translateY(24%);
-        opacity: 0.3;
+        opacity: 0.25;
       }
 
       .hero-mobile-tagline {
@@ -1089,7 +1124,7 @@
 
     @media (max-width: 640px) {
       .hero-nav {
-        font-size: 0.8rem;
+        font-size: 0.82rem;
         gap: 14px;
       }
 
@@ -1104,7 +1139,7 @@
       }
 
       .hero-main {
-        margin-top: 28px;
+        margin-top: 24px;
       }
 
       .insta-grid {
@@ -1112,6 +1147,10 @@
       }
 
       .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .booking-form-row {
         grid-template-columns: 1fr;
       }
     }
@@ -1131,37 +1170,29 @@
 </head>
 <body>
 
-<!-- PATH LINES CONNECTING SECTIONS WITH THICK RIBBON TEXT -->
-<svg class="path-lines" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
-  <defs>
-    <path id="pathMain" d="M-40 60 C 180 20, 360 120, 560 80 S 980 40, 1240 140 1460 260, 1520 300" />
-    <path id="pathAlt" d="M-60 250 C 160 300, 380 260, 640 280 S 1040 300, 1280 220 1480 180, 1540 160" />
-  </defs>
-
-  <path d="M-40 60 C 180 20, 360 120, 560 80 S 980 40, 1240 140 1460 260, 1520 300" />
-  <text>
-    <textPath xlink:href="#pathMain" startOffset="5%">
-      #OPERATIONDOM   ·   #SINGER   ·   #VOCALIST   ·   #LIVEMUSIC   ·   #RNB   ·   #HEADLINER
-    </textPath>
-  </text>
-
-  <path d="M-60 250 C 160 300, 380 260, 640 280 S 1040 300, 1280 220 1480 180, 1540 160" />
-  <text>
-    <textPath xlink:href="#pathAlt" startOffset="30%">
-      #NYC   ·   #PERFORMER   ·   #DOMVIC   ·   #OPERATIONDOM
-    </textPath>
-  </text>
-</svg>
+<!-- Ribbon / path with text that fits cleanly -->
+<div class="path-lines" aria-hidden="true">
+  <svg viewBox="0 0 1440 220" preserveAspectRatio="xMidYMid meet">
+    <defs>
+      <path id="pathMain" d="M -40 110 C 200 40, 460 180, 740 80 S 1180 140, 1480 110" />
+    </defs>
+    <path d="M -40 110 C 200 40, 460 180, 740 80 S 1180 140, 1480 110" />
+    <text>
+      <textPath xlink:href="#pathMain" startOffset="0%">
+        #OPERATIONDOM · #SINGER · #VOCALIST · #LIVEMUSIC · #NYC · #RNB · #HEADLINER
+      </textPath>
+    </text>
+  </svg>
+</div>
 
 <section class="hero" id="top">
-
   <div class="hero-bg-word">
     <span>OPERATIONDOM</span>
   </div>
 
   <svg class="corner-accent corner-accent--hero" viewBox="0 0 60 60" aria-hidden="true">
-    <path d="M2 18V2H18" stroke="rgba(255,255,255,0.7)" stroke-width="2" fill="none"/>
-    <path d="M42 58H58V42" stroke="rgba(255,255,255,0.4)" stroke-width="2" fill="none"/>
+    <path d="M2 18V2H18" />
+    <path d="M42 58H58V42" />
   </svg>
 
   <nav class="hero-nav">
@@ -1223,34 +1254,35 @@
         DOM VIC • VOCALIST • PERFORMER
       </div>
 
-      <div class="hero-orb" id="domOrb">
-        <div class="hero-signature">DOM VIC</div>
-
+      <div class="hero-panel" id="domOrb">
         <div class="hero-image-collage">
           <div class="hero-img hero-img-main">
-            <img src="dom-hero.jpeg" alt="Dom headlining live show" />
+            <img src="dom-hero.jpeg" alt="Dom headlining a live show" />
           </div>
           <div class="hero-img hero-img-alt1">
             <img src="hero.jpg" alt="OperationDom performance shot" />
           </div>
           <div class="hero-img hero-img-alt2">
-            <img src="gala.jpeg" alt="Dom at gala event" />
-          </div>
-          <div class="hero-img hero-img-alt3">
-            <img src="headshot.jpeg" alt="OperationDom studio headshot" />
-          </div>
-          <div class="hero-img hero-img-alt4">
-            <img src="nicks.jpg" alt="Dom live at Nicks" />
+            <img src="gala.jpeg" alt="Dom singing at a gala" />
           </div>
         </div>
 
+        <div class="hero-img hero-img-alt3">
+          <img src="headshot.jpeg" alt="OperationDom studio headshot" />
+        </div>
+        <div class="hero-img hero-img-alt4">
+          <img src="nicks.jpg" alt="Dom live at Nicks" />
+        </div>
+
+        <div class="hero-signature">DOM VIC</div>
+
         <div class="hero-badge">
           <div class="hero-badge-dot"></div>
+          <span>ON STAGE • 2025</span>
         </div>
       </div>
     </div>
   </div>
-
 </section>
 
 <section id="performance" class="performance">
@@ -1285,7 +1317,7 @@
         </div>
 
         <div class="insta-grid" id="instaGrid">
-          <!-- Fallback tiles until API is wired -->
+          <!-- Placeholder tiles until Basic Display API is wired -->
           <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer"></a>
           <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer"></a>
           <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer"></a>
@@ -1295,14 +1327,14 @@
         </div>
 
         <p class="insta-empty-note">
-          Live clips, behind-the-scenes chaos, and full glam moments are updated regularly on Instagram.
+          Live clips, behind-the-scenes chaos, and full glam moments are updated regularly.
+          The grid above can be wired to the Instagram Basic Display API to auto-pull Dom’s latest posts.
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== SERVICES SECTION ===== -->
 <section id="services" class="services">
   <div class="services-inner">
     <div class="services-header">
@@ -1316,7 +1348,7 @@
 
     <div class="services-grid">
       <!-- Live Performances -->
-      <article class="service-card">
+      <article class="service-card service-card--pink">
         <div class="service-icon">
           <svg viewBox="0 0 40 40" aria-hidden="true">
             <path d="M6 30L12 10L22 18L32 8" stroke="white" stroke-width="2" fill="none"/>
@@ -1327,15 +1359,15 @@
         </div>
         <h3>Live Performances</h3>
         <p>
-          Bring soul, energy, and elegance to any event. OperationDom delivers unforgettable sets for
-          weddings, galas, corporate functions, and private celebrations — blending powerhouse vocals
+          Bring soul, energy, and elegance to any event. OperationDom delivers unforgettable performances
+          for weddings, galas, corporate functions, and private celebrations — blending powerhouse vocals
           with magnetic stage presence.
         </p>
         <div class="service-pill">On stage</div>
       </article>
 
       <!-- Studio Sessions & Collaborations -->
-      <article class="service-card">
+      <article class="service-card service-card--blue">
         <div class="service-icon">
           <svg viewBox="0 0 40 40" aria-hidden="true">
             <rect x="7" y="8" width="10" height="24" rx="4" stroke="white" stroke-width="2" fill="none"/>
@@ -1353,7 +1385,7 @@
       </article>
 
       <!-- Vocal Coaching & Artist Development -->
-      <article class="service-card">
+      <article class="service-card service-card--lilac">
         <div class="service-icon">
           <svg viewBox="0 0 40 40" aria-hidden="true">
             <path d="M8 26C8 20 12 16 16 16C20 16 24 20 24 26" stroke="white" stroke-width="2" fill="none"/>
@@ -1370,7 +1402,7 @@
       </article>
 
       <!-- Creative Direction & Styling -->
-      <article class="service-card">
+      <article class="service-card service-card--peach">
         <div class="service-icon">
           <svg viewBox="0 0 40 40" aria-hidden="true">
             <rect x="8" y="10" width="24" height="18" rx="3" stroke="white" stroke-width="2" fill="none"/>
@@ -1388,7 +1420,7 @@
       </article>
 
       <!-- Brand Collaborations & Partnerships -->
-      <article class="service-card">
+      <article class="service-card service-card--mint">
         <div class="service-icon">
           <svg viewBox="0 0 40 40" aria-hidden="true">
             <circle cx="14" cy="16" r="5" stroke="white" stroke-width="2" fill="none"/>
@@ -1405,7 +1437,7 @@
       </article>
 
       <!-- Custom Music & Jingles -->
-      <article class="service-card">
+      <article class="service-card service-card--rose">
         <div class="service-icon">
           <svg viewBox="0 0 40 40" aria-hidden="true">
             <path d="M14 28C14 25.8 15.8 24 18 24C20.2 24 22 25.8 22 28C22 30.2 20.2 32 18 32C15.8 32 14 30.2 14 28Z" stroke="white" stroke-width="2" fill="none"/>
@@ -1426,8 +1458,8 @@
 
 <section id="book" class="booking">
   <svg class="corner-accent corner-accent--booking" viewBox="0 0 60 60" aria-hidden="true">
-    <path d="M2 42V58H18" stroke="rgba(255,255,255,0.4)" stroke-width="2" fill="none"/>
-    <path d="M42 2H58V18" stroke="rgba(255,255,255,0.7)" stroke-width="2" fill="none"/>
+    <path d="M2 42V58H18" />
+    <path d="M42 2H58V18" />
   </svg>
 
   <div class="booking-inner">
@@ -1438,7 +1470,7 @@
         <h2>Book Dom for your next show</h2>
         <p>
           For venues, festivals, and private events that need a front-woman who can hold the room by the
-          throat and the heart. Tell us what you’re planning and we’ll build the right set around it —
+          throat and the heart. Share what you’re planning and the energy you want; the set can be tailored
           from full band to stripped-down, from sultry to feral.
         </p>
 
@@ -1549,34 +1581,34 @@
 </section>
 
 <script>
-  // subtle parallax tilt on the image
+  // Subtle parallax tilt on hero panel
   (function () {
-    const orb = document.getElementById('domOrb');
-    if (!orb) return;
+    const panel = document.getElementById('domOrb');
+    if (!panel) return;
 
     const maxRotate = 8;
 
     function handleMove(e) {
-      const rect = orb.getBoundingClientRect();
+      const rect = panel.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
 
       const rotateY = -x * maxRotate;
       const rotateX = y * maxRotate;
 
-      orb.style.transform =
+      panel.style.transform =
         `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     }
 
     function resetTilt() {
-      orb.style.transform = 'perspective(1200px) rotateX(8deg) rotateY(-8deg)';
+      panel.style.transform = 'perspective(1200px) rotateX(6deg) rotateY(-8deg)';
     }
 
-    orb.addEventListener('mousemove', handleMove);
-    orb.addEventListener('mouseleave', resetTilt);
+    panel.addEventListener('mousemove', handleMove);
+    panel.addEventListener('mouseleave', resetTilt);
   })();
 
-  // Instagram Basic Display API hook stub
+  // Stub for Instagram Basic Display API wiring
   /*
   (async function loadInstagram() {
     const grid = document.getElementById('instaGrid');
@@ -1585,7 +1617,7 @@
     try {
       const res = await fetch('/api/instagram-feed'); // your backend route
       if (!res.ok) throw new Error('Network error');
-      const posts = await res.json(); // expected: array of { permalink, media_url, caption }
+      const posts = await res.json(); // expected: [{ permalink, media_url, caption }, ...]
 
       grid.innerHTML = "";
       posts.slice(0, 6).forEach(p => {

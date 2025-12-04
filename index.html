@@ -106,52 +106,72 @@
     .hero-nav a:hover {
       border-bottom-color: var(--ink);
     }
+.hero-nav-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    /* subtle outlined hearts around nav */
-    .nav-heart {
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      border: 2px solid #ffc7e3;
-      border-radius: 4px;
-      transform: rotate(-45deg);
-      background: transparent;
-      opacity: 0.6;
-      pointer-events: none;
-    }
+/* base heart shape – outline only */
+.nav-heart {
+  position: absolute;
+  width: 18px;
+  height: 16px;
+  transform: rotate(-45deg);
+  border: 2px solid var(--accent-pink);
+  border-top: none;
+  border-right: none;
+  background: var(--bg-pink); /* same as hero bg so it looks “unfilled” */
+  box-sizing: border-box;
+}
 
-    .nav-heart::before,
-    .nav-heart::after {
-      content: "";
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      border: 2px solid #ffc7e3;
-      border-radius: 50%;
-      background: transparent;
-    }
+/* round lobes */
+.nav-heart::before,
+.nav-heart::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--accent-pink);
+  border-radius: 50%;
+  background: var(--bg-pink); /* matches bg, so appears hollow */
+  box-sizing: border-box;
+}
 
-    .nav-heart::before {
-      top: -10px;
-      left: -2px;
-    }
+/* left lobe */
+.nav-heart::before {
+  top: -6px;
+  left: -2px;
+}
 
-    .nav-heart::after {
-      top: -2px;
-      left: 8px;
-    }
+/* right lobe */
+.nav-heart::after {
+  top: -6px;
+  right: -2px;
+}
 
-    .nav-heart--left {
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%) rotate(-45deg);
-    }
+/* placement: keep them inside the width so no sideways scroll */
+.nav-heart--left {
+  top: -8px;
+  left: 8%;
+}
 
-    .nav-heart--right {
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%) rotate(-45deg);
-    }
+.nav-heart--right {
+  top: -8px;
+  right: 8%;
+}
+
+/* on smaller screens, pull them in tighter so they don’t cause overflow */
+@media (max-width: 720px) {
+  .nav-heart--left {
+    left: 14%;
+  }
+  .nav-heart--right {
+    right: 14%;
+  }
+}
+
 
     .hero-top-right {
       position: absolute;
@@ -1075,14 +1095,18 @@
 
 <!-- ========== HERO ========== -->
 <section class="hero" id="top">
-  <nav class="hero-nav">
-    <span class="nav-heart nav-heart--left" aria-hidden="true"></span>
-    <a href="#performance">live</a>
-    <a href="#services">services</a>
-    <a href="#book">book dom</a>
-    <a href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer">instagram</a>
-    <span class="nav-heart nav-heart--right" aria-hidden="true"></span>
-  </nav>
+  <div class="hero-nav-wrap">
+    <nav class="hero-nav">
+      <a href="#performance">live</a>
+      <a href="#services">services</a>
+      <a href="#book">book dom</a>
+      <a href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer">instagram</a>
+    </nav>
+
+    <!-- subtle outlined hearts near the nav -->
+    <span class="nav-heart nav-heart--left"></span>
+    <span class="nav-heart nav-heart--right"></span>
+  </div>
 
   <div class="hero-top-right">
     <a href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer">IG</a>

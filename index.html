@@ -274,12 +274,14 @@
     /* HERO RIGHT: HEART IMAGE + SLIDER */
 
     .hero-visual {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-    }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  justify-self: center;   /* <— add this line */
+}
+
 
 /* CIRCLE + HEART RING */
 
@@ -330,6 +332,55 @@
   inset: 0;
   pointer-events: none;
 }
+    /* pastel colors per heart */
+.heart-ring span:nth-child(1),
+.heart-ring span:nth-child(1)::before,
+.heart-ring span:nth-child(1)::after {
+  background: #ffb6da; /* pastel pink */
+}
+
+.heart-ring span:nth-child(2),
+.heart-ring span:nth-child(2)::before,
+.heart-ring span:nth-child(2)::after {
+  background: #f3e7ff; /* lilac */
+}
+
+.heart-ring span:nth-child(3),
+.heart-ring span:nth-child(3)::before,
+.heart-ring span:nth-child(3)::after {
+  background: #e4f1ff; /* soft blue */
+}
+
+.heart-ring span:nth-child(4),
+.heart-ring span:nth-child(4)::before,
+.heart-ring span:nth-child(4)::after {
+  background: #fff7d1; /* soft yellow */
+}
+
+.heart-ring span:nth-child(5),
+.heart-ring span:nth-child(5)::before,
+.heart-ring span:nth-child(5)::after {
+  background: #ffe9f4; /* light blush */
+}
+
+.heart-ring span:nth-child(6),
+.heart-ring span:nth-child(6)::before,
+.heart-ring span:nth-child(6)::after {
+  background: #d3b8ff; /* deeper lilac */
+}
+
+.heart-ring span:nth-child(7),
+.heart-ring span:nth-child(7)::before,
+.heart-ring span:nth-child(7)::after {
+  background: #a9c9ff; /* sky blue */
+}
+
+.heart-ring span:nth-child(8),
+.heart-ring span:nth-child(8)::before,
+.heart-ring span:nth-child(8)::after {
+  background: #ffc7e3; /* candy pink */
+}
+
 
 /* base heart shape */
 .heart-ring span {
@@ -941,33 +992,30 @@
 
     /* ============== RESPONSIVE ============== */
 
-    @media (max-width: 960px) {
-      .hero-main {
-        grid-template-columns: 1fr;
-      }
+   @media (max-width: 960px) {
+  .hero-main {
+    grid-template-columns: 1fr;
+  }
 
-      .hero-visual {
-        order: -1;
-      }
+  .hero-visual {
+    order: -1;  /* image first */
+  }
 
-      .hero-top-right {
-        position: static;
-        justify-content: flex-end;
-        margin-top: 10px;
-      }
+  .hero-copy {
+    order: 2;   /* text after */
+  }
 
-      .performance-layout {
-        grid-template-columns: 1fr;
-      }
+  .hero-top-right {
+    position: static;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
 
-      .services-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+  .performance-layout {
+    grid-template-columns: 1fr;
+  }
+}
 
-      .booking-grid {
-        grid-template-columns: 1fr;
-      }
-    }
 
     @media (max-width: 720px) {
       .hero {

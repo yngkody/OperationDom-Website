@@ -296,35 +296,39 @@
     }
 
     .hero-heart-photo {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      background-image: url("dom-hero.jpeg");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      /* cleaner, more symmetric heart shape */
-      clip-path: polygon(
-        50% 15%,
-        61% 7%,
-        75% 7%,
-        88% 15%,
-        94% 28%,
-        94% 40%,
-        90% 52%,
-        82% 63%,
-        71% 74%,
-        50% 92%,
-        29% 74%,
-        18% 63%,
-        10% 52%,
-        6% 40%,
-        6% 28%,
-        12% 15%,
-        25% 7%,
-        39% 7%
-      );
-    }
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-image: url("dom-hero.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* smoother, more rounded heart */
+  clip-path: polygon(
+    50% 12%,
+    63% 4%,
+    78% 7%,
+    89% 17%,
+    96% 31%,
+    97% 45%,
+    93% 59%,
+    84% 71%,
+    71% 81%,
+    57% 89%,
+    50% 92%,
+    43% 89%,
+    29% 81%,
+    16% 71%,
+    7% 59%,
+    3% 45%,
+    4% 31%,
+    11% 17%,
+    22% 7%,
+    37% 4%
+  );
+}
+
 
     .hero-heart-tag {
       position: absolute;

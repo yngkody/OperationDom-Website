@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <title>OperationDom – Official Site</title>
 
-  <!-- Fonts: 70s bubbly nav + modern body -->
-  <link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Fonts: 70s bubbly nav + Impact-style headings + modern body -->
+  <link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Anton&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -13,10 +13,9 @@
       --bg: #05030a;
       --accent-blue: #3557ff;       /* royal-ish blue */
       --accent-magenta: #e11d8f;    /* stage magenta */
-      --accent-egg: #ffffff;        /* now just white */
       --text-main: #ffffff;
-      --muted: rgba(226, 226, 241, 0.9);
-      --border-soft: rgba(255, 255, 255, 0.25);
+      --muted: rgba(226, 226, 241, 0.95);
+      --border-soft: rgba(255, 255, 255, 0.35);
       --border-strong: rgba(255, 255, 255, 0.98);
     }
 
@@ -36,6 +35,39 @@
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       min-height: 100vh;
       overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Global heading font */
+    h1, h2, .booking-tag, .performance-tag {
+      font-family: "Anton", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    /* ========== BACKGROUND PATH LINES ========== */
+
+    .path-lines {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -5;
+      opacity: 0.45;
+    }
+
+    .path-lines path {
+      fill: none;
+      stroke: rgba(53, 87, 255, 0.45);
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .path-lines path:nth-child(2) {
+      stroke: rgba(225, 29, 143, 0.5);
+      stroke-width: 2.5;
     }
 
     /* ========== HERO ========== */
@@ -50,13 +82,13 @@
       overflow: hidden;
     }
 
-    /* Flat black with faint grid (a bit stronger now) */
+    /* Flat black with faint blue/magenta grid */
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 10% 0%, rgba(53,87,255,0.18), transparent 55%),
-                  radial-gradient(circle at 90% 100%, rgba(225,29,143,0.2), transparent 60%),
+      background: radial-gradient(circle at 10% 0%, rgba(53,87,255,0.22), transparent 55%),
+                  radial-gradient(circle at 90% 100%, rgba(225,29,143,0.22), transparent 60%),
                   #05030a;
       z-index: -3;
     }
@@ -65,7 +97,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      opacity: 0.3;
+      opacity: 0.32;
       background-image:
         repeating-linear-gradient(
           to right,
@@ -128,7 +160,7 @@
 
     .hero-nav a {
       position: relative;
-      color: var(--accent-egg);
+      color: #ffffff;
       text-decoration: none;
       padding-bottom: 4px;
       cursor: pointer;
@@ -164,7 +196,7 @@
     .hero-top-right a {
       font-family: "Space Grotesk", sans-serif;
       font-weight: 600;
-      color: var(--accent-egg);
+      color: #ffffff;
       text-decoration: none;
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -177,7 +209,7 @@
       align-items: center;
       gap: 6px;
       padding: 7px 14px;
-      border: 2px solid rgba(215,255,225,0.95);
+      border: 2px solid rgba(255,255,255,0.9);
       background: rgba(10,10,12,0.9);
       font-size: 0.8rem;
       font-family: "Space Grotesk", sans-serif;
@@ -210,23 +242,20 @@
       font-size: 0.85rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--accent-egg);
+      color: #ffffff;
       margin-bottom: 18px;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .hero-headline {
       position: relative;
-      font-family: "Space Grotesk", sans-serif;
       font-weight: 700;
-      font-size: clamp(2.8rem, 5vw, 3.6rem);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      line-height: 1.05;
+      font-size: clamp(2.8rem, 5vw, 3.8rem);
+      line-height: 1.02;
       margin-bottom: 10px;
       display: inline-flex;
       flex-wrap: wrap;
-      gap: 0.25em;
+      gap: 0.28em;
     }
 
     .hero-headline-main {
@@ -234,48 +263,44 @@
     }
 
     .hero-headline-dom {
+      position: relative;
       color: var(--accent-blue);
+      text-shadow:
+        0 0 10px rgba(53,87,255,0.9),
+        0 0 22px rgba(53,87,255,0.7);
     }
 
-    /* Red/blue haze glow behind OPERATIONDOM */
-    .hero-headline::before {
+    /* Blue grid glow just around "DOM" */
+    .hero-headline-dom::after {
       content: "";
       position: absolute;
-      inset: -14px -26px;
-      background:
-        radial-gradient(circle at 0% 0%, rgba(225, 29, 143, 0.4), transparent 55%),
-        radial-gradient(circle at 100% 100%, rgba(53, 87, 255, 0.45), transparent 55%);
-      filter: blur(14px);
-      opacity: 0.7;
-      mix-blend-mode: screen;
-      pointer-events: none;
-      z-index: -1;
-      animation: headlinePulse 4s ease-in-out infinite alternate;
-    }
-
-    /* Static band around OPERATIONDOM – heavier */
-    .hero-headline::after {
-      content: "";
-      position: absolute;
-      left: -10%;
-      right: -10%;
-      top: -8px;
-      bottom: -8px;
+      inset: -8px -4px;
       background-image:
         repeating-linear-gradient(
-          0deg,
-          rgba(255,255,255,0.32) 0,
-          rgba(255,255,255,0.32) 1px,
-          transparent 1px,
-          transparent 3px
+          to right,
+          rgba(53,87,255,0.85) 0,
+          rgba(53,87,255,0.85) 2px,
+          transparent 2px,
+          transparent 10px
+        ),
+        repeating-linear-gradient(
+          to bottom,
+          rgba(53,87,255,0.7) 0,
+          rgba(53,87,255,0.7) 2px,
+          transparent 2px,
+          transparent 10px
         );
-      opacity: 0.22;
-      mix-blend-mode: soft-light;
-      pointer-events: none;
-      animation: staticShift 0.9s steps(2,end) infinite;
+      opacity: 0.4;
+      mix-blend-mode: screen;
+      z-index: -1;
+      border: 2px solid rgba(53,87,255,0.7);
+      box-shadow:
+        0 0 20px rgba(53,87,255,0.8),
+        0 0 40px rgba(53,87,255,0.6);
     }
 
-    /* “IN FULL EFFECT” */
+    /* remove old hero-wide static band; focus is on DOM now */
+
     .hero-script-overlay {
       margin-top: 10px;
       font-family: "Space Grotesk", sans-serif;
@@ -294,12 +319,12 @@
       color: var(--muted);
       margin-top: 18px;
       margin-bottom: 22px;
-      font-weight: 600;
+      font-weight: 600; /* heavier paragraph */
       font-family: "Plus Jakarta Sans", sans-serif;
     }
 
     .hero-subhead strong {
-      color: var(--accent-egg);
+      color: #ffffff;
       font-weight: 700;
     }
 
@@ -307,7 +332,7 @@
       font-size: 0.9rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      color: rgba(215,255,225,0.95);
+      color: rgba(255,255,255,0.9);
       margin-bottom: 32px;
       font-weight: 700;
       font-family: "Plus Jakarta Sans", sans-serif;
@@ -353,7 +378,6 @@
       font-weight: 700;
       font-size: 0.95rem;
       letter-spacing: 0.08em;
-      text-transform: uppercase;
       box-shadow: none;
       transition: 0.2s ease;
     }
@@ -381,7 +405,7 @@
       font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: rgba(235,235,235,0.85);
+      color: rgba(235,235,235,0.9);
     }
 
     .hero-cta-group {
@@ -444,7 +468,7 @@
       font-size: 0.75rem;
       border-radius: 0;
       background: rgba(5,5,8,0.9);
-      border: 1px solid rgba(215,255,225,0.9);
+      border: 1px solid rgba(255,255,255,0.9);
       font-family: "Space Grotesk", sans-serif;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -458,7 +482,7 @@
       width: 7px;
       height: 7px;
       border-radius: 999px;
-      background: var(--accent-egg);
+      background: #ffffff;
     }
 
     .hero-signature {
@@ -470,7 +494,7 @@
       font-size: 0.78rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--accent-egg);
+      color: #ffffff;
       background: rgba(5,5,8,0.9);
       padding: 5px 10px;
       border-radius: 0;
@@ -493,12 +517,12 @@
       right: 5vw;
     }
 
-    /* ========== PERFORMANCE / VIDEO + IG SECTION ========== */
+    /* ========== PERFORMANCE / VIDEO + INSTAGRAM ========== */
 
     .performance {
       position: relative;
       padding: 72px 5vw 40px;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid rgba(255,255,255,0.18);
       overflow: hidden;
     }
 
@@ -518,32 +542,27 @@
     }
 
     .performance-tag {
-      font-family: "Shrikhand", system-ui;
       font-size: 0.9rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
       padding-bottom: 8px;
-      border-bottom: 1px solid rgba(255,255,255,0.25);
+      border-bottom: 1px solid rgba(255,255,255,0.35);
       width: fit-content;
     }
 
     .performance-heading h2 {
-      font-family: "Space Grotesk", sans-serif;
       font-weight: 700;
       font-size: clamp(1.6rem, 3vw, 2.1rem);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
     }
 
     .performance-heading p {
       font-family: "Plus Jakarta Sans", sans-serif;
       font-size: 1rem;
       line-height: 1.8;
-      color: rgba(230,230,240,0.95);
+      color: rgba(230,230,240,0.98);
+      font-weight: 600; /* heavier paragraph */
     }
 
     .performance-highlight {
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .performance-layout {
@@ -553,7 +572,6 @@
       align-items: flex-start;
     }
 
-    /* Responsive YouTube embed */
     .performance-video-wrap {
       position: relative;
       width: 100%;
@@ -571,7 +589,7 @@
       border: 0;
     }
 
-    /* IG GRID */
+    /* INSTAGRAM GRID */
     .insta-panel {
       display: flex;
       flex-direction: column;
@@ -591,6 +609,7 @@
       letter-spacing: 0.16em;
       text-transform: uppercase;
       opacity: 0.9;
+      font-weight: 600;
     }
 
     .insta-view-link {
@@ -598,9 +617,9 @@
       font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      color: var(--accent-egg);
+      color: #ffffff;
       text-decoration: none;
-      border-bottom: 1px solid rgba(255,255,255,0.6);
+      border-bottom: 1px solid rgba(255,255,255,0.8);
       padding-bottom: 1px;
     }
 
@@ -618,7 +637,7 @@
       background: radial-gradient(circle at 0 0, rgba(53,87,255,0.45), transparent 55%),
                   radial-gradient(circle at 100% 100%, rgba(225,29,143,0.45), transparent 55%),
                   #05030a;
-      border: 1px solid rgba(255,255,255,0.26);
+      border: 1px solid rgba(255,255,255,0.4);
       cursor: pointer;
     }
 
@@ -640,7 +659,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+      background: linear-gradient(to top, rgba(0,0,0,0.45), transparent);
       opacity: 0;
       transition: opacity 0.2s ease-out;
     }
@@ -652,7 +671,8 @@
     .insta-empty-note {
       font-family: "Plus Jakarta Sans", sans-serif;
       font-size: 0.78rem;
-      color: rgba(230,230,240,0.7);
+      color: rgba(230,230,240,0.8);
+      font-weight: 500;
     }
 
     /* ========== BOOKING SECTION ========== */
@@ -660,7 +680,7 @@
     .booking {
       position: relative;
       padding: 64px 5vw 90px;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid rgba(255,255,255,0.18);
       overflow: hidden;
     }
 
@@ -698,12 +718,9 @@
     }
 
     .booking-tag {
-      font-family: "Shrikhand", system-ui;
       font-size: 0.9rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
       padding-bottom: 8px;
-      border-bottom: 1px solid rgba(255,255,255,0.25);
+      border-bottom: 1px solid rgba(255,255,255,0.35);
       width: fit-content;
     }
 
@@ -715,11 +732,8 @@
     }
 
     .booking-copy h2 {
-      font-family: "Space Grotesk", sans-serif;
       font-weight: 700;
       font-size: clamp(1.6rem, 3vw, 2rem);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
       margin-bottom: 12px;
     }
 
@@ -727,9 +741,10 @@
       font-family: "Plus Jakarta Sans", sans-serif;
       font-size: 0.98rem;
       line-height: 1.7;
-      color: rgba(230,230,240,0.95);
+      color: rgba(230,230,240,0.98);
       margin-bottom: 14px;
       max-width: 34rem;
+      font-weight: 600; /* heavier paragraph */
     }
 
     .booking-copy ul {
@@ -738,7 +753,8 @@
       padding: 0;
       font-family: "Plus Jakarta Sans", sans-serif;
       font-size: 0.92rem;
-      color: rgba(230,230,240,0.9);
+      color: rgba(230,230,240,0.95);
+      font-weight: 500;
     }
 
     .booking-copy li {
@@ -758,8 +774,9 @@
       font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      color: rgba(225,225,240,0.7);
+      color: rgba(225,225,240,0.8);
       margin-top: 10px;
+      font-weight: 600;
     }
 
     .booking-email {
@@ -774,7 +791,7 @@
       display: flex;
       flex-direction: column;
       gap: 14px;
-      background: rgba(5,5,12,0.85);
+      background: rgba(5,5,12,0.9);
     }
 
     .booking-form-row {
@@ -795,7 +812,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      color: rgba(230,230,245,0.85);
+      color: rgba(230,230,245,0.95);
     }
 
     .booking-input,
@@ -805,7 +822,7 @@
       font-size: 0.95rem;
       font-weight: 600;
       padding: 11px 12px;
-      background: rgba(4,4,10,0.6);
+      background: rgba(4,4,10,0.8);
       border: 2px solid var(--border-soft);
       color: #fff;
       outline: none;
@@ -814,7 +831,7 @@
 
     .booking-input::placeholder,
     .booking-textarea::placeholder {
-      color: rgba(210,210,230,0.6);
+      color: rgba(210,210,230,0.7);
     }
 
     .booking-input:focus,
@@ -853,7 +870,8 @@
       font-size: 0.78rem;
       letter-spacing: 0.09em;
       text-transform: uppercase;
-      color: rgba(225,225,240,0.7);
+      color: rgba(225,225,240,0.8);
+      font-weight: 500;
     }
 
     .booking-footnote a {
@@ -902,7 +920,7 @@
         flex-wrap: wrap;
       }
       .hero-headline {
-        font-size: 2.2rem;
+        font-size: 2.3rem;
       }
       .hero-orb {
         width: 80vw;
@@ -930,20 +948,6 @@
       }
     }
 
-    @keyframes headlinePulse {
-      0% {
-        opacity: 0.45;
-        transform: translate3d(0,0,0);
-      }
-      50% {
-        opacity: 0.8;
-      }
-      100% {
-        opacity: 0.4;
-        transform: translate3d(2px,-2px,0);
-      }
-    }
-
     @keyframes staticShift {
       0% {
         transform: translate3d(0,0,0);
@@ -962,6 +966,12 @@
 </head>
 <body>
 
+<!-- PATH LINES CONNECTING SECTIONS -->
+<svg class="path-lines" viewBox="0 0 1440 320" aria-hidden="true">
+  <path d="M-20 40 C 200 80, 340 20, 520 60 S 880 160, 1120 120 1460 200, 1500 260" />
+  <path d="M-40 200 C 160 260, 360 220, 560 260 S 960 340, 1220 280 1500 260, 1520 300" />
+</svg>
+
 <section class="hero">
 
   <!-- subtle background word -->
@@ -971,8 +981,8 @@
 
   <!-- minimal SVG accent -->
   <svg class="corner-accent corner-accent--hero" viewBox="0 0 60 60" aria-hidden="true">
-    <path d="M2 18V2H18" stroke="rgba(255,255,255,0.5)" stroke-width="2" fill="none"/>
-    <path d="M42 58H58V42" stroke="rgba(255,255,255,0.25)" stroke-width="2" fill="none"/>
+    <path d="M2 18V2H18" stroke="rgba(255,255,255,0.7)" stroke-width="2" fill="none"/>
+    <path d="M42 58H58V42" stroke="rgba(255,255,255,0.4)" stroke-width="2" fill="none"/>
   </svg>
 
   <!-- nav -->
@@ -1040,7 +1050,7 @@
 
         <div class="hero-image-wrap">
           <!-- replace src with Dom’s photo -->
-          <img src="hero.jpg" alt="OperationDom press photo" />
+          <img src="dom-hero.jpg" alt="OperationDom press photo" />
         </div>
 
         <div class="hero-badge">
@@ -1087,10 +1097,8 @@
         </div>
 
         <div class="insta-grid" id="instaGrid">
-          <!-- Fallback static tiles (you can swap these for real thumbnails) -->
-          <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer">
-            <!-- Optional <img src="insta1.jpg" alt=""> -->
-          </a>
+          <!-- Fallback static tiles (replace with real thumbnails if you have them) -->
+          <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer"></a>
           <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer"></a>
           <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer"></a>
           <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer"></a>
@@ -1110,8 +1118,8 @@
 <section id="book" class="booking">
   <!-- minimal SVG accent -->
   <svg class="corner-accent corner-accent--booking" viewBox="0 0 60 60" aria-hidden="true">
-    <path d="M2 42V58H18" stroke="rgba(255,255,255,0.3)" stroke-width="2" fill="none"/>
-    <path d="M42 2H58V18" stroke="rgba(255,255,255,0.5)" stroke-width="2" fill="none"/>
+    <path d="M2 42V58H18" stroke="rgba(255,255,255,0.4)" stroke-width="2" fill="none"/>
+    <path d="M42 2H58V18" stroke="rgba(255,255,255,0.7)" stroke-width="2" fill="none"/>
   </svg>
 
   <div class="booking-inner">
@@ -1260,15 +1268,16 @@
     orb.addEventListener('mouseleave', resetTilt);
   })();
 
-  // Instagram grid JS stub – replace with real API / embed if you want actual posts
-  // Example shape if you later wire this to a backend that hits the Instagram Basic Display API
-  
+  // Instagram grid JS stub – for real posts, you need thumbnails + links
+  // Example if you have local images:
+  /*
   (function(){
     const grid = document.getElementById('instaGrid');
     if (!grid) return;
 
     const posts = [
-      { url: 'https://www.instagram.com/operationdom/', thumb: 'insta1.jpg', alt: 'Dom live at XYZ' },
+      { url: 'https://www.instagram.com/p/XXX1/', thumb: 'insta-1.jpg', alt: 'Dom live 1' },
+      { url: 'https://www.instagram.com/p/XXX2/', thumb: 'insta-2.jpg', alt: 'Dom live 2' },
       ...
     ];
 
@@ -1288,7 +1297,7 @@
       grid.appendChild(a);
     });
   })();
-  
+  */
 </script>
 
 </body>

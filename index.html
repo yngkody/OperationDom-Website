@@ -6,7 +6,6 @@
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Anton&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
@@ -48,7 +47,7 @@
       color: var(--ink);
       font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       min-height: 100vh;
-      overflow-x: hidden; /* lock to vertical scroll only */
+      overflow-x: hidden;   /* lock side-scroll */
     }
 
     img {
@@ -254,18 +253,20 @@
       color: var(--ink);
       border-radius: 0;
       text-decoration: none;
-      transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, background 0.12s ease-out;
+      transition: transform 0.12s ease-out, background 0.12s ease-out, border-color 0.12s ease-out;
     }
 
+    /* FLAT, NO SHADOW button */
     .btn-primary {
       background: #ffffff;
       border-color: #ffffff;
-      box-shadow: var(--shadow-strong); /* more controlled, no weird offset */
+      box-shadow: none;       /* <— no shadow at all */
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 0 rgba(27,16,32,0.7);
+      background: #ffffff;
+      border-color: var(--accent-pink);
     }
 
     .btn-ghost {
@@ -276,7 +277,7 @@
 
     .btn-ghost:hover {
       transform: translateY(-2px);
-      box-shadow: var(--shadow-soft);
+      border-color: var(--accent-pink);
     }
 
     .btn-caption {
@@ -306,7 +307,7 @@
       margin-bottom: 8px;
     }
 
-    /* collage with stage light */
+    /* ===== HERO COLLAGE (simpler, non-stacked) ===== */
 
     .hero-visual {
       display: flex;
@@ -319,12 +320,12 @@
       position: relative;
       width: min(420px, 90vw);
       margin-inline: auto;
-      padding: 24px 24px 30px;
+      padding: 18px 18px 20px;
       background: #fefefe;
       border-radius: 14px;
       border: 2px solid var(--border-strong);
-      box-shadow: 0 26px 40px rgba(0,0,0,0.28);
-      overflow: visible;
+      box-shadow: 0 20px 32px rgba(0,0,0,0.25);
+      overflow: hidden;
     }
 
     /* stage light halo */
@@ -341,60 +342,50 @@
       z-index: -1;
     }
 
-    /* shadow on ground */
+    /* soft shadow on "floor" */
     .hero-photo-shell::after {
       content: "";
       position: absolute;
-      left: 14%;
-      right: 14%;
+      left: 18%;
+      right: 18%;
       bottom: -18px;
       height: 18px;
       background: radial-gradient(ellipse at 50% 50%, rgba(44,24,38,0.65), transparent 70%);
       z-index: -1;
     }
 
-    .hero-photo-stack {
-      position: relative;
+    .hero-photo-main {
       width: 100%;
       aspect-ratio: 4 / 5;
-      margin: 0 auto;
-    }
-
-    .photo-card {
-      position: absolute;
-      background: #ffffff;
       border: 2px solid var(--border-strong);
-      box-shadow: var(--shadow-strong);
+      background: #000;
       overflow: hidden;
+      margin-bottom: 10px;
     }
 
-    .photo-card img {
+    .hero-photo-main img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    .photo-main {
-      inset: 6% 10% 8% 6%;
-      z-index: 3;
+    .hero-photo-strip {
+      display: flex;
+      gap: 6px;
     }
 
-    .photo-side-top {
-      width: 48%;
-      height: 45%;
-      top: 0%;
-      right: 4%;
-      z-index: 2;
-      transform: rotate(4deg);
+    .hero-thumb {
+      flex: 1;
+      aspect-ratio: 4 / 5;
+      border: 2px solid var(--border-strong);
+      background: #000;
+      overflow: hidden;
     }
 
-    .photo-side-bottom {
-      width: 48%;
-      height: 45%;
-      bottom: -2%;
-      left: 8%;
-      z-index: 1;
-      transform: rotate(-3deg);
+    .hero-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .hero-photo-label {
@@ -894,21 +885,8 @@
         grid-template-columns: 1fr;
       }
 
-      .hero-photo-stack {
+      .hero-photo-main {
         aspect-ratio: 3 / 4;
-      }
-
-      .photo-main {
-        inset: 8% 8% 8% 8%;
-      }
-
-      .photo-side-top,
-      .photo-side-bottom {
-        display: none; /* simplify collage on small screens so it centers cleanly */
-      }
-
-      .hero-photo-shell::before {
-        inset: -12%;
       }
     }
 
@@ -1006,19 +984,21 @@
       </div>
 
       <div class="hero-photo-shell">
-        <div class="hero-photo-stack">
-          <div class="photo-card photo-main">
-            <img src="dom-hero.jpeg" alt="OperationDom main hero image" />
-          </div>
-          <div class="photo-card photo-side-top">
+        <div class="hero-photo-main">
+          <img src="dom-hero.jpeg" alt="OperationDom main hero image" />
+        </div>
+        <div class="hero-photo-strip">
+          <div class="hero-thumb">
             <img src="gala.jpeg" alt="OperationDom at a gala" />
           </div>
-          <div class="photo-card photo-side-bottom">
-            <img src="nicks.jpg" alt="OperationDom performing live" />
+          <div class="hero-thumb">
+            <img src="headshot.jpeg" alt="OperationDom headshot" />
+          </div>
+          <div class="hero-thumb">
+            <img src="nicks.jpg" alt="OperationDom live at Nick's" />
           </div>
         </div>
       </div>
-
       <div class="hero-photo-label">
         DOM VIC · NYC · SINGER / SONGWRITER / PERFORMER
       </div>

@@ -13,11 +13,11 @@
   <style>
     :root {
       --bg: #05030a;
-      --accent-blue: #3557ff;       /* royal-ish blue */
-      --accent-magenta: #e11d8f;    /* stage magenta */
+      --accent-blue: #3557ff;
+      --accent-magenta: #e11d8f;
       --text-main: #ffffff;
       --muted: rgba(226, 226, 241, 0.95);
-      --border-soft: rgba(255, 255, 255, 0.45);
+      --border-soft: rgba(255, 255, 255, 0.35);
       --border-strong: rgba(255, 255, 255, 0.98);
     }
 
@@ -40,14 +40,13 @@
       position: relative;
     }
 
-    /* Global heading font */
-    h1, h2, .booking-tag, .performance-tag {
+    h1, h2, h3, .booking-tag, .performance-tag {
       font-family: "Anton", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       letter-spacing: 0.16em;
       text-transform: uppercase;
     }
 
-    /* ========== BACKGROUND RIBBON LINES ========== */
+    /* ========== BACKGROUND PATH "RIBBON" ========== */
 
     .path-lines {
       position: fixed;
@@ -56,23 +55,24 @@
       height: 100%;
       pointer-events: none;
       z-index: -5;
-      opacity: 0.55;
+      opacity: 0.98;
     }
 
-    .path-lines path.ribbon-line {
+    .path-lines path {
       fill: none;
-      stroke: rgba(255, 255, 255, 0.55);
-      stroke-width: 5;
+      stroke: rgba(255, 255, 255, 0.8);
+      stroke-width: 7;
       stroke-linecap: round;
       stroke-linejoin: round;
+      filter: drop-shadow(0 0 10px rgba(255,255,255,0.35));
     }
 
     .path-lines text {
-      fill: rgba(255, 255, 255, 0.7);
-      font-family: "Plus Jakarta Sans", sans-serif;
-      font-size: 12px;
+      fill: rgba(10,10,15,0.95);
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.35em;
       text-transform: uppercase;
-      letter-spacing: 0.3em;
     }
 
     /* ========== HERO ========== */
@@ -87,14 +87,14 @@
       overflow: hidden;
     }
 
-    /* Flat black with faint blue/magenta glow */
+    /* Flat black with faint blue/magenta glow + grid */
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at 10% 0%, rgba(53,87,255,0.22), transparent 55%),
-        radial-gradient(circle at 90% 100%, rgba(225,29,143,0.22), transparent 60%),
+        radial-gradient(circle at 10% 0%, rgba(53,87,255,0.25), transparent 55%),
+        radial-gradient(circle at 90% 100%, rgba(225,29,143,0.25), transparent 60%),
         #05030a;
       z-index: -3;
     }
@@ -103,19 +103,19 @@
       content: "";
       position: absolute;
       inset: 0;
-      opacity: 0.18;
+      opacity: 0.22;
       background-image:
         repeating-linear-gradient(
           to right,
-          rgba(110, 145, 255, 0.26) 0,
-          rgba(110, 145, 255, 0.26) 1px,
+          rgba(255, 255, 255, 0.18) 0,
+          rgba(255, 255, 255, 0.18) 1px,
           transparent 1px,
           transparent 32px
         ),
         repeating-linear-gradient(
           to bottom,
-          rgba(225, 29, 143, 0.22) 0,
-          rgba(225, 29, 143, 0.22) 1px,
+          rgba(255, 255, 255, 0.18) 0,
+          rgba(255, 255, 255, 0.18) 1px,
           transparent 1px,
           transparent 32px
         );
@@ -139,33 +139,13 @@
     .hero-bg-word span {
       font-family: "Space Grotesk", sans-serif;
       font-weight: 700;
-      font-size: clamp(3.8rem, 11vw, 8rem);
+      font-size: clamp(3.3rem, 10vw, 7rem);
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.035);
+      color: rgba(255, 255, 255, 0.03);
       transform: translateY(18%);
       white-space: nowrap;
       animation: heroBgDrift 18s ease-in-out infinite alternate;
-    }
-
-    /* Abstract hero image layer */
-    .hero-abstract {
-      position: absolute;
-      right: 0;
-      top: 20%;
-      width: 40vw;
-      max-width: 520px;
-      opacity: 0.22;
-      mix-blend-mode: screen;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .hero-abstract img {
-      width: 100%;
-      height: auto;
-      display: block;
-      filter: contrast(1.1) saturate(1.3);
     }
 
     /* NAV – 70s bubbly, but clean */
@@ -173,7 +153,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: clamp(20px, 5vw, 60px);
+      gap: clamp(20px, 5vw, 64px);
       font-family: "Shrikhand", system-ui;
       font-size: 0.95rem;
       letter-spacing: 0.12em;
@@ -211,7 +191,7 @@
     /* TOP RIGHT */
     .hero-top-right {
       position: absolute;
-      top: 24px;
+      top: 18px;
       right: 5vw;
       display: flex;
       align-items: center;
@@ -254,9 +234,9 @@
     .hero-main {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
-      gap: clamp(32px, 5vw, 60px);
+      gap: clamp(28px, 5vw, 60px);
       align-items: center;
-      margin-top: clamp(20px, 4vh, 40px);
+      margin-top: clamp(28px, 5vh, 48px);
     }
 
     /* LEFT: COPY */
@@ -266,7 +246,7 @@
     }
 
     .hero-tagline {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: #ffffff;
@@ -277,7 +257,7 @@
     .hero-headline {
       position: relative;
       font-weight: 700;
-      font-size: clamp(2.8rem, 5vw, 3.8rem);
+      font-size: clamp(2.4rem, 5vw, 3.5rem);
       line-height: 1.02;
       margin-bottom: 10px;
       display: inline-flex;
@@ -290,23 +270,10 @@
     }
 
     .hero-headline-dom {
-      position: relative;
       color: var(--accent-blue);
       text-shadow:
-        0 0 8px rgba(53,87,255,0.7),
-        0 0 18px rgba(53,87,255,0.55);
-    }
-
-    /* FAINT glow only – no grid box */
-    .hero-headline-dom::after {
-      content: "";
-      position: absolute;
-      inset: -6px -4px;
-      background: radial-gradient(circle, rgba(53,87,255,0.5), transparent 65%);
-      opacity: 0.6;
-      mix-blend-mode: screen;
-      z-index: -1;
-      filter: blur(4px);
+        0 0 8px rgba(53,87,255,0.85),
+        0 0 20px rgba(53,87,255,0.6);
     }
 
     .hero-script-overlay {
@@ -314,7 +281,7 @@
       font-family: "Space Grotesk", sans-serif;
       font-style: italic;
       font-weight: 700;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       letter-spacing: 0.24em;
       text-transform: uppercase;
       color: var(--accent-blue);
@@ -322,12 +289,12 @@
 
     .hero-subhead {
       max-width: 34rem;
-      font-size: 1.02rem;
+      font-size: 1rem;
       line-height: 1.8;
       color: var(--muted);
       margin-top: 18px;
       margin-bottom: 22px;
-      font-weight: 600; /* heavier */
+      font-weight: 600;
       font-family: "Plus Jakarta Sans", sans-serif;
     }
 
@@ -354,7 +321,6 @@
       margin-bottom: 8px;
     }
 
-    /* BUTTONS */
     .btn-primary,
     .btn-ghost {
       position: relative;
@@ -378,15 +344,16 @@
       background: none;
     }
 
+    /* BOOK A SHOW: white background */
     .btn-primary {
-      color: #ffffff;
-      background-color: transparent;
+      color: #000000;
+      background-color: #ffffff;
       border: 2px solid #ffffff;
       font-family: "Plus Jakarta Sans", sans-serif;
       font-weight: 700;
       font-size: 0.95rem;
       letter-spacing: 0.08em;
-      box-shadow: none;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.8);
       transition: 0.2s ease;
     }
 
@@ -432,40 +399,100 @@
     }
 
     /* RIGHT: VISUAL */
+
     .hero-visual {
       position: relative;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       z-index: 3;
+      text-align: center;
+    }
+
+    /* mobile-only label around the photo */
+    .hero-mobile-tagline {
+      display: none;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(230,230,245,0.95);
+      margin-bottom: 12px;
+      border: 1px solid rgba(255,255,255,0.45);
+      padding: 6px 10px;
     }
 
     .hero-orb {
       position: relative;
-      width: min(520px, 90vw);
+      width: min(420px, 80vw);
       aspect-ratio: 1 / 1;
       border-radius: 50%;
       overflow: hidden;
       background-color: #05030d;
-      box-shadow: 0 28px 90px rgba(0,0,0,1);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.95);
       transform-style: preserve-3d;
       transform: perspective(1200px) rotateX(8deg) rotateY(-8deg);
       transition: transform 220ms ease-out;
+      margin: 0 auto;
     }
 
-    .hero-image-wrap {
-      inset: 5%;
-      transform: translateZ(40px);
+    /* Collage inside orb */
+    .hero-image-collage {
       position: absolute;
+      inset: 8%;
       border-radius: 50%;
       overflow: hidden;
+      background: radial-gradient(circle at 20% 0%, rgba(53,87,255,0.25), transparent 60%);
     }
 
-    .hero-image-wrap img {
-      width: 110%;
+    .hero-img {
+      position: absolute;
+      overflow: hidden;
+      border-radius: 18px;
+    }
+
+    .hero-img img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      object-position: center;
-      filter: contrast(1.08) saturate(1.1);
+      filter: contrast(1.05) saturate(1.08);
+    }
+
+    .hero-img-main {
+      inset: 14% 10% 12% 10%;
+    }
+
+    .hero-img-alt1 {
+      top: 4%;
+      right: -4%;
+      width: 42%;
+      height: 38%;
+      transform: rotate(6deg);
+    }
+
+    .hero-img-alt2 {
+      bottom: -6%;
+      left: -6%;
+      width: 46%;
+      height: 40%;
+      transform: rotate(-8deg);
+    }
+
+    .hero-img-alt3 {
+      top: -6%;
+      left: 0%;
+      width: 34%;
+      height: 32%;
+      transform: rotate(-4deg);
+    }
+
+    .hero-img-alt4 {
+      bottom: 2%;
+      right: 4%;
+      width: 32%;
+      height: 32%;
+      transform: rotate(5deg);
     }
 
     .hero-badge {
@@ -529,7 +556,7 @@
 
     .performance {
       position: relative;
-      padding: 72px 5vw 40px;
+      padding: 56px 5vw 40px;
       border-top: 1px solid rgba(255,255,255,0.18);
       overflow: hidden;
     }
@@ -539,7 +566,7 @@
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 32px;
+      gap: 28px;
     }
 
     .performance-heading {
@@ -550,7 +577,7 @@
     }
 
     .performance-tag {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       padding-bottom: 8px;
       border-bottom: 1px solid rgba(255,255,255,0.35);
       width: fit-content;
@@ -558,12 +585,12 @@
 
     .performance-heading h2 {
       font-weight: 700;
-      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      font-size: clamp(1.4rem, 2.6vw, 2rem);
     }
 
     .performance-heading p {
       font-family: "Plus Jakarta Sans", sans-serif;
-      font-size: 1rem;
+      font-size: 0.98rem;
       line-height: 1.8;
       color: rgba(230,230,240,0.98);
       font-weight: 600;
@@ -576,7 +603,7 @@
     .performance-layout {
       display: grid;
       grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-      gap: 32px;
+      gap: 28px;
       align-items: flex-start;
     }
 
@@ -597,7 +624,6 @@
       border: 0;
     }
 
-    /* INSTAGRAM GRID */
     .insta-panel {
       display: flex;
       flex-direction: column;
@@ -683,11 +709,118 @@
       font-weight: 500;
     }
 
+    /* ========== SERVICES SECTION ========== */
+
+    .services {
+      position: relative;
+      padding: 60px 5vw 56px;
+      border-top: 1px solid rgba(255,255,255,0.18);
+      overflow: hidden;
+    }
+
+    .services-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .services-header {
+      max-width: 700px;
+    }
+
+    .services-tag {
+      font-size: 0.85rem;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.35);
+      width: fit-content;
+    }
+
+    .services-header h2 {
+      margin-top: 10px;
+      font-size: clamp(1.4rem, 2.6vw, 2rem);
+    }
+
+    .services-header p {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 0.98rem;
+      line-height: 1.7;
+      color: rgba(230,230,240,0.98);
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    .service-card {
+      position: relative;
+      padding: 18px 18px 20px;
+      border: 1.5px solid rgba(255,255,255,0.45);
+      background: radial-gradient(circle at 0 0, rgba(53,87,255,0.25), transparent 55%),
+                  radial-gradient(circle at 100% 100%, rgba(225,29,143,0.25), transparent 55%),
+                  rgba(4,4,10,0.96);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-top: 2px solid rgba(255,255,255,0.9);
+      opacity: 0.16;
+      pointer-events: none;
+    }
+
+    .service-icon {
+      width: 26px;
+      height: 26px;
+    }
+
+    .service-icon svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .service-card h3 {
+      font-size: 0.9rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .service-card p {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: rgba(230,230,240,0.98);
+      font-weight: 500;
+    }
+
+    .service-pill {
+      margin-top: auto;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(240,240,250,0.9);
+      opacity: 0.85;
+    }
+
     /* ========== BOOKING SECTION ========== */
 
     .booking {
       position: relative;
-      padding: 64px 5vw 90px;
+      padding: 56px 5vw 80px;
       border-top: 1px solid rgba(255,255,255,0.18);
       overflow: hidden;
     }
@@ -696,19 +829,19 @@
       content: "";
       position: absolute;
       inset: 0;
-      opacity: 0.16;
+      opacity: 0.13;
       background-image:
         repeating-linear-gradient(
           to right,
-          rgba(255,255,255,0.08) 0,
-          rgba(255,255,255,0.08) 1px,
+          rgba(255,255,255,0.1) 0,
+          rgba(255,255,255,0.1) 1px,
           transparent 1px,
           transparent 32px
         ),
         repeating-linear-gradient(
           to bottom,
-          rgba(255,255,255,0.06) 0,
-          rgba(255,255,255,0.06) 1px,
+          rgba(255,255,255,0.1) 0,
+          rgba(255,255,255,0.1) 1px,
           transparent 1px,
           transparent 32px
         );
@@ -722,11 +855,11 @@
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 28px;
+      gap: 24px;
     }
 
     .booking-tag {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       padding-bottom: 8px;
       border-bottom: 1px solid rgba(255,255,255,0.35);
       width: fit-content;
@@ -735,13 +868,13 @@
     .booking-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.1fr);
-      gap: 40px;
+      gap: 36px;
       align-items: flex-start;
     }
 
     .booking-copy h2 {
       font-weight: 700;
-      font-size: clamp(1.6rem, 3vw, 2rem);
+      font-size: clamp(1.5rem, 2.7vw, 2rem);
       margin-bottom: 12px;
     }
 
@@ -795,11 +928,11 @@
 
     .booking-form {
       border: 2px solid var(--border-soft);
-      padding: 22px 22px 24px;
+      padding: 20px 20px 22px;
       display: flex;
       flex-direction: column;
       gap: 14px;
-      background: rgba(5,5,12,0.9);
+      background: rgba(5,5,12,0.92);
     }
 
     .booking-form-row {
@@ -830,7 +963,7 @@
       font-size: 0.95rem;
       font-weight: 600;
       padding: 11px 12px;
-      background: rgba(4,4,10,0.8);
+      background: rgba(4,4,10,0.85);
       border: 2px solid var(--border-soft);
       color: #fff;
       outline: none;
@@ -871,6 +1004,8 @@
     .booking-submit {
       border-radius: 0;
       padding-inline: 22px;
+      background-color: #ffffff;
+      color: #000;
     }
 
     .booking-footnote {
@@ -891,77 +1026,95 @@
 
     /* RESPONSIVE */
 
-    @media (max-width: 1024px) {
+    @media (max-width: 900px) {
+      .hero {
+        padding: 18px 4vw 32px;
+      }
+
       .hero-main {
         grid-template-columns: 1fr;
-        margin-top: 40px;
+        margin-top: 32px;
+        row-gap: 32px;
       }
+
       .hero-visual {
         order: -1;
-        justify-content: flex-start;
       }
+
       .hero-orb {
-        width: min(420px, 80vw);
-        margin-bottom: 10px;
+        width: min(360px, 80vw);
       }
-      .hero-abstract {
-        top: 55%;
-        width: 75vw;
-        right: -10vw;
-        opacity: 0.2;
+
+      .hero-bg-word span {
+        transform: translateY(24%);
+        opacity: 0.3;
       }
+
+      .hero-mobile-tagline {
+        display: inline-block;
+      }
+
+      .performance {
+        padding: 44px 4vw 32px;
+      }
+
       .performance-layout {
         grid-template-columns: 1fr;
       }
+
+      .services {
+        padding: 48px 4vw 48px;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .booking {
+        padding: 44px 4vw 64px;
+      }
+
       .booking-grid {
         grid-template-columns: 1fr;
       }
+
       .booking-form {
         padding: 18px 16px 20px;
       }
+
       .booking-meta-row {
         grid-template-columns: 1fr;
       }
     }
 
     @media (max-width: 640px) {
-      .hero {
-        padding-top: 72px;
-        padding-inline: 16px;
-      }
       .hero-nav {
         font-size: 0.8rem;
         gap: 14px;
       }
-      .hero-top-right {
-        top: 16px;
-        right: 16px;
-      }
+
       .hero-headline {
-        font-size: 2.25rem;
+        font-size: 2.1rem;
       }
-      .hero-orb {
-        width: 80vw;
+
+      .hero-top-right {
+        position: static;
+        justify-content: flex-end;
+        margin-top: 8px;
       }
-      .hero-bg-word span {
-        transform: translateY(24%);
-        opacity: 0.4;
+
+      .hero-main {
+        margin-top: 28px;
       }
+
       .insta-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
-      .performance {
-        padding-inline: 16px;
-      }
-      .booking {
-        padding-inline: 16px;
-      }
-      .path-lines {
-        opacity: 0.25;
+
+      .services-grid {
+        grid-template-columns: 1fr;
       }
     }
-
-    /* ====== ANIMATIONS ====== */
 
     @keyframes heroBgDrift {
       0% {
@@ -978,58 +1131,46 @@
 </head>
 <body>
 
-<!-- PATH LINES CONNECTING SECTIONS -->
-<svg class="path-lines" viewBox="0 0 1440 400" aria-hidden="true">
+<!-- PATH LINES CONNECTING SECTIONS WITH THICK RIBBON TEXT -->
+<svg class="path-lines" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
   <defs>
-    <path id="ribbonPath1" class="ribbon-line"
-      d="M-60 60 C 160 20, 320 80, 520 60 S 880 120, 1120 90 1520 140, 1500 220" />
-    <path id="ribbonPath2" class="ribbon-line"
-      d="M-40 260 C 200 320, 380 260, 620 300 S 980 360, 1240 310 1520 300, 1480 360" />
+    <path id="pathMain" d="M-40 60 C 180 20, 360 120, 560 80 S 980 40, 1240 140 1460 260, 1520 300" />
+    <path id="pathAlt" d="M-60 250 C 160 300, 380 260, 640 280 S 1040 300, 1280 220 1480 180, 1540 160" />
   </defs>
 
-  <use href="#ribbonPath1" class="ribbon-line" />
-  <use href="#ribbonPath2" class="ribbon-line" />
-
-  <text dy="-6">
-    <textPath href="#ribbonPath1" startOffset="5%">
-      #OPERATIONDOM   •   #SINGER   •   #VOCALIST   •   #LIVE   •   #NYC   •   #FRONTWOMAN   •   #RNB   •   #ROCK
+  <path d="M-40 60 C 180 20, 360 120, 560 80 S 980 40, 1240 140 1460 260, 1520 300" />
+  <text>
+    <textPath xlink:href="#pathMain" startOffset="5%">
+      #OPERATIONDOM   ·   #SINGER   ·   #VOCALIST   ·   #LIVEMUSIC   ·   #RNB   ·   #HEADLINER
     </textPath>
   </text>
-  <text dy="10">
-    <textPath href="#ribbonPath2" startOffset="15%">
-      #HEADLINER   •   #STAGEKILLER   •   #PERFORMER   •   #INFULLEFFECT
+
+  <path d="M-60 250 C 160 300, 380 260, 640 280 S 1040 300, 1280 220 1480 180, 1540 160" />
+  <text>
+    <textPath xlink:href="#pathAlt" startOffset="30%">
+      #NYC   ·   #PERFORMER   ·   #DOMVIC   ·   #OPERATIONDOM
     </textPath>
   </text>
 </svg>
 
-<section class="hero">
+<section class="hero" id="top">
 
-  <!-- subtle background word -->
   <div class="hero-bg-word">
     <span>OPERATIONDOM</span>
   </div>
 
-  <!-- abstract hero image (swap URL or host locally if you want) -->
-  <div class="hero-abstract">
-    <img src="https://images.pexels.com/photos/167404/pexels-photo-167404.jpeg?auto=compress&cs=tinysrgb&w=1200"
-         alt="Abstract colorful light texture" />
-  </div>
-
-  <!-- minimal SVG accent -->
   <svg class="corner-accent corner-accent--hero" viewBox="0 0 60 60" aria-hidden="true">
     <path d="M2 18V2H18" stroke="rgba(255,255,255,0.7)" stroke-width="2" fill="none"/>
     <path d="M42 58H58V42" stroke="rgba(255,255,255,0.4)" stroke-width="2" fill="none"/>
   </svg>
 
-  <!-- nav -->
   <nav class="hero-nav">
     <a href="#music">music</a>
     <a href="#performance">live</a>
-    <a href="#shows">shows</a>
+    <a href="#services">services</a>
     <a href="#book">book dom</a>
   </nav>
 
-  <!-- socials / cart -->
   <div class="hero-top-right">
     <a href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer" aria-label="Instagram">IG</a>
     <a href="#" aria-label="Facebook">FB</a>
@@ -1039,9 +1180,7 @@
     </div>
   </div>
 
-  <!-- main hero content -->
   <div class="hero-main">
-    <!-- left: copy -->
     <div class="hero-copy">
       <div class="hero-tagline">LIVE. LOUD. IN LINGERIE &amp; LEATHER.</div>
 
@@ -1079,14 +1218,30 @@
       </div>
     </div>
 
-    <!-- right: visual -->
     <div class="hero-visual">
+      <div class="hero-mobile-tagline">
+        DOM VIC • VOCALIST • PERFORMER
+      </div>
+
       <div class="hero-orb" id="domOrb">
         <div class="hero-signature">DOM VIC</div>
 
-        <div class="hero-image-wrap">
-          <!-- Dom’s hero image -->
-          <img src="dom-hero.jpeg" alt="OperationDom press photo" />
+        <div class="hero-image-collage">
+          <div class="hero-img hero-img-main">
+            <img src="dom-hero.jpeg" alt="Dom headlining live show" />
+          </div>
+          <div class="hero-img hero-img-alt1">
+            <img src="hero.jpg" alt="OperationDom performance shot" />
+          </div>
+          <div class="hero-img hero-img-alt2">
+            <img src="gala.jpeg" alt="Dom at gala event" />
+          </div>
+          <div class="hero-img hero-img-alt3">
+            <img src="headshot.jpeg" alt="OperationDom studio headshot" />
+          </div>
+          <div class="hero-img hero-img-alt4">
+            <img src="nicks.jpg" alt="Dom live at Nicks" />
+          </div>
         </div>
 
         <div class="hero-badge">
@@ -1098,7 +1253,6 @@
 
 </section>
 
-<!-- ===== PERFORMANCE / YOUTUBE + INSTAGRAM ===== -->
 <section id="performance" class="performance">
   <div class="performance-inner">
     <div class="performance-heading">
@@ -1113,7 +1267,6 @@
     </div>
 
     <div class="performance-layout">
-      <!-- YOUTUBE VIDEO -->
       <div class="performance-video-wrap">
         <iframe
           src="https://www.youtube.com/embed/XNsNou7JNwE?rel=0"
@@ -1123,7 +1276,6 @@
         ></iframe>
       </div>
 
-      <!-- INSTAGRAM GRID -->
       <div class="insta-panel">
         <div class="insta-header">
           <div class="insta-handle">@operationdom</div>
@@ -1133,10 +1285,16 @@
         </div>
 
         <div class="insta-grid" id="instaGrid">
-          <!-- Will be filled by JS from your Basic Display API backend -->
+          <!-- Fallback tiles until API is wired -->
+          <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer"></a>
+          <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer"></a>
+          <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer"></a>
+          <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer"></a>
+          <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer"></a>
+          <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer"></a>
         </div>
 
-        <p class="insta-empty-note" id="instaNote">
+        <p class="insta-empty-note">
           Live clips, behind-the-scenes chaos, and full glam moments are updated regularly on Instagram.
         </p>
       </div>
@@ -1144,9 +1302,129 @@
   </div>
 </section>
 
-<!-- ===== BOOKING SECTION ===== -->
+<!-- ===== SERVICES SECTION ===== -->
+<section id="services" class="services">
+  <div class="services-inner">
+    <div class="services-header">
+      <div class="services-tag">Services</div>
+      <h2>What OperationDom brings to the table</h2>
+      <p>
+        From the stage to the studio, from artist development to brand partnerships —
+        Dom is a full-spectrum creative force you can plug directly into your project, event, or campaign.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <!-- Live Performances -->
+      <article class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 40 40" aria-hidden="true">
+            <path d="M6 30L12 10L22 18L32 8" stroke="white" stroke-width="2" fill="none"/>
+            <circle cx="12" cy="10" r="2" fill="white"/>
+            <circle cx="22" cy="18" r="2" fill="white"/>
+            <circle cx="32" cy="8" r="2" fill="white"/>
+          </svg>
+        </div>
+        <h3>Live Performances</h3>
+        <p>
+          Bring soul, energy, and elegance to any event. OperationDom delivers unforgettable sets for
+          weddings, galas, corporate functions, and private celebrations — blending powerhouse vocals
+          with magnetic stage presence.
+        </p>
+        <div class="service-pill">On stage</div>
+      </article>
+
+      <!-- Studio Sessions & Collaborations -->
+      <article class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 40 40" aria-hidden="true">
+            <rect x="7" y="8" width="10" height="24" rx="4" stroke="white" stroke-width="2" fill="none"/>
+            <rect x="23" y="8" width="10" height="24" rx="4" stroke="white" stroke-width="2" fill="none"/>
+            <line x1="12" y1="32" x2="12" y2="36" stroke="white" stroke-width="2"/>
+            <line x1="28" y1="32" x2="28" y2="36" stroke="white" stroke-width="2"/>
+          </svg>
+        </div>
+        <h3>Studio Sessions &amp; Collaborations</h3>
+        <p>
+          Need a voice that moves people? Book OperationDom for hooks, background vocals, or features.
+          Available for in-studio or remote collaborations with producers, artists, and songwriters.
+        </p>
+        <div class="service-pill">In the booth</div>
+      </article>
+
+      <!-- Vocal Coaching & Artist Development -->
+      <article class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 40 40" aria-hidden="true">
+            <path d="M8 26C8 20 12 16 16 16C20 16 24 20 24 26" stroke="white" stroke-width="2" fill="none"/>
+            <circle cx="16" cy="11" r="4" stroke="white" stroke-width="2" fill="none"/>
+            <path d="M26 18C29 19 32 22 32 26" stroke="white" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+        <h3>Vocal Coaching &amp; Artist Development</h3>
+        <p>
+          Helping vocalists find their sound and presence. One-on-one coaching focused on vocal control,
+          confidence, and stage charisma — designed for artists ready to level up their craft.
+        </p>
+        <div class="service-pill">Coaching</div>
+      </article>
+
+      <!-- Creative Direction & Styling -->
+      <article class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 40 40" aria-hidden="true">
+            <rect x="8" y="10" width="24" height="18" rx="3" stroke="white" stroke-width="2" fill="none"/>
+            <path d="M8 22H32" stroke="white" stroke-width="2"/>
+            <circle cx="18" cy="17" r="2" fill="white"/>
+            <circle cx="26" cy="17" r="2" fill="white"/>
+          </svg>
+        </div>
+        <h3>Creative Direction &amp; Styling</h3>
+        <p>
+          Sound is one thing. Image is everything. Creative consulting to help artists and brands develop
+          their visual identity — from styling to stage looks to cohesive brand moments.
+        </p>
+        <div class="service-pill">Visuals</div>
+      </article>
+
+      <!-- Brand Collaborations & Partnerships -->
+      <article class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 40 40" aria-hidden="true">
+            <circle cx="14" cy="16" r="5" stroke="white" stroke-width="2" fill="none"/>
+            <circle cx="26" cy="24" r="5" stroke="white" stroke-width="2" fill="none"/>
+            <path d="M18 19L22 21" stroke="white" stroke-width="2"/>
+          </svg>
+        </div>
+        <h3>Brand Collaborations &amp; Partnerships</h3>
+        <p>
+          Authentic influence meets elevated aesthetic. OperationDom partners with beauty, fashion, and
+          lifestyle brands to create content and campaigns aligned with music, empowerment, and luxury.
+        </p>
+        <div class="service-pill">Brands</div>
+      </article>
+
+      <!-- Custom Music & Jingles -->
+      <article class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 40 40" aria-hidden="true">
+            <path d="M14 28C14 25.8 15.8 24 18 24C20.2 24 22 25.8 22 28C22 30.2 20.2 32 18 32C15.8 32 14 30.2 14 28Z" stroke="white" stroke-width="2" fill="none"/>
+            <path d="M22 24V10L30 12V20" stroke="white" stroke-width="2" fill="none"/>
+            <circle cx="30" cy="22" r="2" fill="white"/>
+          </svg>
+        </div>
+        <h3>Custom Music &amp; Jingles</h3>
+        <p>
+          Turn your story or brand into sound. Commission personalized music for brands, podcasts, and
+          projects — crafted to resonate emotionally and elevate your message.
+        </p>
+        <div class="service-pill">For projects</div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <section id="book" class="booking">
-  <!-- minimal SVG accent -->
   <svg class="corner-accent corner-accent--booking" viewBox="0 0 60 60" aria-hidden="true">
     <path d="M2 42V58H18" stroke="rgba(255,255,255,0.4)" stroke-width="2" fill="none"/>
     <path d="M42 2H58V18" stroke="rgba(255,255,255,0.7)" stroke-width="2" fill="none"/>
@@ -1291,31 +1569,23 @@
     }
 
     function resetTilt() {
-      orb.style.transform = 'perspective(1200px) rotateX(10deg) rotateY(-10deg)';
+      orb.style.transform = 'perspective(1200px) rotateX(8deg) rotateY(-8deg)';
     }
 
     orb.addEventListener('mousemove', handleMove);
     orb.addEventListener('mouseleave', resetTilt);
   })();
 
-  // Instagram Basic Display API – frontend hook.
-  // You'll create a backend route (e.g. /api/instagram) that returns:
-  // { data: [{ permalink, media_url, thumbnail_url?, caption }, ...] }
-  (async function () {
+  // Instagram Basic Display API hook stub
+  /*
+  (async function loadInstagram() {
     const grid = document.getElementById('instaGrid');
-    const note = document.getElementById('instaNote');
     if (!grid) return;
 
     try {
-      const res = await fetch('/api/instagram'); // your backend endpoint
-      if (!res.ok) throw new Error('Failed to fetch Instagram feed');
-      const json = await res.json();
-
-      const posts = json.data || [];
-      if (!posts.length) {
-        note.textContent = 'Instagram is quiet right now — check back soon or follow @operationdom for live updates.';
-        return;
-      }
+      const res = await fetch('/api/instagram-feed'); // your backend route
+      if (!res.ok) throw new Error('Network error');
+      const posts = await res.json(); // expected: array of { permalink, media_url, caption }
 
       grid.innerHTML = "";
       posts.slice(0, 6).forEach(p => {
@@ -1326,17 +1596,18 @@
         a.className = "insta-tile";
 
         const img = document.createElement('img');
-        img.src = p.thumbnail_url || p.media_url;
-        img.alt = (p.caption || 'Instagram post from @operationdom').slice(0, 100);
+        img.src = p.media_url;
+        img.alt = p.caption || "Instagram post";
 
         a.appendChild(img);
         grid.appendChild(a);
       });
     } catch (err) {
-      console.error(err);
-      note.textContent = 'Unable to load the Instagram grid right now. Tap through to Instagram to see more.';
+      console.error('Instagram feed error', err);
+      // fallback tiles stay visible
     }
   })();
+  */
 </script>
 
 </body>

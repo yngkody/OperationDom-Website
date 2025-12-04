@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>OperationDom Hero</title>
+  <title>OperationDom – Official Site</title>
 
   <!-- Fonts: 70s bubbly nav + modern body -->
   <link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
@@ -10,14 +10,14 @@
 
   <style>
     :root {
-      --bg: #050506;
-      --accent-egg: #ffffff;
-      --accent-blue: #ffffff;
-      --accent-pink: #ffffff;
+      --bg: #05030a;
+      --accent-blue: #3557ff;       /* royal-ish blue */
+      --accent-magenta: #e11d8f;    /* stage magenta */
+      --accent-egg: #ffffff;        /* now just white */
       --text-main: #ffffff;
-      --muted: #ffffff;
-      --border-soft: rgba(255, 255, 255, 0.18);
-      --border-strong: rgba(255, 255, 255, 0.9);
+      --muted: rgba(226, 226, 241, 0.9);
+      --border-soft: rgba(255, 255, 255, 0.25);
+      --border-strong: rgba(255, 255, 255, 0.98);
     }
 
     * {
@@ -38,6 +38,8 @@
       overflow-x: hidden;
     }
 
+    /* ========== HERO ========== */
+
     .hero {
       position: relative;
       min-height: 100vh;
@@ -48,12 +50,14 @@
       overflow: hidden;
     }
 
-    /* Flat black with faint grid */
+    /* Flat black with faint grid (a bit stronger now) */
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: #050506;
+      background: radial-gradient(circle at 10% 0%, rgba(53,87,255,0.18), transparent 55%),
+                  radial-gradient(circle at 90% 100%, rgba(225,29,143,0.2), transparent 60%),
+                  #05030a;
       z-index: -3;
     }
 
@@ -61,19 +65,19 @@
       content: "";
       position: absolute;
       inset: 0;
-      opacity: 0.18;
+      opacity: 0.3;
       background-image:
         repeating-linear-gradient(
           to right,
-          rgba(255,255,255,0.06) 0,
-          rgba(255,255,255,0.06) 1px,
+          rgba(110, 145, 255, 0.26) 0,
+          rgba(110, 145, 255, 0.26) 1px,
           transparent 1px,
           transparent 32px
         ),
         repeating-linear-gradient(
           to bottom,
-          rgba(255,255,255,0.06) 0,
-          rgba(255,255,255,0.06) 1px,
+          rgba(225, 29, 143, 0.22) 0,
+          rgba(225, 29, 143, 0.22) 1px,
           transparent 1px,
           transparent 32px
         );
@@ -82,7 +86,7 @@
       z-index: -2;
     }
 
-    /* GIANT BACKGROUND WORD – toned down more */
+    /* GIANT BACKGROUND WORD */
     .hero-bg-word {
       position: absolute;
       inset: 0;
@@ -100,7 +104,7 @@
       font-size: clamp(3.8rem, 11vw, 8rem);
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.04);
       transform: translateY(18%);
       white-space: nowrap;
       animation: heroBgDrift 18s ease-in-out infinite alternate;
@@ -137,7 +141,7 @@
       bottom: -4px;
       width: 0;
       height: 2px;
-      background: var(--accent-pink);
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-magenta));
       transition: width 200ms ease-out;
     }
 
@@ -212,7 +216,7 @@
     }
 
     .hero-headline {
-      position: relative; /* for glow + static layers */
+      position: relative;
       font-family: "Space Grotesk", sans-serif;
       font-weight: 700;
       font-size: clamp(2.8rem, 5vw, 3.6rem);
@@ -220,47 +224,58 @@
       text-transform: uppercase;
       line-height: 1.05;
       margin-bottom: 10px;
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 0.25em;
     }
 
-    /* Red haze glow behind OPERATIONDOM */
+    .hero-headline-main {
+      color: #ffffff;
+    }
+
+    .hero-headline-dom {
+      color: var(--accent-blue);
+    }
+
+    /* Red/blue haze glow behind OPERATIONDOM */
     .hero-headline::before {
       content: "";
       position: absolute;
       inset: -14px -26px;
       background:
-        radial-gradient(circle at 0% 0%, rgba(255, 30, 90, 0.28), transparent 55%),
-        radial-gradient(circle at 100% 100%, rgba(255, 50, 120, 0.35), transparent 55%);
-      filter: blur(12px);
-      opacity: 0.6;
+        radial-gradient(circle at 0% 0%, rgba(225, 29, 143, 0.4), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(53, 87, 255, 0.45), transparent 55%);
+      filter: blur(14px);
+      opacity: 0.7;
       mix-blend-mode: screen;
       pointer-events: none;
       z-index: -1;
       animation: headlinePulse 4s ease-in-out infinite alternate;
     }
 
-    /* Static band around OPERATIONDOM */
+    /* Static band around OPERATIONDOM – heavier */
     .hero-headline::after {
       content: "";
       position: absolute;
-      left: -8%;
-      right: -8%;
-      top: -6px;
-      bottom: -6px;
+      left: -10%;
+      right: -10%;
+      top: -8px;
+      bottom: -8px;
       background-image:
         repeating-linear-gradient(
           0deg,
-          rgba(255,255,255,0.22) 0,
-          rgba(255,255,255,0.22) 1px,
+          rgba(255,255,255,0.32) 0,
+          rgba(255,255,255,0.32) 1px,
           transparent 1px,
           transparent 3px
         );
-      opacity: 0.16;
+      opacity: 0.22;
       mix-blend-mode: soft-light;
       pointer-events: none;
       animation: staticShift 0.9s steps(2,end) infinite;
     }
 
-    /* “IN FULL EFFECT” – just strong italic text, no glow */
+    /* “IN FULL EFFECT” */
     .hero-script-overlay {
       margin-top: 10px;
       font-family: "Space Grotesk", sans-serif;
@@ -306,7 +321,7 @@
       margin-bottom: 8px;
     }
 
-    /* SQUARE BUTTONS */
+    /* BUTTONS */
     .btn-primary,
     .btn-ghost {
       position: relative;
@@ -325,7 +340,7 @@
       gap: 8px;
       white-space: nowrap;
       border-radius: 0;
-      text-decoration: none; /* for <a> version */
+      text-decoration: none;
       color: inherit;
       background: none;
     }
@@ -334,7 +349,6 @@
       color: #ffffff;
       background-color: transparent;
       border: 2px solid #ffffff;
-      padding: 13px 28px;
       font-family: "Plus Jakarta Sans", sans-serif;
       font-weight: 700;
       font-size: 0.95rem;
@@ -364,10 +378,10 @@
     .btn-caption {
       font-family: "Plus Jakarta Sans", sans-serif;
       font-size: 0.78rem;
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: rgba(235,235,235,0.75);
+      color: rgba(235,235,235,0.85);
     }
 
     .hero-cta-group {
@@ -376,7 +390,6 @@
       gap: 4px;
     }
 
-    /* tiny flare: arrow nudges on hover */
     .btn-arrow {
       display: inline-block;
       transition: transform 0.18s ease-out;
@@ -386,7 +399,7 @@
       transform: translateX(3px) translateY(-1px);
     }
 
-    /* RIGHT: DOM VISUAL – no ring/gradient, just clean circle & shadow */
+    /* RIGHT: VISUAL */
     .hero-visual {
       position: relative;
       display: flex;
@@ -401,7 +414,7 @@
       aspect-ratio: 1 / 1;
       border-radius: 50%;
       overflow: hidden;
-      background-color: #0a0a0d;
+      background-color: #05030d;
       box-shadow: 0 28px 90px rgba(0,0,0,1);
       transform-style: preserve-3d;
       transform: perspective(1200px) rotateX(8deg) rotateY(-8deg);
@@ -463,12 +476,191 @@
       border-radius: 0;
     }
 
-    /* ===== BOOKING SECTION ===== */
+    /* Minimal SVG corner asset */
+    .corner-accent {
+      position: absolute;
+      width: 72px;
+      height: 72px;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+    .corner-accent--hero {
+      top: 18px;
+      left: 5vw;
+    }
+    .corner-accent--booking {
+      bottom: 24px;
+      right: 5vw;
+    }
+
+    /* ========== PERFORMANCE / VIDEO + IG SECTION ========== */
+
+    .performance {
+      position: relative;
+      padding: 72px 5vw 40px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      overflow: hidden;
+    }
+
+    .performance-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .performance-heading {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 720px;
+    }
+
+    .performance-tag {
+      font-family: "Shrikhand", system-ui;
+      font-size: 0.9rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.25);
+      width: fit-content;
+    }
+
+    .performance-heading h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .performance-heading p {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(230,230,240,0.95);
+    }
+
+    .performance-highlight {
+      font-weight: 600;
+    }
+
+    .performance-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    /* Responsive YouTube embed */
+    .performance-video-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 2px solid var(--border-soft);
+      background: #020108;
+      overflow: hidden;
+    }
+
+    .performance-video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* IG GRID */
+    .insta-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .insta-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .insta-handle {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    .insta-view-link {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent-egg);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.6);
+      padding-bottom: 1px;
+    }
+
+    .insta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .insta-tile {
+      position: relative;
+      width: 100%;
+      padding-bottom: 100%;
+      overflow: hidden;
+      background: radial-gradient(circle at 0 0, rgba(53,87,255,0.45), transparent 55%),
+                  radial-gradient(circle at 100% 100%, rgba(225,29,143,0.45), transparent 55%),
+                  #05030a;
+      border: 1px solid rgba(255,255,255,0.26);
+      cursor: pointer;
+    }
+
+    .insta-tile img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: contrast(1.05) saturate(1.1);
+      transition: transform 0.22s ease-out;
+    }
+
+    .insta-tile:hover img {
+      transform: scale(1.04);
+    }
+
+    .insta-tile::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+      opacity: 0;
+      transition: opacity 0.2s ease-out;
+    }
+
+    .insta-tile:hover::after {
+      opacity: 1;
+    }
+
+    .insta-empty-note {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 0.78rem;
+      color: rgba(230,230,240,0.7);
+    }
+
+    /* ========== BOOKING SECTION ========== */
 
     .booking {
       position: relative;
-      padding: 72px 5vw 90px;
-      border-top: 1px solid var(--border-soft);
+      padding: 64px 5vw 90px;
+      border-top: 1px solid rgba(255,255,255,0.1);
       overflow: hidden;
     }
 
@@ -476,19 +668,19 @@
       content: "";
       position: absolute;
       inset: 0;
-      opacity: 0.12;
+      opacity: 0.16;
       background-image:
         repeating-linear-gradient(
           to right,
-          rgba(255,255,255,0.06) 0,
-          rgba(255,255,255,0.06) 1px,
+          rgba(255,255,255,0.08) 0,
+          rgba(255,255,255,0.08) 1px,
           transparent 1px,
           transparent 32px
         ),
         repeating-linear-gradient(
           to bottom,
-          rgba(255,255,255,0.04) 0,
-          rgba(255,255,255,0.04) 1px,
+          rgba(255,255,255,0.06) 0,
+          rgba(255,255,255,0.06) 1px,
           transparent 1px,
           transparent 32px
         );
@@ -511,7 +703,7 @@
       letter-spacing: 0.22em;
       text-transform: uppercase;
       padding-bottom: 8px;
-      border-bottom: 1px solid var(--border-soft);
+      border-bottom: 1px solid rgba(255,255,255,0.25);
       width: fit-content;
     }
 
@@ -535,7 +727,7 @@
       font-family: "Plus Jakarta Sans", sans-serif;
       font-size: 0.98rem;
       line-height: 1.7;
-      color: rgba(255,255,255,0.85);
+      color: rgba(230,230,240,0.95);
       margin-bottom: 14px;
       max-width: 34rem;
     }
@@ -546,7 +738,7 @@
       padding: 0;
       font-family: "Plus Jakarta Sans", sans-serif;
       font-size: 0.92rem;
-      color: rgba(255,255,255,0.78);
+      color: rgba(230,230,240,0.9);
     }
 
     .booking-copy li {
@@ -558,7 +750,7 @@
 
     .booking-copy li::before {
       content: "—";
-      opacity: 0.7;
+      opacity: 0.9;
       font-size: 0.9rem;
     }
 
@@ -566,7 +758,7 @@
       font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      color: rgba(255,255,255,0.6);
+      color: rgba(225,225,240,0.7);
       margin-top: 10px;
     }
 
@@ -577,42 +769,44 @@
     }
 
     .booking-form {
-      border: 1px solid var(--border-soft);
-      padding: 20px 22px 22px;
+      border: 2px solid var(--border-soft);
+      padding: 22px 22px 24px;
       display: flex;
       flex-direction: column;
       gap: 14px;
-      background: rgba(5,5,8,0.7);
+      background: rgba(5,5,12,0.85);
     }
 
     .booking-form-row {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
+      gap: 14px;
     }
 
     .booking-field {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 5px;
     }
 
     .booking-label {
       font-family: "Plus Jakarta Sans", sans-serif;
-      font-size: 0.78rem;
+      font-size: 0.8rem;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.18em;
+      color: rgba(230,230,245,0.85);
     }
 
     .booking-input,
     .booking-select,
     .booking-textarea {
       font-family: "Plus Jakarta Sans", sans-serif;
-      font-size: 0.9rem;
-      padding: 9px 10px;
-      background: transparent;
-      border: 1px solid var(--border-soft);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 11px 12px;
+      background: rgba(4,4,10,0.6);
+      border: 2px solid var(--border-soft);
       color: #fff;
       outline: none;
       border-radius: 0;
@@ -620,7 +814,7 @@
 
     .booking-input::placeholder,
     .booking-textarea::placeholder {
-      color: rgba(255,255,255,0.35);
+      color: rgba(210,210,230,0.6);
     }
 
     .booking-input:focus,
@@ -630,14 +824,14 @@
     }
 
     .booking-textarea {
-      min-height: 96px;
+      min-height: 110px;
       resize: vertical;
     }
 
     .booking-meta-row {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
+      gap: 14px;
     }
 
     .booking-submit-row {
@@ -645,7 +839,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      margin-top: 4px;
+      margin-top: 8px;
       flex-wrap: wrap;
     }
 
@@ -659,7 +853,7 @@
       font-size: 0.78rem;
       letter-spacing: 0.09em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.55);
+      color: rgba(225,225,240,0.7);
     }
 
     .booking-footnote a {
@@ -684,6 +878,10 @@
       }
       .hero {
         padding-top: 70px;
+      }
+
+      .performance-layout {
+        grid-template-columns: 1fr;
       }
 
       .booking-grid {
@@ -713,6 +911,9 @@
         top: 18px;
         right: 16px;
       }
+      .insta-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
     }
 
     /* ====== ANIMATIONS ====== */
@@ -731,14 +932,14 @@
 
     @keyframes headlinePulse {
       0% {
-        opacity: 0.35;
+        opacity: 0.45;
         transform: translate3d(0,0,0);
       }
       50% {
-        opacity: 0.6;
+        opacity: 0.8;
       }
       100% {
-        opacity: 0.3;
+        opacity: 0.4;
         transform: translate3d(2px,-2px,0);
       }
     }
@@ -746,15 +947,15 @@
     @keyframes staticShift {
       0% {
         transform: translate3d(0,0,0);
-        opacity: 0.12;
+        opacity: 0.16;
       }
       50% {
         transform: translate3d(1px,-1px,0);
-        opacity: 0.2;
+        opacity: 0.26;
       }
       100% {
         transform: translate3d(-1px,1px,0);
-        opacity: 0.14;
+        opacity: 0.18;
       }
     }
   </style>
@@ -768,17 +969,23 @@
     <span>OPERATIONDOM</span>
   </div>
 
+  <!-- minimal SVG accent -->
+  <svg class="corner-accent corner-accent--hero" viewBox="0 0 60 60" aria-hidden="true">
+    <path d="M2 18V2H18" stroke="rgba(255,255,255,0.5)" stroke-width="2" fill="none"/>
+    <path d="M42 58H58V42" stroke="rgba(255,255,255,0.25)" stroke-width="2" fill="none"/>
+  </svg>
+
   <!-- nav -->
   <nav class="hero-nav">
     <a href="#music">music</a>
-    <a href="#merch">merch</a>
+    <a href="#performance">live</a>
     <a href="#shows">shows</a>
     <a href="#book">book dom</a>
   </nav>
 
   <!-- socials / cart -->
   <div class="hero-top-right">
-    <a href="#" aria-label="Instagram">IG</a>
+    <a href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer" aria-label="Instagram">IG</a>
     <a href="#" aria-label="Facebook">FB</a>
     <div class="hero-cart">
       <span>cart</span>
@@ -792,7 +999,10 @@
     <div class="hero-copy">
       <div class="hero-tagline">LIVE. LOUD. IN LINGERIE &amp; LEATHER.</div>
 
-      <h1 class="hero-headline">OPERATIONDOM</h1>
+      <h1 class="hero-headline">
+        <span class="hero-headline-main">OPERATION</span>
+        <span class="hero-headline-dom">DOM</span>
+      </h1>
       <div class="hero-script-overlay">IN FULL EFFECT</div>
 
       <p class="hero-subhead">
@@ -842,8 +1052,68 @@
 
 </section>
 
+<!-- ===== PERFORMANCE / YOUTUBE + INSTAGRAM ===== -->
+<section id="performance" class="performance">
+  <div class="performance-inner">
+    <div class="performance-heading">
+      <div class="performance-tag">Live in full effect</div>
+      <h2>Powerhouse vocals. Headliner energy.</h2>
+      <p>
+        Dom is an <span class="performance-highlight">explosive, dynamic vocalist</span> who can flip
+        from intimate, candle-lit R&amp;B sets to full-throttle festival stages without losing an ounce
+        of control. From singing for a room of twenty to thousands of people, she has the versatility
+        and presence to <span class="performance-highlight">headline any event</span>.
+      </p>
+    </div>
+
+    <div class="performance-layout">
+      <!-- YOUTUBE VIDEO -->
+      <div class="performance-video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/XNsNou7JNwE?rel=0"
+          title="OperationDom Live Performance"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+      <!-- INSTAGRAM GRID -->
+      <div class="insta-panel">
+        <div class="insta-header">
+          <div class="insta-handle">@operationdom</div>
+          <a class="insta-view-link" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer">
+            View on Instagram
+          </a>
+        </div>
+
+        <div class="insta-grid" id="instaGrid">
+          <!-- Fallback static tiles (you can swap these for real thumbnails) -->
+          <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer">
+            <!-- Optional <img src="insta1.jpg" alt=""> -->
+          </a>
+          <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer"></a>
+          <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer"></a>
+          <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer"></a>
+          <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer"></a>
+          <a class="insta-tile" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer"></a>
+        </div>
+
+        <p class="insta-empty-note">
+          Live clips, behind-the-scenes chaos, and full glam moments are updated regularly on Instagram.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== BOOKING SECTION ===== -->
 <section id="book" class="booking">
+  <!-- minimal SVG accent -->
+  <svg class="corner-accent corner-accent--booking" viewBox="0 0 60 60" aria-hidden="true">
+    <path d="M2 42V58H18" stroke="rgba(255,255,255,0.3)" stroke-width="2" fill="none"/>
+    <path d="M42 2H58V18" stroke="rgba(255,255,255,0.5)" stroke-width="2" fill="none"/>
+  </svg>
+
   <div class="booking-inner">
     <div class="booking-tag">Booking</div>
 
@@ -851,9 +1121,9 @@
       <div class="booking-copy">
         <h2>Book Dom for your next show</h2>
         <p>
-          For venues, festivals, and private events that need a front-woman who can
-          hold the room by the throat and the heart. Tell us what you’re planning and
-          we’ll build the right set around it.
+          For venues, festivals, and private events that need a front-woman who can hold the room by the
+          throat and the heart. Tell us what you’re planning and we’ll build the right set around it —
+          from full band to stripped-down, from sultry to feral.
         </p>
 
         <ul>
@@ -989,6 +1259,36 @@
     orb.addEventListener('mousemove', handleMove);
     orb.addEventListener('mouseleave', resetTilt);
   })();
+
+  // Instagram grid JS stub – replace with real API / embed if you want actual posts
+  // Example shape if you later wire this to a backend that hits the Instagram Basic Display API
+  
+  (function(){
+    const grid = document.getElementById('instaGrid');
+    if (!grid) return;
+
+    const posts = [
+      { url: 'https://www.instagram.com/operationdom/', thumb: 'insta1.jpg', alt: 'Dom live at XYZ' },
+      ...
+    ];
+
+    grid.innerHTML = "";
+    posts.slice(0, 6).forEach(p => {
+      const a = document.createElement('a');
+      a.href = p.url;
+      a.target = "_blank";
+      a.rel = "noreferrer";
+      a.className = "insta-tile";
+
+      const img = document.createElement('img');
+      img.src = p.thumb;
+      img.alt = p.alt || "";
+
+      a.appendChild(img);
+      grid.appendChild(a);
+    });
+  })();
+  
 </script>
 
 </body>

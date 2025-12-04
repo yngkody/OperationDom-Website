@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shop OperationDom</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Fonts (same as OperationDom) -->
+  <link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Anton&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Snipcart (global, include only once per site) -->
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.6.0/default/snipcart.css" />
+  <script async src="https://cdn.snipcart.com/themes/v3.6.0/default/snipcart.js"></script>
+  <div
+    hidden
+    id="snipcart"
+    data-api-key="YOUR_PUBLIC_API_KEY_HERE">
+  </div>
+
+  <style>
+    :root {
+      --bg-pink: #ffd6ea;
+      --bg-soft-pink: #ffe9f4;
+      --bg-softest-pink: #fff7fc;
+      --bg-soft-blue: #e4f1ff;
+
+      --panel: #ffffff;
+      --ink: #1b1020;
+      --muted-ink: #4a384f;
+
+      --accent-pink: #ff4fa0;
+      --accent-pink-soft: #ff8cc4;
+      --accent-blue: #3b82f6;
+
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --shadow-soft: 0 24px 60px rgba(27, 16, 32, 0.16);
+      --shadow-pill: 0 12px 30px rgba(27, 16, 32, 0.22);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255, 182, 222, 0.5), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(180, 210, 255, 0.55), transparent 55%),
+        linear-gradient(to bottom, var(--bg-softest-pink), var(--bg-soft-blue));
+      min-height: 100vh;
+      padding: 32px 16px 48px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .od-shop-shell {
+      width: 100%;
+      max-width: 1120px;
+      background: rgba(255, 255, 255, 0.94);
+      border-radius: 32px;
+      box-shadow: var(--shadow-soft);
+      padding: 28px 20px 32px;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(18px);
+    }
+
+    @media (min-width: 768px) {
+      body {
+        padding: 40px 24px 56px;
+      }
+      .od-shop-shell {
+        padding: 32px 28px 36px;
+      }
+    }
+
+    .od-shop-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .od-shop-title {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .od-shop-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted-ink);
+      opacity: 0.7;
+    }
+
+    .od-shop-heading {
+      font-family: "Shrikhand", system-ui;
+      font-size: 28px;
+      line-height: 1.05;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+    }
+
+    @media (min-width: 768px) {
+      .od-shop-heading {
+        font-size: 34px;
+      }
+    }
+
+    .od-shop-subtitle {
+      font-size: 13px;
+      max-width: 380px;
+      color: var(--muted-ink);
+      opacity: 0.85;
+    }
+
+    .od-cart-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 79, 160, 0.35);
+      box-shadow: var(--shadow-pill);
+      background: linear-gradient(120deg, #ffe3f3, #ffe9f4);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: transform 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .od-cart-pill:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(27, 16, 32, 0.24);
+    }
+
+    .od-cart-count-badge {
+      min-width: 20px;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: var(--accent-pink);
+      color: #fff;
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .od-cart-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 10px;
+    }
+
+    /* Filters / tags (optional cute touch) */
+    .od-shop-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .od-chip {
+      padding: 6px 11px;
+      border-radius: 999px;
+      font-size: 11px;
+      border: 1px solid rgba(27, 16, 32, 0.08);
+      background: linear-gradient(135deg, #fff7fc, #ffe9f4);
+      color: var(--muted-ink);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .od-chip.is-primary {
+      border-color: rgba(255, 79, 160, 0.3);
+      background: linear-gradient(135deg, #ffd6ea, #ffe9f4);
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .od-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-pink);
+    }
+
+    /* Product grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    @media (min-width: 640px) {
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 992px) {
+      .product-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .product-card {
+      background: linear-gradient(145deg, #ffffff, #fff7fc);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 18px 40px rgba(27, 16, 32, 0.12);
+      padding: 10px 10px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-card::before {
+      content: "";
+      position: absolute;
+      inset: -30%;
+      background:
+        radial-gradient(circle at 0 0, rgba(255, 182, 222, 0.45), transparent 53%),
+        radial-gradient(circle at 100% 100%, rgba(180, 210, 255, 0.4), transparent 55%);
+      opacity: 0.85;
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+    }
+
+    .product-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .product-media {
+      background: rgba(255, 255, 255, 0.78);
+      border-radius: 18px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+    }
+
+    .product-main {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      padding-top: 70%;
+      background: linear-gradient(135deg, #ffd6ea, #e4f1ff);
+    }
+
+    .product-main img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .product-thumbs {
+      display: flex;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .product-thumb {
+      flex: 1;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid transparent;
+      cursor: pointer;
+      position: relative;
+      padding-top: 32%;
+      background: #fdf2ff;
+      transition: transform 0.12s ease, border-color 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .product-thumb img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .product-thumb:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(27, 16, 32, 0.16);
+    }
+
+    .product-thumb.is-active {
+      border-color: rgba(255, 79, 160, 0.9);
+      box-shadow: 0 0 0 1px rgba(255, 79, 160, 0.5);
+    }
+
+    .product-body {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 2px 2px 0;
+    }
+
+    .product-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted-ink);
+      opacity: 0.85;
+    }
+
+    .product-title {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .product-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .product-price {
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .product-pill {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(27, 16, 32, 0.08);
+      color: var(--muted-ink);
+    }
+
+    .product-footer {
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .product-note {
+      font-size: 11px;
+      color: var(--muted-ink);
+      opacity: 0.85;
+    }
+
+    .product-btn {
+      border: none;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: linear-gradient(120deg, var(--accent-pink), var(--accent-pink-soft));
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      box-shadow: 0 12px 26px rgba(255, 79, 160, 0.45);
+      transition: transform 0.14s ease, box-shadow 0.14s ease, filter 0.14s ease;
+      white-space: nowrap;
+    }
+
+    .product-btn span.icon {
+      font-size: 14px;
+    }
+
+    .product-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 36px rgba(255, 79, 160, 0.6);
+      filter: brightness(1.03);
+    }
+
+    .product-btn:active {
+      transform: translateY(1px);
+      box-shadow: 0 6px 18px rgba(255, 79, 160, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <main class="od-shop-shell">
+    <header class="od-shop-header">
+      <div class="od-shop-title">
+        <div class="od-shop-kicker">Curated looks · Stage-ready energy</div>
+        <h1 class="od-shop-heading">Shop OperationDom</h1>
+        <p class="od-shop-subtitle">
+          Pastel frames, flirty fits, and celestial accessories that feel like
+          your favorite hook on repeat. Dress the way the music makes you feel.
+        </p>
+      </div>
+
+      <!-- Snipcart cart button -->
+      <button class="od-cart-pill snipcart-checkout" type="button">
+        <div class="od-cart-icon">🛒</div>
+        <span>Bag</span>
+        <span class="od-cart-count-badge snipcart-items-count">0</span>
+      </button>
+    </header>
+
+    <!-- Cute filter chips (non-functional, just aesthetic unless you add JS) -->
+    <div class="od-shop-filters">
+      <div class="od-chip is-primary">
+        <span class="od-dot"></span>
+        All drops
+      </div>
+      <div class="od-chip">Sunnies</div>
+      <div class="od-chip">Tops</div>
+      <div class="od-chip">Accessories</div>
+      <div class="od-chip">Stage-ready</div>
+    </div>
+
+    <!-- Product Grid -->
+    <section class="product-grid" aria-label="Shop products">
+
+      <!-- Product 1: Sunglasses -->
+      <article class="product-card">
+        <div class="product-inner">
+          <div class="product-media" data-product-gallery>
+            <div class="product-main">
+              <img
+                src="images/od-sunnies-starlight-1.jpg"
+                alt="Starlight Cat-Eye Sunglasses on pastel backdrop"
+                data-product-main
+              />
+            </div>
+            <div class="product-thumbs">
+              <button class="product-thumb is-active" type="button"
+                data-product-thumb
+                data-src="images/od-sunnies-starlight-1.jpg">
+                <img src="images/od-sunnies-starlight-1.jpg" alt="" />
+              </button>
+              <button class="product-thumb" type="button"
+                data-product-thumb
+                data-src="images/od-sunnies-starlight-2.jpg">
+                <img src="images/od-sunnies-starlight-2.jpg" alt="" />
+              </button>
+              <button class="product-thumb" type="button"
+                data-product-thumb
+                data-src="images/od-sunnies-starlight-3.jpg">
+                <img src="images/od-sunnies-starlight-3.jpg" alt="" />
+              </button>
+            </div>
+          </div>
+
+          <div class="product-body">
+            <p class="product-tag">Sunglasses</p>
+            <h2 class="product-title">Starlight Cat-Eye Shades</h2>
+            <div class="product-meta-row">
+              <span class="product-price">$48.00</span>
+              <span class="product-pill">UV 400 · Mirror finish</span>
+            </div>
+            <div class="product-footer">
+              <p class="product-note">For soft-life strolls & late-night shows.</p>
+
+              <!-- Snipcart button -->
+              <button
+                class="product-btn snipcart-add-item"
+                type="button"
+                data-item-id="od-sunnies-starlight"
+                data-item-name="Starlight Cat-Eye Shades"
+                data-item-price="48.00"
+                data-item-url="/shop-operationdom.html"
+                data-item-description="Pastel cat-eye sunglasses with reflective lenses and UV 400 protection."
+                data-item-image="images/od-sunnies-starlight-1.jpg">
+                <span class="icon">＋</span>
+                <span>Add to bag</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 2: Top -->
+      <article class="product-card">
+        <div class="product-inner">
+          <div class="product-media" data-product-gallery>
+            <div class="product-main">
+              <img
+                src="images/od-crop-chorus-1.jpg"
+                alt="Pastel blue cropped tank top with OperationDom script"
+                data-product-main
+              />
+            </div>
+            <div class="product-thumbs">
+              <button class="product-thumb is-active" type="button"
+                data-product-thumb
+                data-src="images/od-crop-chorus-1.jpg">
+                <img src="images/od-crop-chorus-1.jpg" alt="" />
+              </button>
+              <button class="product-thumb" type="button"
+                data-product-thumb
+                data-src="images/od-crop-chorus-2.jpg">
+                <img src="images/od-crop-chorus-2.jpg" alt="" />
+              </button>
+              <button class="product-thumb" type="button"
+                data-product-thumb
+                data-src="images/od-crop-chorus-3.jpg">
+                <img src="images/od-crop-chorus-3.jpg" alt="" />
+              </button>
+            </div>
+          </div>
+
+          <div class="product-body">
+            <p class="product-tag">Top</p>
+            <h2 class="product-title">Chorus Baby Tee</h2>
+            <div class="product-meta-row">
+              <span class="product-price">$38.00</span>
+              <span class="product-pill">XS–XXL · Relaxed fit</span>
+            </div>
+            <div class="product-footer">
+              <p class="product-note">Pairs with high-waisted denim & big dreams.</p>
+
+              <button
+                class="product-btn snipcart-add-item"
+                type="button"
+                data-item-id="od-top-chorus"
+                data-item-name="Chorus Baby Tee"
+                data-item-price="38.00"
+                data-item-url="/shop-operationdom.html"
+                data-item-description="Soft pastel blue baby tee with OperationDom script logo."
+                data-item-image="images/od-crop-chorus-1.jpg">
+                <span class="icon">＋</span>
+                <span>Add to bag</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 3: Accessories -->
+      <article class="product-card">
+        <div class="product-inner">
+          <div class="product-media" data-product-gallery>
+            <div class="product-main">
+              <img
+                src="images/od-accessory-halo-1.jpg"
+                alt="Layered silver & pearl necklace on soft pink silk"
+                data-product-main
+              />
+            </div>
+            <div class="product-thumbs">
+              <button class="product-thumb is-active" type="button"
+                data-product-thumb
+                data-src="images/od-accessory-halo-1.jpg">
+                <img src="images/od-accessory-halo-1.jpg" alt="" />
+              </button>
+              <button class="product-thumb" type="button"
+                data-product-thumb
+                data-src="images/od-accessory-halo-2.jpg">
+                <img src="images/od-accessory-halo-2.jpg" alt="" />
+              </button>
+              <button class="product-thumb" type="button"
+                data-product-thumb
+                data-src="images/od-accessory-halo-3.jpg">
+                <img src="images/od-accessory-halo-3.jpg" alt="" />
+              </button>
+            </div>
+          </div>
+
+          <div class="product-body">
+            <p class="product-tag">Accessories</p>
+            <h2 class="product-title">Halo Layered Necklace</h2>
+            <div class="product-meta-row">
+              <span class="product-price">$32.00</span>
+              <span class="product-pill">Nickel-free · Adjustable</span>
+            </div>
+            <div class="product-footer">
+              <p class="product-note">For when you want your aura to shimmer.</p>
+
+              <button
+                class="product-btn snipcart-add-item"
+                type="button"
+                data-item-id="od-accessory-halo"
+                data-item-name="Halo Layered Necklace"
+                data-item-price="32.00"
+                data-item-url="/shop-operationdom.html"
+                data-item-description="Layered silver and faux-pearl necklace with adjustable clasp."
+                data-item-image="images/od-accessory-halo-1.jpg">
+                <span class="icon">＋</span>
+                <span>Add to bag</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- You can duplicate more product-card blocks as needed -->
+
+    </section>
+  </main>
+
+  <script>
+    // Simple per-card "slideshow": clicking a thumb swaps the main image
+    document.querySelectorAll("[data-product-gallery]").forEach(function (gallery) {
+      const mainImg = gallery.querySelector("[data-product-main]");
+      const thumbs = gallery.querySelectorAll("[data-product-thumb]");
+
+      thumbs.forEach(function (thumb) {
+        thumb.addEventListener("click", function () {
+          const newSrc = thumb.getAttribute("data-src");
+          if (!newSrc || !mainImg) return;
+
+          mainImg.src = newSrc;
+
+          // Active state styling
+          thumbs.forEach(function (t) {
+            t.classList.remove("is-active");
+          });
+          thumb.classList.add("is-active");
+        });
+      });
+    });
+  </script>
+</body>
+</html>

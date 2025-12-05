@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <title>OperationDom – Official Site</title>
 
-  <!-- Fonts: bold but clean -->
+  <!-- Fonts: Impact-style headline + clean body -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   />
 
@@ -16,14 +16,16 @@
 
   <style>
     :root {
-      --bg: #020617;          /* page background: near-black navy */
-      --panel: #050816;       /* main panels */
-      --panel-alt: #020819;   /* subtle alt */
-      --ink: #e5e7eb;         /* primary text */
-      --muted: #9ca3af;       /* secondary text */
-      --accent: #3b82f6;      /* blue */
-      --accent-soft: #1d4ed8; /* darker blue */
-      --danger: #f97373;      /* soft red accent */
+      --bg: #020313;
+      --bg-panel: #050718;
+      --bg-panel-alt: #050510;
+
+      --ink: #f9fafb;
+      --muted: #9ca3af;
+
+      --accent: #3b82f6;
+      --accent-strong: #1d4ed8;
+      --danger: #f97373;
 
       --border: #111827;
       --border-strong: #1f2937;
@@ -54,7 +56,6 @@
       text-decoration: none;
     }
 
-    /* LAYOUT WRAPPER */
     .page {
       min-height: 100vh;
     }
@@ -66,23 +67,23 @@
     }
 
     /* NAVBAR */
+
     .nav {
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(2, 6, 23, 0.96);
+      background: #020313;
       border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
     }
 
     .nav-inner {
       max-width: var(--max-width);
       margin: 0 auto;
       height: var(--nav-height);
+      padding: 0 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 20px;
       gap: 24px;
     }
 
@@ -95,9 +96,9 @@
     .nav-mark {
       width: 18px;
       height: 18px;
-      border: 2px solid var(--ink);
-      border-right-width: 4px;
-      border-bottom-width: 4px;
+      border: 3px solid var(--ink);
+      border-right-width: 5px;
+      border-bottom-width: 5px;
       transform: skewX(-10deg);
     }
 
@@ -108,9 +109,8 @@
     }
 
     .nav-title-main {
-      font-family: "Space Grotesk", system-ui, sans-serif;
-      font-weight: 700;
-      font-size: 16px;
+      font-family: "Anton", system-ui, sans-serif;
+      font-size: 18px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
@@ -133,7 +133,7 @@
 
     .nav-links a {
       position: relative;
-      padding-bottom: 3px;
+      padding-bottom: 2px;
       color: var(--muted);
       font-weight: 600;
     }
@@ -146,7 +146,7 @@
       width: 0;
       height: 2px;
       background: var(--ink);
-      transition: width 0.16s ease-out;
+      transition: width 0.14s ease-out;
     }
 
     .nav-links a:hover {
@@ -163,17 +163,17 @@
       gap: 8px;
       padding: 9px 18px;
       background: var(--ink);
-      color: #020617;
+      color: #020313;
       border: 1px solid var(--border-strong);
       text-transform: uppercase;
       letter-spacing: 0.18em;
       font-size: 11px;
-      font-weight: 700;
-      transform: skewX(-6deg);
+      font-weight: 800;
+      transform: skewX(-8deg);
     }
 
     .nav-book span {
-      transform: skewX(6deg);
+      transform: skewX(8deg);
     }
 
     .nav-book-icon {
@@ -181,6 +181,7 @@
     }
 
     /* HERO */
+
     .hero {
       padding: 40px 0 52px;
       border-bottom: 1px solid var(--border);
@@ -196,41 +197,54 @@
     .hero-left {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 18px;
     }
 
     .hero-tagline {
       font-size: 11px;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--muted);
     }
 
     .hero-title {
-      font-family: "Space Grotesk", system-ui, sans-serif;
-      font-size: clamp(40px, 5vw, 54px);
-      font-weight: 700;
-      letter-spacing: 0.06em;
+      font-family: "Anton", system-ui, sans-serif;
       text-transform: uppercase;
+      line-height: 0.9;
       margin: 0;
+      letter-spacing: 0.08em;
+      font-size: clamp(50px, 7vw, 72px);
     }
 
-    .hero-title span {
-      display: block;
+    .hero-title-row {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      gap: 6px;
     }
 
-    .hero-title-mark {
-      color: var(--accent);
+    .hero-op {
+      color: #ffffff;
+      padding: 4px 0;
+    }
+
+    .hero-dom {
+      background: #ffffff;
+      color: #000000;
+      padding: 4px 14px 4px 12px;
+      border: 3px solid #ffffff;
+      box-shadow: 0 0 0 2px #000000;
     }
 
     .hero-subline {
-      font-size: 15px;
-      font-weight: 600;
+      font-size: 17px;
+      font-weight: 700;
       max-width: 420px;
     }
 
     .hero-detail {
-      font-size: 13px;
+      font-size: 14px;
+      font-weight: 500;
       color: var(--muted);
       max-width: 420px;
     }
@@ -254,18 +268,14 @@
       align-items: center;
       gap: 8px;
       padding: 11px 22px;
-      background: var(--accent);
-      color: #020617;
+      background: #ffffff;
+      color: #000000;
       font-size: 12px;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-weight: 700;
-      border: 1px solid var(--accent-soft);
-      transform: skewX(-6deg);
-    }
-
-    .btn-primary span {
-      transform: skewX(6deg);
+      letter-spacing: 0.2em;
+      font-weight: 800;
+      border: 2px solid #000000;
+      box-shadow: 4px 4px 0 #000000;
     }
 
     .btn-primary-icon {
@@ -281,7 +291,7 @@
       color: var(--ink);
       font-size: 12px;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.16em;
       font-weight: 600;
       border: 1px solid var(--border-strong);
     }
@@ -291,7 +301,7 @@
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      margin-top: 8px;
+      margin-top: 6px;
     }
 
     .hero-right {
@@ -302,15 +312,14 @@
     .hero-photo-wrap {
       width: 100%;
       max-width: 360px;
-      position: relative;
-      border: 1px solid var(--border-strong);
-      background: var(--panel);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
-      transform: skewX(-5deg);
+      background: var(--bg-panel);
+      border: 2px solid #000000;
+      box-shadow: 8px 8px 0 #000000;
+      transform: skewX(-4deg);
     }
 
     .hero-photo-inner {
-      transform: skewX(5deg);
+      transform: skewX(4deg);
       overflow: hidden;
     }
 
@@ -321,26 +330,24 @@
     }
 
     .hero-photo-tag {
-      position: absolute;
-      left: -1px;
-      bottom: -1px;
-      padding: 6px 12px;
-      background: #020617;
+      padding: 6px 10px;
       border-top: 1px solid var(--border-strong);
-      border-right: 1px solid var(--border-strong);
+      border-left: 1px solid var(--border-strong);
       font-size: 10px;
-      letter-spacing: 0.14em;
       text-transform: uppercase;
+      letter-spacing: 0.16em;
       color: var(--muted);
+      background: #020313;
     }
 
-    /* SECTIONS BASE */
+    /* SECTION BASE */
+
     .section {
       padding-top: 40px;
     }
 
     .panel {
-      background: var(--panel);
+      background: var(--bg-panel);
       border: 1px solid var(--border-strong);
       padding: 22px 20px 22px;
     }
@@ -362,13 +369,14 @@
     .section-tag {
       font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       color: var(--muted);
+      font-weight: 600;
     }
 
     .section-title {
-      font-family: "Space Grotesk", system-ui, sans-serif;
-      font-size: 20px;
+      font-family: "Anton", system-ui, sans-serif;
+      font-size: 22px;
       font-weight: 700;
       letter-spacing: 0.16em;
       text-transform: uppercase;
@@ -387,9 +395,11 @@
       color: var(--ink);
       border-bottom: 1px solid var(--ink);
       padding-bottom: 3px;
+      font-weight: 600;
     }
 
     /* PERFORMANCE / MEDIA */
+
     .media-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -400,7 +410,7 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
-      background: var(--panel-alt);
+      background: var(--bg-panel-alt);
       border: 1px solid var(--border-strong);
       padding: 12px 10px;
     }
@@ -408,7 +418,7 @@
     .media-thumb {
       position: relative;
       aspect-ratio: 9 / 16;
-      background: #020617;
+      background: #020313;
       border: 1px solid var(--border-strong);
     }
 
@@ -419,7 +429,6 @@
       bottom: 6px;
       font-size: 16px;
       color: var(--ink);
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
     }
 
     .media-label {
@@ -427,11 +436,12 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--muted);
+      font-weight: 600;
     }
 
     .media-title {
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 14px;
+      font-weight: 700;
     }
 
     .media-meta {
@@ -444,6 +454,7 @@
     }
 
     /* SERVICES */
+
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -451,7 +462,7 @@
     }
 
     .service-card {
-      background: var(--panel-alt);
+      background: var(--bg-panel-alt);
       border: 1px solid var(--border-strong);
       padding: 16px 14px;
       display: flex;
@@ -460,8 +471,8 @@
     }
 
     .service-title {
-      font-size: 14px;
-      font-weight: 700;
+      font-size: 15px;
+      font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.12em;
     }
@@ -484,11 +495,13 @@
       letter-spacing: 0.12em;
       padding: 4px 7px;
       border: 1px solid var(--border-strong);
-      background: #020617;
+      background: #020313;
       color: var(--muted);
+      font-weight: 600;
     }
 
     /* BOOKING */
+
     .booking-layout {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
@@ -520,7 +533,7 @@
     }
 
     .booking-form {
-      background: var(--panel-alt);
+      background: var(--bg-panel-alt);
       border: 1px solid var(--border-strong);
       padding: 16px 14px;
       display: grid;
@@ -545,25 +558,27 @@
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: var(--muted);
+      font-weight: 600;
     }
 
     .form-input,
     .form-select,
     .form-textarea {
-      background: #020617;
+      background: #020313;
       border: 1px solid var(--border-strong);
       padding: 7px 8px;
       font-family: inherit;
-      font-size: 12px;
+      font-size: 13px;
       color: var(--ink);
       outline: none;
       border-radius: 0;
+      font-weight: 500;
     }
 
     .form-input:focus,
     .form-select:focus,
     .form-textarea:focus {
-      border-color: var(--accent);
+      border-color: var(--accent-strong);
     }
 
     .form-textarea {
@@ -584,10 +599,11 @@
       gap: 6px;
       padding: 5px 9px;
       border: 1px solid var(--border-strong);
-      background: #020617;
+      background: #020313;
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.12em;
+      font-weight: 600;
     }
 
     .checkbox-pill input {
@@ -607,13 +623,14 @@
       align-items: center;
       gap: 8px;
       padding: 9px 16px;
-      background: var(--accent);
-      color: #020617;
+      background: #ffffff;
+      color: #000000;
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      font-weight: 700;
-      border: 1px solid var(--accent-soft);
+      font-weight: 800;
+      border: 2px solid #000000;
+      box-shadow: 4px 4px 0 #000000;
       cursor: pointer;
     }
 
@@ -625,6 +642,7 @@
     }
 
     /* FOOTER */
+
     .footer {
       max-width: var(--max-width);
       margin: 40px auto 0;
@@ -644,6 +662,7 @@
       gap: 14px;
       text-transform: uppercase;
       letter-spacing: 0.14em;
+      font-weight: 600;
     }
 
     .footer-links a:hover {
@@ -651,6 +670,7 @@
     }
 
     /* RESPONSIVE */
+
     @media (max-width: 880px) {
       .hero-grid {
         grid-template-columns: minmax(0, 1fr);
@@ -703,6 +723,10 @@
       .hero {
         padding-top: 28px;
       }
+
+      .hero-title {
+        font-size: 46px;
+      }
     }
   </style>
 </head>
@@ -741,15 +765,17 @@
             <div class="hero-tagline">Live R&amp;B · Pop · Soul</div>
 
             <h1 class="hero-title">
-              <span>Operation</span>
-              <span class="hero-title-mark">Dom</span>
+              <span class="hero-title-row">
+                <span class="hero-op">OPERATION</span>
+                <span class="hero-dom">DOM</span>
+              </span>
             </h1>
 
             <p class="hero-subline">
-              NYC-based vocalist and performer with a heavy live feel and clean studio tone.
+              Loud, emotional, and fully present on stage and in the studio.
             </p>
             <p class="hero-detail">
-              Available for venues, galas, private events, and sessions. One artist, different settings — same control and presence.
+              NYC-based vocalist for rooms that actually listen — from small clubs to big nights and session work.
             </p>
 
             <div class="hero-ctas">
@@ -763,14 +789,14 @@
             </div>
 
             <div class="hero-meta">
-              Based in New York · Available for travel
+              New York · Available for travel
             </div>
           </div>
 
           <div class="hero-right">
             <div class="hero-photo-wrap">
               <div class="hero-photo-inner">
-                <!-- Update this to your actual hero image path -->
+                <!-- Update to your actual hero image path -->
                 <img src="images/dom-hero.png" alt="OperationDom performing live">
               </div>
               <div class="hero-photo-tag">Live on stage</div>
@@ -787,7 +813,7 @@
               <div class="section-tag">Performance</div>
               <h2 class="section-title">See it, not just read it</h2>
               <p class="section-sub">
-                A few raw clips from Instagram so you can see how the voice, tone, and presence sit in a real room.
+                A few real clips so you can hear the tone, the runs, and how she holds a room.
               </p>
             </div>
             <a href="#book" class="section-link">Book after watching</a>
@@ -841,7 +867,7 @@
               <div class="section-tag">Services</div>
               <h2 class="section-title">Services</h2>
               <p class="section-sub">
-                Pick the lane that fits your event or project. You can mix more than one when you send the booking form.
+                Choose what you need. You can combine more than one when you send the booking form.
               </p>
             </div>
             <a href="#book" class="section-link">Add to booking</a>
@@ -851,7 +877,7 @@
             <div class="service-card">
               <div class="service-title">Live shows</div>
               <p class="service-text">
-                For venues, festivals, and lineups that need a clear lead vocal and stage presence. Sets can be tailored to your slot.
+                For venues and lineups that want a clear lead vocal and real stage presence.
               </p>
               <div class="service-tags">
                 <span class="service-tag">Clubs &amp; venues</span>
@@ -862,7 +888,7 @@
             <div class="service-card">
               <div class="service-title">Galas &amp; private events</div>
               <p class="service-text">
-                For black-tie nights, brand events, and curated rooms where the voice has to feel high-end but still human.
+                For nights that need to feel intentional and high-end, not background noise.
               </p>
               <div class="service-tags">
                 <span class="service-tag">Galas</span>
@@ -874,7 +900,7 @@
             <div class="service-card">
               <div class="service-title">Studio &amp; collabs</div>
               <p class="service-text">
-                For artists, producers, and brands that need hooks, verses, or full songs recorded with a clean, modern tone.
+                Hooks, verses, or full songs recorded with a clean, modern tone for artists and brands.
               </p>
               <div class="service-tags">
                 <span class="service-tag">Sessions</span>
@@ -894,7 +920,7 @@
               <div class="section-tag">Booking</div>
               <h2 class="section-title">Book Dom</h2>
               <p class="section-sub">
-                Share the date, place, and what you’re trying to create. Someone will follow up with next steps, rates, and logistics.
+                Share the date, place, and what you’re trying to pull off. Someone will follow up with details and rates.
               </p>
             </div>
             <a href="#top" class="section-link">Back to top</a>
@@ -903,15 +929,13 @@
           <div class="booking-layout">
             <div class="booking-copy">
               <p>
-                Dom is based in New York but open to travel if the timing and setup make sense.
-                Live sets are available with band or to track, depending on your room and budget.
+                Based in New York, available for travel if the setup makes sense. Live sets can be to track or with a band.
               </p>
               <p>
-                Use this form to outline what you’re thinking: event type, how long you want the set
-                to be, and whether you’re thinking more “live show” or “polished atmosphere”.
+                Use this form to outline what you’re thinking: event type, set length, vibe, and anything that matters to you.
               </p>
               <p class="booking-note">
-                <span>Note:</span> Submitting this form does not lock in a date. It starts the conversation.
+                <span>Note:</span> This form starts the conversation. It doesn’t lock anything in yet.
               </p>
             </div>
 
@@ -988,7 +1012,7 @@
                   <span>Send inquiry</span>
                 </button>
                 <span class="booking-footnote">
-                  Form is not wired yet. Connect it to your backend or email service.
+                  Form is not wired yet. Hook it up to your backend or email.
                 </span>
               </div>
             </form>

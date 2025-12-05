@@ -1088,6 +1088,348 @@
   transform: translateX(-50%) rotate(45deg);
   box-shadow: var(--shadow-soft);
 }
+    /* ============== MUSIC SECTION ============== */
+
+.section--music {
+  background: var(--bg-softest-pink);
+  border-top: 2px solid var(--border-soft);
+  position: relative;
+  overflow: hidden;
+}
+
+/* faint background doodles */
+.section--music::before,
+.section--music::after {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #ffe9f4 0, transparent 65%);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.section--music::before {
+  top: -60px;
+  left: -40px;
+}
+
+.section--music::after {
+  bottom: -80px;
+  right: -40px;
+}
+
+.music-header {
+  position: relative;
+  z-index: 1;
+}
+
+.music-tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  background: #fff8ff;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.music-tag-pill span {
+  font-family: "Shrikhand", cursive;
+  font-size: 0.9rem;
+}
+
+/* “Green Light” highlight card */
+
+.single-highlight {
+  position: relative;
+  z-index: 1;
+  margin-top: 20px;
+  margin-bottom: 26px;
+  padding: 18px 18px 20px;
+  border: 2px solid var(--border-strong);
+  background: #ffffff;
+  box-shadow: var(--shadow-soft);
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 18px;
+}
+
+.single-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #e5fbe0;
+  border: 1px solid #84cc16;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.single-tag-emoji {
+  font-size: 0.9rem;
+}
+
+.single-art {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 2px solid var(--border-strong);
+  background: linear-gradient(135deg, #bbf7d0, #fef9c3, #fecaca);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+}
+
+.single-art-inner {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 2px solid var(--border-strong);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 12px;
+}
+
+.single-art-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.single-art-title {
+  font-family: "Shrikhand", cursive;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.single-art-sub {
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* little radiating notes */
+.single-art-inner::before,
+.single-art-inner::after {
+  content: "✦";
+  position: absolute;
+  font-size: 0.9rem;
+  color: var(--accent-pink);
+}
+
+.single-art-inner::before {
+  top: 10px;
+  left: 14px;
+}
+
+.single-art-inner::after {
+  bottom: 10px;
+  right: 14px;
+}
+
+.single-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+
+.single-copy h3 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.single-copy p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  font-weight: 600;
+}
+
+.single-meta {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-ink);
+}
+
+.single-actions {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn-music {
+  padding: 8px 16px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 800;
+  border-radius: 999px;
+  border: 2px solid var(--border-strong);
+  background: #000;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+}
+
+.btn-music:hover {
+  transform: translateY(-1px);
+}
+
+.btn-music span {
+  font-size: 0.9rem;
+}
+
+/* platform grid */
+
+.music-platform-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 8px;
+}
+
+.music-card {
+  position: relative;
+  padding: 16px 14px 18px;
+  border-radius: 18px;
+  border: 2px solid var(--border-strong);
+  background: #ffffff;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.music-card::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  right: 16px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--border-strong);
+  background: #ffe9f4;
+}
+
+.music-card::after {
+  content: "♡";
+  position: absolute;
+  top: -1px;
+  right: 21px;
+  font-size: 0.7rem;
+}
+
+.music-card-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--muted-ink);
+}
+
+.music-card-title {
+  font-family: "Shrikhand", cursive;
+  font-size: 1rem;
+}
+
+.music-card-desc {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  font-weight: 600;
+}
+
+.music-card-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.music-chip {
+  font-size: 0.7rem;
+  padding: 4px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  background: #fff7fc;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+}
+
+.music-card-link {
+  margin-top: 10px;
+}
+
+.music-card-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 800;
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 2px solid var(--border-strong);
+}
+
+.music-card-link a:hover {
+  border-bottom-color: var(--accent-pink);
+}
+
+/* platform specific tints */
+
+.music-card--spotify {
+  background: linear-gradient(135deg, #dcfce7 0, #ffffff 55%);
+}
+
+.music-card--apple {
+  background: linear-gradient(135deg, #ffe4f3 0, #ffffff 55%);
+}
+
+.music-card--soundcloud {
+  background: linear-gradient(135deg, #ffedd5 0, #ffffff 55%);
+}
+
+/* responsive music section */
+
+@media (max-width: 880px) {
+  .single-highlight {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .music-platform-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 
   </style>
 </head>
@@ -1357,6 +1699,137 @@
   <!-- Extra Reel Duplicate Link Removed -->
 </div>
       </div>
+    </div>
+  </div>
+</section>
+<!-- ========== MUSIC / STREAMING SECTION ========== -->
+<section class="section section--music" id="music">
+  <div class="section-inner">
+    <div class="music-header">
+      <div class="music-tag-pill">
+        <span>♪</span>
+        <span>On Repeat</span>
+      </div>
+      <div class="section-tag">STREAM DOM</div>
+      <div class="section-header">
+        <h2>HER WORLD. YOUR PLAYLIST.</h2>
+        <p>
+          Tap in on your favorite platform and keep OperationDom in rotation —
+          from shower concerts to pre-game warmups and late-night healing sessions.
+        </p>
+      </div>
+    </div>
+
+    <!-- Green Light highlight -->
+    <article class="single-highlight">
+      <div class="single-art">
+        <div class="single-art-inner">
+          <div class="single-art-label">New Single</div>
+          <div class="single-art-title">“Green Light”</div>
+          <div class="single-art-sub">OperationDom</div>
+        </div>
+      </div>
+
+      <div class="single-copy">
+        <div class="single-tag">
+          <span class="single-tag-emoji">💡</span>
+          <span>Fresh Release</span>
+        </div>
+        <h3>Give Yourself the Green Light</h3>
+        <p>
+          “Green Light” is Dom in full main-character mode — soulful, cinematic,
+          and made for the moments when you decide you’re done dimming your own glow.
+        </p>
+        <div class="single-meta">
+          AVAILABLE NOW • STREAM &amp; SAVE
+        </div>
+        <div class="single-actions">
+          <a
+            class="btn-music"
+            href="https://open.spotify.com/track/3Wwo0MlabjfzrK8e10QiR5"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span>▶</span>
+            <span>Play on Spotify</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Platform grid -->
+    <div class="music-platform-grid">
+      <!-- Spotify -->
+      <article class="music-card music-card--spotify">
+        <div class="music-card-label">Streaming</div>
+        <div class="music-card-title">Spotify</div>
+        <p class="music-card-desc">
+          Follow OperationDom on Spotify to keep “Green Light” and future drops
+          front and center in your Release Radar and playlists.
+        </p>
+        <div class="music-card-chip-row">
+          <span class="music-chip">Playlists</span>
+          <span class="music-chip">On repeat</span>
+        </div>
+        <div class="music-card-link">
+          <a
+            href="https://open.spotify.com/artist/3qWTtM0AN7KdlfS8exCEy6"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span>↗</span>
+            <span>Open Spotify</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Apple Music -->
+      <article class="music-card music-card--apple">
+        <div class="music-card-label">Streaming</div>
+        <div class="music-card-title">Apple Music</div>
+        <p class="music-card-desc">
+          Add Dom to your Apple Music library for high-quality streams, easy downloads,
+          and main-character walks with the perfect soundtrack.
+        </p>
+        <div class="music-card-chip-row">
+          <span class="music-chip">Library</span>
+          <span class="music-chip">High quality</span>
+        </div>
+        <div class="music-card-link">
+          <a
+            href="https://music.apple.com/us/artist/operationdom/1824111226"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span>↗</span>
+            <span>Open Apple Music</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- SoundCloud -->
+      <article class="music-card music-card--soundcloud">
+        <div class="music-card-label">Streaming</div>
+        <div class="music-card-title">SoundCloud</div>
+        <p class="music-card-desc">
+          Tap into demos, deep cuts, and future drops on SoundCloud — perfect
+          for the ones who like to claim “I heard it first.”
+        </p>
+        <div class="music-card-chip-row">
+          <span class="music-chip">Demos</span>
+          <span class="music-chip">Day ones</span>
+        </div>
+        <div class="music-card-link">
+          <a
+            href="https://soundcloud.com/dominique-smith-892170035?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span>↗</span>
+            <span>Open SoundCloud</span>
+          </a>
+        </div>
+      </article>
     </div>
   </div>
 </section>

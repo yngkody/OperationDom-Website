@@ -453,20 +453,19 @@
   padding: 2px;
 }
 
-/* taller, bigger frame */
 .hero-slide-frame {
   border: 2px solid var(--border-strong);
   background: #000;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
 }
 
-/* let the image define the height so it isn't cropped */
 .hero-slide-frame img {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;  /* show more of her face / head */
 }
-
 
 
 

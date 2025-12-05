@@ -457,15 +457,17 @@
 .hero-slide-frame {
   border: 2px solid var(--border-strong);
   background: #000;
-  aspect-ratio: 4 / 3;   /* nice tall viewer */
   overflow: hidden;
 }
 
+/* let the image define the height so it isn't cropped */
 .hero-slide-frame img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
 }
+
+
 
 
     .hero-slider-caption {

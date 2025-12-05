@@ -4,51 +4,54 @@
   <meta charset="UTF-8" />
   <title>OperationDom – Official Site</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Anton&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Fonts (bold, sexy, still readable) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
     :root {
-      --bg-pink: #ffd6ea;        /* hero */
-      --bg-soft-pink: #ffe9f4;   /* booking */
-      --bg-softest-pink: #fff7fc;/* services */
-      --bg-soft-blue: #e4f1ff;   /* performance */
-      --bg-lilac: #f3e7ff;       /* quotes */
+      --bg-deep: #020617;        /* page background: near black navy */
+      --bg-hero: #020617;
+      --bg-hero-glow: #1d4ed8;   /* deep royal blue */
+      --bg-panel: #050816;       /* section panels */
+      --bg-panel-alt: #020b2a;   /* alt sections */
 
-      --panel: #ffffff;
-      --ink: #1b1020;
-      --muted-ink: #4a384f;
+      --ink: #e5e7eb;            /* primary text */
+      --muted-ink: #9ca3af;      /* secondary text */
 
-      --accent-pink: #ff4fa0;
-      --accent-pink-soft: #ff8cc4;
-      --accent-blue: #3b82f6;
-      --accent-lilac: #a855f7;
-      --accent-yellow: #facc15;
+      --accent-electric: #60a5fa;  /* bright blue */
+      --accent-hyper: #fb3796;     /* neon pink */
+      --accent-ice: #4f46e5;       /* indigo */
 
-      --border-strong: #1b1020;
-      --border-soft: #c08aa9;
+      --border-strong: #1f2937;
+      --border-bright: #60a5fa;
 
-      --shadow-strong: 0 8px 0 rgba(27,16,32,0.7);
-      --shadow-soft: 0 5px 0 rgba(192,138,169,0.55);
+      --shadow-strong: 0 18px 45px rgba(15, 23, 42, 0.85);
+
+      --radius-none: 0;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+
+      --nav-height: 76px;
+      --max-width: 1120px;
     }
 
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
     }
 
     body {
-      background-color: var(--bg-pink);
+      margin: 0;
+      font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top center, #0b1735 0, #020617 48%, #000 100%);
       color: var(--ink);
-      font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden; /* no sideways scroll */
+      -webkit-font-smoothing: antialiased;
     }
 
     img {
@@ -56,2153 +59,1287 @@
       display: block;
     }
 
-    h1, h2, h3 {
-      font-family: "Anton", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink);
-    }
-
-    p {
-      font-weight: 700;
-      color: var(--ink);
-    }
-
     a {
       color: inherit;
+      text-decoration: none;
     }
 
-    /* ============== HERO ============== */
+    /* ========== LAYOUT WRAPPER ========== */
+    .page {
+      min-height: 100vh;
+      color: var(--ink);
+    }
 
-    .hero {
+    .page-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 20px 64px;
+    }
+
+    /* ========== NAVBAR ========== */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(2, 6, 23, 0.85),
+        rgba(2, 6, 23, 0.6),
+        transparent
+      );
+      border-bottom: 1px solid rgba(31, 41, 55, 0.6);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      gap: 24px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      letter-spacing: 0.08em;
+      font-size: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .nav-logo-main {
+      font-family: "Anton", system-ui, sans-serif;
+      font-size: 18px;
+      letter-spacing: 0.16em;
+    }
+
+    .nav-logo-dot {
+      width: 7px;
+      height: 7px;
+      background: radial-gradient(circle at 30% 30%, #fecaca 0, #fb3796 40%, #4f46e5 100%);
+      transform: rotate(45deg);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-links a {
       position: relative;
-      padding: 20px 5vw 40px;
-      background-color: var(--bg-pink);
+      padding: 2px 0;
+      font-weight: 600;
+      color: var(--muted-ink);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent-hyper), var(--accent-electric));
+      transition: width 0.18s ease-out;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-book-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: linear-gradient(
+        135deg,
+        var(--accent-hyper),
+        var(--accent-electric)
+      );
+      color: #0b1020;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 11px;
+      border-radius: var(--radius-none);
+      border: 1px solid #f9a8d4;
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.9), var(--shadow-strong);
+      transform: skewX(-6deg);
+      position: relative;
       overflow: hidden;
     }
 
-    .hero-nav {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 26px;
-      font-family: "Shrikhand", system-ui;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 16px;
+    .nav-book-btn span {
+      transform: skewX(6deg);
     }
 
-    .hero-nav a {
-      text-decoration: none;
-      color: var(--ink);
-      border-bottom: 2px solid transparent;
-      padding-bottom: 2px;
-    }
-
-    .hero-nav a:hover {
-      border-bottom-color: var(--ink);
-    }
-.hero-nav-wrap {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* base heart shape – outline only */
-.nav-heart {
-  position: absolute;
-  width: 18px;
-  height: 16px;
-  transform: rotate(-45deg);
-  border: 2px solid var(--accent-pink);
-  border-top: none;
-  border-right: none;
-  background: var(--bg-pink); /* same as hero bg so it looks “unfilled” */
-  box-sizing: border-box;
-}
-
-/* round lobes */
-.nav-heart::before,
-.nav-heart::after {
-  content: "";
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border: 2px solid var(--accent-pink);
-  border-radius: 50%;
-  background: var(--bg-pink); /* matches bg, so appears hollow */
-  box-sizing: border-box;
-}
-
-/* left lobe */
-.nav-heart::before {
-  top: -6px;
-  left: -2px;
-}
-
-/* right lobe */
-.nav-heart::after {
-  top: -6px;
-  right: -2px;
-}
-
-/* placement: keep them inside the width so no sideways scroll */
-.nav-heart--left {
-  top: -8px;
-  left: 8%;
-}
-
-.nav-heart--right {
-  top: -8px;
-  right: 8%;
-}
-
-/* on smaller screens, pull them in tighter so they don’t cause overflow */
-@media (max-width: 720px) {
-  .nav-heart--left {
-    left: 14%;
-  }
-  .nav-heart--right {
-    right: 14%;
-  }
-}
-
-
-    .hero-top-right {
+    .nav-book-btn::before {
+      content: "";
       position: absolute;
-      top: 18px;
-      right: 5vw;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-weight: 800;
-      z-index: 2;
+      inset: 0;
+      background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.25) 37%,
+        transparent 70%
+      );
+      opacity: 0;
+      transform: translateX(-40%);
+      transition: opacity 0.18s ease-out, transform 0.18s ease-out;
     }
 
-    .hero-top-right a {
-      text-decoration: none;
-      color: var(--ink);
+    .nav-book-btn:hover::before {
+      opacity: 1;
+      transform: translateX(0);
     }
 
-    .hero-main {
+    .nav-book-btn-icon {
+      font-size: 16px;
+    }
+
+    /* ========== HERO ========== */
+    .hero {
       position: relative;
-      z-index: 1;
-      margin-top: 30px;
+      padding: 40px 0 56px;
+    }
+
+    .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.05fr);
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
       gap: 32px;
       align-items: center;
     }
 
-    .hero-copy {
-      max-width: 560px;
+    .hero-left {
+      position: relative;
+      z-index: 2;
     }
 
-    .hero-tagline {
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      font-weight: 800;
-      margin-bottom: 12px;
-    }
-
-    .hero-headline {
+    .hero-tag {
       display: inline-flex;
-      flex-wrap: wrap;
-      gap: 0.25em;
-      font-size: clamp(2rem, 4.5vw, 3.2rem);
-      margin-bottom: 6px;
-    }
-
-    .hero-headline-main {
-      color: var(--ink);
-    }
-
-    .hero-headline-dom {
-  color: var(--panel); /* soft cute lilac */
-}
-
-
-    .hero-script-overlay {
-      font-size: 0.85rem;
-      letter-spacing: 0.2em;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: var(--radius-none);
+      border: 1px solid rgba(156, 163, 175, 0.4);
+      background: radial-gradient(circle at top left, #0b1639 0, #020617 60%);
+      font-size: 11px;
       text-transform: uppercase;
-      font-weight: 800;
+      letter-spacing: 0.16em;
+      color: var(--muted-ink);
       margin-bottom: 16px;
-      color: var(--accent-pink);
     }
 
-    .hero-subhead {
-      font-size: 0.98rem;
-      line-height: 1.7;
+    .hero-tag-pip {
+      width: 20px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-hyper), var(--accent-electric));
+    }
+
+    .hero-title {
+      font-size: clamp(38px, 5vw, 52px);
+      line-height: 0.9;
+      text-transform: uppercase;
+      margin: 0 0 10px;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-title span:first-child {
+      font-family: "Anton", system-ui, sans-serif;
+      display: block;
+      font-size: 0.96em;
+    }
+
+    .hero-title span:last-child {
+      font-family: "Anton", system-ui, sans-serif;
+      font-size: 1.16em;
+      background: linear-gradient(
+        90deg,
+        var(--accent-electric),
+        var(--accent-hyper)
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-script {
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.4em;
+      font-size: 10px;
+      color: var(--muted-ink);
+      margin-bottom: 18px;
+    }
+
+    .hero-line {
+      font-size: 16px;
+      font-weight: 600;
+      color: #e5e7eb;
       margin-bottom: 10px;
     }
 
-    .hero-subhead strong {
-      font-weight: 800;
+    .hero-sub {
+      font-size: 14px;
+      color: var(--muted-ink);
+      max-width: 440px;
+      margin-bottom: 26px;
     }
 
-    .hero-body-copy {
-      font-size: 0.95rem;
-      line-height: 1.7;
-      margin-bottom: 14px;
-    }
-
-    .hero-detail {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      margin-bottom: 20px;
+    .hero-sub strong {
+      color: #f9a8d4;
+      font-weight: 700;
     }
 
     .hero-ctas {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px 20px;
+      gap: 14px;
       align-items: center;
-      margin-bottom: 18px;
-    }
-
-    .hero-cta-group {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+      margin-bottom: 22px;
     }
 
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 12px 24px;
-      font-family: "Plus Jakarta Sans", system-ui;
-      font-weight: 800;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
       cursor: pointer;
-      border: 2px solid var(--border-strong);
-      background: transparent;
-      color: var(--ink);
-      border-radius: 0;
+      border: none;
       text-decoration: none;
-      transition: transform 0.12s ease-out, background 0.12s ease-out, border-color 0.12s ease-out;
+      font-family: inherit;
     }
 
     .btn-primary {
-      background: #ffffff;
-      border-color: #ffffff;
-      box-shadow: none; /* no shadow */
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      background: linear-gradient(
+        135deg,
+        var(--accent-hyper),
+        var(--accent-electric)
+      );
+      color: #020617;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 11px;
+      border-radius: var(--radius-none);
+      border: 1px solid #fda4af;
+      box-shadow: var(--shadow-strong);
+      transform: skewX(-5deg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary span {
+      transform: skewX(5deg);
     }
 
     .btn-primary:hover {
-      transform: translateY(-2px);
-      background: #ffffff;
-      border-color: var(--accent-pink);
+      filter: brightness(1.1);
+    }
+
+    .btn-primary .btn-icon {
+      font-size: 17px;
     }
 
     .btn-ghost {
-      background: transparent;
-      border-color: var(--border-strong);
-      box-shadow: none;
-    }
-
-    .btn-ghost:hover {
-      transform: translateY(-2px);
-      border-color: var(--accent-pink);
-    }
-
-    .btn-caption {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--muted-ink);
-    }
-
-    .btn-arrow {
-      display: inline-block;
-      transform: translateY(-1px);
-      transition: transform 0.12s ease-out;
-    }
-
-    .btn-primary:hover .btn-arrow,
-    .btn-ghost:hover .btn-arrow {
-      transform: translate(3px, -1px);
-    }
-
-    /* HERO RIGHT: CIRCLE + SLIDER WRAP */
-
-    .hero-visual {
-      display: flex;
-      flex-direction: column;
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 20px;
-      justify-self: center;
-      width: 100%;
-    }
-
-    /* CIRCLE */
-
-    .hero-heart-wrap {
-      position: relative;
-      width: min(320px, 75vw);
-      aspect-ratio: 1 / 1; /* perfect circle container */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: transparent;
-      border: none;
-      box-shadow: none;
-      padding: 0;
-      margin: 0 auto;
-      max-width: 100%;
-    }
-
-    .hero-heart-photo {
-      width: 78%;
-      height: 78%;
-      border-radius: 50%;
-      overflow: hidden;
-      background-image: url("dom-hero.jpeg");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-
-    .hero-heart-tag {
-      position: absolute;
-      bottom: -26px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #000;
-      color: #fff;
-      padding: 3px 10px;
-      font-size: 0.7rem;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-none);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: radial-gradient(circle at top left, rgba(37, 99, 235, 0.25), transparent 55%);
+      color: var(--ink);
+      font-size: 11px;
+      font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      font-weight: 800;
     }
 
-    /* slider */
-
- .hero-slider {
-  width: 100%;
-  max-width: 720px;                 /* bigger overall */
-  border: 2px solid var(--border-strong);
-  background: #ffe9f4;
-  padding: 16px;
-  box-shadow: var(--shadow-strong);
-}
-
-.hero-slider-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-weight: 800;
-  color: var(--muted-ink);
-}
-
-.hero-slider-controls {
-  display: flex;
-  gap: 6px;
-}
-
-.slider-btn {
-  width: 24px;
-  height: 24px;
-  border: 2px solid var(--border-strong);
-  background: #fff;
-  font-size: 0.9rem;
-  line-height: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  border-radius: 0;
-  padding: 0;
-}
-
-/* viewport keeps the visible window */
-.hero-slider-viewport {
-  overflow: hidden;
-  width: 100%;
-}
-
-/* track holds all slides in a row */
-.hero-slider-track {
-  display: flex;
-  transition: transform 0.3s ease-out;
-}
-
-/* each slide is exactly one full viewport wide */
-.hero-slide {
-  flex: 0 0 100%;
-  padding: 2px;
-}
-
-.hero-slide-frame {
-  border: 2px solid var(--border-strong);
-  background: #000;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-}
-
-.hero-slide-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;  /* show more of her face / head */
-}
-
-
-
-    .hero-slider-caption {
-      margin-top: 6px;
-      font-size: 0.75rem;
+    .hero-caption {
+      font-size: 11px;
+      color: var(--muted-ink);
       text-transform: uppercase;
       letter-spacing: 0.12em;
+    }
+
+    .hero-right {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-photo-shell {
+      position: relative;
+      width: 100%;
+      max-width: 380px;
+      margin-left: auto;
+      filter: drop-shadow(0 30px 60px rgba(15, 23, 42, 0.9));
+    }
+
+    .hero-photo-bg {
+      position: absolute;
+      inset: -14px -22px -26px -18px;
+      background:
+        linear-gradient(135deg, #0b1120 0, #020617 50%, #0b1120 100%),
+        radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.8), transparent 55%);
+      border-radius: var(--radius-none);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      clip-path: polygon(0 0, 86% 0, 100% 20%, 100% 100%, 12% 100%, 0 82%);
+    }
+
+    .hero-photo-inner {
+      position: relative;
+      overflow: hidden;
+      clip-path: polygon(0 0, 84% 0, 100% 18%, 100% 100%, 12% 100%, 0 80%);
+    }
+
+    .hero-photo-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.03);
+    }
+
+    .hero-photo-label {
+      position: absolute;
+      left: -14px;
+      bottom: 18px;
+      padding: 6px 10px 6px 16px;
+      background: #020617;
+      color: var(--ink);
+      border-radius: var(--radius-none);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-photo-label-bar {
+      width: 14px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent-hyper), var(--accent-electric));
+    }
+
+    .hero-badges {
+      margin-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .hero-badge {
+      padding: 6px 10px;
+      border-radius: var(--radius-none);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.9);
       color: var(--muted-ink);
     }
 
-    /* bow connector between sections */
-
-    .section-connector {
-      position: relative;
-      padding: 0 5vw;
-      background: transparent;
+    .hero-badge--hot {
+      border-color: #fb3796;
+      color: #fecaca;
     }
 
-    .section-connector-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      position: relative;
-      display: flex;
+    /* ========== SCROLL RIBBON ========== */
+    .scroll-ribbon {
+      margin-bottom: 40px;
+    }
+
+    .scroll-ribbon-inner {
+      border-top: 1px solid rgba(31, 41, 55, 0.8);
+      border-bottom: 1px solid rgba(31, 41, 55, 0.8);
+      padding: 10px 0;
+      overflow-x: auto;
+      white-space: nowrap;
+      scrollbar-width: none;
+    }
+
+    .scroll-ribbon-inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .scroll-pill {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      padding: 18px 0;
+      gap: 10px;
+      padding: 7px 14px;
+      margin-right: 10px;
+      border-radius: var(--radius-none);
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted-ink);
     }
 
-    .section-connector-inner::before,
-    .section-connector-inner::after {
-      content: "";
-      flex: 1;
-      height: 2px;
-      background: #ffffff;
-      opacity: 0.9;
+    .scroll-pill-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      background: conic-gradient(
+        from 190deg,
+        #fb3796,
+        #fde68a,
+        #60a5fa,
+        #fb3796
+      );
     }
 
-    .section-bow {
-      width: 36px;
-      height: 24px;
-      margin: 0 14px;
-      position: relative;
-    }
-
-    .section-bow::before,
-    .section-bow::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      width: 18px;
-      height: 14px;
-      border: 2px solid #ffffff;
-      border-radius: 50%;
-      transform: translateY(-50%);
-    }
-
-    .section-bow::before {
-      left: 0;
-      border-right: none;
-    }
-
-    .section-bow::after {
-      right: 0;
-      border-left: none;
-    }
-
-    .section-bow span {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 6px;
-      height: 12px;
-      background: #ffffff;
-      transform: translate(-50%, -50%);
-      border-radius: 4px;
-    }
-
-    /* ============== SECTIONS WRAPPER STYLES ============== */
-
+    /* ========== SECTION BASE ========== */
     .section {
-      padding: 40px 5vw;
+      margin-top: 56px;
     }
 
     .section-inner {
-      max-width: 1100px;
-      margin: 0 auto;
+      background: linear-gradient(145deg, rgba(2, 6, 23, 0.92), rgba(15, 23, 42, 0.98));
+      border-radius: var(--radius-none);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      box-shadow: var(--shadow-strong);
+      padding: 26px 24px 26px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .section-tag {
-      font-family: "Anton", system-ui;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      margin-bottom: 8px;
-      color: var(--ink);
+    .section-inner::before {
+      content: "";
+      position: absolute;
+      inset: -60%;
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.18), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(251, 55, 150, 0.12), transparent 60%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .section-content {
+      position: relative;
+      z-index: 1;
     }
 
     .section-header {
-      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 22px;
+      align-items: baseline;
+      flex-wrap: wrap;
     }
 
-    .section-header p {
-      margin-top: 8px;
-      font-size: 0.96rem;
-      line-height: 1.7;
-      color: var(--ink);
+    .section-title-block {
+      max-width: 400px;
     }
 
-    .section-header .highlight {
-      color: var(--accent-pink);
-      font-weight: 800;
-    }
-
-    /* QUOTES SECTION */
-
-    .section--quotes {
-      background: var(--bg-lilac);
-      border-top: 2px solid var(--border-soft);
-    }
-
-    .quotes-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 18px;
-    }
-
-    .quote-bubble {
-      position: relative;
-      background: #ffffff;
-      border-radius: 24px;
-      padding: 14px 16px 18px;
-      border: 2px solid var(--border-soft);
-      box-shadow: var(--shadow-soft);
-      font-size: 0.88rem;
-      line-height: 1.7;
-    }
-
-    .quote-bubble::before,
-    .quote-bubble::after {
-      content: "";
-      position: absolute;
-      background: #ffffff;
-      border: 2px solid var(--border-soft);
-      border-radius: 50%;
-    }
-
-    .quote-bubble::before {
-      width: 14px;
-      height: 14px;
-      bottom: -10px;
-      left: 18px;
-    }
-
-    .quote-bubble::after {
-      width: 8px;
-      height: 8px;
-      bottom: -18px;
-      left: 24px;
-    }
-
-    .quote-label {
-      font-size: 0.75rem;
+    .section-tag {
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      font-weight: 800;
       color: var(--muted-ink);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
-    /* PERFORMANCE / ABOUT */
-
-    .section--performance {
-      background-color: var(--bg-soft-blue);
-      border-top: 2px solid var(--border-soft);
+    .section-title {
+      font-size: 22px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
     }
 
-    .performance-layout {
+    .section-sub {
+      font-size: 13px;
+      color: var(--muted-ink);
+      max-width: 420px;
+    }
+
+    .section-cta-link {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #bfdbfe;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid rgba(129, 140, 248, 0.7);
+      padding-bottom: 4px;
+    }
+
+    .section-cta-link span:last-child {
+      font-size: 14px;
+    }
+
+    /* ========== PERFORMANCE / MEDIA ========== */
+    .media-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .media-card {
+      border-radius: var(--radius-none);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.96);
+      padding: 12px 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .media-thumb {
+      position: relative;
+      aspect-ratio: 9 / 16;
+      border-radius: 2px;
+      overflow: hidden;
+      background: radial-gradient(circle at center, #1f2937, #020617);
+    }
+
+    .media-thumb::after {
+      content: "▶";
+      position: absolute;
+      right: 10px;
+      bottom: 8px;
+      font-size: 18px;
+      color: #e5e7eb;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.9);
+    }
+
+    .media-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted-ink);
+    }
+
+    .media-title {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .media-meta {
+      font-size: 11px;
+      color: var(--muted-ink);
+    }
+
+    .media-card:hover {
+      border-color: var(--accent-electric);
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
+    }
+
+    /* ========== SERVICES ========== */
+    .section--services .section-inner {
+      background: linear-gradient(135deg, #020617, #020b2a);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .service-card {
+      border-radius: var(--radius-none);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.98);
+      padding: 16px 14px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: -60px;
+      background: conic-gradient(
+        from 210deg,
+        rgba(96, 165, 250, 0.18),
+        transparent,
+        rgba(251, 55, 150, 0.16),
+        transparent
+      );
+      opacity: 0.8;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .service-icon {
+      font-size: 16px;
+      margin-bottom: 4px;
+      color: #bfdbfe;
+    }
+
+    .service-title {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .service-text {
+      font-size: 13px;
+      color: var(--muted-ink);
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .service-tag {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      border-radius: var(--radius-none);
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      padding: 4px 8px;
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .service-card-cta {
+      margin-top: 10px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #bfdbfe;
+    }
+
+    /* ========== BOOKING ========== */
+    .section--booking .section-inner {
+      background: radial-gradient(circle at top left, #111827, #020617 45%, #020617 100%);
+    }
+
+    .booking-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
       gap: 24px;
       align-items: flex-start;
     }
 
-    .video-wrapper {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      background: #000;
-      border: 2px solid var(--border-strong);
-      box-shadow: var(--shadow-strong);
+    .booking-copy {
+      font-size: 13px;
+      color: var(--muted-ink);
+      max-width: 420px;
     }
 
-    .video-wrapper iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    .insta-panel {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .insta-header {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .insta-handle {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-weight: 800;
-    }
-
-    .insta-link {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
+    .booking-copy strong {
+      color: #f9a8d4;
       font-weight: 700;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    .insta-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 6px;
-    }
-
-    .insta-tile {
-  position: relative;
-  width: 100%;
-  padding-bottom: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border: 2px solid var(--border-strong);
-  box-shadow: var(--shadow-soft);
-  overflow: hidden;
-  text-decoration: none;
-}
-
-
-    .insta-note {
-      font-size: 0.82rem;
-      line-height: 1.6;
-      color: var(--muted-ink);
-    }
-
-    /* ============== SERVICES SECTION ============== */
-
-    .section--services {
-      background: var(--bg-softest-pink);
-      border-top: 2px solid var(--border-soft);
-    }
-
-    .services-grid {
-      margin-top: 24px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .service-card {
-      position: relative;
-      background: var(--panel);
-      border: 2px solid var(--border-strong);
-      box-shadow: var(--shadow-soft);
-      padding: 16px 16px 18px;
-      min-height: 220px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .service-color-bar {
-      height: 6px;
-      width: 100%;
-      margin: -16px -16px 12px;
-      border-bottom: 2px solid var(--border-strong);
-    }
-
-    .service-card--pink .service-color-bar {
-      background: linear-gradient(90deg, #ffe4f3, #ffb6da);
-    }
-
-    .service-card--blue .service-color-bar {
-      background: linear-gradient(90deg, #e0f0ff, #a9c9ff);
-    }
-
-    .service-card--lilac .service-color-bar {
-      background: linear-gradient(90deg, #f3e7ff, #d3b8ff);
-    }
-
-    .service-card--yellow .service-color-bar {
-      background: linear-gradient(90deg, #fff7d1, #ffe38b);
-    }
-
-    .service-card--softpink .service-color-bar {
-      background: linear-gradient(90deg, #ffe9f4, #ffc7e3);
-    }
-
-    .service-card--mixed .service-color-bar {
-      background: linear-gradient(90deg, #ffe4f3, #e0f0ff, #fff7d1);
-    }
-
-    .service-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-weight: 800;
-      color: var(--muted-ink);
-    }
-
-    .service-card h3 {
-      margin-top: 4px;
-      margin-bottom: 4px;
-      font-size: 1.05rem;
-    }
-
-    .service-card p {
-      font-size: 0.9rem;
-      line-height: 1.6;
-      font-weight: 600;
-    }
-
-    .service-pill {
-      display: inline-flex;
-      align-self: flex-start;
-      margin-top: auto;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border-soft);
-      background: #fff7fc;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-weight: 800;
-      color: var(--muted-ink);
-    }
-
-    /* ============== BOOKING SECTION ============== */
-
-    .section--booking {
-      background: var(--bg-soft-pink);
-      border-top: 2px solid var(--border-soft);
-    }
-
-    .booking-grid {
-      margin-top: 24px;
-      display: grid;
-      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-      gap: 28px;
-      align-items: flex-start;
-    }
-
-    .booking-copy p {
-      font-size: 0.92rem;
-      line-height: 1.7;
-      margin-bottom: 10px;
-    }
-
-    .booking-copy ul {
-      margin: 10px 0 12px;
-      padding-left: 18px;
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-
-    .booking-copy li {
-      margin-bottom: 4px;
     }
 
     .booking-note {
-      margin-top: 10px;
-      font-size: 0.8rem;
-      letter-spacing: 0.16em;
+      font-size: 11px;
       text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #9ca3af;
+      margin-top: 14px;
+    }
+
+    .booking-note span {
+      color: #fbbf24;
     }
 
     .booking-form {
-      background: var(--panel);
-      border: 2px solid var(--border-strong);
-      box-shadow: var(--shadow-strong);
-      padding: 20px 18px 22px;
-      width: 100%;
+      border-radius: var(--radius-none);
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      background: rgba(15, 23, 42, 0.98);
+      padding: 18px 16px 16px;
+      display: grid;
+      gap: 10px;
+      font-size: 12px;
     }
 
     .booking-row {
-      display: flex;
-      gap: 14px;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
     }
 
-    .booking-row--three .field {
-      flex: 1 1 0;
-      min-width: 0;
-    }
-
-    .field {
-      flex: 1;
-      min-width: 0;
+    .form-field {
       display: flex;
       flex-direction: column;
       gap: 4px;
     }
 
-    .field-label {
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
+    .form-label {
+      font-size: 11px;
       text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #9ca3af;
     }
 
-    .booking-input,
-    .booking-select,
-    .booking-textarea {
-      width: 100%;
-      border: 2px solid var(--border-soft);
-      background: #ffffff;
-      padding: 8px 10px;
+    .form-input,
+    .form-textarea,
+    .form-select {
+      background: #020617;
+      border-radius: var(--radius-none);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      padding: 8px 9px;
       font-family: inherit;
-      font-size: 0.9rem;
-      border-radius: 0;
+      font-size: 12px;
+      color: #e5e7eb;
       outline: none;
-      color: var(--ink);
     }
 
-    .booking-input::placeholder,
-    .booking-textarea::placeholder {
-      color: #a58ca5;
-      font-weight: 500;
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      border-color: var(--accent-electric);
+      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.4);
     }
 
-    .booking-input:focus,
-    .booking-select:focus,
-    .booking-textarea:focus {
-      border-color: var(--accent-pink);
-    }
-
-    .booking-textarea {
-      min-height: 110px;
+    .form-textarea {
       resize: vertical;
+      min-height: 80px;
+      max-height: 180px;
     }
 
-    .services-checklist {
-      margin: 10px 0 12px;
-      border-top: 1px dashed var(--border-soft);
-      padding-top: 10px;
-    }
-
-    .services-checklist-title {
-      font-size: 0.78rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      margin-bottom: 8px;
-    }
-
-    .services-checklist-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 6px 18px;
-    }
-
-    .service-check {
+    .checkbox-row {
       display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .checkbox-pill {
+      display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 0.85rem;
-      cursor: pointer;
+      border-radius: var(--radius-none);
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      padding: 6px 10px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.96);
     }
 
-    .service-check input {
-      accent-color: var(--accent-pink);
-    }
-
-    .service-check span {
-      font-weight: 600;
+    .checkbox-pill input {
+      accent-color: var(--accent-electric);
     }
 
     .booking-submit-row {
-      margin-top: 14px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 10px 18px;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: linear-gradient(135deg, var(--accent-hyper), var(--accent-electric));
+      color: #020617;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      border-radius: var(--radius-none);
+      border: 1px solid #fda4af;
+      cursor: pointer;
     }
 
     .booking-footnote {
-      font-size: 0.8rem;
+      font-size: 11px;
       color: var(--muted-ink);
-      max-width: 260px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
     }
 
-    .booking-footnote a {
-      text-decoration: underline;
-      text-underline-offset: 2px;
+    /* ========== FOOTER ========== */
+    .footer {
+      max-width: var(--max-width);
+      margin: 44px auto 0;
+      padding: 20px;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      font-size: 11px;
+      color: var(--muted-ink);
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
     }
 
-    /* ============== RESPONSIVE ============== */
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
 
-    @media (max-width: 960px) {
-      .hero-main {
-        grid-template-columns: 1fr;
+    .footer-links a {
+      color: var(--muted-ink);
+    }
+
+    .footer-links a:hover {
+      color: var(--ink);
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 880px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 26px;
       }
 
-      .hero-visual {
-        order: -1;  /* image first */
+      /* put image first on mobile */
+      .hero-right {
+        order: -1;
       }
 
-      .hero-copy {
-        order: 2;   /* text after */
+      .hero {
+        padding-top: 30px;
       }
 
-      .hero-top-right {
-        position: static;
-        justify-content: flex-end;
-        margin-top: 10px;
-      }
-
-      .performance-layout {
-        grid-template-columns: 1fr;
+      .booking-layout {
+        grid-template-columns: minmax(0, 1fr);
       }
     }
 
     @media (max-width: 720px) {
-      .hero {
-        padding-inline: 4vw;
-      }
-
-      .hero-main {
-        gap: 24px;
-      }
-
-      .quotes-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
+      .media-grid,
       .services-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
       }
 
-      .booking-row {
-        flex-direction: column;
-      }
-
-      .services-checklist-grid {
-        grid-template-columns: 1fr;
-      }
-
-      /* booking: text above, form full-width */
-      .booking-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
-      .booking-copy {
-        order: -1;
-      }
-
-      .booking-form {
-        width: 100%;
+      .section-inner {
+        padding: 22px 18px 20px;
       }
     }
 
-    @media (max-width: 540px) {
-      .hero-nav {
-        gap: 16px;
-        font-size: 0.8rem;
+    @media (max-width: 520px) {
+      .nav-inner {
+        gap: 12px;
       }
 
-      .hero-headline {
-        font-size: 1.9rem;
+      .nav-links {
+        display: none;
       }
 
-      .quotes-grid {
-        grid-template-columns: 1fr;
+      .hero-title {
+        font-size: 34px;
+      }
+
+      .hero-photo-shell {
+        margin-inline: auto;
+      }
+
+      .scroll-pill {
+        font-size: 10px;
       }
     }
-
-    .hero-cute-cloud {
-  position: relative;
-  margin-bottom: 14px;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.hero-cute-cloud span {
-  position: relative;
-  padding: 10px 18px;
-  background: #fff8ff; /* soft pastel cloud */
-  border: 2px solid var(--border-strong);
-  color: var(--accent-pink);  /* cute pink text */
-  font-family: "Shrikhand", cursive;
-  font-size: 0.95rem;
-  border-radius: 24px;
-  text-align: center;
-  box-shadow: var(--shadow-soft);
-}
-
-/* little bubble tail */
-.hero-cute-cloud span::after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 14px;
-  height: 14px;
-  background: #fff8ff;
-  border: 2px solid var(--border-strong);
-  border-top: none;
-  border-left: none;
-  transform: translateX(-50%) rotate(45deg);
-  box-shadow: var(--shadow-soft);
-}
-    /* ============== MUSIC SECTION ============== */
-
-.section--music {
-  background: var(--bg-softest-pink);
-  border-top: 2px solid var(--border-soft);
-  position: relative;
-  overflow: hidden;
-}
-
-/* faint background doodles */
-.section--music::before,
-.section--music::after {
-  content: "";
-  position: absolute;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  background: radial-gradient(circle at center, #ffe9f4 0, transparent 65%);
-  opacity: 0.7;
-  pointer-events: none;
-}
-
-.section--music::before {
-  top: -60px;
-  left: -40px;
-}
-
-.section--music::after {
-  bottom: -80px;
-  right: -40px;
-}
-
-.music-header {
-  position: relative;
-  z-index: 1;
-}
-
-.music-tag-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border-radius: 999px;
-  border: 1px solid var(--border-soft);
-  background: #fff8ff;
-  font-size: 0.75rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-weight: 800;
-  margin-bottom: 10px;
-}
-
-.music-tag-pill span {
-  font-family: "Shrikhand", cursive;
-  font-size: 0.9rem;
-}
-
-/* “Green Light” highlight card */
-
-.single-highlight {
-  position: relative;
-  z-index: 1;
-  margin-top: 20px;
-  margin-bottom: 26px;
-  padding: 18px 18px 20px;
-  border: 2px solid var(--border-strong);
-  background: #ffffff;
-  box-shadow: var(--shadow-soft);
-  display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-  gap: 18px;
-}
-
-.single-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: #e5fbe0;
-  border: 1px solid #84cc16;
-  font-size: 0.7rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-weight: 800;
-  margin-bottom: 8px;
-}
-
-.single-tag-emoji {
-  font-size: 0.9rem;
-}
-.single-art {
-  position: relative;
-  border-radius: 18px;
-  overflow: hidden;
-  border: 2px solid var(--border-strong);
-  background: linear-gradient(135deg, #bbf7d0, #fef9c3, #fecaca);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px;
-}
-
-.single-art-inner {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: 14px;
-  overflow: hidden;
-  border: 2px solid var(--border-strong);
-}
-
-.single-art-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* overlay container */
-.single-art-overlay {
-  position: absolute;
-  bottom: 10px;         /* moves the text upward */
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  color: #fff;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.4);
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-/* cute label */
-.single-art-label {
-  font-size: 0.7rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-weight: 800;
-  background: rgba(0,0,0,0.35);
-  padding: 4px 8px;
-  border-radius: 999px;
-  display: inline-block;
-}
-
-/* main title */
-.single-art-title {
-  font-family: "Shrikhand", cursive;
-  font-size: 1.1rem;
-}
-
-/* sub */
-.single-art-sub {
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  font-weight: 700;
-  opacity: 0.9;
-}
-
-
-
-
-.single-art-label {
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-weight: 800;
-  margin-bottom: 6px;
-}
-
-.single-art-title {
-  font-family: "Shrikhand", cursive;
-  font-size: 1rem;
-  margin-bottom: 4px;
-}
-
-.single-art-sub {
-  font-size: 0.7rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-/* little radiating notes */
-.single-art-inner::before,
-.single-art-inner::after {
-  content: "✦";
-  position: absolute;
-  font-size: 0.9rem;
-  color: var(--accent-pink);
-}
-
-.single-art-inner::before {
-  top: 10px;
-  left: 14px;
-}
-
-.single-art-inner::after {
-  bottom: 10px;
-  right: 14px;
-}
-
-.single-copy {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 8px;
-}
-
-.single-copy h3 {
-  font-size: 1.1rem;
-  margin: 0;
-}
-
-.single-copy p {
-  font-size: 0.9rem;
-  line-height: 1.7;
-  font-weight: 600;
-}
-
-.single-meta {
-  font-size: 0.78rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted-ink);
-}
-
-.single-actions {
-  margin-top: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.btn-music {
-  padding: 8px 16px;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-weight: 800;
-  border-radius: 999px;
-  border: 2px solid var(--border-strong);
-  background: #000;
-  color: #fff;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  text-decoration: none;
-}
-
-.btn-music:hover {
-  transform: translateY(-1px);
-}
-
-.btn-music span {
-  font-size: 0.9rem;
-}
-
-/* platform grid */
-
-.music-platform-grid {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  margin-top: 8px;
-}
-
-.music-card {
-  position: relative;
-  padding: 16px 14px 18px;
-  border-radius: 18px;
-  border: 2px solid var(--border-strong);
-  background: #ffffff;
-  box-shadow: var(--shadow-soft);
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.music-card::before {
-  content: "";
-  position: absolute;
-  top: -6px;
-  right: 16px;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  border: 2px solid var(--border-strong);
-  background: #ffe9f4;
-}
-
-.music-card::after {
-  content: "♡";
-  position: absolute;
-  top: -1px;
-  right: 21px;
-  font-size: 0.7rem;
-}
-
-.music-card-label {
-  font-size: 0.7rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-weight: 800;
-  color: var(--muted-ink);
-}
-
-.music-card-title {
-  font-family: "Shrikhand", cursive;
-  font-size: 1rem;
-}
-
-.music-card-desc {
-  font-size: 0.85rem;
-  line-height: 1.6;
-  font-weight: 600;
-}
-
-.music-card-chip-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 6px;
-}
-
-.music-chip {
-  font-size: 0.7rem;
-  padding: 4px 9px;
-  border-radius: 999px;
-  border: 1px solid var(--border-soft);
-  background: #fff7fc;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-weight: 700;
-}
-
-.music-card-link {
-  margin-top: 10px;
-}
-
-.music-card-link a {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.78rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-weight: 800;
-  text-decoration: none;
-  padding-bottom: 2px;
-  border-bottom: 2px solid var(--border-strong);
-}
-
-.music-card-link a:hover {
-  border-bottom-color: var(--accent-pink);
-}
-
-/* platform specific tints */
-
-.music-card--spotify {
-  background: linear-gradient(135deg, #dcfce7 0, #ffffff 55%);
-}
-
-.music-card--apple {
-  background: linear-gradient(135deg, #ffe4f3 0, #ffffff 55%);
-}
-
-.music-card--soundcloud {
-  background: linear-gradient(135deg, #ffedd5 0, #ffffff 55%);
-}
-
-/* responsive music section */
-
-@media (max-width: 880px) {
-  .single-highlight {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 720px) {
-  .music-platform-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-
   </style>
 </head>
 <body>
+  <div class="page">
+    <!-- ========== NAV ========== -->
+    <header class="nav">
+      <div class="nav-inner">
+        <div class="nav-logo">
+          <span class="nav-logo-dot"></span>
+          <span class="nav-logo-main">OPERATIONDOM</span>
+          <span>NYC</span>
+        </div>
 
-<!-- ========== HERO ========== -->
-<section class="hero" id="top">
-  <div class="hero-nav-wrap">
-    <nav class="hero-nav">
-      <a href="#performance">live</a>
-      <a href="#services">services</a>
-      <a href="#book">book dom</a>
-      <a href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer">instagram</a>
-    </nav>
+        <nav class="nav-links">
+          <a href="#performance">Performance</a>
+          <a href="#services">Services</a>
+          <a href="#book">Booking</a>
+          <a href="shop.html">Store</a>
+        </nav>
 
-   
+        <a href="#book" class="nav-book-btn">
+          <span>BOOK DOM</span>
+          <span class="nav-book-btn-icon">✕</span>
+        </a>
+      </div>
+    </header>
+
+    <main class="page-inner">
+      <!-- ========== HERO ========== -->
+      <section class="hero" id="top">
+        <div class="hero-grid">
+          <div class="hero-left">
+            <div class="hero-tag">
+              <span class="hero-tag-pip"></span>
+              <span>Vocalist · Performer · Muse</span>
+            </div>
+
+            <h1 class="hero-title">
+              <span>OPERATION</span>
+              <span>DOM</span>
+            </h1>
+
+            <div class="hero-script">LIVE · EDGY · DIVINE FEMININE</div>
+
+            <p class="hero-line">
+              Soul-dripping vocals. Runway energy. Stage presence that owns the room.
+            </p>
+            <p class="hero-sub">
+              OperationDom is where <strong>soul meets style</strong> — a fusion of raw emotion,
+              magnetic performance and luxury-level stagecraft for clubs, galas, and brand worlds.
+            </p>
+
+            <div class="hero-ctas">
+              <a href="#book" class="btn btn-primary">
+                <span>BOOK A SHOW</span>
+                <span class="btn-icon">↗</span>
+              </a>
+
+              <a href="#performance" class="btn btn-ghost">
+                <span>Watch a performance</span>
+                <span>▶</span>
+              </a>
+            </div>
+
+            <div class="hero-caption">
+              NYC-based · R&amp;B · Pop · Live band &amp; track-ready
+            </div>
+
+            <div class="hero-badges">
+              <div class="hero-badge hero-badge--hot">For: clubs &amp; ticketed shows</div>
+              <div class="hero-badge">Galas &amp; private events</div>
+              <div class="hero-badge">Studio sessions &amp; toplines</div>
+            </div>
+          </div>
+
+          <div class="hero-right">
+            <div class="hero-photo-shell">
+              <div class="hero-photo-bg"></div>
+              <div class="hero-photo-inner">
+                <!-- Update this src to your actual hero image path -->
+                <img src="images/dom-hero.png" alt="OperationDom performing live on stage">
+              </div>
+              <div class="hero-photo-label">
+                <span class="hero-photo-label-bar"></span>
+                <span>LIVE IN FULL EFFECT</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== RIBBON ========== -->
+      <section class="scroll-ribbon">
+        <div class="scroll-ribbon-inner">
+          <div class="scroll-pill">
+            <span class="scroll-pill-dot"></span>
+            <span>NYC-BASED</span>
+          </div>
+          <div class="scroll-pill">
+            <span class="scroll-pill-dot"></span>
+            <span>FULL BAND OR TRACK-ONLY</span>
+          </div>
+          <div class="scroll-pill">
+            <span class="scroll-pill-dot"></span>
+            <span>FESTIVALS · CLUBS · GALAS</span>
+          </div>
+          <div class="scroll-pill">
+            <span class="scroll-pill-dot"></span>
+            <span>STUDIO &amp; BRAND COLLABS</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== PERFORMANCE / MEDIA ========== -->
+      <section class="section" id="performance">
+        <div class="section-inner">
+          <div class="section-content">
+            <header class="section-header">
+              <div class="section-title-block">
+                <div class="section-tag">Performance</div>
+                <h2 class="section-title">SEE THE SHOW</h2>
+                <p class="section-sub">
+                  High-voltage live footage, intimate reels, and performance moments that show
+                  exactly how Dom holds a room — no filters, no fluff.
+                </p>
+              </div>
+              <a href="#book" class="section-cta-link">
+                <span>Ready to book?</span>
+                <span>↗</span>
+              </a>
+            </header>
+
+            <div class="media-grid">
+              <!-- Use your real Instagram URLs here -->
+              <a
+                class="media-card"
+                href="https://www.instagram.com/operationdom/reel/DGCmBuYMt7S/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="media-thumb">
+                  <!-- Optional: screenshot thumbnail as background image -->
+                </div>
+                <div class="media-label">Reel</div>
+                <div class="media-title">Big-voiced, big-room energy.</div>
+                <div class="media-meta">Live clip · OperationDom</div>
+              </a>
+
+              <a
+                class="media-card"
+                href="https://www.instagram.com/operationdom/p/DQXpBzXj-Yt/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="media-thumb"></div>
+                <div class="media-label">Performance</div>
+                <div class="media-title">Soul, grit and control.</div>
+                <div class="media-meta">Stage performance · NYC</div>
+              </a>
+
+              <a
+                class="media-card"
+                href="https://www.instagram.com/operationdom/reel/DPkCKTjD5U9/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="media-thumb"></div>
+                <div class="media-label">Reel</div>
+                <div class="media-title">Tone that cuts through the mix.</div>
+                <div class="media-meta">Studio &amp; live blend</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== SERVICES ========== -->
+      <section class="section section--services" id="services">
+        <div class="section-inner">
+          <div class="section-content">
+            <header class="section-header">
+              <div class="section-title-block">
+                <div class="section-tag">Services</div>
+                <h2 class="section-title">SERVICES</h2>
+                <p class="section-sub">
+                  Choose how you want Dom plugged into your world — from a full-blown show
+                  to a clean studio topline.
+                </p>
+              </div>
+              <a href="#book" class="section-cta-link">
+                <span>Lock in a date</span>
+                <span>↗</span>
+              </a>
+            </header>
+
+            <div class="services-grid">
+              <div class="service-card">
+                <div class="service-icon">◎</div>
+                <div class="service-title">LIVE PERFORMANCE</div>
+                <p class="service-text">
+                  Club nights, ticketed shows, support slots and headline sets — solo or with a full
+                  band behind her. Set lengths tailored to your room.
+                </p>
+                <div class="service-tags">
+                  <span class="service-tag">Clubs &amp; venues</span>
+                  <span class="service-tag">Festivals</span>
+                  <span class="service-tag">Private events</span>
+                </div>
+                <div class="service-card-cta">Add to booking request →</div>
+              </div>
+
+              <div class="service-card">
+                <div class="service-icon">✶</div>
+                <div class="service-title">GALAS &amp; PRIVATE EVENTS</div>
+                <p class="service-text">
+                  Elegant, emotional sets for black-tie nights, weddings, brand launches and
+                  curated experiences that need a showstopping voice.
+                </p>
+                <div class="service-tags">
+                  <span class="service-tag">Gala-ready</span>
+                  <span class="service-tag">Curated covers</span>
+                  <span class="service-tag">Custom moments</span>
+                </div>
+                <div class="service-card-cta">Add to booking request →</div>
+              </div>
+
+              <div class="service-card">
+                <div class="service-icon">✕</div>
+                <div class="service-title">STUDIO &amp; BRAND WORK</div>
+                <p class="service-text">
+                  Studio sessions, toplines, hooks and vocals for artists, producers, sync and brand
+                  campaigns that need modern, feminine power.
+                </p>
+                <div class="service-tags">
+                  <span class="service-tag">Toplines &amp; hooks</span>
+                  <span class="service-tag">Brand collabs</span>
+                  <span class="service-tag">Sync-ready</span>
+                </div>
+                <div class="service-card-cta">Add to booking request →</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== BOOKING ========== -->
+      <section class="section section--booking" id="book">
+        <div class="section-inner">
+          <div class="section-content">
+            <header class="section-header">
+              <div class="section-title-block">
+                <div class="section-tag">Booking</div>
+                <h2 class="section-title">BOOK DOM</h2>
+                <p class="section-sub">
+                  Tell us about your date, venue, and the kind of set you’re dreaming up. This form
+                  starts the conversation — a human will follow up.
+                </p>
+              </div>
+              <a href="#top" class="section-cta-link">
+                <span>Back to top</span>
+                <span>↑</span>
+              </a>
+            </header>
+
+            <div class="booking-layout">
+              <div class="booking-copy">
+                <p>
+                  Booking is available for NYC and travel dates. Dom performs solo to track,
+                  with a band, or plugged into your existing lineup.
+                </p>
+                <p>
+                  Share as many details as you have — venue type, timing, dress code, vibe,
+                  must-play songs — and we’ll shape a set that feels like <strong>your world,
+                  amplified.</strong>
+                </p>
+                <div class="booking-note">
+                  <span>Note:</span> This form is not a contract. It sends an inquiry straight to her team.
+                </div>
+              </div>
+
+              <form class="booking-form">
+                <div class="booking-row">
+                  <div class="form-field">
+                    <label class="form-label" for="name">Name</label>
+                    <input class="form-input" type="text" id="name" placeholder="Your full name" />
+                  </div>
+                  <div class="form-field">
+                    <label class="form-label" for="email">Email</label>
+                    <input class="form-input" type="email" id="email" placeholder="you@email.com" />
+                  </div>
+                </div>
+
+                <div class="booking-row">
+                  <div class="form-field">
+                    <label class="form-label" for="event-type">Event type</label>
+                    <select class="form-select" id="event-type">
+                      <option value="">Select one</option>
+                      <option>Club / venue show</option>
+                      <option>Gala / corporate</option>
+                      <option>Private event / wedding</option>
+                      <option>Studio / recording</option>
+                      <option>Brand / campaign</option>
+                    </select>
+                  </div>
+                  <div class="form-field">
+                    <label class="form-label" for="date">Date</label>
+                    <input class="form-input" type="date" id="date" />
+                  </div>
+                </div>
+
+                <div class="booking-row">
+                  <div class="form-field">
+                    <label class="form-label" for="location">Location</label>
+                    <input class="form-input" type="text" id="location" placeholder="Venue / city" />
+                  </div>
+                  <div class="form-field">
+                    <label class="form-label" for="budget">Approx. budget (USD)</label>
+                    <input class="form-input" type="text" id="budget" placeholder="$" />
+                  </div>
+                </div>
+
+                <div class="form-field">
+                  <span class="form-label">What are you booking?</span>
+                  <div class="checkbox-row">
+                    <label class="checkbox-pill">
+                      <input type="checkbox" /> Live performance
+                    </label>
+                    <label class="checkbox-pill">
+                      <input type="checkbox" /> Gala / private event
+                    </label>
+                    <label class="checkbox-pill">
+                      <input type="checkbox" /> Studio / vocals
+                    </label>
+                    <label class="checkbox-pill">
+                      <input type="checkbox" /> Brand / campaign
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-field">
+                  <label class="form-label" for="details">Details &amp; vibe</label>
+                  <textarea
+                    class="form-textarea"
+                    id="details"
+                    placeholder="Share the vibe, dress code, must-play songs, and any technical info (backline, PA, set length, etc.)"
+                  ></textarea>
+                </div>
+
+                <div class="booking-submit-row">
+                  <button type="button" class="btn-submit">
+                    <span>Send inquiry</span>
+                    <span>↗</span>
+                  </button>
+                  <span class="booking-footnote">
+                    Form not wired yet — connect to your backend or email service.
+                  </span>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+      <div>© <span id="year"></span> OperationDom. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#performance">Performance</a>
+        <a href="#services">Services</a>
+        <a href="#book">Booking</a>
+        <a href="shop.html">Store</a>
+        <a href="https://www.instagram.com/operationdom" target="_blank" rel="noopener noreferrer">
+          Instagram
+        </a>
+      </div>
+    </footer>
   </div>
 
-  <div class="hero-top-right">
-    <a href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer">IG</a>
-    <a href="shop.html" aria-label="Store">store</a>
-  </div>
-
-  <div class="hero-main">
-    <!-- LEFT: COPY -->
-    <div class="hero-copy">
-      <div class="hero-tagline">LIVE. SOULFUL. PASSIONATE.</div>
-
-      <h1 class="hero-headline">
-        <span class="hero-headline-main">OPERATION</span>
-        <span class="hero-headline-dom">DOM</span>
-      </h1>
-
-      <div class="hero-script-overlay">IN FULL EFFECT</div>
-
-      <p class="hero-subhead">
-        OperationDom is where <strong>soul meets style</strong> — a fusion of raw emotion, magnetic energy, and refined artistry.
-      </p>
-
-      <p class="hero-body-copy">
-        With a voice that cuts through the noise and a presence that commands the room, OperationDom blends confidence,
-        vulnerability, and divine feminine power into every performance.
-      </p>
-
-      <p class="hero-body-copy">
-        Drawing inspiration from icons like Whitney Houston, Aaliyah, and Doja Cat, Dom embodies the modern muse:
-        bold, bougie, and beautifully unapologetic. 
-      </p>
-
-      <p class="hero-detail">
-        BOOK HER FOR THE MOMENTS THAT DESERVE MAIN-CHARACTER ENERGY.
-      </p>
-
-      <div class="hero-ctas">
-        <div class="hero-cta-group">
-          <a href="#book" class="btn btn-primary">
-            <span>BOOK A SHOW</span>
-            <span class="btn-arrow">↗</span>
-          </a>
-          <span class="btn-caption">CLUBS · GALAS · INTIMATE SETS · FESTIVALS</span>
-        </div>
-
-        <div class="hero-cta-group">
-          <a href="#performance" class="btn btn-ghost">
-            WATCH A PERFORMANCE
-            <span class="btn-arrow">▶</span>
-          </a>
-          <span class="btn-caption">3 MINUTES OF PROOF SHE’S THE HEADLINER</span>
-        </div>
-      </div>
-    </div>
-
-<div class="hero-visual">
-  <div class="hero-cute-cloud">
-    <span>Dom in Her Element ✧˖°💗</span>
-  </div>
-  <div class="hero-slider">
-    <div class="hero-slider-header">
-      <span>ON STAGE &amp; IN HER ELEMENT</span>
-      <div class="hero-slider-controls">
-        <button class="slider-btn" id="sliderPrev" aria-label="Previous photo">‹</button>
-        <button class="slider-btn" id="sliderNext" aria-label="Next photo">›</button>
-      </div>
-    </div>
-
-    <div class="hero-slider-viewport">
-      <div class="hero-slider-track" id="sliderTrack">
-        <div class="hero-slide">
-          <div class="hero-slide-frame">
-            <img src="hero.jpg" alt="OperationDom live performance photo 1">
-          </div>
-        </div>
-        <div class="hero-slide">
-          <div class="hero-slide-frame">
-            <img src="gala.jpeg" alt="OperationDom performing at a gala">
-          </div>
-        </div>
-        <div class="hero-slide">
-          <div class="hero-slide-frame">
-            <img src="dom-hero.jpeg" alt="OperationDom studio headshot">
-          </div>
-        </div>
-        <div class="hero-slide">
-          <div class="hero-slide-frame">
-            <img src="nicks.jpg" alt="OperationDom live at Nick's">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero-slider-caption">
-      swipe through the moments · more on @operationdom
-    </div>
-  </div>
-</div>
-
-
-        
-</section>
-
-<!-- ========== BOW CONNECTOR ========== -->
-<div class="section-connector">
-  <div class="section-connector-inner">
-    <div class="section-bow"><span></span></div>
-  </div>
-</div>
-
-<!-- ========== QUOTE CLOUDS ========== -->
-<section class="section section--quotes" id="quotes">
-  <div class="section-inner">
-    <div class="section-tag">DOM’S MANTRAS</div>
-    <div class="section-header">
-      <h2>WORDS TO VIBE WITH</h2>
-      <p>
-        OperationDom is as intentional with her mindset as she is with her melodies.
-        These are the affirmations she lives by — a peek into the energy she brings
-        into every room, every session, every stage.
-      </p>
-    </div>
-
-    <div class="quotes-grid">
-      <div class="quote-bubble">
-        <div class="quote-label">Dom says</div>
-        <p>“I don’t chase. I align — and what’s meant for me finds me.”</p>
-      </div>
-
-      <div class="quote-bubble">
-        <div class="quote-label">Dom says</div>
-        <p>“Luxury is my lifestyle, but peace is my priority.”</p>
-      </div>
-
-      <div class="quote-bubble">
-        <div class="quote-label">Dom says</div>
-        <p>“Soft doesn’t mean weak. It means powerful enough to stay calm in chaos.”</p>
-      </div>
-
-      <div class="quote-bubble">
-        <div class="quote-label">Dom says</div>
-        <p>“My confidence isn’t arrogance — it’s evidence of self-work.”</p>
-      </div>
-
-      <div class="quote-bubble">
-        <div class="quote-label">Dom says</div>
-        <p>“I’m not in competition. I’m in alignment.”</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== BOW CONNECTOR (to performance / services / booking) ========== -->
-<div class="section-connector">
-  <div class="section-connector-inner">
-    <div class="section-bow"><span></span></div>
-  </div>
-</div>
-
-<!-- ========== PERFORMANCE / IG SECTION ========== -->
-<section class="section section--performance" id="performance">
-  <div class="section-inner">
-    <div class="section-tag">LIVE &amp; ONLINE</div>
-    <div class="section-header">
-      <h2>SEE HER IN FULL EFFECT</h2>
-      <p>
-        From small, intimate rooms to arenas with thousands, OperationDom has the range to
-        command any stage. Soulful, passionate, and polished — every performance is a
-        balance of <span class="highlight">vocals, vibe, and visual</span>.
-      </p>
-    </div>
-
-    <div class="performance-layout">
-      <div class="video-wrapper">
-        <iframe
-          src="https://www.youtube.com/embed/XNsNou7JNwE"
-          title="OperationDom Live Performance"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-      </div>
-
-      <div class="insta-panel">
-        <div class="insta-header">
-          <span class="insta-handle">@OPERATIONDOM</span>
-          <a class="insta-link" href="https://www.instagram.com/operationdom/" target="_blank" rel="noreferrer">
-            view on instagram
-          </a>
-        </div>
-
-<div class="insta-grid">
-  <!-- Reel 1 -->
-  <a
-    href="https://www.instagram.com/operationdom/reel/DGCmBuYMt7S/"
-    target="_blank"
-    rel="noreferrer"
-    class="insta-tile"
-    style="background-image:url('reel1.png');"
-  ></a>
-
-  <!-- Post 1 -->
-  <a
-    href="https://www.instagram.com/operationdom/p/DQXpBzXj-Yt/"
-    target="_blank"
-    rel="noreferrer"
-    class="insta-tile"
-    style="background-image:url('post1.png');"
-  ></a>
-
-  <!-- Reel 2 -->
-  <a
-    href="https://www.instagram.com/operationdom/reel/DPkCKTjD5U9/"
-    target="_blank"
-    rel="noreferrer"
-    class="insta-tile"
-    style="background-image:url('reel2.png');"
-  ></a>
-
-  <!-- Post 2 -->
-  <a
-    href="https://www.instagram.com/operationdom/p/DOFdZaMDClG/"
-    target="_blank"
-    rel="noreferrer"
-    class="insta-tile"
-    style="background-image:url('post2.png');"
-  ></a>
-
-  <!-- Post 3 -->
-  <a
-    href="https://www.instagram.com/operationdom/p/DLtCvsxR4Xc/"
-    target="_blank"
-    rel="noreferrer"
-    class="insta-tile"
-    style="background-image:url('post3.png');"
-  ></a>
-<!-- Reel 2 -->
-  
-  <a
-    href="https://www.instagram.com/operationdom/reel/DPkCKTjD5U9/"
-    target="_blank"
-    rel="noreferrer"
-    class="insta-tile"
-    style="background-image:url('reel3.png');"
-  ></a>
-  <!-- Extra Reel Duplicate Link Removed -->
-</div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- ========== MUSIC / STREAMING SECTION ========== -->
-<section class="section section--music" id="music">
-  <div class="section-inner">
-    <div class="music-header">
-      <div class="music-tag-pill">
-        <span>♪</span>
-        <span>On Repeat</span>
-      </div>
-      <div class="section-tag">STREAM DOM</div>
-      <div class="section-header">
-        <h2>HER WORLD. YOUR PLAYLIST.</h2>
-        <p>
-          Tap in on your favorite platform and keep OperationDom in rotation —
-          from shower concerts to pre-game warmups and late-night healing sessions.
-        </p>
-      </div>
-    </div>
-
-    <!-- Green Light highlight -->
-    <article class="single-highlight">
-  <div class="single-art">
-    <div class="single-art-inner">
-      <img
-        src="headshot.jpeg"
-        alt="OperationDom - Green Light single cover"
-        class="single-art-img"
-      />
-
-      <div class="single-art-overlay">
-        <div class="single-art-label">New Single</div>
-        <div class="single-art-title">“Green Light”</div>
-        <div class="single-art-sub">OperationDom</div>
-      </div>
-    </div>
-  </div> <!-- ✅ close .single-art here -->
-
-  <div class="single-copy">
-    <div class="single-tag">
-      <span class="single-tag-emoji">💡</span>
-      <span>Fresh Release</span>
-    </div>
-    <h3>Give Yourself the Green Light</h3>
-    <p>
-      “Green Light” is Dom in full main-character mode — soulful, cinematic,
-      and made for the moments when you decide you’re done dimming your own glow.
-    </p>
-    <div class="single-meta">
-      AVAILABLE NOW • STREAM &amp; SAVE
-    </div>
-    <div class="single-actions">
-      <a
-        class="btn-music"
-        href="https://open.spotify.com/track/3Wwo0MlabjfzrK8e10QiR5"
-        target="_blank"
-        rel="noreferrer"
-      >
-        <span>▶</span>
-        <span>Play on Spotify</span>
-      </a>
-    </div>
-  </div>
-</article>
-
-
-      <div class="single-copy">
-        <div class="single-tag">
-          <span class="single-tag-emoji">💡</span>
-          <span>Fresh Release</span>
-        </div>
-        <h3>Give Yourself the Green Light</h3>
-        <p>
-          “Green Light” is Dom in full main-character mode — soulful, cinematic,
-          and made for the moments when you decide you’re done dimming your own glow.
-        </p>
-        <div class="single-meta">
-          AVAILABLE NOW • STREAM &amp; SAVE
-        </div>
-        <div class="single-actions">
-          <a
-            class="btn-music"
-            href="https://open.spotify.com/track/3Wwo0MlabjfzrK8e10QiR5"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <span>▶</span>
-            <span>Play on Spotify</span>
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <!-- Platform grid -->
-    <div class="music-platform-grid">
-      <!-- Spotify -->
-      <article class="music-card music-card--spotify">
-        <div class="music-card-label">Streaming</div>
-        <div class="music-card-title">Spotify</div>
-        <p class="music-card-desc">
-          Follow OperationDom on Spotify to keep “Green Light” and future drops
-          front and center in your Release Radar and playlists.
-        </p>
-        <div class="music-card-chip-row">
-          <span class="music-chip">Playlists</span>
-          <span class="music-chip">On repeat</span>
-        </div>
-        <div class="music-card-link">
-          <a
-            href="https://open.spotify.com/artist/3qWTtM0AN7KdlfS8exCEy6"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <span>↗</span>
-            <span>Open Spotify</span>
-          </a>
-        </div>
-      </article>
-
-      <!-- Apple Music -->
-      <article class="music-card music-card--apple">
-        <div class="music-card-label">Streaming</div>
-        <div class="music-card-title">Apple Music</div>
-        <p class="music-card-desc">
-          Add Dom to your Apple Music library for high-quality streams, easy downloads,
-          and main-character walks with the perfect soundtrack.
-        </p>
-        <div class="music-card-chip-row">
-          <span class="music-chip">Library</span>
-          <span class="music-chip">High quality</span>
-        </div>
-        <div class="music-card-link">
-          <a
-            href="https://music.apple.com/us/artist/operationdom/1824111226"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <span>↗</span>
-            <span>Open Apple Music</span>
-          </a>
-        </div>
-      </article>
-
-      <!-- SoundCloud -->
-      <article class="music-card music-card--soundcloud">
-        <div class="music-card-label">Streaming</div>
-        <div class="music-card-title">SoundCloud</div>
-        <p class="music-card-desc">
-          Tap into demos, deep cuts, and future drops on SoundCloud — perfect
-          for the ones who like to claim “I heard it first.”
-        </p>
-        <div class="music-card-chip-row">
-          <span class="music-chip">Demos</span>
-          <span class="music-chip">Day ones</span>
-        </div>
-        <div class="music-card-link">
-          <a
-            href="https://soundcloud.com/dominique-smith-892170035?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <span>↗</span>
-            <span>Open SoundCloud</span>
-          </a>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section id="services" class="section section--services">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-tag">Services</div>
-      <h2>What you can book Dom for</h2>
-      <p>
-        From the stage to the studio, from artist coaching to brand campaigns —
-        OperationDom is a full-spectrum creative you can plug into your event,
-        your record, or your visual world.
-      </p>
-    </div>
-
-    <div class="services-grid">
-      <!-- Live Performances -->
-      <article class="service-card service-card--pink">
-        <div class="service-color-bar"></div>
-        <div class="service-label">On stage</div>
-        <h3>Live Performances</h3>
-        <p>
-          Bring soul, energy, and elegance to any event. Unforgettable sets for weddings,
-          galas, corporate functions, and private celebrations — always powered by
-          powerhouse vocals and magnetic stage presence.
-        </p>
-        <div class="service-pill">Weddings · galas · nightlife</div>
-      </article>
-
-      <!-- Studio Sessions & Collaborations -->
-      <article class="service-card service-card--blue">
-        <div class="service-color-bar"></div>
-        <div class="service-label">In the booth</div>
-        <h3>Studio Sessions &amp; Collaborations</h3>
-        <p>
-          Hooks, background vocals, or features that cut through the mix. Available
-          for in-studio and remote sessions with producers, artists, and songwriters.
-        </p>
-        <div class="service-pill">Hooks · bgvs · features</div>
-      </article>
-
-      <!-- Vocal Coaching & Artist Development -->
-      <article class="service-card service-card--lilac">
-        <div class="service-color-bar"></div>
-        <div class="service-label">For artists</div>
-        <h3>Vocal Coaching &amp; Artist Development</h3>
-        <p>
-          One-on-one sessions focused on vocal control, confidence, and stage charisma.
-          Tailored guidance for vocalists ready to sharpen their tone and presence.
-        </p>
-        <div class="service-pill">1:1 sessions</div>
-      </article>
-
-      <!-- Creative Direction & Styling -->
-      <article class="service-card service-card--yellow">
-        <div class="service-color-bar"></div>
-        <div class="service-label">Visual world</div>
-        <h3>Creative Direction &amp; Styling</h3>
-        <p>
-          Sound is one thing. Image is everything. Concepting, styling, and stage looks
-          that keep your visuals as strong as your records.
-        </p>
-        <div class="service-pill">Looks · mood · branding</div>
-      </article>
-
-      <!-- Brand Collaborations & Partnerships -->
-      <article class="service-card service-card--softpink">
-        <div class="service-color-bar"></div>
-        <div class="service-label">For brands</div>
-        <h3>Brand Collabs &amp; Partnerships</h3>
-        <p>
-          Beauty, fashion, and lifestyle collaborations that feel authentic — mixing
-          music, empowerment, and a luxe aesthetic across campaigns and content.
-        </p>
-        <div class="service-pill">Beauty · fashion · lifestyle</div>
-      </article>
-
-      <!-- Custom Music & Jingles -->
-      <article class="service-card service-card--mixed">
-        <div class="service-color-bar"></div>
-        <div class="service-label">Custom sound</div>
-        <h3>Custom Music &amp; Jingles</h3>
-        <p>
-          Turn your story or brand into sound. Bespoke songs and jingles for brands,
-          podcasts, intros, and special projects.
-        </p>
-        <div class="service-pill">Podcasts · brands · intros</div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<div class="section-connector" aria-hidden="true">
-  <div class="section-connector-inner">
-    <div class="section-bow"><span></span></div>
-  </div>
-</div>
-
-<section id="book" class="section section--booking">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-tag">Booking</div>
-      <h2>Book OperationDom</h2>
-      <p>
-        For venues, festivals, studios, and brands that want a front-woman who can hold
-        the room by the throat and the heart. Share what you’re planning and which
-        services you’re interested in — the team will follow up with next steps, rates,
-        and availability.
-      </p>
-    </div>
-
-    <div class="booking-grid">
-      <div class="booking-copy">
-        <p>
-          Please include as many details as you can about your event or project
-          so we can respond quickly and accurately.
-        </p>
-        <ul>
-          <li>NYC-based, available for travel and select international dates</li>
-          <li>Full band, stripped set, or track show options</li>
-          <li>Studio &amp; remote recording available</li>
-        </ul>
-        <p class="booking-note">
-          SERIOUS INQUIRIES ONLY. EXPECT A RESPONSE WITHIN 24–48 HOURS.
-        </p>
-      </div>
-
-      <form class="booking-form">
-        <div class="booking-row">
-          <div class="field">
-            <label class="field-label" for="name">Name</label>
-            <input id="name" name="name" class="booking-input" type="text" placeholder="Your full name" required />
-          </div>
-          <div class="field">
-            <label class="field-label" for="company">Venue / Company</label>
-            <input id="company" name="company" class="booking-input" type="text" placeholder="Venue, brand, or organization" />
-          </div>
-        </div>
-
-        <div class="booking-row">
-          <div class="field">
-            <label class="field-label" for="email">Email</label>
-            <input id="email" name="email" class="booking-input" type="email" placeholder="you@example.com" required />
-          </div>
-          <div class="field">
-            <label class="field-label" for="phone">Phone</label>
-            <input id="phone" name="phone" class="booking-input" type="tel" placeholder="+1 (___) ___-____" />
-          </div>
-        </div>
-
-        <div class="booking-row booking-row--three">
-          <div class="field">
-            <label class="field-label" for="event-type">Booking Type</label>
-            <select id="event-type" name="event_type" class="booking-select" required>
-              <option value="" disabled selected>Select one</option>
-              <option>Live show / event</option>
-              <option>Studio session / record</option>
-              <option>Coaching / development</option>
-              <option>Brand partnership</option>
-              <option>Custom music / jingle</option>
-              <option>Other</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label class="field-label" for="city">City</label>
-            <input id="city" name="city" class="booking-input" type="text" placeholder="City &amp; country" />
-          </div>
-
-          <div class="field">
-            <label class="field-label" for="date">Date</label>
-            <input id="date" name="date" class="booking-input" type="date" />
-          </div>
-        </div>
-
-        <div class="booking-row booking-row--three">
-          <div class="field">
-            <label class="field-label" for="budget">Estimated budget</label>
-            <select id="budget" name="budget" class="booking-select">
-              <option value="" disabled selected>Select a range</option>
-              <option>$1,500 – $3,000</option>
-              <option>$3,000 – $5,000</option>
-              <option>$5,000 – $10,000</option>
-              <option>$10,000+</option>
-            </select>
-          </div>
-          <div class="field">
-            <label class="field-label" for="set-length">Set length</label>
-            <select id="set-length" name="set_length" class="booking-select">
-              <option value="" disabled selected>Select</option>
-              <option>20–30 minutes</option>
-              <option>45–60 minutes</option>
-              <option>90 minutes</option>
-              <option>Custom</option>
-            </select>
-          </div>
-          <div class="field">
-            <label class="field-label" for="capacity">Audience size</label>
-            <input id="capacity" name="capacity" class="booking-input" type="text" placeholder="Approx. headcount" />
-          </div>
-        </div>
-
-        <div class="services-checklist">
-          <div class="services-checklist-title">Which services are you interested in?</div>
-          <div class="services-checklist-grid">
-            <label class="service-check">
-              <input type="checkbox" name="services" value="live-performances" />
-              <span>Live performances</span>
-            </label>
-            <label class="service-check">
-              <input type="checkbox" name="services" value="studio-collabs" />
-              <span>Studio sessions &amp; collaborations</span>
-            </label>
-            <label class="service-check">
-              <input type="checkbox" name="services" value="vocal-coaching" />
-              <span>Vocal coaching &amp; artist development</span>
-            </label>
-            <label class="service-check">
-              <input type="checkbox" name="services" value="creative-direction" />
-              <span>Creative direction &amp; styling</span>
-            </label>
-            <label class="service-check">
-              <input type="checkbox" name="services" value="brand-collabs" />
-              <span>Brand collaborations &amp; partnerships</span>
-            </label>
-            <label class="service-check">
-              <input type="checkbox" name="services" value="custom-music" />
-              <span>Custom music &amp; jingles</span>
-            </label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field-label" for="details">Booking details</label>
-          <textarea
-            id="details"
-            name="details"
-            class="booking-textarea"
-            placeholder="Tell us about the vibe, schedule, other artists involved, deliverables, and anything else we should know."
-            required
-          ></textarea>
-        </div>
-
-        <div class="booking-submit-row">
-          <button type="submit" class="btn btn-primary">
-            <span>Submit request</span>
-            <span class="btn-arrow">↗</span>
-          </button>
-          <p class="booking-footnote">
-            Prefer email? Reach out at
-            <a href="mailto:booking@operationdom.com">booking@operationdom.com</a>
-          </p>
-        </div>
-      </form>
-    </div>
-  </div>
-</section>
-
-<script>
-  (function () {
-    const track = document.getElementById("sliderTrack");
-    const prevBtn = document.getElementById("sliderPrev");
-    const nextBtn = document.getElementById("sliderNext");
-    const slides = track ? track.querySelectorAll(".hero-slide") : null;
-    const viewport = document.querySelector(".hero-slider-viewport");
-
-    if (!track || !prevBtn || !nextBtn || !slides || !slides.length || !viewport) return;
-
-    let current = 0;
-
-    function updateSlider() {
-      const slideWidth = viewport.clientWidth;
-      track.style.transform = "translateX(" + (-current * slideWidth) + "px)";
-    }
-
-    prevBtn.addEventListener("click", function () {
-      current = (current - 1 + slides.length) % slides.length;
-      updateSlider();
-    });
-
-    nextBtn.addEventListener("click", function () {
-      current = (current + 1) % slides.length;
-      updateSlider();
-    });
-
-    window.addEventListener("resize", updateSlider);
-
-    // initial position
-    updateSlider();
-  })();
-</script>
-
+  <script>
+    // Simple year script
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

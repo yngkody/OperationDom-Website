@@ -394,84 +394,79 @@
 
     /* slider */
 
-  .hero-slider {
+ .hero-slider {
   width: 100%;
-  max-width: 680px;              /* 🔸 bigger overall */
+  max-width: 720px;                 /* bigger overall */
   border: 2px solid var(--border-strong);
   background: #ffe9f4;
-  padding: 16px;                 /* a little more padding */
+  padding: 16px;
   box-shadow: var(--shadow-strong);
 }
 
-/* make the frame taller so images feel bigger */
-.hero-slide-frame {
-  border: 2px solid var(--border-strong);
-  background: #000;
-  aspect-ratio: 4 / 3;           /* was 16 / 9 – this is taller */
-  overflow: hidden;
+.hero-slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 800;
+  color: var(--muted-ink);
 }
 
+.hero-slider-controls {
+  display: flex;
+  gap: 6px;
+}
 
-    .hero-slider-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-weight: 800;
-      color: var(--muted-ink);
-    }
+.slider-btn {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--border-strong);
+  background: #fff;
+  font-size: 0.9rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 0;
+  padding: 0;
+}
 
-    .hero-slider-controls {
-      display: flex;
-      gap: 6px;
-    }
+/* viewport keeps the visible window */
+.hero-slider-viewport {
+  overflow: hidden;
+  width: 100%;
+}
 
-    .slider-btn {
-      width: 24px;
-      height: 24px;
-      border: 2px solid var(--border-strong);
-      background: #fff;
-      font-size: 0.9rem;
-      line-height: 1;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      border-radius: 0;
-      padding: 0;
-    }
+/* track holds all slides in a row */
+.hero-slider-track {
+  display: flex;
+  transition: transform 0.3s ease-out;
+}
 
-    .hero-slider-viewport {
-      overflow: hidden;
-      width: 100%;
-    }
-
-    .hero-slider-track {
-      display: flex;
-      width: 100%;
-      transition: transform 0.3s ease-out;
-    }
+/* each slide is exactly one full viewport wide */
 .hero-slide {
-  flex: 0 0 100%;   /* 🔸 fixed full width per slide */
+  flex: 0 0 100%;
   padding: 2px;
 }
 
+/* taller, bigger frame */
+.hero-slide-frame {
+  border: 2px solid var(--border-strong);
+  background: #000;
+  aspect-ratio: 4 / 3;   /* nice tall viewer */
+  overflow: hidden;
+}
 
-    .hero-slide-frame {
-      border: 2px solid var(--border-strong);
-      background: #000;
-      aspect-ratio: 16 / 9;
-      overflow: hidden;
-    }
+.hero-slide-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-    .hero-slide-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
 
     .hero-slider-caption {
       margin-top: 6px;
@@ -2175,18 +2170,20 @@
 </section>
 
 <script>
-  // Simple hero slider
   (function () {
     const track = document.getElementById("sliderTrack");
-    if (!track) return;
-
-    const slides = track.querySelectorAll(".hero-slide");
     const prevBtn = document.getElementById("sliderPrev");
     const nextBtn = document.getElementById("sliderNext");
+    const slides = track ? track.querySelectorAll(".hero-slide") : null;
+    const viewport = document.querySelector(".hero-slider-viewport");
+
+    if (!track || !prevBtn || !nextBtn || !slides || !slides.length || !viewport) return;
+
     let current = 0;
 
     function updateSlider() {
-      track.style.transform = "translateX(-" + (current * 100) + "%)";
+      const slideWidth = viewport.clientWidth;
+      track.style.transform = "translateX(" + (-current * slideWidth) + "px)";
     }
 
     prevBtn.addEventListener("click", function () {
@@ -2198,7 +2195,13 @@
       current = (current + 1) % slides.length;
       updateSlider();
     });
+
+    window.addEventListener("resize", updateSlider);
+
+    // initial position
+    updateSlider();
   })();
 </script>
+
 </body>
 </html>

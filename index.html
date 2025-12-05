@@ -394,14 +394,23 @@
 
     /* slider */
 
-    .hero-slider {
+  .hero-slider {
   width: 100%;
-  max-width: 560px;        /* <-- make it bigger */
+  max-width: 680px;              /* 🔸 bigger overall */
   border: 2px solid var(--border-strong);
   background: #ffe9f4;
-  padding: 12px 12px 14px; /* tiny bump for breathing room */
+  padding: 16px;                 /* a little more padding */
   box-shadow: var(--shadow-strong);
 }
+
+/* make the frame taller so images feel bigger */
+.hero-slide-frame {
+  border: 2px solid var(--border-strong);
+  background: #000;
+  aspect-ratio: 4 / 3;           /* was 16 / 9 – this is taller */
+  overflow: hidden;
+}
+
 
     .hero-slider-header {
       display: flex;
@@ -445,11 +454,11 @@
       width: 100%;
       transition: transform 0.3s ease-out;
     }
+.hero-slide {
+  flex: 0 0 100%;   /* 🔸 fixed full width per slide */
+  padding: 2px;
+}
 
-    .hero-slide {
-      min-width: 100%;
-      padding: 2px;
-    }
 
     .hero-slide-frame {
       border: 2px solid var(--border-strong);
@@ -1592,12 +1601,7 @@
 </div>
 
 
-        <div class="hero-slider-caption">
-          swipe through the moments · more on @operationdom
-        </div>
-      </div>
-    </div>
-  </div>
+        
 </section>
 
 <!-- ========== BOW CONNECTOR ========== -->

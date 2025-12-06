@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>OperationDom – Official Site</title>
 
-  <!-- Fonts: Impact-style headline + clean body -->
+  <!-- Fonts: Impact-style headline + solid body -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -16,19 +16,21 @@
 
   <style>
     :root {
-      --bg: #020313;
-      --bg-panel: #050718;
-      --bg-panel-alt: #050510;
+      --bg: #050518;            /* deep night */
+      --bg-hero: #050518;
+      --bg-panel: #0b0720;      /* rich navy/plum */
+      --bg-card: #120a2e;       /* darker card */
+      --bg-cream: #fff7f0;
 
-      --ink: #f9fafb;
-      --muted: #9ca3af;
+      --ink: #fdfdfc;
+      --muted: #e5e7eb;
 
-      --accent: #3b82f6;
-      --accent-strong: #1d4ed8;
-      --danger: #f97373;
+      --accent-blue: #2448ff;   /* royal blue */
+      --accent-blue-dark: #1526aa;
+      --accent-pink: #ff4fa0;
 
-      --border: #111827;
-      --border-strong: #1f2937;
+      --border: #141226;
+      --border-strong: #211d3d;
 
       --max-width: 1120px;
       --nav-height: 72px;
@@ -56,6 +58,12 @@
       text-decoration: none;
     }
 
+    p {
+      margin: 0 0 0.4rem;
+      font-weight: 600; /* HEAVIER PARAGRAPHS */
+      font-size: 14px;
+    }
+
     .page {
       min-height: 100vh;
     }
@@ -72,7 +80,7 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      background: #020313;
+      background: #050518;
       border-bottom: 1px solid var(--border);
     }
 
@@ -94,12 +102,11 @@
     }
 
     .nav-mark {
-      width: 18px;
-      height: 18px;
-      border: 3px solid var(--ink);
+      width: 20px;
+      height: 20px;
+      border: 3px solid #ffffff;
       border-right-width: 5px;
       border-bottom-width: 5px;
-      transform: skewX(-10deg);
     }
 
     .nav-title {
@@ -111,14 +118,14 @@
     .nav-title-main {
       font-family: "Anton", system-ui, sans-serif;
       font-size: 18px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.13em;
       text-transform: uppercase;
     }
 
     .nav-title-sub {
       font-size: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       color: var(--muted);
     }
 
@@ -145,7 +152,7 @@
       bottom: 0;
       width: 0;
       height: 2px;
-      background: var(--ink);
+      background: var(--accent-blue);
       transition: width 0.14s ease-out;
     }
 
@@ -162,18 +169,13 @@
       align-items: center;
       gap: 8px;
       padding: 9px 18px;
-      background: var(--ink);
-      color: #020313;
-      border: 1px solid var(--border-strong);
+      background: var(--accent-blue);
+      color: #fdfdfc;
+      border: 2px solid #fdfdfc;
       text-transform: uppercase;
       letter-spacing: 0.18em;
       font-size: 11px;
       font-weight: 800;
-      transform: skewX(-8deg);
-    }
-
-    .nav-book span {
-      transform: skewX(8deg);
     }
 
     .nav-book-icon {
@@ -183,8 +185,10 @@
     /* HERO */
 
     .hero {
+      position: relative;
       padding: 40px 0 52px;
       border-bottom: 1px solid var(--border);
+      overflow: hidden;
     }
 
     .hero-grid {
@@ -192,28 +196,25 @@
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
       gap: 32px;
       align-items: center;
-    }
-
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
+      position: relative;
+      z-index: 1;
     }
 
     .hero-tagline {
       font-size: 11px;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--muted);
+      margin-bottom: 8px;
     }
 
     .hero-title {
       font-family: "Anton", system-ui, sans-serif;
       text-transform: uppercase;
       line-height: 0.9;
-      margin: 0;
-      letter-spacing: 0.08em;
-      font-size: clamp(50px, 7vw, 72px);
+      margin: 0 0 10px;
+      letter-spacing: 0.12em;
+      font-size: clamp(52px, 7vw, 78px);
     }
 
     .hero-title-row {
@@ -231,22 +232,24 @@
     .hero-dom {
       background: #ffffff;
       color: #000000;
-      padding: 4px 14px 4px 12px;
+      padding: 4px 18px 4px 14px;
       border: 3px solid #ffffff;
-      box-shadow: 0 0 0 2px #000000;
+      box-shadow: 0 0 0 3px #000000;
     }
 
     .hero-subline {
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 700;
-      max-width: 420px;
+      max-width: 430px;
+      margin-bottom: 6px;
     }
 
     .hero-detail {
-      font-size: 14px;
-      font-weight: 500;
+      font-size: 15px;
+      font-weight: 600; /* thicker paragraphs */
       color: var(--muted);
-      max-width: 420px;
+      max-width: 430px;
+      margin-bottom: 18px;
     }
 
     .hero-ctas {
@@ -254,6 +257,7 @@
       flex-wrap: wrap;
       gap: 12px;
       align-items: center;
+      margin-bottom: 10px;
     }
 
     .btn {
@@ -267,7 +271,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 11px 22px;
+      padding: 11px 24px;
       background: #ffffff;
       color: #000000;
       font-size: 12px;
@@ -286,14 +290,14 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 9px 16px;
+      padding: 9px 18px;
       background: transparent;
       color: var(--ink);
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.16em;
       font-weight: 600;
-      border: 1px solid var(--border-strong);
+      border: 1px solid var(--ink);
     }
 
     .hero-meta {
@@ -301,12 +305,14 @@
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      margin-top: 6px;
+      margin-top: 4px;
     }
 
     .hero-right {
       display: flex;
-      justify-content: flex-end;
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-end;
     }
 
     .hero-photo-wrap {
@@ -314,13 +320,7 @@
       max-width: 360px;
       background: var(--bg-panel);
       border: 2px solid #000000;
-      box-shadow: 8px 8px 0 #000000;
-      transform: skewX(-4deg);
-    }
-
-    .hero-photo-inner {
-      transform: skewX(4deg);
-      overflow: hidden;
+      box-shadow: 10px 10px 0 #000000;
     }
 
     .hero-photo-inner img {
@@ -332,24 +332,70 @@
     .hero-photo-tag {
       padding: 6px 10px;
       border-top: 1px solid var(--border-strong);
-      border-left: 1px solid var(--border-strong);
       font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: var(--muted);
-      background: #020313;
+      background: #050518;
+    }
+
+    .hero-mood-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      width: 100%;
+      max-width: 360px;
+    }
+
+    .mood-tile {
+      position: relative;
+      height: 74px;
+      background-size: cover;
+      background-position: center;
+      border: 2px solid #ffffff;
+    }
+
+    .mood-tile-label {
+      position: absolute;
+      left: 4px;
+      bottom: 4px;
+      padding: 2px 6px;
+      background: rgba(0, 0, 0, 0.6);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    /* Winding thick white line background */
+
+    .hero-squiggle {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    .hero-squiggle svg {
+      width: 140%;
+      height: 140%;
+      transform: translate(-10%, -5%);
     }
 
     /* SECTION BASE */
 
     .section {
       padding-top: 40px;
+      position: relative;
+      overflow: hidden;
     }
 
     .panel {
       background: var(--bg-panel);
       border: 1px solid var(--border-strong);
       padding: 22px 20px 22px;
+      position: relative;
+      z-index: 1;
     }
 
     .section-header {
@@ -383,9 +429,10 @@
     }
 
     .section-sub {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--muted);
-      max-width: 420px;
+      max-width: 440px;
+      font-weight: 600; /* heavier */
     }
 
     .section-link {
@@ -393,8 +440,8 @@
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: var(--ink);
-      border-bottom: 1px solid var(--ink);
-      padding-bottom: 3px;
+      border-bottom: 2px solid var(--accent-blue);
+      padding-bottom: 4px;
       font-weight: 600;
     }
 
@@ -410,7 +457,7 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
-      background: var(--bg-panel-alt);
+      background: var(--bg-card);
       border: 1px solid var(--border-strong);
       padding: 12px 10px;
     }
@@ -418,7 +465,7 @@
     .media-thumb {
       position: relative;
       aspect-ratio: 9 / 16;
-      background: #020313;
+      background: #050518;
       border: 1px solid var(--border-strong);
     }
 
@@ -447,13 +494,18 @@
     .media-meta {
       font-size: 11px;
       color: var(--muted);
+      font-weight: 600;
     }
 
     .media-card:hover {
-      border-color: var(--accent);
+      border-color: var(--accent-blue);
     }
 
     /* SERVICES */
+
+    .section--services .panel {
+      background: #0a0b28;
+    }
 
     .services-grid {
       display: grid;
@@ -462,12 +514,26 @@
     }
 
     .service-card {
-      background: var(--bg-panel-alt);
+      background: var(--bg-card);
       border: 1px solid var(--border-strong);
       padding: 16px 14px;
       display: flex;
       flex-direction: column;
       gap: 8px;
+      position: relative;
+    }
+
+    .service-pill {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 3px 8px;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      background: var(--accent-blue);
+      color: #fdfdfc;
+      font-weight: 700;
     }
 
     .service-title {
@@ -478,8 +544,9 @@
     }
 
     .service-text {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--muted);
+      font-weight: 600;
     }
 
     .service-tags {
@@ -494,13 +561,17 @@
       text-transform: uppercase;
       letter-spacing: 0.12em;
       padding: 4px 7px;
-      border: 1px solid var(--border-strong);
-      background: #020313;
+      border: 1px solid var(--accent-blue);
+      background: #050518;
       color: var(--muted);
       font-weight: 600;
     }
 
     /* BOOKING */
+
+    .section--booking .panel {
+      background: #050518;
+    }
 
     .booking-layout {
       display: grid;
@@ -509,11 +580,12 @@
     }
 
     .booking-copy {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--muted);
       display: flex;
       flex-direction: column;
       gap: 10px;
+      font-weight: 600;
     }
 
     .booking-copy strong {
@@ -526,14 +598,15 @@
       letter-spacing: 0.16em;
       color: var(--muted);
       margin-top: 6px;
+      font-weight: 600;
     }
 
     .booking-note span {
-      color: var(--danger);
+      color: var(--accent-pink);
     }
 
     .booking-form {
-      background: var(--bg-panel-alt);
+      background: var(--bg-card);
       border: 1px solid var(--border-strong);
       padding: 16px 14px;
       display: grid;
@@ -564,7 +637,7 @@
     .form-input,
     .form-select,
     .form-textarea {
-      background: #020313;
+      background: #050518;
       border: 1px solid var(--border-strong);
       padding: 7px 8px;
       font-family: inherit;
@@ -572,13 +645,13 @@
       color: var(--ink);
       outline: none;
       border-radius: 0;
-      font-weight: 500;
+      font-weight: 600; /* heavier fields */
     }
 
     .form-input:focus,
     .form-select:focus,
     .form-textarea:focus {
-      border-color: var(--accent-strong);
+      border-color: var(--accent-blue);
     }
 
     .form-textarea {
@@ -598,16 +671,17 @@
       align-items: center;
       gap: 6px;
       padding: 5px 9px;
-      border: 1px solid var(--border-strong);
-      background: #020313;
+      border: 1px solid var(--accent-blue-dark);
+      background: #050518;
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       font-weight: 600;
+      color: var(--muted);
     }
 
     .checkbox-pill input {
-      accent-color: var(--accent);
+      accent-color: var(--accent-blue);
     }
 
     .booking-submit-row {
@@ -639,6 +713,23 @@
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 0.14em;
+      font-weight: 600;
+    }
+
+    /* SECTION SQUIGGLES */
+
+    .section-squiggle {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.5;
+      z-index: 0;
+    }
+
+    .section-squiggle svg {
+      width: 140%;
+      height: 120px;
+      transform: translate(-10%, 0);
     }
 
     /* FOOTER */
@@ -654,6 +745,7 @@
       justify-content: space-between;
       gap: 12px;
       flex-wrap: wrap;
+      font-weight: 600;
     }
 
     .footer-links {
@@ -662,7 +754,6 @@
       gap: 14px;
       text-transform: uppercase;
       letter-spacing: 0.14em;
-      font-weight: 600;
     }
 
     .footer-links a:hover {
@@ -679,11 +770,12 @@
 
       .hero-right {
         order: -1;
-        justify-content: flex-start;
+        align-items: flex-start;
       }
 
-      .hero-photo-wrap {
-        margin-inline: auto;
+      .hero-photo-wrap,
+      .hero-mood-strip {
+        max-width: 100%;
       }
 
       .booking-layout {
@@ -725,7 +817,7 @@
       }
 
       .hero-title {
-        font-size: 46px;
+        font-size: 48px;
       }
     }
   </style>
@@ -760,6 +852,18 @@
     <main class="page-inner">
       <!-- HERO -->
       <section class="hero" id="top">
+        <!-- winding thick white line behind hero -->
+        <div class="hero-squiggle">
+          <svg viewBox="0 0 1200 400" preserveAspectRatio="none">
+            <path
+              d="M-50 80 C 150 0, 350 180, 550 80 S 950 -20, 1200 120"
+              fill="none"
+              stroke="#ffffff"
+              stroke-width="10"
+            />
+          </svg>
+        </div>
+
         <div class="hero-grid">
           <div class="hero-left">
             <div class="hero-tagline">Live R&amp;B · Pop · Soul</div>
@@ -772,10 +876,11 @@
             </h1>
 
             <p class="hero-subline">
-              Loud, emotional, and fully present on stage and in the studio.
+              Loud, emotional, and fully present — on stage and in the studio.
             </p>
             <p class="hero-detail">
-              NYC-based vocalist for rooms that actually listen — from small clubs to big nights and session work.
+              Artist and vocalist based in New York, rooted in soul and R&amp;B with a modern edge.
+              Built for rooms that actually listen and nights that feel like something.
             </p>
 
             <div class="hero-ctas">
@@ -801,19 +906,54 @@
               </div>
               <div class="hero-photo-tag">Live on stage</div>
             </div>
+
+            <!-- Mood strip with free-style images (swap URLs if you want) -->
+            <div class="hero-mood-strip">
+              <div
+                class="mood-tile"
+                style="background-image:url('https://images.pexels.com/photos/167636/pexels-photo-167636.jpeg?auto=compress&cs=tinysrgb&w=800');"
+              >
+                <div class="mood-tile-label">Lights</div>
+              </div>
+              <div
+                class="mood-tile"
+                style="background-image:url('https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=800');"
+              >
+                <div class="mood-tile-label">Crowd</div>
+              </div>
+              <div
+                class="mood-tile"
+                style="background-image:url('https://images.pexels.com/photos/164745/pexels-photo-164745.jpeg?auto=compress&cs=tinysrgb&w=800');"
+              >
+                <div class="mood-tile-label">Mood</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- PERFORMANCE -->
       <section class="section" id="performance">
+        <!-- squiggle connector -->
+        <div class="section-squiggle">
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path
+              d="M-40 80 C 120 10, 380 140, 600 40 S 980 -20, 1240 70"
+              fill="none"
+              stroke="#ffffff"
+              stroke-width="8"
+            />
+          </svg>
+        </div>
+
         <div class="panel">
           <header class="section-header">
             <div class="section-title-block">
               <div class="section-tag">Performance</div>
               <h2 class="section-title">See it, not just read it</h2>
               <p class="section-sub">
-                A few real clips so you can hear the tone, the runs, and how she holds a room.
+                A few raw clips so you can hear the tone, the runs, and how she sits in a room —
+                not just in a studio mix.
               </p>
             </div>
             <a href="#book" class="section-link">Book after watching</a>
@@ -860,14 +1000,25 @@
       </section>
 
       <!-- SERVICES -->
-      <section class="section" id="services">
+      <section class="section section--services" id="services">
+        <div class="section-squiggle">
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path
+              d="M-40 40 C 140 120, 360 -10, 580 70 S 980 150, 1240 40"
+              fill="none"
+              stroke="#ffffff"
+              stroke-width="7"
+            />
+          </svg>
+        </div>
+
         <div class="panel">
           <header class="section-header">
             <div class="section-title-block">
               <div class="section-tag">Services</div>
               <h2 class="section-title">Services</h2>
               <p class="section-sub">
-                Choose what you need. You can combine more than one when you send the booking form.
+                Pick what you need. You can mix more than one lane when you send the booking form.
               </p>
             </div>
             <a href="#book" class="section-link">Add to booking</a>
@@ -875,9 +1026,11 @@
 
           <div class="services-grid">
             <div class="service-card">
+              <div class="service-pill">Live</div>
               <div class="service-title">Live shows</div>
               <p class="service-text">
-                For venues and lineups that want a clear lead vocal and real stage presence.
+                For venues and festivals that want a clear lead vocal, crowd control, and real presence
+                on stage — not background noise.
               </p>
               <div class="service-tags">
                 <span class="service-tag">Clubs &amp; venues</span>
@@ -886,9 +1039,11 @@
             </div>
 
             <div class="service-card">
+              <div class="service-pill">Event</div>
               <div class="service-title">Galas &amp; private events</div>
               <p class="service-text">
-                For nights that need to feel intentional and high-end, not background noise.
+                For nights that need to feel intentional and high-end. Think curated sets, special
+                moments, and vocals that sit right in the room.
               </p>
               <div class="service-tags">
                 <span class="service-tag">Galas</span>
@@ -898,9 +1053,11 @@
             </div>
 
             <div class="service-card">
+              <div class="service-pill">Studio</div>
               <div class="service-title">Studio &amp; collabs</div>
               <p class="service-text">
-                Hooks, verses, or full songs recorded with a clean, modern tone for artists and brands.
+                Hooks, verses, or full songs tracked with a clean, modern tone for artists, producers,
+                and brands who care about the details.
               </p>
               <div class="service-tags">
                 <span class="service-tag">Sessions</span>
@@ -913,14 +1070,26 @@
       </section>
 
       <!-- BOOKING -->
-      <section class="section" id="book">
+      <section class="section section--booking" id="book">
+        <div class="section-squiggle">
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path
+              d="M-40 90 C 160 -10, 360 140, 580 40 S 980 -30, 1240 60"
+              fill="none"
+              stroke="#ffffff"
+              stroke-width="8"
+            />
+          </svg>
+        </div>
+
         <div class="panel">
           <header class="section-header">
             <div class="section-title-block">
               <div class="section-tag">Booking</div>
               <h2 class="section-title">Book Dom</h2>
               <p class="section-sub">
-                Share the date, place, and what you’re trying to pull off. Someone will follow up with details and rates.
+                Share the date, place, and what you’re trying to pull off. The team will follow up
+                with rates and next steps.
               </p>
             </div>
             <a href="#top" class="section-link">Back to top</a>
@@ -929,13 +1098,15 @@
           <div class="booking-layout">
             <div class="booking-copy">
               <p>
-                Based in New York, available for travel if the setup makes sense. Live sets can be to track or with a band.
+                Based in New York, open to travel if the timing and setup make sense. Sets can be
+                built with a band or to track depending on your room and budget.
               </p>
               <p>
-                Use this form to outline what you’re thinking: event type, set length, vibe, and anything that matters to you.
+                The more you share here — vibe, dress code, set length, must-play songs — the easier
+                it is to shape something that feels like your world, not just another gig.
               </p>
               <p class="booking-note">
-                <span>Note:</span> This form starts the conversation. It doesn’t lock anything in yet.
+                <span>Note:</span> This form starts the conversation. It doesn’t lock in the date yet.
               </p>
             </div>
 
@@ -1003,7 +1174,7 @@
                 <textarea
                   class="form-textarea"
                   id="details"
-                  placeholder="Tell us about the vibe, timing, setup, and anything else that matters."
+                  placeholder="Talk about the vibe, timing, setup, and anything else that matters."
                 ></textarea>
               </div>
 

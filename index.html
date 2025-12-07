@@ -70,26 +70,32 @@
       z-index: 10;
     }
 
-    /* OUTLINE BUTTONS, NO FILL */
-    .hero-btn {
-      background: transparent;
-      border: 2px solid var(--border-color);
-      color: var(--text-color);
-      padding: 12px 40px;
-      font-size: 18px;
-      line-height: 20px;
-      font-family: "Introvert";
-      cursor: pointer;
-      border-radius: 0;
-      box-shadow: #ffffff 4px 4px 0 0, #000000 4px 4px 0 1px;
-      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
-    }
+.hero-btn {
+  background: transparent;
+  border: 2px solid var(--border-color);
+  color: var(--text-color);
 
-    /* Button active press */
-    .hero-btn:active {
-      box-shadow: #ffffff 2px 2px 0 0, #000000 2px 2px 0 1px;
-      transform: translate(2px, 2px);
-    }
+  /* Bigger + bolder */
+  padding: 20px 70px;
+  font-size: 24px;
+  line-height: 26px;
+
+  font-family: "Introvert";
+  cursor: pointer;
+  border-radius: 0;
+
+  /* Larger outline shadow for visual weight */
+  box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
+
+  transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+}
+
+/* Button active press */
+.hero-btn:active {
+  box-shadow: #ffffff 3px 3px 0 0, #000000 3px 3px 0 1px;
+  transform: translate(3px, 3px);
+}
+
 
     @media (max-width: 600px) {
       .hero-btn {

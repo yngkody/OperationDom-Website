@@ -59,7 +59,7 @@
     }
 
     /* =========================
-       Grid Overlay (same vibe as buttons: white, crisp, no color glow)
+       Grid Overlay (buttons-style: crisp white lines)
     ========================== */
     .grid-overlay {
       position: fixed;
@@ -207,7 +207,7 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      min-height: 180px;
+      min-height: 220px;
     }
 
     .music-platform {
@@ -243,6 +243,12 @@
     .music-link a:active {
       box-shadow: #ffffff 2px 2px 0 0, #000000 2px 2px 0 1px;
       transform: translate(2px, 2px);
+    }
+
+    .music-embed {
+      margin-top: 10px;
+      border-radius: 0;
+      overflow: hidden;
     }
 
     /* responsive */
@@ -336,77 +342,88 @@
           <article class="music-card">
             <div class="music-platform">Spotify</div>
             <div class="music-meta">
-              Stream OperationDom on Spotify. Follow to get new releases
-              and live performance drops directly in your library.
+              Follow OperationDom on Spotify to lock in her latest releases and performance drops.
             </div>
+
             <div class="music-link">
-              <!-- TODO: replace href with your actual Spotify link -->
-              <a href="YOUR_SPOTIFY_LINK_HERE" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://open.spotify.com/artist/3qWTtM0AN7KdlfS8exCEy6?si=qNRHmzcST9GJJsB-owpgzQ&amp;nd=1&amp;dlsi=81d0be64ff574521"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Open on Spotify
               </a>
             </div>
-            <!--
-            If you have an embed URL, you can drop it here:
-            <iframe
-              src="YOUR_SPOTIFY_EMBED_URL_HERE"
-              width="100%"
-              height="80"
-              frameborder="0"
-              allowtransparency="true"
-              allow="encrypted-media">
-            </iframe>
-            -->
+
+            <div class="music-embed">
+              <iframe
+                style="border-radius:0;"
+                src="https://open.spotify.com/embed/artist/3qWTtM0AN7KdlfS8exCEy6"
+                width="100%"
+                height="152"
+                frameborder="0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+              ></iframe>
+            </div>
           </article>
 
           <!-- ===== Apple Music ===== -->
           <article class="music-card">
             <div class="music-platform">Apple Music</div>
             <div class="music-meta">
-              Add OperationDom to your Apple Music library, create custom playlists,
-              and keep her in your daily rotation.
+              Add OperationDom on Apple Music to keep her in rotation and never miss a new drop.
             </div>
+
             <div class="music-link">
-              <!-- TODO: replace href with your actual Apple Music link -->
-              <a href="YOUR_APPLE_MUSIC_LINK_HERE" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://music.apple.com/us/artist/operationdom/1824111226"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Open on Apple Music
               </a>
             </div>
-            <!--
-            Apple Music embeds can also live here:
-            <iframe
-              allow="autoplay *; encrypted-media *;"
-              frameborder="0"
-              height="150"
-              style="width:100%;max-width:100%;overflow:hidden;background:transparent;"
-              sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
-              src="YOUR_APPLE_MUSIC_EMBED_URL_HERE">
-            </iframe>
-            -->
+
+            <div class="music-embed">
+              <iframe
+                allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
+                frameborder="0"
+                height="150"
+                style="width:100%;max-width:100%;overflow:hidden;background:transparent;"
+                sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+                src="https://embed.music.apple.com/us/artist/operationdom/1824111226"
+              ></iframe>
+            </div>
           </article>
 
           <!-- ===== SoundCloud ===== -->
           <article class="music-card">
             <div class="music-platform">SoundCloud</div>
             <div class="music-meta">
-              Tap into demos, alt versions, and exclusive drops from OperationDom on SoundCloud.
+              Tap into demos, alt versions, and exclusive vibes from OperationDom on SoundCloud.
             </div>
+
             <div class="music-link">
-              <!-- TODO: replace href with your actual SoundCloud link -->
-              <a href="YOUR_SOUNDCLOUD_LINK_HERE" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://soundcloud.com/dominique-smith-892170035?utm_source=clipboard&amp;utm_medium=text&amp;utm_campaign=social_sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Open on SoundCloud
               </a>
             </div>
-            <!--
-            SoundCloud embed example:
-            <iframe
-              width="100%"
-              height="120"
-              scrolling="no"
-              frameborder="no"
-              allow="autoplay"
-              src="YOUR_SOUNDCLOUD_EMBED_URL_HERE">
-            </iframe>
-            -->
+
+            <div class="music-embed">
+              <iframe
+                width="100%"
+                height="120"
+                scrolling="no"
+                frameborder="no"
+                allow="autoplay"
+                src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/dominique-smith-892170035&amp;color=%23ffffff&amp;inverse=false&amp;auto_play=false&amp;show_user=true"
+              ></iframe>
+            </div>
           </article>
         </div>
       </section>
@@ -416,7 +433,7 @@
       ========================== -->
       <section id="booking" class="section">
         <h2 class="section-heading">Booking</h2>
-        <!-- You can drop your booking form / copy here later -->
+        <!-- Drop your booking form / copy here later -->
       </section>
     </main>
   </div>

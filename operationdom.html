@@ -177,79 +177,85 @@
       border-top: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    .section {
-      padding: 60px 24px 80px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
+    /* ===== MUSIC SECTION (FULL SCREEN PANELS) ===== */
+.section {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
 
-    .section-heading {
-      font-size: 26px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 30px;
-      text-align: left;
-    }
+#music .section-heading {
+  font-size: 48px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  text-align: center;
+}
 
-    /* ===== MUSIC SECTION ===== */
-    .music-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 24px;
-    }
+.music-vertical {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 
-    .music-card {
-      border: 3px solid var(--border-color);
-      background: var(--card-bg);
-      box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
-      border-radius: 0;
-      padding: 20px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      min-height: 220px;
-    }
+.music-panel {
+  min-height: 100vh;
+  width: 100%;
+  padding: 80px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 28px;
 
-    .music-platform {
-      font-size: 18px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(10px);
 
-    .music-meta {
-      font-size: 12px;
-      opacity: 0.8;
-      line-height: 1.4;
-    }
+  border-top: 3px solid #ffffff;
+  border-bottom: 3px solid #ffffff;
+}
 
-    .music-link {
-      margin-top: auto;
-    }
+.music-platform {
+  font-size: 54px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
 
-    .music-link a {
-      display: inline-block;
-      border: 2px solid var(--border-color);
-      padding: 10px 18px;
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--text-color);
-      border-radius: 0;
-      box-shadow: #ffffff 4px 4px 0 0, #000000 4px 4px 0 1px;
-      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
-    }
+.music-meta {
+  font-size: 20px;
+  max-width: 760px;
+  text-align: center;
+  line-height: 1.5;
+  opacity: 0.85;
+}
 
-    .music-link a:active {
-      box-shadow: #ffffff 2px 2px 0 0, #000000 2px 2px 0 1px;
-      transform: translate(2px, 2px);
-    }
+.music-link a {
+  display: inline-block;
+  border: 3px solid var(--border-color);
+  padding: 18px 40px;
+  font-size: 22px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text-color);
+  border-radius: 0;
 
-    .music-embed {
-      margin-top: 10px;
-      border-radius: 0;
-      overflow: hidden;
-    }
+  box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
+  transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+}
+
+.music-link a:active {
+  box-shadow: #ffffff 3px 3px 0 0, #000000 3px 3px 0 1px;
+  transform: translate(3px, 3px);
+}
+
+.music-embed {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 20px;
+  border: 3px solid #ffffff;
+  box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
+}
 
     /* responsive */
     @media (max-width: 900px) {
@@ -335,106 +341,100 @@
            MUSIC SECTION
       ========================== -->
       <section id="music" class="section">
-        <h2 class="section-heading">Stream OperationDom</h2>
+  <div class="music-vertical">
 
-        <div class="music-grid">
-          <!-- ===== Spotify ===== -->
-          <article class="music-card">
-            <div class="music-platform">Spotify</div>
-            <div class="music-meta">
-              Follow OperationDom on Spotify to lock in her latest releases and performance drops.
-            </div>
+    <!-- =======================
+         SPOTIFY PANEL
+    ======================== -->
+    <div class="music-panel">
+      <div class="music-platform">Spotify</div>
 
-            <div class="music-link">
-              <a
-                href="https://open.spotify.com/artist/3qWTtM0AN7KdlfS8exCEy6?si=qNRHmzcST9GJJsB-owpgzQ&amp;nd=1&amp;dlsi=81d0be64ff574521"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Open on Spotify
-              </a>
-            </div>
+      <div class="music-meta">
+        Follow OperationDom on Spotify to lock in her latest releases, EPs, and
+        performance drops — directly in your Release Radar and playlists.
+      </div>
 
-            <div class="music-embed">
-              <iframe
-                style="border-radius:0;"
-                src="https://open.spotify.com/embed/artist/3qWTtM0AN7KdlfS8exCEy6"
-                width="100%"
-                height="152"
-                frameborder="0"
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"
-              ></iframe>
-            </div>
-          </article>
+      <div class="music-link">
+        <a href="https://open.spotify.com/artist/3qWTtM0AN7KdlfS8exCEy6?si=qNRHmzcST9GJJsB-owpgzQ"
+           target="_blank" rel="noopener noreferrer">
+          Open on Spotify
+        </a>
+      </div>
 
-          <!-- ===== Apple Music ===== -->
-          <article class="music-card">
-            <div class="music-platform">Apple Music</div>
-            <div class="music-meta">
-              Add OperationDom on Apple Music to keep her in rotation and never miss a new drop.
-            </div>
+      <div class="music-embed">
+        <iframe
+          style="border-radius:0;width:100%;height:352px;"
+          src="https://open.spotify.com/embed/artist/3qWTtM0AN7KdlfS8exCEy6"
+          frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
 
-            <div class="music-link">
-              <a
-                href="https://music.apple.com/us/artist/operationdom/1824111226"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Open on Apple Music
-              </a>
-            </div>
+    <!-- =======================
+         APPLE MUSIC PANEL
+    ======================== -->
+    <div class="music-panel">
+      <div class="music-platform">Apple Music</div>
 
-            <div class="music-embed">
-              <iframe
-                allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
-                frameborder="0"
-                height="150"
-                style="width:100%;max-width:100%;overflow:hidden;background:transparent;"
-                sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
-                src="https://embed.music.apple.com/us/artist/operationdom/1824111226"
-              ></iframe>
-            </div>
-          </article>
+      <div class="music-meta">
+        Add OperationDom to your Apple Music library and stay updated on new releases,
+        curated playlists, and exclusive drops.
+      </div>
 
-          <!-- ===== SoundCloud ===== -->
-          <article class="music-card">
-            <div class="music-platform">SoundCloud</div>
-            <div class="music-meta">
-              Tap into demos, alt versions, and exclusive vibes from OperationDom on SoundCloud.
-            </div>
+      <div class="music-link">
+        <a href="https://music.apple.com/us/artist/operationdom/1824111226"
+           target="_blank" rel="noopener noreferrer">
+          Open on Apple Music
+        </a>
+      </div>
 
-            <div class="music-link">
-              <a
-                href="https://soundcloud.com/dominique-smith-892170035?utm_source=clipboard&amp;utm_medium=text&amp;utm_campaign=social_sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Open on SoundCloud
-              </a>
-            </div>
+      <div class="music-embed">
+        <iframe
+          allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
+          frameborder="0"
+          height="350"
+          style="width:100%;max-width:100%;overflow:hidden;background:transparent;"
+          sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+          src="https://embed.music.apple.com/us/artist/operationdom/1824111226">
+        </iframe>
+      </div>
+    </div>
 
-            <div class="music-embed">
-              <iframe
-                width="100%"
-                height="120"
-                scrolling="no"
-                frameborder="no"
-                allow="autoplay"
-                src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/dominique-smith-892170035&amp;color=%23ffffff&amp;inverse=false&amp;auto_play=false&amp;show_user=true"
-              ></iframe>
-            </div>
-          </article>
-        </div>
-      </section>
+    <!-- =======================
+         SOUNDCLOUD PANEL
+    ======================== -->
+    <div class="music-panel">
+      <div class="music-platform">SoundCloud</div>
 
-      <!-- =========================
-           BOOKING SECTION (placeholder)
-      ========================== -->
-      <section id="booking" class="section">
-        <h2 class="section-heading">Booking</h2>
-        <!-- Drop your booking form / copy here later -->
-      </section>
+      <div class="music-meta">
+        Dive into demos, alt versions, raw cuts, and exclusive SoundCloud drops
+        that show Dom’s creative process behind the scenes.
+      </div>
+
+      <div class="music-link">
+        <a href="https://soundcloud.com/dominique-smith-892170035"
+           target="_blank" rel="noopener noreferrer">
+          Open on SoundCloud
+        </a>
+      </div>
+
+      <div class="music-embed">
+        <iframe
+          width="100%"
+          height="350"
+          scrolling="no"
+          frameborder="no"
+          allow="autoplay"
+          src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/dominique-smith-892170035&color=%23ffffff&inverse=false&auto_play=false&show_user=true">
+        </iframe>
+      </div>
+    </div>
+
+  </div>
+</section>
+
     </main>
   </div>
 </body>

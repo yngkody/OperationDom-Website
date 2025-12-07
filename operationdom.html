@@ -4,16 +4,15 @@
   <meta charset="UTF-8" />
   <title>OperationDom – Live Performance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
 
   <style>
     /* =========================
        Custom Font
     ========================== */
-    @font-face {
-      font-family: "Introvert";
-      src: url("Introvert.otf") format("opentype");
-      font-weight: normal;
-      font-style: normal;
+    /* GLOBAL FONT OVERRIDE — bubble 70s everywhere */
+    * {
+      font-family: "Shrikhand", cursive !important;
     }
 
     :root {
@@ -21,6 +20,7 @@
       --text-color: #ffffff;
       --bg-color: #000000;
       --card-bg: rgba(0, 0, 0, 0.8);
+      --input-bg: rgba(0, 0, 0, 0.7);
     }
 
     * {
@@ -31,7 +31,7 @@
 
     body {
       min-height: 100vh;
-      font-family: "Introvert", system-ui, sans-serif;
+      font-family: "Shrikhand", cursive;, system-ui, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
       overflow-x: hidden;
@@ -59,7 +59,7 @@
     }
 
     /* =========================
-       Grid Overlay (buttons-style: crisp white lines)
+       Grid Overlay (crisp white lines)
     ========================== */
     .grid-overlay {
       position: fixed;
@@ -148,7 +148,7 @@
       font-size: 26px;
       line-height: 28px;
       letter-spacing: 0.08em;
-      font-family: "Introvert";
+      font-family: "Shrikhand", cursive;;
       cursor: pointer;
       border-radius: 0;
 
@@ -168,98 +168,241 @@
       color: var(--text-color);
     }
 
-    /* =========================
-       Main Content Sections
-    ========================== */
     main {
       background: rgba(0, 0, 0, 0.8);
       backdrop-filter: blur(12px);
       border-top: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    /* ===== MUSIC SECTION (FULL SCREEN PANELS) ===== */
-.section {
-  padding: 0;
-  margin: 0;
-  width: 100%;
-}
+    .section {
+      width: 100%;
+    }
 
-#music .section-heading {
-  font-size: 48px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 40px;
-  text-align: center;
-}
+    /* =========================
+       BOOKING SECTION
+    ========================== */
+    #booking {
+      min-height: 100vh;
+      padding: 80px 24px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: flex-start;
+      border-bottom: 3px solid #ffffff;
+    }
 
-.music-vertical {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
+    .booking-left {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
 
-.music-panel {
-  min-height: 100vh;
-  width: 100%;
-  padding: 80px 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 28px;
+    .booking-heading {
+      font-size: 40px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
 
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(10px);
+    .booking-description {
+      font-size: 18px;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
 
-  border-top: 3px solid #ffffff;
-  border-bottom: 3px solid #ffffff;
-}
+    .booking-description strong {
+      font-weight: 700;
+    }
 
-.music-platform {
-  font-size: 54px;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-}
+    .booking-video {
+      margin-top: 10px;
+      border: 3px solid #ffffff;
+      box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
+    }
 
-.music-meta {
-  font-size: 20px;
-  max-width: 760px;
-  text-align: center;
-  line-height: 1.5;
-  opacity: 0.85;
-}
+    .booking-video iframe {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+    }
 
-.music-link a {
-  display: inline-block;
-  border: 3px solid var(--border-color);
-  padding: 18px 40px;
-  font-size: 22px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--text-color);
-  border-radius: 0;
+    .booking-right {
+      border: 3px solid #ffffff;
+      background: rgba(0, 0, 0, 0.82);
+      box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
+      padding: 24px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
 
-  box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
-  transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
-}
+    .booking-form-title {
+      font-size: 24px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
 
-.music-link a:active {
-  box-shadow: #ffffff 3px 3px 0 0, #000000 3px 3px 0 1px;
-  transform: translate(3px, 3px);
-}
+    .form-row {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+    }
 
-.music-embed {
-  width: 100%;
-  max-width: 800px;
-  margin-top: 20px;
-  border: 3px solid #ffffff;
-  box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
-}
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 100%;
+    }
 
-    /* responsive */
+    label {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    input,
+    select,
+    textarea {
+      font-family: "Shrikhand", cursive;, system-ui, sans-serif;
+      font-size: 14px;
+      padding: 10px 10px;
+      border-radius: 0;
+      border: 2px solid #ffffff;
+      background: var(--input-bg);
+      color: #ffffff;
+      outline: none;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .option-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip-option {
+      border: 2px solid #ffffff;
+      padding: 8px 12px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(0, 0, 0, 0.7);
+      cursor: default;
+    }
+
+    .booking-submit {
+      margin-top: 8px;
+      align-self: flex-start;
+      background: #000000;
+      border: 3px solid #ffffff;
+      color: #ffffff;
+      padding: 14px 40px;
+      font-size: 16px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 0;
+      box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
+      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+    }
+
+    .booking-submit:active {
+      box-shadow: #ffffff 3px 3px 0 0, #000000 3px 3px 0 1px;
+      transform: translate(3px, 3px);
+    }
+
+    /* =========================
+       MUSIC SECTION – FULL SCREEN PANELS
+    ========================== */
+    #music {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+    }
+
+    .music-vertical {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .music-panel {
+      min-height: 100vh;
+      width: 100%;
+      padding: 80px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 28px;
+
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(10px);
+
+      border-top: 3px solid #ffffff;
+      border-bottom: 3px solid #ffffff;
+    }
+
+    .music-platform {
+      font-size: 54px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .music-meta {
+      font-size: 20px;
+      max-width: 760px;
+      text-align: center;
+      line-height: 1.5;
+      opacity: 0.85;
+    }
+
+    .music-link a {
+      display: inline-block;
+      border: 3px solid var(--border-color);
+      padding: 18px 40px;
+      font-size: 22px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--text-color);
+      border-radius: 0;
+
+      box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
+      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+    }
+
+    .music-link a:active {
+      box-shadow: #ffffff 3px 3px 0 0, #000000 3px 3px 0 1px;
+      transform: translate(3px, 3px);
+    }
+
+    .music-embed {
+      width: 100%;
+      max-width: 800px;
+      margin-top: 20px;
+      border: 3px solid #ffffff;
+      box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
     @media (max-width: 900px) {
-      .music-grid {
+      #booking {
         grid-template-columns: 1fr;
       }
     }
@@ -276,8 +419,16 @@
         box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
       }
 
-      .section-heading {
-        text-align: center;
+      .booking-heading {
+        font-size: 30px;
+      }
+
+      .music-platform {
+        font-size: 36px;
+      }
+
+      .music-meta {
+        font-size: 16px;
       }
     }
 
@@ -292,7 +443,11 @@
         max-width: 100%;
       }
 
-      .section {
+      #booking {
+        padding-inline: 16px;
+      }
+
+      .music-panel {
         padding-inline: 16px;
       }
     }
@@ -338,103 +493,224 @@
 
     <main>
       <!-- =========================
-           MUSIC SECTION
+           BOOKING SECTION (before music)
+      ========================== -->
+      <section id="booking" class="section">
+        <div class="booking-left">
+          <h2 class="booking-heading">Booking</h2>
+
+          <div class="booking-description">
+            <p><strong>Live Performances</strong><br>
+              Bring soul, energy, and elegance to any event.
+              OperationDom delivers unforgettable performances for weddings, galas, corporate functions,
+              and private celebrations — blending powerhouse vocals with magnetic stage presence.
+            </p>
+            <br>
+            <p><strong>Studio Sessions &amp; Collaborations</strong><br>
+              Need a voice that moves people? Book OperationDom for hooks, background vocals, or features.
+              Available for in-studio or remote collaborations with producers, artists, and songwriters.
+            </p>
+          </div>
+
+          <div class="booking-video">
+            <iframe
+              src="https://www.youtube.com/embed/nUiGw0PV7j4"
+              title="OperationDom Green Light Promo"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+
+        <div class="booking-right">
+          <div class="booking-form-title">Booking Request</div>
+
+          <form>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Your name">
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" placeholder="+1 (___) ___-____">
+              </div>
+              <div class="form-group">
+                <label for="date">Event / Session Date</label>
+                <input id="date" name="date" type="date">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="location">Location</label>
+              <input id="location" name="location" type="text" placeholder="Venue / Studio / City">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="booking-type">Booking Type</label>
+                <select id="booking-type" name="booking-type">
+                  <option value="">Select an option</option>
+                  <option value="live">Live Performance</option>
+                  <option value="studio">Studio Session &amp; Collaboration</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="performance-setup">Performance Setup</label>
+                <select id="performance-setup" name="performance-setup">
+                  <option value="">Select setup</option>
+                  <option value="solo">OperationDom (Solo Artist)</option>
+                  <option value="band">OperationDom + Full Band</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="event-type">Event / Session Type</label>
+              <select id="event-type" name="event-type">
+                <option value="">Select type</option>
+                <option value="wedding">Wedding</option>
+                <option value="gala">Gala</option>
+                <option value="corporate">Corporate Function</option>
+                <option value="private">Private Celebration</option>
+                <option value="studio-hook">Studio – Hooks</option>
+                <option value="studio-bgv">Studio – Background Vocals</option>
+                <option value="studio-feature">Studio – Feature</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="budget">Estimated Budget</label>
+              <input id="budget" name="budget" type="text" placeholder="e.g. 2,000 – 5,000 USD">
+            </div>
+
+            <div class="form-group">
+              <label for="details">Additional Details</label>
+              <textarea id="details" name="details" placeholder="Tell us about your event, set length, vibe, technical needs, or collaborators."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Available For</label>
+              <div class="option-row">
+                <span class="chip-option">Weddings</span>
+                <span class="chip-option">Galas</span>
+                <span class="chip-option">Corporate Functions</span>
+                <span class="chip-option">Private Events</span>
+                <span class="chip-option">Hooks</span>
+                <span class="chip-option">Background Vocals</span>
+                <span class="chip-option">Features</span>
+                <span class="chip-option">In-Studio</span>
+                <span class="chip-option">Remote</span>
+              </div>
+            </div>
+
+            <button type="submit" class="booking-submit">
+              Submit Request
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- =========================
+           MUSIC SECTION (after booking)
       ========================== -->
       <section id="music" class="section">
-  <div class="music-vertical">
+        <div class="music-vertical">
 
-    <!-- =======================
-         SPOTIFY PANEL
-    ======================== -->
-    <div class="music-panel">
-      <div class="music-platform">Spotify</div>
+          <!-- SPOTIFY -->
+          <div class="music-panel">
+            <div class="music-platform">Spotify</div>
 
-      <div class="music-meta">
-        Follow OperationDom on Spotify to lock in her latest releases, EPs, and
-        performance drops — directly in your Release Radar and playlists.
-      </div>
+            <div class="music-meta">
+              Follow OperationDom on Spotify to lock in her latest releases, EPs, and
+              performance drops — directly in your Release Radar and playlists.
+            </div>
 
-      <div class="music-link">
-        <a href="https://open.spotify.com/artist/3qWTtM0AN7KdlfS8exCEy6?si=qNRHmzcST9GJJsB-owpgzQ"
-           target="_blank" rel="noopener noreferrer">
-          Open on Spotify
-        </a>
-      </div>
+            <div class="music-link">
+              <a href="https://open.spotify.com/artist/3qWTtM0AN7KdlfS8exCEy6?si=qNRHmzcST9GJJsB-owpgzQ"
+                 target="_blank" rel="noopener noreferrer">
+                Open on Spotify
+              </a>
+            </div>
 
-      <div class="music-embed">
-        <iframe
-          style="border-radius:0;width:100%;height:352px;"
-          src="https://open.spotify.com/embed/artist/3qWTtM0AN7KdlfS8exCEy6"
-          frameborder="0"
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy"
-        ></iframe>
-      </div>
-    </div>
+            <div class="music-embed">
+              <iframe
+                style="border-radius:0;width:100%;height:352px;"
+                src="https://open.spotify.com/embed/artist/3qWTtM0AN7KdlfS8exCEy6"
+                frameborder="0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
 
-    <!-- =======================
-         APPLE MUSIC PANEL
-    ======================== -->
-    <div class="music-panel">
-      <div class="music-platform">Apple Music</div>
+          <!-- APPLE MUSIC -->
+          <div class="music-panel">
+            <div class="music-platform">Apple Music</div>
 
-      <div class="music-meta">
-        Add OperationDom to your Apple Music library and stay updated on new releases,
-        curated playlists, and exclusive drops.
-      </div>
+            <div class="music-meta">
+              Add OperationDom to your Apple Music library and stay updated on new releases,
+              curated playlists, and exclusive drops.
+            </div>
 
-      <div class="music-link">
-        <a href="https://music.apple.com/us/artist/operationdom/1824111226"
-           target="_blank" rel="noopener noreferrer">
-          Open on Apple Music
-        </a>
-      </div>
+            <div class="music-link">
+              <a href="https://music.apple.com/us/artist/operationdom/1824111226"
+                 target="_blank" rel="noopener noreferrer">
+                Open on Apple Music
+              </a>
+            </div>
 
-      <div class="music-embed">
-        <iframe
-          allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
-          frameborder="0"
-          height="350"
-          style="width:100%;max-width:100%;overflow:hidden;background:transparent;"
-          sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
-          src="https://embed.music.apple.com/us/artist/operationdom/1824111226">
-        </iframe>
-      </div>
-    </div>
+            <div class="music-embed">
+              <iframe
+                allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
+                frameborder="0"
+                height="350"
+                style="width:100%;max-width:100%;overflow:hidden;background:transparent;"
+                sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+                src="https://embed.music.apple.com/us/artist/operationdom/1824111226">
+              </iframe>
+            </div>
+          </div>
 
-    <!-- =======================
-         SOUNDCLOUD PANEL
-    ======================== -->
-    <div class="music-panel">
-      <div class="music-platform">SoundCloud</div>
+          <!-- SOUNDCLOUD -->
+          <div class="music-panel">
+            <div class="music-platform">SoundCloud</div>
 
-      <div class="music-meta">
-        Dive into demos, alt versions, raw cuts, and exclusive SoundCloud drops
-        that show Dom’s creative process behind the scenes.
-      </div>
+            <div class="music-meta">
+              Dive into demos, alt versions, raw cuts, and exclusive SoundCloud drops
+              that show Dom’s creative process behind the scenes.
+            </div>
 
-      <div class="music-link">
-        <a href="https://soundcloud.com/dominique-smith-892170035"
-           target="_blank" rel="noopener noreferrer">
-          Open on SoundCloud
-        </a>
-      </div>
+            <div class="music-link">
+              <a href="https://soundcloud.com/dominique-smith-892170035"
+                 target="_blank" rel="noopener noreferrer">
+                Open on SoundCloud
+              </a>
+            </div>
 
-      <div class="music-embed">
-        <iframe
-          width="100%"
-          height="350"
-          scrolling="no"
-          frameborder="no"
-          allow="autoplay"
-          src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/dominique-smith-892170035&color=%23ffffff&inverse=false&auto_play=false&show_user=true">
-        </iframe>
-      </div>
-    </div>
+            <div class="music-embed">
+              <iframe
+                width="100%"
+                height="350"
+                scrolling="no"
+                frameborder="no"
+                allow="autoplay"
+                src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/dominique-smith-892170035&color=%23ffffff&inverse=false&auto_play=false&show_user=true">
+              </iframe>
+            </div>
+          </div>
 
-  </div>
-</section>
-
+        </div>
+      </section>
     </main>
   </div>
 </body>

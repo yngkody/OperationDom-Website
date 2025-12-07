@@ -2,45 +2,62 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>OperationDom – Test Font</title>
-
+  <title>OperationDom – Chrome Text Test</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Load custom font -->
   <style>
+    /* 1. Your custom font */
     @font-face {
       font-family: 'QeboxChrome';
-      src: url('Qebox Chrome.ttf') format('truetype');
+      src: url('QeboxChrome.ttf') format('truetype'); /* make sure name/path matches */
       font-weight: normal;
       font-style: normal;
     }
 
     :root {
       --bg: #020013;
-      --ink: #ffffff;
     }
 
     body {
       margin: 0;
-      background: var(--bg);
-      color: var(--ink);
+      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      font-family: 'QeboxChrome', sans-serif;
+      background: var(--bg);
     }
 
-    h1 {
+    .logo {
+      position: relative;
+      font-family: 'QeboxChrome', sans-serif;
       font-size: clamp(48px, 12vw, 150px);
-      letter-spacing: 0.05em;
-      margin: 0;
       text-transform: uppercase;
+      letter-spacing: 0.04em;
+
+      /* 2. Chrome-style gradient fill */
+      background: linear-gradient(
+        135deg,
+        #ffffff 0%,
+        #d8dde8 15%,
+        #9aa4b5 30%,
+        #f5f7fb 50%,
+        #7c8797 70%,
+        #e3e7f0 85%,
+        #ffffff 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+
+      /* 3. Bevel / shine illusion */
+      text-shadow:
+        0 -2px 3px rgba(255,255,255,0.8),  /* top highlight */
+        0 3px 6px rgba(0,0,0,0.6),         /* bottom shadow */
+        0 8px 18px rgba(0,0,0,0.9);        /* deeper drop shadow */
     }
   </style>
 </head>
-
 <body>
-  <h1>OPERATIONDOM</h1>
+  <div class="logo">OPERATIONDOM</div>
 </body>
 </html>

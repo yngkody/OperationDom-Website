@@ -20,6 +20,7 @@
       --border-color: #ffffff;
       --text-color: #ffffff;
       --bg-color: #000000;
+      --card-bg: rgba(0, 0, 0, 0.8);
     }
 
     * {
@@ -30,11 +31,10 @@
 
     body {
       min-height: 100vh;
-      font-family: "Introvert", system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", sans-serif;
-      background-color: #000;
+      font-family: "Introvert", system-ui, sans-serif;
+      background-color: var(--bg-color);
       color: var(--text-color);
-      overflow: hidden;
+      overflow-x: hidden;
       position: relative;
     }
 
@@ -50,7 +50,6 @@
       z-index: 0;
     }
 
-    /* dark veil over video */
     .video-overlay {
       position: fixed;
       inset: 0;
@@ -60,24 +59,18 @@
     }
 
     /* =========================
-       Neon Grid Overlay
+       Grid Overlay (same vibe as buttons: white, crisp, no color glow)
     ========================== */
     .grid-overlay {
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 2;
-
       background-image:
-        linear-gradient(rgba(255, 255, 255, 0.12) 2px, transparent 2px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.12) 2px, transparent 2px);
+        linear-gradient(rgba(255, 255, 255, 0.18) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.18) 2px, transparent 2px);
       background-size: 70px 70px;
-
-      filter:
-        drop-shadow(0 0 6px rgba(80, 140, 255, 0.3))
-        drop-shadow(0 0 5px rgba(255, 80, 200, 0.22));
-      opacity: 0.4;
-
+      opacity: 0.35;
       animation: gridDrift 45s linear infinite;
     }
 
@@ -90,14 +83,12 @@
        STATIC / NOISE Overlay
     ========================== */
     .static-overlay {
-      content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 3;
-
       background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAD9CzEMAAAArklEQVR4Ae3WsQmDQBQF0OE2no0RvrRZtGJPD7W82dManIeZDVAD6QdlqzTeWY5Avzkdxl3pNGdisz8Iky3Uczdlz7YT1DoP70uQgmO6wwLJrVN6a8GN28AL5soNqd7qV3CyMfCVx/gvBy06SnVAk0nnNAOkCTQec0B6QJNB5zQDpAk0HnNAekCTQec0A7oP4Jrped1IovnHgYHGawEq+y3OC/YLXg4Wr9PXgYMGf4AH92nee0vOB0fOkHn2qxd6QAAAABJRU5ErkJggg==");
-      opacity: 0.19;
+      opacity: 0.18;
       mix-blend-mode: overlay;
       animation: staticFlicker 0.8s steps(6) infinite;
     }
@@ -109,16 +100,22 @@
     }
 
     /* =========================
-       Hero Content
+       Layout
     ========================== */
-    .dom-hero {
+    .page {
       position: relative;
+      z-index: 4;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header.dom-hero {
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
-      z-index: 4;
+      padding: 24px 24px 60px;
     }
 
     .hero-inner {
@@ -135,6 +132,13 @@
       text-transform: uppercase;
     }
 
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
     .hero-btn {
       background: #000000;
       border: 3px solid var(--border-color);
@@ -144,7 +148,6 @@
       font-size: 26px;
       line-height: 28px;
       letter-spacing: 0.08em;
-
       font-family: "Introvert";
       cursor: pointer;
       border-radius: 0;
@@ -159,6 +162,96 @@
       transform: translate(4px, 4px);
     }
 
+    .hero-btn.outline {
+      background: transparent;
+      border: 3px solid var(--border-color);
+      color: var(--text-color);
+    }
+
+    /* =========================
+       Main Content Sections
+    ========================== */
+    main {
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .section {
+      padding: 60px 24px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      font-size: 26px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      text-align: left;
+    }
+
+    /* ===== MUSIC SECTION ===== */
+    .music-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .music-card {
+      border: 3px solid var(--border-color);
+      background: var(--card-bg);
+      box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
+      border-radius: 0;
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 180px;
+    }
+
+    .music-platform {
+      font-size: 18px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .music-meta {
+      font-size: 12px;
+      opacity: 0.8;
+      line-height: 1.4;
+    }
+
+    .music-link {
+      margin-top: auto;
+    }
+
+    .music-link a {
+      display: inline-block;
+      border: 2px solid var(--border-color);
+      padding: 10px 18px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--text-color);
+      border-radius: 0;
+      box-shadow: #ffffff 4px 4px 0 0, #000000 4px 4px 0 1px;
+      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+    }
+
+    .music-link a:active {
+      box-shadow: #ffffff 2px 2px 0 0, #000000 2px 2px 0 1px;
+      transform: translate(2px, 2px);
+    }
+
+    /* responsive */
+    @media (max-width: 900px) {
+      .music-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 768px) {
       .hero-title {
         font-size: 28px;
@@ -169,6 +262,10 @@
         font-size: 18px;
         line-height: 20px;
         box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
+      }
+
+      .section-heading {
+        text-align: center;
       }
     }
 
@@ -181,6 +278,10 @@
       .hero-btn {
         width: 100%;
         max-width: 100%;
+      }
+
+      .section {
+        padding-inline: 16px;
       }
     }
   </style>
@@ -201,14 +302,123 @@
   <div class="grid-overlay"></div>
   <div class="static-overlay"></div>
 
-  <header class="dom-hero">
-    <div class="hero-inner">
-      <div class="hero-title">OperationDom</div>
+  <div class="page">
+    <!-- =========================
+         HERO
+    ========================== -->
+    <header class="dom-hero">
+      <div class="hero-inner">
+        <div class="hero-title">OperationDom</div>
 
-      <button class="hero-btn" onclick="location.href='#booking'">
-        Book OperationDom
-      </button>
-    </div>
-  </header>
+        <div class="hero-buttons">
+          <!-- Book button -->
+          <button class="hero-btn" onclick="location.href='#booking'">
+            Book OperationDom
+          </button>
+
+          <!-- Stream Music button -->
+          <button class="hero-btn outline" onclick="location.href='#music'">
+            Stream Music
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- =========================
+           MUSIC SECTION
+      ========================== -->
+      <section id="music" class="section">
+        <h2 class="section-heading">Stream OperationDom</h2>
+
+        <div class="music-grid">
+          <!-- ===== Spotify ===== -->
+          <article class="music-card">
+            <div class="music-platform">Spotify</div>
+            <div class="music-meta">
+              Stream OperationDom on Spotify. Follow to get new releases
+              and live performance drops directly in your library.
+            </div>
+            <div class="music-link">
+              <!-- TODO: replace href with your actual Spotify link -->
+              <a href="YOUR_SPOTIFY_LINK_HERE" target="_blank" rel="noopener noreferrer">
+                Open on Spotify
+              </a>
+            </div>
+            <!--
+            If you have an embed URL, you can drop it here:
+            <iframe
+              src="YOUR_SPOTIFY_EMBED_URL_HERE"
+              width="100%"
+              height="80"
+              frameborder="0"
+              allowtransparency="true"
+              allow="encrypted-media">
+            </iframe>
+            -->
+          </article>
+
+          <!-- ===== Apple Music ===== -->
+          <article class="music-card">
+            <div class="music-platform">Apple Music</div>
+            <div class="music-meta">
+              Add OperationDom to your Apple Music library, create custom playlists,
+              and keep her in your daily rotation.
+            </div>
+            <div class="music-link">
+              <!-- TODO: replace href with your actual Apple Music link -->
+              <a href="YOUR_APPLE_MUSIC_LINK_HERE" target="_blank" rel="noopener noreferrer">
+                Open on Apple Music
+              </a>
+            </div>
+            <!--
+            Apple Music embeds can also live here:
+            <iframe
+              allow="autoplay *; encrypted-media *;"
+              frameborder="0"
+              height="150"
+              style="width:100%;max-width:100%;overflow:hidden;background:transparent;"
+              sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
+              src="YOUR_APPLE_MUSIC_EMBED_URL_HERE">
+            </iframe>
+            -->
+          </article>
+
+          <!-- ===== SoundCloud ===== -->
+          <article class="music-card">
+            <div class="music-platform">SoundCloud</div>
+            <div class="music-meta">
+              Tap into demos, alt versions, and exclusive drops from OperationDom on SoundCloud.
+            </div>
+            <div class="music-link">
+              <!-- TODO: replace href with your actual SoundCloud link -->
+              <a href="YOUR_SOUNDCLOUD_LINK_HERE" target="_blank" rel="noopener noreferrer">
+                Open on SoundCloud
+              </a>
+            </div>
+            <!--
+            SoundCloud embed example:
+            <iframe
+              width="100%"
+              height="120"
+              scrolling="no"
+              frameborder="no"
+              allow="autoplay"
+              src="YOUR_SOUNDCLOUD_EMBED_URL_HERE">
+            </iframe>
+            -->
+          </article>
+        </div>
+      </section>
+
+      <!-- =========================
+           BOOKING SECTION (placeholder)
+      ========================== -->
+      <section id="booking" class="section">
+        <h2 class="section-heading">Booking</h2>
+        <!-- You can drop your booking form / copy here later -->
+      </section>
+    </main>
+  </div>
 </body>
 </html>

@@ -16,7 +16,16 @@
 
   <style>
     /* If you have custom fonts, drop @font-face above and swap 'Anton'/'DM Sans' here. */
+@font-face {
+  font-family: 'QeboxChrome';
+  src: url('Qebox Chrome.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
+h1, .hero-title {
+  font-family: 'QeboxChrome', sans-serif;
+}
     :root {
       --bg: #020013;
       --ink: #fefdfc;
@@ -52,6 +61,7 @@
       display: flex;
       flex-direction: column;
     }
+
 
     .main {
       flex: 1;

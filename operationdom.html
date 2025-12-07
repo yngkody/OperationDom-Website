@@ -181,66 +181,64 @@
 
     /* =========================
        BOOKING SECTION
+       (now: background image + only form)
     ========================== */
     #booking {
+      position: relative;
       min-height: 100vh;
       padding: 80px 24px 80px;
       max-width: 1200px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 40px;
-      align-items: flex-start;
-      border-bottom: 3px solid #ffffff;
-    }
-
-    .booking-left {
       display: flex;
-      flex-direction: column;
-      gap: 24px;
+      justify-content: flex-end;
+      align-items: center;
+      border-bottom: 3px solid #ffffff;
+
+      background-image: url("booking-image.png");
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
     }
 
-    .booking-heading {
-      font-size: 40px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .booking-description {
-      font-size: 18px;
-      line-height: 1.6;
-      opacity: 0.9;
-    }
-
-    .booking-description strong {
-      font-weight: 700;
-    }
-
-    .booking-video {
-      margin-top: 10px;
-      border: 3px solid #ffffff;
-      box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
-    }
-
-    .booking-video iframe {
-      display: block;
-      width: 100%;
-      aspect-ratio: 16 / 9;
+    /* dark veil for form readability */
+    #booking::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      pointer-events: none;
+      z-index: 0;
     }
 
     .booking-right {
+      position: relative;
+      z-index: 1;
       border: 3px solid #ffffff;
       background: rgba(0, 0, 0, 0.82);
       box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
-      padding: 24px 22px;
+      padding: 26px 24px;
       display: flex;
       flex-direction: column;
       gap: 18px;
+      max-width: 480px;
+      width: 100%;
+    }
+
+    /* Use thicker, more readable font for the form */
+    .booking-right,
+    .booking-right input,
+    .booking-right select,
+    .booking-right textarea,
+    .booking-right label,
+    .booking-right .booking-form-title,
+    .booking-right .booking-submit {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-weight: 600;
     }
 
     .booking-form-title {
-      font-size: 24px;
-      letter-spacing: 0.14em;
+      font-size: 22px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       margin-bottom: 8px;
     }
@@ -259,7 +257,7 @@
     }
 
     label {
-      font-size: 13px;
+      font-size: 14px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       opacity: 0.9;
@@ -268,9 +266,8 @@
     input,
     select,
     textarea {
-      font-family: "Introvert", system-ui, sans-serif;
-      font-size: 14px;
-      padding: 10px 10px;
+      font-size: 15px;
+      padding: 12px 12px;
       border-radius: 0;
       border: 2px solid #ffffff;
       background: var(--input-bg);
@@ -280,7 +277,7 @@
 
     input::placeholder,
     textarea::placeholder {
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(255, 255, 255, 0.7);
     }
 
     textarea {
@@ -310,9 +307,9 @@
       background: #000000;
       border: 3px solid #ffffff;
       color: #ffffff;
-      padding: 14px 40px;
-      font-size: 16px;
-      letter-spacing: 0.16em;
+      padding: 16px 44px;
+      font-size: 17px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       cursor: pointer;
       border-radius: 0;
@@ -404,7 +401,7 @@
     ========================== */
     @media (max-width: 900px) {
       #booking {
-        grid-template-columns: 1fr;
+        justify-content: center;
       }
     }
 
@@ -418,10 +415,6 @@
         font-size: 18px;
         line-height: 20px;
         box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
-      }
-
-      .booking-heading {
-        font-size: 30px;
       }
 
       .music-platform {
@@ -494,36 +487,9 @@
 
     <main>
       <!-- =========================
-           BOOKING SECTION (before music)
+           BOOKING SECTION (background image + form only)
       ========================== -->
       <section id="booking" class="section">
-        <div class="booking-left">
-          <h2 class="booking-heading">Booking</h2>
-
-          <div class="booking-description">
-            <p><strong>Live Performances</strong><br>
-              Bring soul, energy, and elegance to any event.
-              OperationDom delivers unforgettable performances for weddings, galas, corporate functions,
-              and private celebrations — blending powerhouse vocals with magnetic stage presence.
-            </p>
-            <br>
-            <p><strong>Studio Sessions &amp; Collaborations</strong><br>
-              Need a voice that moves people? Book OperationDom for hooks, background vocals, or features.
-              Available for in-studio or remote collaborations with producers, artists, and songwriters.
-            </p>
-          </div>
-
-          <div class="booking-video">
-            <iframe
-              src="https://www.youtube.com/embed/nUiGw0PV7j4"
-              title="OperationDom Green Light Promo"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div>
-
         <div class="booking-right">
           <div class="booking-form-title">Booking Request</div>
 

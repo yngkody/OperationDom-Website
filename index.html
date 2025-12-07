@@ -19,7 +19,6 @@
     :root {
       --border-color: #ffffff;
       --text-color: #ffffff;
-      --filled-bg: #000000; /* second button background */
       --bg-color: #000000;
     }
 
@@ -34,7 +33,8 @@
     ========================== */
     body {
       min-height: 100vh;
-      font-family: "Introvert", system-ui, sans-serif;
+      font-family: "Introvert", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
       background-color: var(--bg-color);
       background-image: url("hero-image.png");
       background-position: center center;
@@ -109,7 +109,7 @@
       z-index: 3;
     }
 
-    /* dark veil (VERY subtle) */
+    /* dark veil */
     .dom-hero::before {
       content: "";
       position: absolute;
@@ -129,9 +129,6 @@
       z-index: 4;
     }
 
-    /* =========================
-       Outline Button (1st button)
-    ========================== */
     .hero-btn {
       background: transparent;
       border: 3px solid var(--border-color);
@@ -156,13 +153,10 @@
       transform: translate(4px, 4px);
     }
 
-    /* =========================
-       FILLED Button (2nd)
-    ========================== */
+    /* Filled second button */
     .hero-btn.filled {
-      background: var(--filled-bg);
+      background: #000000;
       color: #ffffff;
-
       border: 3px solid #ffffff;
     }
 
@@ -193,17 +187,14 @@
 <body>
   <header class="dom-hero">
     <div class="button-wrapper">
-
-      <!-- Outline Button -->
       <button class="hero-btn" onclick="location.href='dominique-smith.html'">
         Dominique Smith
       </button>
 
-      <!-- Filled Button -->
-      <button class="hero-btn filled" onclick="location.href='operationdom.html'">
+      <!-- NOTE: now points to OperationDom.html -->
+      <button class="hero-btn filled" onclick="location.href='OperationDom.html'">
         OperationDom
       </button>
-
     </div>
   </header>
 </body>

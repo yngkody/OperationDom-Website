@@ -27,8 +27,10 @@
       --bg-color: #000000;
       --card-bg: rgba(0, 0, 0, 0.8);
       --input-bg: rgba(0, 0, 0, 0.7);
-      --accent-blue: #4f8dff;
+      /* darker neon blue */
+      --accent-blue: #1f45ff;
     }
+
 
     * {
       box-sizing: border-box;
@@ -145,27 +147,27 @@
       gap: 20px;
       justify-content: center;
     }
+.hero-btn {
+  background: #ffffff; /* solid white */
+  border: 3px solid var(--accent-blue);
+  color: var(--accent-blue);
 
-    .hero-btn {
-      background: #ffffff; /* solid white */
-      border: 3px solid var(--accent-blue);
-      color: var(--accent-blue);
+  padding: 24px 80px;
+  font-size: 26px;
+  line-height: 28px;
+  letter-spacing: 0.08em;
+  font-family: "Introvert", system-ui, sans-serif; /* changed from Shrikhand */
+  cursor: pointer;
+  border-radius: 0;
 
-      padding: 24px 80px;
-      font-size: 26px;
-      line-height: 28px;
-      letter-spacing: 0.08em;
-      font-family: "Shrikhand", system-ui, sans-serif; /* 70s bubble nav */
-      cursor: pointer;
-      border-radius: 0;
+  box-shadow: #ffffff 8px 8px 0 0, #000000 8px 8px 0 1px;
+  transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+  white-space: nowrap;
 
-      box-shadow: #ffffff 8px 8px 0 0, #000000 8px 8px 0 1px;
-      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
-      white-space: nowrap;
+  /* darker neon blue glow */
+  text-shadow: 0 0 10px rgba(31, 69, 255, 0.95);
+}
 
-      /* subtle neon blue glow */
-      text-shadow: 0 0 8px rgba(79, 141, 255, 0.8);
-    }
 
     .hero-btn:active {
       box-shadow: #ffffff 4px 4px 0 0, #000000 4px 4px 0 1px;
@@ -192,22 +194,21 @@
        BOOKING SECTION
        (background image + only form)
     ========================== */
-    #booking {
-      position: relative;
-      min-height: 100vh;
-      padding: 80px 24px 80px;
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      border-bottom: 3px solid #ffffff;
+#booking {
+  position: relative;
+  min-height: 100vh;
+  padding: 80px 24px 80px;
+  width: 100%;               /* full width */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 3px solid #ffffff;
 
-      background-image: url("booking-img.png");
-      background-position: center center;
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
+  background-image: url("booking-img.png");
+  background-position: center center;
+  background-size: cover;    /* fills the whole section */
+  background-repeat: no-repeat;
+}
 
     /* dark veil for form readability */
     #booking::before {

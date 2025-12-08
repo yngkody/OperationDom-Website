@@ -118,6 +118,21 @@ nav.site-nav a {
   background-position: center;
   background-repeat: no-repeat;
 }
+/* GRID LINES OVERLAY FOR BOOKING SECTION */
+#booking::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;                      /* sits above the image, below the form */
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px);
+
+  background-size: 40px 40px;      /* size of each square */
+  opacity: 0.4;                    /* grid visibility */
+}
 
 /* dark veil for contrast */
 #booking::before {

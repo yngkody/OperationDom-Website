@@ -5,6 +5,11 @@
   <title>OperationDom – Live Performance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- Shrikhand for navigation/buttons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+
   <style>
     /* =========================
        Custom Font
@@ -22,6 +27,7 @@
       --bg-color: #000000;
       --card-bg: rgba(0, 0, 0, 0.8);
       --input-bg: rgba(0, 0, 0, 0.7);
+      --accent-blue: #4f8dff;
     }
 
     * {
@@ -141,21 +147,24 @@
     }
 
     .hero-btn {
-      background: #000000;
-      border: 3px solid var(--border-color);
-      color: var(--text-color);
+      background: #ffffff; /* solid white */
+      border: 3px solid var(--accent-blue);
+      color: var(--accent-blue);
 
       padding: 24px 80px;
       font-size: 26px;
       line-height: 28px;
       letter-spacing: 0.08em;
-      font-family: "Introvert";
+      font-family: "Shrikhand", system-ui, sans-serif; /* 70s bubble nav */
       cursor: pointer;
       border-radius: 0;
 
       box-shadow: #ffffff 8px 8px 0 0, #000000 8px 8px 0 1px;
       transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
       white-space: nowrap;
+
+      /* subtle neon blue glow */
+      text-shadow: 0 0 8px rgba(79, 141, 255, 0.8);
     }
 
     .hero-btn:active {
@@ -165,8 +174,8 @@
 
     .hero-btn.outline {
       background: transparent;
-      border: 3px solid var(--border-color);
-      color: var(--text-color);
+      border: 3px solid var(--accent-blue);
+      color: var(--accent-blue);
     }
 
     main {
@@ -181,7 +190,7 @@
 
     /* =========================
        BOOKING SECTION
-       (now: background image + only form)
+       (background image + only form)
     ========================== */
     #booking {
       position: relative;
@@ -194,7 +203,7 @@
       align-items: center;
       border-bottom: 3px solid #ffffff;
 
-      background-image: url("booking-image.png");
+      background-image: url("booking-img.png");
       background-position: center center;
       background-size: cover;
       background-repeat: no-repeat;

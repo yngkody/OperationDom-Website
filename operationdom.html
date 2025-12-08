@@ -22,7 +22,6 @@
       --bg-color: #000000;
       --card-bg: rgba(0, 0, 0, 0.8);
       --input-bg: rgba(0, 0, 0, 0.7);
-      --accent-blue: #4f8dff;
     }
 
     * {
@@ -49,30 +48,19 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.55;
-      z-index: -3;
-      filter: saturate(1.4) contrast(1.1) brightness(1.1);
+      z-index: 0;
     }
 
-    /* =========================
-       Gradient Vignette
-    ========================== */
-    .vignette {
+    .video-overlay {
       position: fixed;
-      inset: -40px;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 1;
       pointer-events: none;
-      z-index: -2;
-      background:
-        radial-gradient(circle at 10% 20%, rgba(255, 105, 180, 0.35), transparent 55%),
-        radial-gradient(circle at 80% 0%, rgba(65, 105, 225, 0.4), transparent 58%),
-        radial-gradient(circle at 85% 85%, rgba(255, 255, 255, 0.28), transparent 60%),
-        radial-gradient(circle at 0% 80%, rgba(255, 182, 193, 0.3), transparent 55%);
-      mix-blend-mode: screen;
-      opacity: 0.9;
     }
 
     /* =========================
-       Grid Overlay
+       Grid Overlay (crisp white lines)
     ========================== */
     .grid-overlay {
       position: fixed;
@@ -100,235 +88,62 @@
       inset: 0;
       pointer-events: none;
       z-index: 3;
-      background-image: url("data:image/png;base64,iVBORw0KGgoAA...3OC/YLXg4Wr9PXgYMGf4AH92nee0vOB0fOkHn2qxd6QAAAABJRU5ErkJggg==");
+      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAD9CzEMAAAArklEQVR4Ae3WsQmDQBQF0OE2no0RvrRZtGJPD7W82dManIeZDVAD6QdlqzTeWY5Avzkdxl3pNGdisz8Iky3Uczdlz7YT1DoP70uQgmO6wwLJrVN6a8GN28AL5soNqd7qV3CyMfCVx/gvBy06SnVAk0nnNAOkCTQec0B6QJNB5zQDpAk0HnNAekCTQec0A7oP4Jrped1IovnHgYHGawEq+y3OC/YLXg4Wr9PXgYMGf4AH92nee0vOB0fOkHn2qxd6QAAAABJRU5ErkJggg==");
       opacity: 0.18;
-      mix-blend-mode: soft-light;
+      mix-blend-mode: overlay;
+      animation: staticFlicker 0.8s steps(6) infinite;
+    }
+
+    @keyframes staticFlicker {
+      0% { opacity: 0.13; }
+      50% { opacity: 0.19; }
+      100% { opacity: 0.16; }
     }
 
     /* =========================
-       Outer Frame / Page Shell
+       Layout
     ========================== */
-    .page-shell {
+    .page {
       position: relative;
+      z-index: 4;
       min-height: 100vh;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 32px 16px 48px;
-      z-index: 10;
-    }
-
-    .page-shell::before {
-      content: "";
-      position: fixed;
-      inset: 20px;
-      border-radius: 32px;
-      border: 3px solid rgba(255, 255, 255, 0.9);
-      box-shadow:
-        0 0 40px rgba(0, 0, 0, 0.8),
-        0 0 120px rgba(59, 130, 246, 0.5);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    /* =========================
-       NAVIGATION
-    ========================== */
-    header {
-      position: relative;
-      margin-bottom: 42px;
-      z-index: 20;
-    }
-
-    .nav-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .nav-left {
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-    }
-
-    .nav-logo {
-      font-family: "Introvert", system-ui, sans-serif;
-      font-size: 32px;
-      letter-spacing: 0.20em;
-      text-transform: uppercase;
-      padding: 8px 18px;
-      border-radius: 999px;
-      border: 3px solid #ffffff;
-      background: rgba(0, 0, 0, 0.9);
-      box-shadow:
-        0 0 20px rgba(59, 130, 246, 0.7),
-        0 0 60px rgba(255, 255, 255, 0.45);
-      text-shadow:
-        0 0 8px rgba(59, 130, 246, 1),
-        0 0 18px rgba(255, 255, 255, 0.9);
-    }
-
-    .nav-tagline {
-      font-size: 13px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      background: rgba(0, 0, 0, 0.78);
-      padding: 6px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.7);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-    }
-
-    .nav-pill {
-      font-size: 13px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 2px solid rgba(255, 255, 255, 0.8);
-      background: rgba(0, 0, 0, 0.8);
-      text-decoration: none;
-      color: inherit;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .nav-pill::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(120deg, rgba(255, 105, 180, 0.35), rgba(65, 105, 225, 0.35));
-      opacity: 0;
-      mix-blend-mode: screen;
-      transition: opacity 0.15s linear;
-    }
-
-    .nav-pill span {
-      position: relative;
-      z-index: 1;
-    }
-
-    .nav-pill:hover::before {
-      opacity: 1;
-    }
-
-    .nav-cta {
-      border: 2px solid #ffffff;
-      background: #000000;
-      color: #ffffff;
-      box-shadow:
-        0 0 12px rgba(255, 255, 255, 0.9),
-        0 0 26px rgba(59, 130, 246, 0.7);
-    }
-
-    /* =========================
-       HERO SECTION
-    ========================== */
-    main {
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(12px);
-      border-top: 1px solid rgba(255, 255, 255, 0.24);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.24);
-      border-radius: 24px;
-      padding: 40px 26px 50px;
-      box-shadow:
-        0 26px 75px rgba(0, 0, 0, 0.9),
-        0 0 40px rgba(59, 130, 246, 0.18);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
-      gap: 40px;
-      align-items: center;
-      margin-bottom: 52px;
-    }
-
-    .hero-left {
       display: flex;
       flex-direction: column;
-      gap: 22px;
-      position: relative;
-      z-index: 2;
     }
 
-    .hero-kicker {
-      font-size: 13px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      padding: 6px 14px;
-      border-radius: 999px;
-      border: 2px solid rgba(255, 255, 255, 0.8);
-      background: rgba(0, 0, 0, 0.9);
-      display: inline-flex;
+    header.dom-hero {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
       align-items: center;
-      gap: 10px;
+      padding: 24px 24px 60px;
     }
 
-    .hero-kicker-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #10b981;
-      box-shadow: 0 0 12px #10b981;
+    .hero-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      align-items: center;
+      text-align: center;
     }
 
     .hero-title {
-      font-size: clamp(42px, 5vw, 58px);
-      line-height: 1.02;
-      letter-spacing: 0.12em;
+      font-size: 40px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      text-shadow:
-        0 0 16px rgba(255, 255, 255, 0.9),
-        0 0 40px rgba(59, 130, 246, 0.9),
-        0 0 80px rgba(255, 20, 147, 0.9);
-    }
-
-    .hero-subtitle {
-      font-size: 15px;
-      max-width: 520px;
-      line-height: 1.6;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-align: justify;
-    }
-
-    .hero-pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 6px;
-    }
-
-    .hero-pill {
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.75);
-      background: rgba(0, 0, 0, 0.9);
     }
 
     .hero-buttons {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
-      margin-top: 10px;
+      gap: 20px;
+      justify-content: center;
     }
 
     .hero-btn {
-      background: var(--accent-blue);
+      background: #000000;
       border: 3px solid var(--border-color);
-      color: #ffffff;
+      color: var(--text-color);
 
       padding: 24px 80px;
       font-size: 26px;
@@ -354,260 +169,32 @@
       color: var(--text-color);
     }
 
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      margin-top: 18px;
-      font-size: 12px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      opacity: 0.9;
+    main {
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    .hero-meta-group {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .hero-meta-label {
-      opacity: 0.7;
-    }
-
-    .hero-meta-value {
-      font-size: 13px;
-    }
-
-    .hero-right {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .hero-photo-wrapper {
-      position: relative;
+    .section {
       width: 100%;
-      max-width: 420px;
-      aspect-ratio: 3 / 4;
-      isolation: isolate;
-    }
-
-    .hero-photo-wrapper::before {
-      content: "";
-      position: absolute;
-      inset: 16px;
-      border-radius: 50%;
-      border: 3px solid rgba(255, 255, 255, 0.85);
-      box-shadow:
-        0 0 40px rgba(255, 20, 147, 0.8),
-        0 0 80px rgba(59, 130, 246, 0.85);
-      opacity: 1;
-      z-index: -1;
-    }
-
-    .hero-photo-wrapper::after {
-      content: "";
-      position: absolute;
-      inset: 20px;
-      border-radius: 50%;
-      border: 2px dashed rgba(255, 255, 255, 0.7);
-      opacity: 0.8;
-      animation: spinRing 36s linear infinite;
-      z-index: -1;
-    }
-
-    @keyframes spinRing {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .hero-photo {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-      overflow: hidden;
-      clip-path: circle(50% at 50% 50%);
-      background: transparent;
-    }
-
-    .hero-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transform: translateX(-6%);
-    }
-
-    .hero-photo-glow {
-      position: absolute;
-      inset: -20px;
-      background:
-        radial-gradient(circle at 10% 20%, rgba(255, 105, 180, 0.6), transparent 60%),
-        radial-gradient(circle at 90% 80%, rgba(65, 105, 225, 0.6), transparent 60%);
-      opacity: 0.8;
-      mix-blend-mode: screen;
-      filter: blur(3px);
-      z-index: -1;
-      animation: heroGlowPulse 6s ease-in-out infinite alternate;
-    }
-
-    @keyframes heroGlowPulse {
-      0% { opacity: 0.7; transform: scale(1); }
-      100% { opacity: 1; transform: scale(1.06); }
-    }
-
-    .hero-badge-stack {
-      position: absolute;
-      bottom: -20px;
-      right: -10px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      align-items: flex-end;
-    }
-
-    .hero-badge {
-      padding: 8px 16px;
-      border-radius: 999px;
-      border: 2px solid rgba(255, 255, 255, 0.9);
-      background: rgba(0, 0, 0, 0.88);
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      box-shadow:
-        0 0 14px rgba(255, 255, 255, 0.7),
-        0 0 26px rgba(59, 130, 246, 0.8);
-      white-space: nowrap;
-    }
-
-    .hero-badge span {
-      opacity: 0.85;
-    }
-
-    .hero-badge-main {
-      font-size: 13px;
-      letter-spacing: 0.18em;
-    }
-
-    /* =========================
-       PERFORMANCE GRID
-    ========================== */
-    .performance-section {
-      margin-bottom: 52px;
-    }
-
-    .performance-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      margin-bottom: 22px;
-    }
-
-    .performance-title {
-      font-size: 18px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-    }
-
-    .performance-tagline {
-      font-size: 13px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      opacity: 0.9;
-      max-width: 380px;
-      text-align: right;
-    }
-
-    .performance-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .performance-card {
-      position: relative;
-      border-radius: 18px;
-      border: 2px solid rgba(255, 255, 255, 0.9);
-      background: rgba(0, 0, 0, 0.85);
-      padding: 18px 16px;
-      box-shadow:
-        0 16px 40px rgba(0, 0, 0, 0.9),
-        0 0 30px rgba(59, 130, 246, 0.4);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      overflow: hidden;
-    }
-
-    .performance-label {
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      opacity: 0.9;
-    }
-
-    .performance-card-title {
-      font-size: 14px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .performance-meta-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 12px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      opacity: 0.85;
-    }
-
-    .performance-pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 8px;
-    }
-
-    .performance-pill {
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      background: rgba(0, 0, 0, 0.9);
-    }
-
-    .performance-corner-tag {
-      position: absolute;
-      top: 10px;
-      right: 12px;
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      opacity: 0.8;
     }
 
     /* =========================
        BOOKING SECTION
+       (now: background image + only form)
     ========================== */
     #booking {
       position: relative;
       min-height: 100vh;
-      padding: 80px 24px;
-      width: 100%;
+      padding: 80px 24px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
       display: flex;
-      justify-content: center;
+      justify-content: flex-end;
       align-items: center;
       border-bottom: 3px solid #ffffff;
 
-      background-image: url("booking-img.png");
+      background-image: url("booking-image.png");
       background-position: center center;
       background-size: cover;
       background-repeat: no-repeat;
@@ -623,51 +210,13 @@
       z-index: 0;
     }
 
-    .booking-inner {
-      width: 100%;
-      max-width: 1200px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 32px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .booking-nav {
-      align-self: center;
-      display: inline-flex;
-      padding: 10px 28px;
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.9);
-      border: 2px solid var(--accent-blue);
-      box-shadow: 0 0 14px rgba(79, 141, 255, 0.6);
-    }
-
-    .booking-nav-item {
-      font-family: "Introvert", system-ui, sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-size: 20px;
-      color: var(--accent-blue);
-      text-shadow: 0 0 8px rgba(79, 141, 255, 0.7);
-    }
-
-    @media (max-width: 900px) {
-      .booking-inner {
-        align-items: center;
-      }
-    }
-
     .booking-right {
       position: relative;
       z-index: 1;
       border: 3px solid #ffffff;
       background: rgba(0, 0, 0, 0.82);
       box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
-      padding: 26px 24px 26px;
-      max-width: 520px;
-      width: 100%;
+      padding: 26px 24px;
       display: flex;
       flex-direction: column;
       gap: 18px;
@@ -688,7 +237,7 @@
     }
 
     .booking-form-title {
-      font-size: 24px;
+      font-size: 22px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       margin-bottom: 8px;
@@ -700,10 +249,6 @@
       width: 100%;
     }
 
-    .form-row.stack {
-      flex-direction: column;
-    }
-
     .form-group {
       display: flex;
       flex-direction: column;
@@ -712,7 +257,7 @@
     }
 
     label {
-      font-size: 15px;
+      font-size: 14px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       opacity: 0.9;
@@ -721,7 +266,7 @@
     input,
     select,
     textarea {
-      font-size: 16px;
+      font-size: 15px;
       padding: 12px 12px;
       border-radius: 0;
       border: 2px solid #ffffff;
@@ -736,38 +281,20 @@
     }
 
     textarea {
-      min-height: 100px;
+      min-height: 120px;
       resize: vertical;
     }
 
-    .booking-note {
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      opacity: 0.85;
-      padding-top: 4px;
-    }
-
-    .pill-row {
+    .option-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 10px;
-    }
-
-    .chip-label {
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      opacity: 0.85;
-      margin-bottom: 4px;
+      gap: 8px;
     }
 
     .chip-option {
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      font-size: 11px;
+      border: 2px solid #ffffff;
+      padding: 8px 12px;
+      font-size: 12px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       background: rgba(0, 0, 0, 0.7);
@@ -781,7 +308,7 @@
       border: 3px solid #ffffff;
       color: #ffffff;
       padding: 16px 44px;
-      font-size: 18px;
+      font-size: 17px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       cursor: pointer;
@@ -799,409 +326,171 @@
        MUSIC SECTION – FULL SCREEN PANELS
     ========================== */
     #music {
-      margin-top: 60px;
+      padding: 0;
+      margin: 0;
+      width: 100%;
     }
 
-    .music-header {
+    .music-vertical {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      margin-bottom: 20px;
-    }
-
-    .music-title {
-      font-size: 18px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-    }
-
-    .music-tagline {
-      font-size: 13px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      opacity: 0.9;
-      max-width: 380px;
-      text-align: right;
-    }
-
-    .music-panels {
-      display: grid;
-      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
-      gap: 18px;
+      flex-direction: column;
+      width: 100%;
     }
 
     .music-panel {
-      border-radius: 18px;
-      border: 2px solid rgba(255, 255, 255, 0.9);
-      background: rgba(0, 0, 0, 0.9);
-      padding: 18px 16px;
-      box-shadow:
-        0 16px 40px rgba(0, 0, 0, 0.9),
-        0 0 30px rgba(59, 130, 246, 0.4);
+      min-height: 100vh;
+      width: 100%;
+      padding: 80px 24px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-    }
-
-    .music-panel-label {
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      opacity: 0.9;
-    }
-
-    .music-panel-title {
-      font-size: 14px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .music-panel-body {
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      line-height: 1.7;
-      opacity: 0.95;
-    }
-
-    .music-scroller {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      max-height: 300px;
-      overflow-y: auto;
-      padding-right: 4px;
-    }
-
-    .music-track {
-      display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: center;
-      padding: 8px 10px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      background: rgba(0, 0, 0, 0.85);
-      font-size: 12px;
-      letter-spacing: 0.12em;
+      gap: 28px;
+
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(10px);
+
+      border-top: 3px solid #ffffff;
+      border-bottom: 3px solid #ffffff;
+    }
+
+    .music-platform {
+      font-size: 54px;
       text-transform: uppercase;
+      letter-spacing: 0.14em;
     }
 
-    .music-track-info {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .music-track-title {
-      font-size: 13px;
-    }
-
-    .music-track-meta {
-      font-size: 11px;
+    .music-meta {
+      font-size: 20px;
+      max-width: 760px;
+      text-align: center;
+      line-height: 1.5;
       opacity: 0.85;
     }
 
-    .music-tag-pill {
-      padding: 3px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      font-size: 10px;
-      letter-spacing: 0.12em;
+    .music-link a {
+      display: inline-block;
+      border: 3px solid var(--border-color);
+      padding: 18px 40px;
+      font-size: 22px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
+      text-decoration: none;
+      color: var(--text-color);
+      border-radius: 0;
+
+      box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
+      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+    }
+
+    .music-link a:active {
+      box-shadow: #ffffff 3px 3px 0 0, #000000 3px 3px 0 1px;
+      transform: translate(3px, 3px);
     }
 
     .music-embed {
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.85);
+      width: 100%;
+      max-width: 800px;
+      margin-top: 20px;
+      border: 3px solid #ffffff;
+      box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
     }
 
     /* =========================
        RESPONSIVE
     ========================== */
-    @media (max-width: 1024px) {
-      .page-shell::before {
-        inset: 12px;
-      }
-
-      .hero {
-        grid-template-columns: minmax(0, 1.1fr);
-      }
-
-      .hero-right {
-        order: -1;
-        margin-bottom: 16px;
-      }
-
-      .performance-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .music-panels {
-        grid-template-columns: minmax(0, 1fr);
+    @media (max-width: 900px) {
+      #booking {
+        justify-content: center;
       }
     }
 
     @media (max-width: 768px) {
-      .page-shell {
-        padding: 18px 10px 32px;
-      }
-
-      main {
-        padding: 24px 14px 30px;
-      }
-
-      .nav-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 14px;
-      }
-
-      .nav-links {
-        flex-wrap: wrap;
-        justify-content: flex-start;
-      }
-
       .hero-title {
-        font-size: 36px;
-      }
-
-      .hero-buttons {
-        flex-direction: column;
-        align-items: flex-start;
+        font-size: 28px;
       }
 
       .hero-btn {
-        width: 100%;
-        text-align: center;
-        padding: 18px 24px;
-        font-size: 22px;
+        padding: 18px 32px;
+        font-size: 18px;
+        line-height: 20px;
+        box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
       }
 
-      .hero-photo-wrapper {
-        max-width: 320px;
+      .music-platform {
+        font-size: 36px;
       }
 
-      .hero-badge-stack {
-        right: -4px;
-      }
-
-      #booking {
-        padding: 60px 16px;
-      }
-
-      .booking-right {
-        padding: 20px 18px;
-      }
-
-      .form-row {
-        flex-direction: column;
-      }
-
-      .performance-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .performance-header,
-      .music-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .performance-tagline,
-      .music-tagline {
-        text-align: left;
+      .music-meta {
+        font-size: 16px;
       }
     }
 
     @media (max-width: 480px) {
-      .nav-logo {
-        font-size: 26px;
+      .hero-inner {
+        width: 100%;
+        padding-inline: 16px;
       }
 
-      .hero-subtitle {
-        font-size: 14px;
+      .hero-btn {
+        width: 100%;
+        max-width: 100%;
       }
 
-      .hero-meta {
-        flex-direction: column;
-        align-items: flex-start;
+      #booking {
+        padding-inline: 16px;
       }
 
-      .hero-photo-wrapper {
-        max-width: 260px;
+      .music-panel {
+        padding-inline: 16px;
       }
     }
   </style>
 </head>
 
 <body>
-  <!-- Background video -->
-  <video class="hero-video" autoplay muted loop playsinline>
-    <source src="dom-performance.mp4" type="video/mp4" />
-  </video>
+  <!-- Background video hero -->
+  <video
+    class="hero-video"
+    src="Green Light Promo Final.mp4"
+    autoplay
+    muted
+    loop
+    playsinline
+  ></video>
 
-  <!-- Glow & grid overlays -->
-  <div class="vignette"></div>
+  <div class="video-overlay"></div>
   <div class="grid-overlay"></div>
   <div class="static-overlay"></div>
 
-  <div class="page-shell">
-    <header>
-      <div class="nav-row">
-        <div class="nav-left">
-          <div class="nav-logo">OPERATIONDOM</div>
-          <div class="nav-tagline">
-            LIVE VOCALS • FULL BAND • R&amp;B • SOUL • POP
-          </div>
-        </div>
+  <div class="page">
+    <!-- =========================
+         HERO
+    ========================== -->
+    <header class="dom-hero">
+      <div class="hero-inner">
+        <div class="hero-title">OperationDom</div>
 
-        <nav class="nav-links">
-          <a href="#music" class="nav-pill"><span>Music</span></a>
-          <a href="#booking" class="nav-pill"><span>Booking</span></a>
-          <a href="#music" class="nav-pill nav-cta"><span>Watch &amp; Listen</span></a>
-        </nav>
+        <div class="hero-buttons">
+          <!-- Book button -->
+          <button class="hero-btn" onclick="location.href='#booking'">
+            Book OperationDom
+          </button>
+
+          <!-- Stream Music button -->
+          <button class="hero-btn outline" onclick="location.href='#music'">
+            Stream Music
+          </button>
+        </div>
       </div>
     </header>
 
     <main>
-      <!-- HERO -->
-      <section class="hero">
-        <div class="hero-left">
-          <div class="hero-kicker">
-            <span class="hero-kicker-dot"></span>
-            <span>Live • Bookings Open</span>
-          </div>
-
-          <h1 class="hero-title">
-            VOICE THAT HITS<br />
-            HEARTS &amp; HIGH NOTES
-          </h1>
-
-          <p class="hero-subtitle">
-            OperationDom brings powerhouse vocals, 90s-inspired soul, and
-            modern pop energy to every stage. From intimate lounges to
-            full-band festival sets, she turns performances into moments
-            people replay in their heads for days.
-          </p>
-
-          <div class="hero-pill-row">
-            <div class="hero-pill">R&amp;B • SOUL • POP • GOSPEL</div>
-            <div class="hero-pill">NYC-BASED • AVAILABLE TO TRAVEL</div>
-          </div>
-
-          <div class="hero-buttons">
-            <button class="hero-btn">Book OperationDom</button>
-            <button class="hero-btn outline">Stream Music</button>
-          </div>
-
-          <div class="hero-meta">
-            <div class="hero-meta-group">
-              <span class="hero-meta-label">Ideal For</span>
-              <span class="hero-meta-value">Gala Nights • Weddings • Venues • Private Events</span>
-            </div>
-            <div class="hero-meta-group">
-              <span class="hero-meta-label">Formats</span>
-              <span class="hero-meta-value">Full Band • Acoustic • Backing Vocalist • Studio Sessions</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-right">
-          <div class="hero-photo-wrapper">
-            <div class="hero-photo-glow"></div>
-
-            <div class="hero-photo">
-              <img src="dom-hero.png" alt="OperationDom performing live" />
-            </div>
-
-            <div class="hero-badge-stack">
-              <div class="hero-badge hero-badge-main">
-                <span>LIVE &amp; IN FULL COLOR</span>
-              </div>
-              <div class="hero-badge">
-                <span>NYC • TRI-STATE • DESTINATIONS</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- PERFORMANCE GRID -->
-      <section class="performance-section">
-        <div class="performance-header">
-          <h2 class="performance-title">BOOK FOR THE MOMENT YOU'LL REPLAY</h2>
-          <p class="performance-tagline">
-            Curated sets that move from power ballads to groove-heavy anthems,
-            tailored to the story your event is telling.
-          </p>
-        </div>
-
-        <div class="performance-grid">
-          <article class="performance-card">
-            <div class="performance-label">Full Band Experience</div>
-            <div class="performance-card-title">Headline &amp; Feature Sets</div>
-
-            <div class="performance-meta-row">
-              <span>45–90 MIN SETS</span>
-              <span>R&amp;B • SOUL • POP</span>
-            </div>
-
-            <div class="performance-pill-row">
-              <span class="performance-pill">Ticketed Shows</span>
-              <span class="performance-pill">Venues &amp; Clubs</span>
-              <span class="performance-pill">Festivals</span>
-            </div>
-
-            <div class="performance-corner-tag">BAND • LIVE</div>
-          </article>
-
-          <article class="performance-card">
-            <div class="performance-label">Elegant &amp; Intentional</div>
-            <div class="performance-card-title">Weddings &amp; Private Events</div>
-
-            <div class="performance-meta-row">
-              <span>CEREMONY • RECEPTION</span>
-              <span>FIRST DANCE • SPECIAL MOMENTS</span>
-            </div>
-
-            <div class="performance-pill-row">
-              <span class="performance-pill">Custom Song List</span>
-              <span class="performance-pill">MC &amp; Hosting</span>
-              <span class="performance-pill">Live Band or Tracks</span>
-            </div>
-
-            <div class="performance-corner-tag">LOVE • LUXE</div>
-          </article>
-
-          <article class="performance-card">
-            <div class="performance-label">Vocals As Instrument</div>
-            <div class="performance-card-title">Studio &amp; Session Work</div>
-
-            <div class="performance-meta-row">
-              <span>LEADS • HOOKS</span>
-              <span>STACKED BGVs</span>
-            </div>
-
-            <div class="performance-pill-row">
-              <span class="performance-pill">In-Studio Collabs</span>
-              <span class="performance-pill">Remote Recording</span>
-              <span class="performance-pill">Songwriting Support</span>
-            </div>
-
-            <div class="performance-corner-tag">STUDIO • CUTS</div>
-          </article>
-        </div>
-      </section>
-
-      <!-- BOOKING SECTION -->
+      <!-- =========================
+           BOOKING SECTION (background image + form only)
+      ========================== -->
       <section id="booking" class="section">
-        <div class="booking-inner">
-          <nav class="booking-nav">
-            <span class="booking-nav-item">Book OperationDom</span>
-          </nav>
-
-          <div class="booking-right">
+        <div class="booking-right">
           <div class="booking-form-title">Booking Request</div>
 
           <form>
@@ -1234,51 +523,56 @@
 
             <div class="form-row">
               <div class="form-group">
-                <label for="event-type">What are you booking for?</label>
-                <select id="event-type" name="event-type">
+                <label for="booking-type">Booking Type</label>
+                <select id="booking-type" name="booking-type">
                   <option value="">Select an option</option>
-                  <option value="full-band">Full Band Performance</option>
-                  <option value="wedding">Wedding / Private Event</option>
-                  <option value="studio">Studio Session / Feature</option>
-                  <option value="bgv">Background Vocals / BGVs</option>
-                  <option value="other">Other / Not Listed</option>
+                  <option value="live">Live Performance</option>
+                  <option value="studio">Studio Session &amp; Collaboration</option>
                 </select>
               </div>
-
               <div class="form-group">
-                <label for="budget">Estimated Budget (USD)</label>
-                <select id="budget" name="budget">
-                  <option value="">Select a range</option>
-                  <option value="under-1500">$500 – $1,500</option>
-                  <option value="1500-3000">$1,500 – $3,000</option>
-                  <option value="3000-5000">$3,000 – $5,000</option>
-                  <option value="5000-plus">$5,000+</option>
+                <label for="performance-setup">Performance Setup</label>
+                <select id="performance-setup" name="performance-setup">
+                  <option value="">Select setup</option>
+                  <option value="solo">OperationDom (Solo Artist)</option>
+                  <option value="band">OperationDom + Full Band</option>
                 </select>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="details">Tell us about your event / project</label>
-              <textarea id="details" name="details" placeholder="Share the vibe, set length, and what you’re envisioning for OperationDom’s performance."></textarea>
+              <label for="event-type">Event / Session Type</label>
+              <select id="event-type" name="event-type">
+                <option value="">Select type</option>
+                <option value="wedding">Wedding</option>
+                <option value="gala">Gala</option>
+                <option value="corporate">Corporate Function</option>
+                <option value="private">Private Celebration</option>
+                <option value="studio-hook">Studio – Hooks</option>
+                <option value="studio-bgv">Studio – Background Vocals</option>
+                <option value="studio-feature">Studio – Feature</option>
+                <option value="other">Other</option>
+              </select>
             </div>
 
             <div class="form-group">
-              <span class="chip-label">How did you hear about OperationDom?</span>
-              <div class="pill-row">
-                <span class="chip-option">Instagram</span>
-                <span class="chip-option">TikTok</span>
-                <span class="chip-option">Live Show</span>
-                <span class="chip-option">Word of Mouth</span>
-                <span class="chip-option">Other</span>
-              </div>
+              <label for="budget">Estimated Budget</label>
+              <input id="budget" name="budget" type="text" placeholder="e.g. 2,000 – 5,000 USD">
             </div>
 
             <div class="form-group">
-              <span class="chip-label">Services You’re Interested In</span>
-              <div class="pill-row">
-                <span class="chip-option">Full Band</span>
-                <span class="chip-option">Acoustic Set</span>
-                <span class="chip-option">Lead Vocal</span>
+              <label for="details">Additional Details</label>
+              <textarea id="details" name="details" placeholder="Tell us about your event, set length, vibe, technical needs, or collaborators."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Available For</label>
+              <div class="option-row">
+                <span class="chip-option">Weddings</span>
+                <span class="chip-option">Galas</span>
+                <span class="chip-option">Corporate Functions</span>
+                <span class="chip-option">Private Events</span>
+                <span class="chip-option">Hooks</span>
                 <span class="chip-option">Background Vocals</span>
                 <span class="chip-option">Features</span>
                 <span class="chip-option">In-Studio</span>
@@ -1286,90 +580,98 @@
               </div>
             </div>
 
-            <p class="booking-note">
-              Submitting this form does not confirm a booking. A member of the team will follow up with availability, rates, and next steps.
-            </p>
-
             <button type="submit" class="booking-submit">
               Submit Request
             </button>
           </form>
         </div>
-        </div>
       </section>
 
-      <!-- MUSIC / MEDIA SECTION -->
-      <section id="music">
-        <div class="music-header">
-          <h2 class="music-title">PRESS PLAY ON OPERATIONDOM</h2>
-          <p class="music-tagline">
-            A catalog that moves between raw storytelling, velvet-smooth runs,
-            and hooks built for replay.
-          </p>
-        </div>
+      <!-- =========================
+           MUSIC SECTION (after booking)
+      ========================== -->
+      <section id="music" class="section">
+        <div class="music-vertical">
 
-        <div class="music-panels">
+          <!-- SPOTIFY -->
           <div class="music-panel">
-            <div class="music-panel-label">Featured Tracks</div>
-            <div class="music-panel-title">For Venues, Curators &amp; Music Lovers</div>
-            <p class="music-panel-body">
-              Explore a mix of live cuts, studio releases, and collaborations that
-              showcase Dom’s range – from soft, intimate moments to full-throttle
-              belting. Perfect for getting a feel for how she’ll sound on your stage.
-            </p>
+            <div class="music-platform">Spotify</div>
 
-            <div class="music-scroller">
-              <div class="music-track">
-                <div class="music-track-info">
-                  <span class="music-track-title">CITY LIGHTS (LIVE)</span>
-                  <span class="music-track-meta">Funk • R&amp;B • Full Band</span>
-                </div>
-                <span class="music-tag-pill">Crowd Favorite</span>
-              </div>
+            <div class="music-meta">
+              Follow OperationDom on Spotify to lock in her latest releases, EPs, and
+              performance drops — directly in your Release Radar and playlists.
+            </div>
 
-              <div class="music-track">
-                <div class="music-track-info">
-                  <span class="music-track-title">SLOW BURN</span>
-                  <span class="music-track-meta">Soul • Ballad • Intimate</span>
-                </div>
-                <span class="music-tag-pill">For First Dances</span>
-              </div>
+            <div class="music-link">
+              <a href="https://open.spotify.com/artist/3qWTtM0AN7KdlfS8exCEy6?si=qNRHmzcST9GJJsB-owpgzQ"
+                 target="_blank" rel="noopener noreferrer">
+                Open on Spotify
+              </a>
+            </div>
 
-              <div class="music-track">
-                <div class="music-track-info">
-                  <span class="music-track-title">DON'T RUSH IT</span>
-                  <span class="music-track-meta">Pop • Groove • Mid-Tempo</span>
-                </div>
-                <span class="music-tag-pill">Feel-Good Energy</span>
-              </div>
-
-              <div class="music-track">
-                <div class="music-track-info">
-                  <span class="music-track-title">CHOIR GIRL</span>
-                  <span class="music-track-meta">Gospel-Infused Vocals</span>
-                </div>
-                <span class="music-tag-pill">Vocal Showcase</span>
-              </div>
+            <div class="music-embed">
+              <iframe
+                style="border-radius:0;width:100%;height:352px;"
+                src="https://open.spotify.com/embed/artist/3qWTtM0AN7KdlfS8exCEy6"
+                frameborder="0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+              ></iframe>
             </div>
           </div>
 
+          <!-- APPLE MUSIC -->
           <div class="music-panel">
-            <div class="music-panel-label">Listen In</div>
-            <div class="music-panel-title">Stream &amp; Watch</div>
-            <p class="music-panel-body">
-              Plug into OperationDom’s world through live performance clips,
-              studio snippets, and official releases. Perfect for sharing with
-              teams, clients, and co-planners.
-            </p>
+            <div class="music-platform">Apple Music</div>
+
+            <div class="music-meta">
+              Add OperationDom to your Apple Music library and stay updated on new releases,
+              curated playlists, and exclusive drops.
+            </div>
+
+            <div class="music-link">
+              <a href="https://music.apple.com/us/artist/operationdom/1824111226"
+                 target="_blank" rel="noopener noreferrer">
+                Open on Apple Music
+              </a>
+            </div>
+
+            <div class="music-embed">
+              <iframe
+                allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
+                frameborder="0"
+                height="350"
+                style="width:100%;max-width:100%;overflow:hidden;background:transparent;"
+                sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+                src="https://embed.music.apple.com/us/artist/operationdom/1824111226">
+              </iframe>
+            </div>
+          </div>
+
+          <!-- SOUNDCLOUD -->
+          <div class="music-panel">
+            <div class="music-platform">SoundCloud</div>
+
+            <div class="music-meta">
+              Dive into demos, alt versions, raw cuts, and exclusive SoundCloud drops
+              that show Dom’s creative process behind the scenes.
+            </div>
+
+            <div class="music-link">
+              <a href="https://soundcloud.com/dominique-smith-892170035"
+                 target="_blank" rel="noopener noreferrer">
+                Open on SoundCloud
+              </a>
+            </div>
 
             <div class="music-embed">
               <iframe
                 width="100%"
-                height="240"
+                height="350"
                 scrolling="no"
                 frameborder="no"
                 allow="autoplay"
-                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/000000000&color=%23ffffff&inverse=false&auto_play=false&show_user=true">
+                src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/dominique-smith-892170035&color=%23ffffff&inverse=false&auto_play=false&show_user=true">
               </iframe>
             </div>
           </div>

@@ -2,31 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Dominique Smith – Official Site</title>
+  <title>Dominique Smith – Live Performance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- === Custom Font === -->
+  <!-- Shrikhand for navigation -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+
   <style>
     @font-face {
       font-family: "Introvert";
       src: url("Introvert.otf") format("opentype");
-      font-weight: normal;
-      font-style: normal;
     }
-  </style>
 
-  <style>
     :root {
-      --bg: #05060a;
-      --panel: #101019;
-      --panel-soft: #151522;
-      --text: #f9fafb;
-      --muted: #9ca3af;
-      --accent: #2563eb;
-      --accent-soft: rgba(37, 99, 235, 0.15);
-      --border: #27272f;
-      --radius-lg: 18px;
-      --shadow-soft: 0 22px 60px rgba(15, 23, 42, 0.55);
+      --accent-blue: #1f45ff; /* darker neon blue */
+      --text-color: #ffffff;
+      --border-color: #ffffff;
+      --input-bg: rgba(0,0,0,0.7);
     }
 
     * {
@@ -35,231 +29,504 @@
 
     body {
       margin: 0;
+      background: black;
+      color: white;
       font-family: "Introvert", sans-serif;
-      background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* ================================
-       NAVIGATION
-    ================================= */
-    header {
+    /* ============================
+       NAVIGATION (MATCH SITE)
+    ============================ */
+    nav.site-nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 28px;
       z-index: 20;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 7vw;
-      background: linear-gradient(to bottom, rgba(3, 7, 18, 0.9), rgba(3, 7, 18, 0.15), transparent);
-      backdrop-filter: blur(10px);
     }
 
-    .logo {
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      font-size: 1rem;
-      text-transform: uppercase;
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: rgba(15, 23, 42, 0.5);
+    nav.site-nav a {
+      font-family: "Shrikhand", cursive;
+      font-size: 24px;
+      text-decoration: none;
+      color: white;
+      letter-spacing: 2px;
+      text-shadow: 0 0 6px rgba(255,255,255,0.6);
     }
 
-    nav {
-      display: flex;
-      gap: 1.75rem;
-      font-size: 0.95rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
+    nav.site-nav a:hover {
+      text-shadow: 0 0 10px rgba(255,255,255,0.9);
     }
 
-    nav a {
+    .page {
       position: relative;
-      padding-bottom: 4px;
-      opacity: 0.85;
+      z-index: 5;
     }
 
-    nav a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent);
-      transition: width 0.22s ease;
-    }
-
-    nav a:hover {
-      opacity: 1;
-    }
-
-    nav a:hover::after {
-      width: 100%;
-    }
-
-    /* ================================
-       HERO
-    ================================= */
-    .hero {
-      position: relative;
+    /* ============================
+       HERO (DOMINIQUE IMAGE)
+    ============================ */
+    header.dom-hero {
       min-height: 100vh;
+      width: 100%;
       display: flex;
-      align-items: flex-end;
       justify-content: center;
+      align-items: center;
       text-align: center;
-      overflow: hidden;
-      padding: 0 5vw 64px;
+      position: relative;
+      padding: 80px 16px 40px;
       background-image: url("domsmith-hero.png");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
     }
 
-    .hero::before {
+    header.dom-hero::before {
       content: "";
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(circle at top, rgba(15, 23, 42, 0.7) 0, transparent 50%),
-        linear-gradient(to bottom, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.95));
+      background: radial-gradient(circle at top, rgba(0,0,0,0.2) 0, transparent 50%),
+                  linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.9));
       mix-blend-mode: multiply;
     }
 
     .hero-inner {
       position: relative;
-      max-width: 720px;
       z-index: 1;
+      max-width: 720px;
     }
 
     .hero-title {
-      font-size: clamp(2.4rem, 5vw, 4rem);
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      margin-bottom: 1rem;
+      font-size: clamp(40px, 6vw, 68px);
+      letter-spacing: 0.16em;
       text-transform: uppercase;
+      color: #ffffff;
+      text-shadow: 0 0 22px rgba(255,255,255,0.9);
+      margin-bottom: 18px;
     }
 
-    /* ================================
-       BOOKING SECTION
-    ================================= */
-    section {
-      padding: 90px 8vw;
-      background: var(--panel);
-      border-top: 1px solid var(--border);
+    .hero-subtitle {
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.9;
+      max-width: 540px;
+      margin: 0 auto 32px;
     }
 
-    h2 {
-      font-size: 2.4rem;
-      margin-bottom: 1rem;
-      letter-spacing: 0.05em;
-    }
-
-    p {
-      font-size: 1rem;
-      max-width: 580px;
-      line-height: 1.6;
-      margin-bottom: 2rem;
-    }
-
-    form {
-      max-width: 600px;
+    .hero-buttons {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 18px;
     }
 
-    input,
-    textarea {
-      padding: 14px 16px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: var(--panel-soft);
-      color: var(--text);
+    .hero-btn {
+      background: #ffffff;
+      border: 3px solid #ffffff;
+      color: #000000;
       font-family: "Introvert", sans-serif;
-      font-size: 1rem;
+      padding: 18px 60px;
+      font-size: 22px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 0;
+      box-shadow: #ffffff 8px 8px 0 0, #000000 8px 8px 0 1px;
+      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+      cursor: pointer;
     }
 
-    textarea {
-      min-height: 140px;
+    .hero-btn.outline {
+      background: transparent;
+      border: 3px solid #ffffff;
+      color: #ffffff;
+    }
+
+    .hero-btn:active {
+      transform: translate(4px, 4px);
+      box-shadow: #ffffff 4px 4px 0 0, #000000 4px 4px 0 1px;
+    }
+
+    /* ============================
+       BOOKING SECTION (MATCH)
+    ============================ */
+
+    #booking {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      padding: 80px 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url("hero-book.png"); /* you can swap this if you want a Dominique-specific bg */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* GRID LINES OVERLAY */
+    #booking::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.4;
+    }
+
+    /* dark veil */
+    #booking::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 0;
+    }
+
+    /* square booking card */
+    .booking-card {
+      position: relative;
+      z-index: 2;
+      width: 520px;
+      max-width: 95vw;
+      aspect-ratio: 1 / 1;
+      border: 3px solid #ffffff;
+      border-radius: 0;
+      background: rgba(0, 0, 0, 0.85);
+      box-shadow: #ffffff 8px 8px 0 0, #000000 8px 8px 0 1px;
+
+      display: flex;
+      flex-direction: column;
+      padding: 28px 24px;
+      gap: 18px;
+
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .booking-card-title {
+      font-family: "Introvert", system-ui, sans-serif;
+      font-size: 26px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    .booking-card-subtitle {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    .booking-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 6px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 100%;
+    }
+
+    .booking-label {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #f5f5f5;
+    }
+
+    .booking-input,
+    .booking-select,
+    .booking-textarea {
+      width: 100%;
+      padding: 10px 11px;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 0;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      background: rgba(0, 0, 0, 0.75);
+      color: #ffffff;
+      outline: none;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .booking-input::placeholder,
+    .booking-textarea::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .booking-textarea {
+      min-height: 90px;
       resize: vertical;
     }
 
-    button {
-      background: var(--accent);
-      border: none;
-      padding: 16px;
-      color: white;
-      border-radius: 10px;
-      font-size: 1.1rem;
-      font-family: "Introvert", sans-serif;
-      letter-spacing: 0.05em;
-      cursor: pointer;
-      transition: 0.25s ease;
+    .booking-note {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.75;
     }
 
-    button:hover {
-      background: #1d4ed8;
+    .booking-submit {
+      margin-top: 4px;
+      align-self: flex-start;
+      background: #ffffff;
+      color: #000000;
+      padding: 14px 36px;
+      border-radius: 0;
+      border: 3px solid #ffffff;
+      font-family: "Introvert", system-ui, sans-serif;
+      font-size: 16px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
+      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+    }
+
+    .booking-submit:active {
+      transform: translate(4px, 4px);
+      box-shadow: #ffffff 3px 3px 0 0, #000000 3px 3px 0 1px;
+    }
+
+    /* MUSIC SECTION PLACEHOLDER */
+    #music {
+      padding: 80px 24px 120px;
+      background: #000000;
+      text-align: center;
+    }
+
+    #music h2 {
+      font-size: 28px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    #music p {
+      max-width: 540px;
+      margin: 0 auto;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    /* responsive tweaks */
+    @media (max-width: 768px) {
+      nav.site-nav {
+        gap: 18px;
+      }
+
+      nav.site-nav a {
+        font-size: 18px;
+      }
+
+      header.dom-hero {
+        padding-top: 110px;
+      }
+
+      .hero-btn {
+        width: 100%;
+        max-width: 320px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .booking-card {
+        aspect-ratio: auto;
+        height: auto;
+        padding: 22px 18px;
+      }
+
+      .form-row {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
-<body>
 
-<!-- ================================
-     NAVIGATION
-================================ -->
-<header>
-  <div class="logo">DOMINIQUE SMITH</div>
-  <nav>
-    <a href="index.html">Home</a>
+<body>
+  <!-- NAVIGATION -->
+  <nav class="site-nav">
+    <a href="#hero">Home</a>
     <a href="#booking">Booking</a>
     <a href="#music">Music</a>
   </nav>
-</header>
 
-<!-- ================================
-     HERO
-================================ -->
-<section class="hero">
-  <div class="hero-inner">
-    <h1 class="hero-title">Dominique Smith</h1>
+  <div class="page">
+    <!-- HERO -->
+    <header id="hero" class="dom-hero">
+      <div class="hero-inner">
+        <h1 class="hero-title">Dominique Smith</h1>
+        <p class="hero-subtitle">
+          National anthems • corporate ceremonies • galas • luxury private events
+        </p>
+
+        <div class="hero-buttons">
+          <button class="hero-btn" onclick="location.href='#booking'">
+            Book Dominique
+          </button>
+          <button class="hero-btn outline" onclick="location.href='#music'">
+            Music & Clips
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- BOOKING SECTION -->
+    <section id="booking">
+      <div class="booking-card">
+        <h2 class="booking-card-title">Book Dominique Smith</h2>
+        <p class="booking-card-subtitle">
+          Corporate events • national anthems • galas • award shows • private celebrations
+        </p>
+
+        <form class="booking-form">
+          <!-- Name + Email -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="booking-label" for="book-name">Name</label>
+              <input
+                class="booking-input"
+                id="book-name"
+                type="text"
+                name="name"
+                placeholder="Your name"
+              />
+            </div>
+            <div class="form-group">
+              <label class="booking-label" for="book-email">Email</label>
+              <input
+                class="booking-input"
+                id="book-email"
+                type="email"
+                name="email"
+                placeholder="you@example.com"
+              />
+            </div>
+          </div>
+
+          <!-- Phone + Date -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="booking-label" for="book-phone">Phone</label>
+              <input
+                class="booking-input"
+                id="book-phone"
+                type="tel"
+                name="phone"
+                placeholder="+1 (___) ___-____"
+              />
+            </div>
+            <div class="form-group">
+              <label class="booking-label" for="book-date">Event Date</label>
+              <input
+                class="booking-input"
+                id="book-date"
+                type="date"
+                name="date"
+              />
+            </div>
+          </div>
+
+          <!-- Company / Organization -->
+          <div class="form-group">
+            <label class="booking-label" for="book-company">Company / Organization</label>
+            <input
+              class="booking-input"
+              id="book-company"
+              type="text"
+              name="company"
+              placeholder="Company / Organization name"
+            />
+          </div>
+
+          <!-- Location -->
+          <div class="form-group">
+            <label class="booking-label" for="book-location">Event Location</label>
+            <input
+              class="booking-input"
+              id="book-location"
+              type="text"
+              name="location"
+              placeholder="Venue / City / Country"
+            />
+          </div>
+
+          <!-- Booking Type -->
+          <div class="form-group">
+            <label class="booking-label" for="book-type">Booking Type</label>
+            <select class="booking-select" id="book-type" name="bookingType">
+              <option value="">Select an option</option>
+              <option value="anthem">National Anthem / Ceremonial Performance</option>
+              <option value="corporate">Corporate Event / Conference</option>
+              <option value="gala">Gala / Fundraiser / Award Show</option>
+              <option value="private">Luxury Private Event</option>
+              <option value="brand">Brand / TV / Media Appearance</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <!-- Budget -->
+          <div class="form-group">
+            <label class="booking-label" for="book-budget">Estimated Budget (USD)</label>
+            <select class="booking-select" id="book-budget" name="budget">
+              <option value="">Select a range</option>
+              <option value="under-3000">$1,500 – $3,000</option>
+              <option value="3000-6000">$3,000 – $6,000</option>
+              <option value="6000-10000">$6,000 – $10,000</option>
+              <option value="10000-plus">$10,000+</option>
+            </select>
+          </div>
+
+          <!-- Details -->
+          <div class="form-group">
+            <label class="booking-label" for="book-details">Event Details</label>
+            <textarea
+              class="booking-textarea"
+              id="book-details"
+              name="details"
+              placeholder="Describe the event, run-of-show, performance length, dress code, and any special requests."
+            ></textarea>
+          </div>
+
+          <p class="booking-note">
+            Submitting this form does not confirm a booking. Our team will follow up with availability,
+            rates, and next steps within 24–48 hours.
+          </p>
+
+          <button type="submit" class="booking-submit">
+            Submit Request
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- MUSIC SECTION (placeholder for later) -->
+    <section id="music">
+      <h2>Music & Clips</h2>
+      <p>
+        Performance reels, live clips, and featured appearances coming soon.
+      </p>
+    </section>
   </div>
-</section>
-
-<!-- ================================
-     BOOKING SECTION
-================================ -->
-<section id="booking">
-  <h2>Book Dominique</h2>
-  <p>
-    For corporate events, ceremonies, performances, brand activations, or private bookings,
-    please complete the form below. A member of our team will respond within 24–48 hours.
-  </p>
-
-  <form>
-    <input type="text" placeholder="Your Name" required>
-    <input type="email" placeholder="Your Email" required>
-    <input type="text" placeholder="Event Type (Corporate, Ceremony, Private, etc.)" required>
-    <input type="text" placeholder="Event Date" required>
-    <textarea placeholder="Additional details about your event..."></textarea>
-    <button type="submit">Submit Booking Request</button>
-  </form>
-</section>
-
-<!-- Placeholder for music section -->
-<section id="music">
-  <h2>Music</h2>
-  <p>Music section coming soon.</p>
-</section>
-
 </body>
 </html>

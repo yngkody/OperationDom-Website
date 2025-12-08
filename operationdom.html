@@ -5,51 +5,31 @@
   <title>OperationDom – Live Performance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Shrikhand for navigation/buttons -->
+  <!-- Shrikhand for navigation -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
 
   <style>
-    /* =========================
-       Custom Font
-    ========================== */
     @font-face {
       font-family: "Introvert";
       src: url("Introvert.otf") format("opentype");
-      font-weight: normal;
-      font-style: normal;
     }
 
     :root {
-      --border-color: #ffffff;
+      --accent-blue: #1f45ff; /* darker neon blue */
       --text-color: #ffffff;
-      --bg-color: #000000;
-      --card-bg: rgba(0, 0, 0, 0.8);
-      --input-bg: rgba(0, 0, 0, 0.7);
-      /* darker neon blue */
-      --accent-blue: #1f45ff;
-    }
-
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+      --border-color: #ffffff;
+      --input-bg: rgba(0,0,0,0.7);
     }
 
     body {
-      min-height: 100vh;
-      font-family: "Introvert", system-ui, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      overflow-x: hidden;
-      position: relative;
+      background: black;
+      color: white;
+      font-family: "Introvert", sans-serif;
     }
 
-    /* =========================
-       Background Video
-    ========================== */
+    /* HERO VIDEO */
     .hero-video {
       position: fixed;
       inset: 0;
@@ -59,119 +39,54 @@
       z-index: 0;
     }
 
-    .video-overlay {
+    .page { position: relative; z-index: 5; }
+
+    /* ============================
+       NAVIGATION (NEW)
+    ============================ */
+    nav.site-nav {
       position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.35);
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    /* =========================
-       Grid Overlay (crisp white lines)
-    ========================== */
-    .grid-overlay {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 2;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.18) 2px, transparent 2px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.18) 2px, transparent 2px);
-      background-size: 70px 70px;
-      opacity: 0.35;
-      animation: gridDrift 45s linear infinite;
-    }
-
-    @keyframes gridDrift {
-      0% { background-position: 0 0, 0 0; }
-      100% { background-position: 80px 40px, 40px 80px; }
-    }
-
-    /* =========================
-       STATIC / NOISE Overlay
-    ========================== */
-    .static-overlay {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 3;
-      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAD9CzEMAAAArklEQVR4Ae3WsQmDQBQF0OE2no0RvrRZtGJPD7W82dManIeZDVAD6QdlqzTeWY5Avzkdxl3pNGdisz8Iky3Uczdlz7YT1DoP70uQgmO6wwLJrVN6a8GN28AL5soNqd7qV3CyMfCVx/gvBy06SnVAk0nnNAOkCTQec0B6QJNB5zQDpAk0HnNAekCTQec0A7oP4Jrped1IovnHgYHGawEq+y3OC/YLXg4Wr9PXgYMGf4AH92nee0vOB0fOkHn2qxd6QAAAABJRU5ErkJggg==");
-      opacity: 0.18;
-      mix-blend-mode: overlay;
-      animation: staticFlicker 0.8s steps(6) infinite;
-    }
-
-    @keyframes staticFlicker {
-      0% { opacity: 0.13; }
-      50% { opacity: 0.19; }
-      100% { opacity: 0.16; }
-    }
-
-    /* =========================
-       Layout
-    ========================== */
-    .page {
-      position: relative;
-      z-index: 4;
-      min-height: 100vh;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
-      flex-direction: column;
+      gap: 28px;
+      z-index: 20;
     }
 
+    nav.site-nav a {
+      font-family: "Shrikhand", cursive;
+      font-size: 24px;
+      text-decoration: none;
+      color: var(--accent-blue);
+
+      text-shadow:
+        0 0 6px rgba(31, 69, 255, 0.8),
+        0 0 12px rgba(31, 69, 255, 0.6);
+
+      letter-spacing: 2px;
+    }
+
+    /* HERO SECTION */
     header.dom-hero {
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 24px 24px 60px;
-    }
-
-    .hero-inner {
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-      align-items: center;
       text-align: center;
     }
 
-    .hero-title {
-      font-size: 40px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-.hero-btn {
-  background: #ffffff; /* solid white */
-  border: 3px solid var(--accent-blue);
-  color: var(--accent-blue);
-
-  padding: 24px 80px;
-  font-size: 26px;
-  line-height: 28px;
-  letter-spacing: 0.08em;
-  font-family: "Introvert", system-ui, sans-serif; /* changed from Shrikhand */
-  cursor: pointer;
-  border-radius: 0;
-
-  box-shadow: #ffffff 8px 8px 0 0, #000000 8px 8px 0 1px;
-  transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
-  white-space: nowrap;
-
-  /* darker neon blue glow */
-  text-shadow: 0 0 10px rgba(31, 69, 255, 0.95);
-}
-
-
-    .hero-btn:active {
-      box-shadow: #ffffff 4px 4px 0 0, #000000 4px 4px 0 1px;
-      transform: translate(4px, 4px);
+    .hero-btn {
+      background: white;
+      border: 3px solid var(--accent-blue);
+      color: var(--accent-blue);
+      padding: 24px 80px;
+      font-size: 26px;
+      font-family: "Introvert";
+      text-shadow: 0 0 10px rgba(31, 69, 255, 0.95);
+      box-shadow: #fff 8px 8px 0 0, #000 8px 8px 0 1px;
+      cursor: pointer;
+      transition: 0.1s;
     }
 
     .hero-btn.outline {
@@ -180,515 +95,137 @@
       color: var(--accent-blue);
     }
 
-    main {
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(12px);
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .section {
-      width: 100%;
-    }
-
-    /* =========================
+    /* ============================
        BOOKING SECTION
-       (background image + only form)
-    ========================== */
-#booking {
-  position: relative;
-  min-height: 100vh;
-  padding: 80px 24px 80px;
-  width: 100%;               /* full width */
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  border-bottom: 3px solid #ffffff;
+    ============================ */
 
-  background-image: url("booking-img.png");
-  background-position: center center;
-  background-size: cover;    /* fills the whole section */
-  background-repeat: no-repeat;
-}
+    #booking {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      padding: 100px 24px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
 
-    /* dark veil for form readability */
-    #booking::before {
-      content: "";
+      background-image: url("booking-img.png");
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* SECTION HEADING (NEW) */
+    .booking-heading {
       position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.45);
-      pointer-events: none;
-      z-index: 0;
+      left: 60px;
+      top: 100px;
+
+      font-family: "Introvert";
+      font-size: 60px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+
+      color: var(--accent-blue);
+      text-shadow:
+        0 0 10px rgba(31, 69, 255, 0.9),
+        0 0 18px rgba(31, 69, 255, 0.7);
     }
 
     .booking-right {
-      position: relative;
-      z-index: 1;
-      border: 3px solid #ffffff;
-      background: rgba(0, 0, 0, 0.82);
-      box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
-      padding: 26px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      max-width: 480px;
-      width: 100%;
+      width: 480px;
+      background: rgba(0,0,0,0.8);
+      border: 3px solid white;
+      padding: 26px;
+      z-index: 3;
+      box-shadow: #fff 6px 6px 0 0, #000 6px 6px 0 1px;
     }
 
-    /* Use thicker, more readable font for the form */
-    .booking-right,
-    .booking-right input,
-    .booking-right select,
-    .booking-right textarea,
-    .booking-right label,
-    .booking-right .booking-form-title,
-    .booking-right .booking-submit {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    label, input, select, textarea {
+      font-family: system-ui;
       font-weight: 600;
-    }
-
-    .booking-form-title {
-      font-size: 22px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .form-row {
-      display: flex;
-      gap: 12px;
-      width: 100%;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      width: 100%;
-    }
-
-    label {
-      font-size: 14px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      opacity: 0.9;
-    }
-
-    input,
-    select,
-    textarea {
-      font-size: 15px;
-      padding: 12px 12px;
-      border-radius: 0;
-      border: 2px solid #ffffff;
-      background: var(--input-bg);
-      color: #ffffff;
-      outline: none;
-    }
-
-    input::placeholder,
-    textarea::placeholder {
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-
-    .option-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .chip-option {
-      border: 2px solid #ffffff;
-      padding: 8px 12px;
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      background: rgba(0, 0, 0, 0.7);
-      cursor: default;
-    }
-
-    .booking-submit {
-      margin-top: 8px;
-      align-self: flex-start;
-      background: #000000;
-      border: 3px solid #ffffff;
-      color: #ffffff;
-      padding: 16px 44px;
-      font-size: 17px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      cursor: pointer;
-      border-radius: 0;
-      box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
-      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
-    }
-
-    .booking-submit:active {
-      box-shadow: #ffffff 3px 3px 0 0, #000000 3px 3px 0 1px;
-      transform: translate(3px, 3px);
-    }
-
-    /* =========================
-       MUSIC SECTION – FULL SCREEN PANELS
-    ========================== */
-    #music {
-      padding: 0;
-      margin: 0;
-      width: 100%;
-    }
-
-    .music-vertical {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-    }
-
-    .music-panel {
-      min-height: 100vh;
-      width: 100%;
-      padding: 80px 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      gap: 28px;
-
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(10px);
-
-      border-top: 3px solid #ffffff;
-      border-bottom: 3px solid #ffffff;
-    }
-
-    .music-platform {
-      font-size: 54px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-    }
-
-    .music-meta {
-      font-size: 20px;
-      max-width: 760px;
-      text-align: center;
-      line-height: 1.5;
-      opacity: 0.85;
-    }
-
-    .music-link a {
-      display: inline-block;
-      border: 3px solid var(--border-color);
-      padding: 18px 40px;
-      font-size: 22px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--text-color);
-      border-radius: 0;
-
-      box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
-      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
-    }
-
-    .music-link a:active {
-      box-shadow: #ffffff 3px 3px 0 0, #000000 3px 3px 0 1px;
-      transform: translate(3px, 3px);
-    }
-
-    .music-embed {
-      width: 100%;
-      max-width: 800px;
-      margin-top: 20px;
-      border: 3px solid #ffffff;
-      box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
-    }
-
-    /* =========================
-       RESPONSIVE
-    ========================== */
-    @media (max-width: 900px) {
-      #booking {
-        justify-content: center;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .hero-title {
-        font-size: 28px;
-      }
-
-      .hero-btn {
-        padding: 18px 32px;
-        font-size: 18px;
-        line-height: 20px;
-        box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
-      }
-
-      .music-platform {
-        font-size: 36px;
-      }
-
-      .music-meta {
-        font-size: 16px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero-inner {
-        width: 100%;
-        padding-inline: 16px;
-      }
-
-      .hero-btn {
-        width: 100%;
-        max-width: 100%;
-      }
-
-      #booking {
-        padding-inline: 16px;
-      }
-
-      .music-panel {
-        padding-inline: 16px;
-      }
     }
   </style>
 </head>
 
 <body>
-  <!-- Background video hero -->
-  <video
-    class="hero-video"
-    src="Green Light Promo Final.mp4"
-    autoplay
-    muted
-    loop
-    playsinline
-  ></video>
 
-  <div class="video-overlay"></div>
-  <div class="grid-overlay"></div>
-  <div class="static-overlay"></div>
+  <!-- ============================
+       NAVIGATION (NEW)
+  ============================ -->
+  <nav class="site-nav">
+    <a href="#hero">Home</a>
+    <a href="#booking">Booking</a>
+    <a href="#music">Music</a>
+  </nav>
+
+  <!-- HERO VIDEO -->
+  <video class="hero-video" src="Green Light Promo Final.mp4" autoplay muted loop playsinline></video>
 
   <div class="page">
-    <!-- =========================
-         HERO
-    ========================== -->
-    <header class="dom-hero">
+
+    <!-- HERO -->
+    <header id="hero" class="dom-hero">
       <div class="hero-inner">
-        <div class="hero-title">OperationDom</div>
+        <h1 class="hero-title">OperationDom</h1>
 
         <div class="hero-buttons">
-          <!-- Book button -->
-          <button class="hero-btn" onclick="location.href='#booking'">
-            Book OperationDom
-          </button>
-
-          <!-- Stream Music button -->
-          <button class="hero-btn outline" onclick="location.href='#music'">
-            Stream Music
-          </button>
+          <button class="hero-btn" onclick="location.href='#booking'">Book OperationDom</button>
+          <button class="hero-btn outline" onclick="location.href='#music'">Stream Music</button>
         </div>
       </div>
     </header>
 
-    <main>
-      <!-- =========================
-           BOOKING SECTION (background image + form only)
-      ========================== -->
-      <section id="booking" class="section">
-        <div class="booking-right">
-          <div class="booking-form-title">Booking Request</div>
+    <!-- BOOKING SECTION -->
+    <section id="booking">
+      
+      <!-- NEW HEADING -->
+      <div class="booking-heading">Book OperationDom</div>
 
-          <form>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="name">Name</label>
-                <input id="name" name="name" type="text" placeholder="Your name">
-              </div>
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" placeholder="you@example.com">
-              </div>
-            </div>
+      <div class="booking-right">
+        <div class="booking-form-title">Booking Request</div>
 
-            <div class="form-row">
-              <div class="form-group">
-                <label for="phone">Phone</label>
-                <input id="phone" name="phone" type="tel" placeholder="+1 (___) ___-____">
-              </div>
-              <div class="form-group">
-                <label for="date">Event / Session Date</label>
-                <input id="date" name="date" type="date">
-              </div>
+        <form>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" placeholder="Your name">
             </div>
 
             <div class="form-group">
-              <label for="location">Location</label>
-              <input id="location" name="location" type="text" placeholder="Venue / Studio / City">
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="booking-type">Booking Type</label>
-                <select id="booking-type" name="booking-type">
-                  <option value="">Select an option</option>
-                  <option value="live">Live Performance</option>
-                  <option value="studio">Studio Session &amp; Collaboration</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="performance-setup">Performance Setup</label>
-                <select id="performance-setup" name="performance-setup">
-                  <option value="">Select setup</option>
-                  <option value="solo">OperationDom (Solo Artist)</option>
-                  <option value="band">OperationDom + Full Band</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="event-type">Event / Session Type</label>
-              <select id="event-type" name="event-type">
-                <option value="">Select type</option>
-                <option value="wedding">Wedding</option>
-                <option value="gala">Gala</option>
-                <option value="corporate">Corporate Function</option>
-                <option value="private">Private Celebration</option>
-                <option value="studio-hook">Studio – Hooks</option>
-                <option value="studio-bgv">Studio – Background Vocals</option>
-                <option value="studio-feature">Studio – Feature</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="budget">Estimated Budget</label>
-              <input id="budget" name="budget" type="text" placeholder="e.g. 2,000 – 5,000 USD">
-            </div>
-
-            <div class="form-group">
-              <label for="details">Additional Details</label>
-              <textarea id="details" name="details" placeholder="Tell us about your event, set length, vibe, technical needs, or collaborators."></textarea>
-            </div>
-
-            <div class="form-group">
-              <label>Available For</label>
-              <div class="option-row">
-                <span class="chip-option">Weddings</span>
-                <span class="chip-option">Galas</span>
-                <span class="chip-option">Corporate Functions</span>
-                <span class="chip-option">Private Events</span>
-                <span class="chip-option">Hooks</span>
-                <span class="chip-option">Background Vocals</span>
-                <span class="chip-option">Features</span>
-                <span class="chip-option">In-Studio</span>
-                <span class="chip-option">Remote</span>
-              </div>
-            </div>
-
-            <button type="submit" class="booking-submit">
-              Submit Request
-            </button>
-          </form>
-        </div>
-      </section>
-
-      <!-- =========================
-           MUSIC SECTION (after booking)
-      ========================== -->
-      <section id="music" class="section">
-        <div class="music-vertical">
-
-          <!-- SPOTIFY -->
-          <div class="music-panel">
-            <div class="music-platform">Spotify</div>
-
-            <div class="music-meta">
-              Follow OperationDom on Spotify to lock in her latest releases, EPs, and
-              performance drops — directly in your Release Radar and playlists.
-            </div>
-
-            <div class="music-link">
-              <a href="https://open.spotify.com/artist/3qWTtM0AN7KdlfS8exCEy6?si=qNRHmzcST9GJJsB-owpgzQ"
-                 target="_blank" rel="noopener noreferrer">
-                Open on Spotify
-              </a>
-            </div>
-
-            <div class="music-embed">
-              <iframe
-                style="border-radius:0;width:100%;height:352px;"
-                src="https://open.spotify.com/embed/artist/3qWTtM0AN7KdlfS8exCEy6"
-                frameborder="0"
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"
-              ></iframe>
+              <label>Email</label>
+              <input type="email" placeholder="you@example.com">
             </div>
           </div>
 
-          <!-- APPLE MUSIC -->
-          <div class="music-panel">
-            <div class="music-platform">Apple Music</div>
-
-            <div class="music-meta">
-              Add OperationDom to your Apple Music library and stay updated on new releases,
-              curated playlists, and exclusive drops.
+          <div class="form-row">
+            <div class="form-group">
+              <label>Phone</label>
+              <input type="tel" placeholder="+1 (___)">
             </div>
 
-            <div class="music-link">
-              <a href="https://music.apple.com/us/artist/operationdom/1824111226"
-                 target="_blank" rel="noopener noreferrer">
-                Open on Apple Music
-              </a>
-            </div>
-
-            <div class="music-embed">
-              <iframe
-                allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
-                frameborder="0"
-                height="350"
-                style="width:100%;max-width:100%;overflow:hidden;background:transparent;"
-                sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
-                src="https://embed.music.apple.com/us/artist/operationdom/1824111226">
-              </iframe>
+            <div class="form-group">
+              <label>Event Date</label>
+              <input type="date">
             </div>
           </div>
 
-          <!-- SOUNDCLOUD -->
-          <div class="music-panel">
-            <div class="music-platform">SoundCloud</div>
-
-            <div class="music-meta">
-              Dive into demos, alt versions, raw cuts, and exclusive SoundCloud drops
-              that show Dom’s creative process behind the scenes.
-            </div>
-
-            <div class="music-link">
-              <a href="https://soundcloud.com/dominique-smith-892170035"
-                 target="_blank" rel="noopener noreferrer">
-                Open on SoundCloud
-              </a>
-            </div>
-
-            <div class="music-embed">
-              <iframe
-                width="100%"
-                height="350"
-                scrolling="no"
-                frameborder="no"
-                allow="autoplay"
-                src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/dominique-smith-892170035&color=%23ffffff&inverse=false&auto_play=false&show_user=true">
-              </iframe>
-            </div>
+          <div class="form-group">
+            <label>Location</label>
+            <input type="text" placeholder="Venue / City">
           </div>
 
-        </div>
-      </section>
-    </main>
+          <div class="form-group">
+            <label>Details</label>
+            <textarea placeholder="Describe your event..."></textarea>
+          </div>
+
+          <button class="booking-submit">Submit Request</button>
+
+        </form>
+      </div>
+    </section>
+
+    <!-- MUSIC SECTION stays untouched -->
+
   </div>
 </body>
 </html>

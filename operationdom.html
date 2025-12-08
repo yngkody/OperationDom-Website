@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     @font-face {
@@ -75,21 +76,26 @@ nav.site-nav a {
     }
 
 .hero-btn {
-  background: #000; 
-  border: 3px solid var(--accent-blue);
-  color: #ffffff;                          /* WHITE TEXT */
-  text-shadow: 0 0 10px rgba(31,69,255,.95);
+  background: #ffffff;            /* solid white */
+  border: 3px solid #ffffff;      /* NO BLUE OUTLINE */
+  color: #000000;                 /* black for contrast */
   font-family: "Introvert", sans-serif;
-  padding: 24px 80px;
+  padding: 22px 70px;
   font-size: 26px;
-  box-shadow: #ffffff 8px 8px 0 0, #000 8px 8px 0 1px;
+  letter-spacing: 0.08em;
+  border-radius: 0;
+
+  box-shadow: #ffffff 8px 8px 0 0, #000000 8px 8px 0 1px;
+  transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
 }
 
 .hero-btn.outline {
   background: transparent;
-  border: 3px solid var(--accent-blue);
-  color: #ffffff !important;               /* WHITE TEXT */
+  border: 3px solid #ffffff;      /* white outline only */
+  color: #ffffff;                 /* white text */
+  box-shadow: #ffffff 8px 8px 0 0, #000000 8px 8px 0 1px;
 }
+
 
     /* ============================
        BOOKING SECTION
@@ -128,62 +134,64 @@ nav.site-nav a {
 
 
 .booking-right {
-  position: relative;
-  z-index: 1;
-  border: 3px solid #ffffff;
-  background: rgba(0, 0, 0, 0.82);
-  box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
-  padding: 26px 24px;
-  max-width: 480px;
+  border: 2px solid white;
+  background: rgba(0, 0, 0, 0.78);
+  padding: 32px 30px;
   width: 100%;
+  max-width: 500px;
+
+  box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
+  backdrop-filter: blur(4px);
+
+  font-family: "DM Sans", sans-serif;    /* NEW CLEAN FONT */
   display: flex;
   flex-direction: column;
-  gap: 18px;
-
-  /* ORIGINAL FORM LOOK */
-  font-family: "Introvert", sans-serif;
+  gap: 22px;
 }
 
 .booking-form-title {
   font-family: "Introvert", sans-serif;
-  font-size: 26px;
+  font-size: 28px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  margin-bottom: 8px;
+  color: white;
+  margin-bottom: 4px;
 }
 
 .form-row {
   display: flex;
-  gap: 12px;
-  width: 100%;
+  gap: 16px;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
   width: 100%;
 }
 
 label {
   font-size: 14px;
-  letter-spacing: 0.12em;
+  font-weight: 600;
+  color: #dcdcdc;
   text-transform: uppercase;
-  opacity: 0.85;
-  font-family: "Introvert", sans-serif;
+  letter-spacing: 0.06em;
 }
 
 input,
 select,
 textarea {
-  font-family: "Introvert", sans-serif;
+  padding: 12px;
   font-size: 15px;
-  padding: 10px 12px;
-  border-radius: 0;
-  border: 2px solid #ffffff;
-  background: rgba(0, 0, 0, 0.7);
-  color: #ffffff;
-  outline: none;
+  color: white;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 6px;               /* CLEANER SHAPE */
+  font-family: "DM Sans", sans-serif;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 textarea {
@@ -191,27 +199,44 @@ textarea {
   resize: vertical;
 }
 
-.booking-submit {
-  margin-top: 8px;
-  align-self: flex-start;
-  background: #000000;
-  border: 3px solid #ffffff;
-  color: #ffffff;
-  padding: 16px 44px;
-  font-size: 18px;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  cursor: pointer;
+/* Chip options refined */
+.option-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 
+.chip-option {
+  padding: 8px 12px;
+  font-size: 13px;
+  border-radius: 20px;                /* smoother */
+  border: 1px solid rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.1);
+  font-family: "DM Sans", sans-serif;
+}
+
+/* Submit button refined */
+.booking-submit {
+  background: #ffffff;
+  color: #000000;
+  padding: 14px 36px;
+  border: 2px solid #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Introvert", sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
   border-radius: 0;
+
   box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
-  transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
 }
 
 .booking-submit:active {
+  transform: translate(4px,4px);
   box-shadow: #ffffff 3px 3px 0 0, #000000 3px 3px 0 1px;
-  transform: translate(3px, 3px);
 }
+
 
   </style>
 </head>

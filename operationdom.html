@@ -101,141 +101,173 @@ nav.site-nav a {
        BOOKING SECTION
     ============================ */
 
-    #booking {
-      position: relative;
-      min-height: 100vh;
-      width: 100%;
-      padding: 100px 24px;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
+    /* ===== BOOKING SECTION ===== */
 
-      background-image: url("booking-img.png");
-      background-size: cover;
-      background-position: center;
-    }
+#booking {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  padding: 80px 16px;
 
-    /* SECTION HEADING (NEW) */
-.booking-heading {
-  position: absolute;
-  left: 60px;
-  top: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  font-family: "Introvert", sans-serif;
-  font-size: 80px;        /* Bigger */
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-
-  color: white;           /* White text */
-  text-shadow:
-    0 0 10px rgba(255, 255, 255, 0.9),
-    0 0 20px rgba(255, 255, 255, 0.6);
+  background-image: url("booking.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
+/* dark veil for contrast */
+#booking::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 0;
+}
 
-.booking-right {
-  border: 2px solid white;
-  background: rgba(0, 0, 0, 0.78);
-  padding: 32px 30px;
-  width: 100%;
-  max-width: 500px;
+/* square booking card */
+.booking-card {
+  position: relative;
+  z-index: 1;
 
-  box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
-  backdrop-filter: blur(4px);
+  width: 520px;
+  max-width: 95vw;
+  aspect-ratio: 1 / 1;       /* perfect square */
+  border: 3px solid #ffffff;
+  border-radius: 0;          /* 0 corner radius */
+  background: rgba(0, 0, 0, 0.85);
 
-  font-family: "DM Sans", sans-serif;    /* NEW CLEAN FONT */
+  box-shadow: #ffffff 8px 8px 0 0, #000000 8px 8px 0 1px;
+
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  padding: 28px 24px;
+  gap: 18px;
+
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-.booking-form-title {
-  font-family: "Introvert", sans-serif;
-  font-size: 28px;
+/* heading inside the card */
+.booking-card-title {
+  font-family: "Introvert", system-ui, sans-serif;
+  font-size: 26px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: white;
-  margin-bottom: 4px;
+  color: #ffffff;
+}
+
+/* little subtitle under heading */
+.booking-card-subtitle {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+/* layout */
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 6px;
 }
 
 .form-row {
   display: flex;
-  gap: 16px;
+  gap: 12px;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
+  gap: 4px;
   width: 100%;
 }
 
-label {
-  font-size: 14px;
+/* labels + inputs */
+.booking-label {
+  font-size: 13px;
   font-weight: 600;
-  color: #dcdcdc;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  color: #f5f5f5;
 }
 
-input,
-select,
-textarea {
-  padding: 12px;
-  font-size: 15px;
-  color: white;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 6px;               /* CLEANER SHAPE */
-  font-family: "DM Sans", sans-serif;
+.booking-input,
+.booking-select,
+.booking-textarea {
+  width: 100%;
+  padding: 10px 11px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 0;               /* square edges */
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  outline: none;
 }
 
-input::placeholder,
-textarea::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+.booking-input::placeholder,
+.booking-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
 }
 
-textarea {
-  min-height: 120px;
+.booking-textarea {
+  min-height: 90px;
   resize: vertical;
 }
 
-/* Chip options refined */
-.option-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+/* helper text */
+.booking-note {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.75;
 }
 
-.chip-option {
-  padding: 8px 12px;
-  font-size: 13px;
-  border-radius: 20px;                /* smoother */
-  border: 1px solid rgba(255,255,255,0.4);
-  background: rgba(255,255,255,0.1);
-  font-family: "DM Sans", sans-serif;
-}
-
-/* Submit button refined */
+/* submit button */
 .booking-submit {
+  margin-top: 4px;
+  align-self: flex-start;
+
   background: #ffffff;
   color: #000000;
   padding: 14px 36px;
-  border: 2px solid #ffffff;
+
+  border-radius: 0;
+  border: 3px solid #ffffff;
+
+  font-family: "Introvert", system-ui, sans-serif;
   font-size: 16px;
-  font-weight: 600;
-  font-family: "Introvert", sans-serif;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   cursor: pointer;
-  border-radius: 0;
 
   box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
+  transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
 }
 
 .booking-submit:active {
-  transform: translate(4px,4px);
+  transform: translate(4px, 4px);
   box-shadow: #ffffff 3px 3px 0 0, #000000 3px 3px 0 1px;
 }
+
+/* responsive tweak */
+@media (max-width: 600px) {
+  .booking-card {
+    aspect-ratio: auto;
+    height: auto;
+    padding: 22px 18px;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+}
+
 
 
   </style>
@@ -270,105 +302,151 @@ textarea {
     </header>
 
     <!-- BOOKING SECTION -->
-    <section id="booking">
-      
-      <!-- NEW HEADING -->
-      <div class="booking-heading">Book OperationDom</div>
+    <section id="booking" class="section">
+  <div class="booking-card">
+    <h2 class="booking-card-title">Book OperationDom</h2>
+    <p class="booking-card-subtitle">
+      Live performances • studio sessions • coaching • creative direction • brand work
+    </p>
 
-      <div class="booking-right">
-  <div class="booking-form-title">Booking Request</div>
-
-<form>
-
-  <!-- Name + Email -->
-  <div class="form-row">
-    <div class="form-group">
-      <label>Name</label>
-      <input type="text" placeholder="Your name">
-    </div>
-
-    <div class="form-group">
-      <label>Email</label>
-      <input type="email" placeholder="you@example.com">
-    </div>
-  </div>
-
-  <!-- Phone + Date -->
-  <div class="form-row">
-    <div class="form-group">
-      <label>Phone</label>
-      <input type="tel" placeholder="+1 (___)">
-    </div>
-
-    <div class="form-group">
-      <label>Event / Session Date</label>
-      <input type="date">
-    </div>
-  </div>
-
-  <!-- Location -->
-  <div class="form-group">
-    <label>Location</label>
-    <input type="text" placeholder="Venue / Studio / City">
-  </div>
-
-  <!-- WHAT ARE YOU BOOKING FOR -->
-  <div class="form-group">
-    <label>Type of Booking</label>
-    <select>
-      <option value="">Select an option</option>
-
-      <option value="live">Live Performance (Weddings, Galas, Corporate, Private Events)</option>
-      <option value="studio">Studio Sessions (Hooks, BGVs, Features — In-Studio or Remote)</option>
-      <option value="coaching">Vocal Coaching / Artist Development</option>
-      <option value="creative-direction">Creative Direction & Styling</option>
-      <option value="brand">Brand Collaborations & Partnerships</option>
-      <option value="custom-music">Custom Music / Jingles</option>
-
-    </select>
-  </div>
-
-  <!-- SUB-OPTIONS (CHIP STYLE) -->
-  <div class="form-group">
-    <label>What services are you interested in?</label>
-
-    <div class="option-row">
-      <span class="chip-option">Live Band</span>
-      <span class="chip-option">Acoustic Set</span>
-      <span class="chip-option">Solo Vocalist</span>
-      <span class="chip-option">Hooks</span>
-      <span class="chip-option">Background Vocals</span>
-      <span class="chip-option">Features</span>
-      <span class="chip-option">In-Studio</span>
-      <span class="chip-option">Remote Recording</span>
-      <span class="chip-option">Vocal Coaching</span>
-      <span class="chip-option">Artist Development</span>
-      <span class="chip-option">Creative Direction</span>
-      <span class="chip-option">Styling</span>
-      <span class="chip-option">Brand Partnership</span>
-      <span class="chip-option">Campaign Content</span>
-      <span class="chip-option">Custom Song</span>
-      <span class="chip-option">Jingle</span>
-    </div>
-  </div>
-
-  <!-- Budget -->
-  <div class="form-group">
-    <label>Estimated Budget</label>
-    <input type="text" placeholder="e.g. 1,500 – 5,000 USD">
-  </div>
-
-  <!-- Details -->
-  <div class="form-group">
-    <label>Project / Event Details</label>
-    <textarea placeholder="Describe what you're envisioning."></textarea>
-  </div>
-
-  <button class="booking-submit">Submit Request</button>
-</form>
-
+    <form class="booking-form">
+      <!-- Name + Email -->
+      <div class="form-row">
+        <div class="form-group">
+          <label class="booking-label" for="book-name">Name</label>
+          <input
+            class="booking-input"
+            id="book-name"
+            type="text"
+            name="name"
+            placeholder="Your name"
+          />
+        </div>
+        <div class="form-group">
+          <label class="booking-label" for="book-email">Email</label>
+          <input
+            class="booking-input"
+            id="book-email"
+            type="email"
+            name="email"
+            placeholder="you@example.com"
+          />
+        </div>
       </div>
-    </section>
+
+      <!-- Phone + Date -->
+      <div class="form-row">
+        <div class="form-group">
+          <label class="booking-label" for="book-phone">Phone</label>
+          <input
+            class="booking-input"
+            id="book-phone"
+            type="tel"
+            name="phone"
+            placeholder="+1 (___) ___-____"
+          />
+        </div>
+        <div class="form-group">
+          <label class="booking-label" for="book-date">Event / Session Date</label>
+          <input
+            class="booking-input"
+            id="book-date"
+            type="date"
+            name="date"
+          />
+        </div>
+      </div>
+
+      <!-- Location -->
+      <div class="form-group">
+        <label class="booking-label" for="book-location">Location</label>
+        <input
+          class="booking-input"
+          id="book-location"
+          type="text"
+          name="location"
+          placeholder="Venue / Studio / City"
+        />
+      </div>
+
+      <!-- What are you booking Dom for? -->
+      <div class="form-group">
+        <label class="booking-label" for="book-type">What are you booking Dom for?</label>
+        <select class="booking-select" id="book-type" name="bookingType">
+          <option value="">Select an option</option>
+          <option value="live">
+            Live Performances – Weddings, Galas, Corporate, Private Events
+          </option>
+          <option value="studio">
+            Studio Sessions & Collaborations – Hooks, BGVs, Features (In-Studio / Remote)
+          </option>
+          <option value="coaching">
+            Vocal Coaching & Artist Development
+          </option>
+          <option value="creative">
+            Creative Direction & Styling
+          </option>
+          <option value="brand">
+            Brand Collaborations & Partnerships
+          </option>
+          <option value="custom-music">
+            Custom Music & Jingles
+          </option>
+        </select>
+      </div>
+
+      <!-- Event / project type -->
+      <div class="form-group">
+        <label class="booking-label" for="book-context">Event / Project Context</label>
+        <select class="booking-select" id="book-context" name="context">
+          <option value="">Select one</option>
+          <option value="wedding">Wedding</option>
+          <option value="gala">Gala / Fundraiser</option>
+          <option value="corporate">Corporate Function</option>
+          <option value="private">Private Celebration</option>
+          <option value="brand-campaign">Brand Campaign / Collaboration</option>
+          <option value="content">
+            Content / Shoot / Visual Project
+          </option>
+          <option value="podcast">Podcast / Show Theme</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <!-- Budget -->
+      <div class="form-group">
+        <label class="booking-label" for="book-budget">Estimated Budget (USD)</label>
+        <select class="booking-select" id="book-budget" name="budget">
+          <option value="">Select a range</option>
+          <option value="under-1500">$500 – $1,500</option>
+          <option value="1500-3000">$1,500 – $3,000</option>
+          <option value="3000-5000">$3,000 – $5,000</option>
+          <option value="5000-plus">$5,000+</option>
+        </select>
+      </div>
+
+      <!-- Details -->
+      <div class="form-group">
+        <label class="booking-label" for="book-details">Details</label>
+        <textarea
+          class="booking-textarea"
+          id="book-details"
+          name="details"
+          placeholder="Share the vibe, set length, outfit / styling notes, collaborators, or anything else we should know."
+        ></textarea>
+      </div>
+
+      <p class="booking-note">
+        Submitting this form does not confirm a booking. A member of the team will follow up
+        with availability, rates, and next steps.
+      </p>
+
+      <button type="submit" class="booking-submit">
+        Submit Request
+      </button>
+    </form>
+  </div>
+</section>
 
     <!-- MUSIC SECTION stays untouched -->
 

@@ -287,151 +287,136 @@ nav.site-nav a {
    MUSIC / STREAMING SECTION
 ============================ */
 
+/* ============================
+   MUSIC / STREAMING SECTION
+============================ */
+
 #music {
   position: relative;
   min-height: 100vh;
-  padding: 90px 16px 80px;
+  padding: 120px 16px 100px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   overflow: hidden;
+  background: #000;
 }
 
-#music::before {
-  /* soft dark veil so the video doesn't fight the section */
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center,
-    rgba(0,0,0,0.1),
-    rgba(0,0,0,0.95)
-  );
-  z-index: 0;
-}
-
-/* main layout */
 .music-inner {
   position: relative;
-  z-index: 1;
   width: 100%;
-  max-width: 1120px;
+  max-width: 1280px;
 
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-  gap: 50px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 
-/* STREAM / NOW text inspired by your graphic */
-.music-title-block {
-  margin-bottom: 24px;
-}
-
-.music-kicker {
-  font-family: "Introvert", sans-serif;
-  font-size: 13px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  opacity: 0.8;
-  margin-bottom: 10px;
-}
-
+/* STREAM NOW TEXT — MUCH BIGGER */
 .music-stream-row {
   display: flex;
-  align-items: baseline;
-  gap: 18px;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 40px;
 }
 
 .music-stream-word {
   font-family: "Introvert", sans-serif;
-  font-size: clamp(52px, 8vw, 82px);
-  letter-spacing: 0.18em;
+  font-size: clamp(90px, 12vw, 160px);
+  font-weight: 900;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  line-height: 0.85;
+  line-height: 0.8;
 }
 
 .music-stream-word.stream {
   color: #ff2b2b;
-  text-shadow: 0 0 32px rgba(255, 26, 26, 0.6);
+  text-shadow: 0 0 50px rgba(255, 0, 0, 0.7);
 }
 
 .music-stream-word.now {
   color: #ffffff;
-  text-shadow: 0 0 32px rgba(255, 255, 255, 0.7);
+  text-shadow: 0 0 50px rgba(255, 255, 255, 0.9);
 }
 
-/* small blurb under title */
+/* SUBTITLE */
 .music-copy {
-  max-width: 420px;
-  font-family: "DM Sans", system-ui, sans-serif;
-  font-size: 14px;
+  max-width: 650px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 22px;
   line-height: 1.7;
-  opacity: 0.9;
+  opacity: 0.95;
+  margin-bottom: 60px;
 }
 
-/* GRID OF PLATFORMS */
+/* BIGGER GRID */
 .music-grid {
-  margin-top: 26px;
+  width: 100%;
+  max-width: 1100px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
 }
 
+/* STREAMING BOXES — XXL */
 .platform-card {
-  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 6px;
-
-  padding: 16px 16px 18px;
+  padding: 32px 28px;
   border-radius: 0;
-  border: 3px solid #ffffff;
-  background: rgba(0,0,0,0.85);
+  border: 4px solid #ffffff;
+  background: rgba(0,0,0,0.9);
   text-decoration: none;
   color: #ffffff;
 
-  box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
-  transition: transform 0.1s ease-out, box-shadow 0.1s ease-out, background 0.15s ease-out;
+  box-shadow: #ffffff 10px 10px 0 0, #000000 10px 10px 0 2px;
+  transition: 0.12s ease-out;
 }
 
 .platform-card:hover {
-  transform: translate(4px, 4px);
-  box-shadow: #ffffff 3px 3px 0 0, #000000 3px 3px 0 1px;
-  background: rgba(0,0,0,0.95);
+  transform: translate(6px, 6px);
+  box-shadow: #ffffff 4px 4px 0 0, #000000 4px 4px 0 2px;
+  background: rgba(0,0,0,1);
 }
 
+/* TAGS */
 .platform-tag {
   font-family: "Introvert", sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-size: 18px;
   opacity: 0.85;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
+/* PLATFORM NAMES — MUCH BIGGER */
 .platform-name {
   font-family: "Introvert", sans-serif;
-  font-size: 20px;
-  letter-spacing: 0.16em;
+  font-size: 48px;
+  font-weight: 900;
   text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 12px;
 }
 
+/* DESCRIPTION TEXT */
 .platform-note {
-  font-family: "DM Sans", system-ui, sans-serif;
-  font-size: 12px;
-  line-height: 1.5;
+  font-family: "DM Sans", sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
   opacity: 0.85;
 }
 
-/* subtle brand glows */
+/* BRAND GLOWS */
 .platform-card.spotify::before,
 .platform-card.apple::before,
 .platform-card.soundcloud::before {
   content: "";
   position: absolute;
-  inset: -40%;
-  opacity: 0.35;
-  filter: blur(28px);
+  inset: -60%;
+  opacity: 0.25;
+  filter: blur(45px);
   z-index: -1;
 }
 
@@ -447,61 +432,18 @@ nav.site-nav a {
   background: radial-gradient(circle at center, #ff5500, transparent 70%);
 }
 
-/* RIGHT-SIDE HERO IMAGE */
-.music-hero-visual {
-  position: relative;
-  justify-self: center;
-}
-
-.music-hero-frame {
-  position: relative;
-  width: min(460px, 90vw);
-  border-radius: 0;
-  border: 3px solid #ffffff;
-  overflow: hidden;
-
-  box-shadow: #ffffff 10px 10px 0 0, #000000 10px 10px 0 1px;
-}
-
-.music-hero-img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-/* neon swoosh / aura look */
-.music-hero-frame::before {
-  content: "";
-  position: absolute;
-  inset: -20%;
-  background:
-    radial-gradient(circle at 20% 10%, rgba(255, 43, 43, 0.65), transparent 65%),
-    radial-gradient(circle at 80% 90%, rgba(84, 110, 255, 0.7), transparent 70%);
-  mix-blend-mode: screen;
-  opacity: 0.8;
-  pointer-events: none;
-}
-
 /* MOBILE */
 @media (max-width: 900px) {
-  .music-inner {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 40px;
-  }
-
-  .music-hero-visual {
-    order: -1;               /* image first on mobile */
-  }
-
-  #music {
-    padding-top: 110px;
+  .music-stream-row {
+    flex-direction: column;
+    gap: 20px;
   }
 
   .music-grid {
     grid-template-columns: 1fr;
+    gap: 30px;
   }
 }
-
 
   </style>
 </head>
@@ -682,84 +624,64 @@ nav.site-nav a {
 </section>
 
     <!-- MUSIC SECTION stays untouched -->
-    <!-- MUSIC SECTION -->
-    <section id="music">
-      <div class="music-inner">
-        <!-- LEFT: STREAM NOW TEXT + GRID -->
-        <div class="music-left">
-          <div class="music-title-block">
-            <div class="music-kicker">OperationDom</div>
+<section id="music">
+  <div class="music-inner">
 
-            <div class="music-stream-row">
-              <span class="music-stream-word stream">Stream</span>
-              <span class="music-stream-word now">Now</span>
-            </div>
+    <div class="music-stream-row">
+      <span class="music-stream-word stream">Stream</span>
+      <span class="music-stream-word now">Now</span>
+    </div>
 
-            <p class="music-copy">
-              Tap into Dom’s world of powerhouse vocals, glossy R&B, and
-              raw emotion. Choose your platform and keep OperationDom in
-              rotation.
-            </p>
-          </div>
+    <p class="music-copy">
+      Tap into Dom’s world of powerhouse vocals, glossy R&B, and raw emotion.  
+      Choose your platform and keep OperationDom in rotation.
+    </p>
 
-          <div class="music-grid">
-            <!-- Spotify -->
-            <a
-              class="platform-card spotify"
-              href="https://open.spotify.com/artist/3qWTtM0AN7KdlfS8exCEy6?si=qNRHmzcST9GJJsB-owpgzQ&nd=1&dlsi=ba71395663284571"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span class="platform-tag">Listen on</span>
-              <span class="platform-name">Spotify</span>
-              <span class="platform-note">
-                Follow OperationDom and add your favorite tracks to your
-                playlists.
-              </span>
-            </a>
+    <div class="music-grid">
 
-            <!-- Apple Music -->
-            <a
-              class="platform-card apple"
-              href="https://music.apple.com/us/artist/operationdom/1824111226"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span class="platform-tag">Stream on</span>
-              <span class="platform-name">Apple Music</span>
-              <span class="platform-note">
-                Save the catalog to your library and vibe in lossless quality.
-              </span>
-            </a>
+      <!-- Spotify -->
+      <a
+        class="platform-card spotify"
+        href="https://open.spotify.com/artist/3qWTtM0AN7KdlfS8exCEy6?si=qNRHmzcST9GJJsB-owpgzQ&nd=1&dlsi=ba71395663284571"
+        target="_blank"
+      >
+        <span class="platform-tag">Listen on</span>
+        <span class="platform-name">Spotify</span>
+        <span class="platform-note">
+          Follow OperationDom and add the hits to your favorite playlists.
+        </span>
+      </a>
 
-            <!-- SoundCloud -->
-            <a
-              class="platform-card soundcloud"
-              href="https://soundcloud.com/dominique-smith-892170035?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span class="platform-tag">Dive into</span>
-              <span class="platform-name">SoundCloud</span>
-              <span class="platform-note">
-                Catch demos, drops, and deep cuts straight from Dom’s vault.
-              </span>
-            </a>
-          </div>
-        </div>
+      <!-- Apple Music -->
+      <a
+        class="platform-card apple"
+        href="https://music.apple.com/us/artist/operationdom/1824111226"
+        target="_blank"
+      >
+        <span class="platform-tag">Stream on</span>
+        <span class="platform-name">Apple Music</span>
+        <span class="platform-note">
+          Save the catalog and enjoy Dom in crystal-clear lossless quality.
+        </span>
+      </a>
 
-        <!-- RIGHT: HERO IMAGE INSPIRED BY YOUR ART -->
-        <div class="music-hero-visual">
-          <div class="music-hero-frame">
-            <img
-              src="music-hero.png"
-              alt="OperationDom performing live – Stream Now"
-              class="music-hero-img"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
+      <!-- SoundCloud -->
+      <a
+        class="platform-card soundcloud"
+        href="https://soundcloud.com/dominique-smith-892170035?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
+        target="_blank"
+      >
+        <span class="platform-tag">Dive into</span>
+        <span class="platform-name">SoundCloud</span>
+        <span class="platform-note">
+          Discover demos, alt versions, and raw drops straight from Dom.
+        </span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
 
   </div>
 </body>

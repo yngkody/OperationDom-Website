@@ -283,110 +283,106 @@ nav.site-nav a {
   }
 }
 
-/* MUSIC SECTION BASE */
+/* =============== MUSIC SECTION =============== */
+
 #music-section {
   background: #000;
-  color: #f7f7ff;
-  padding: 4rem 1.5rem 5rem;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #ffffff;
+  min-height: 100vh;
+  padding: 80px 16px 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "Introvert", sans-serif;
 }
 
-/* Top banner with image + grid */
+/* Top banner: full-width image, no gradients */
 .music-hero {
   position: relative;
-  max-width: 1120px;
-  margin: 0 auto 3rem;
-  border-radius: 28px;
+  width: 100%;
+  min-height: 60vh;
+  margin: 0 auto 60px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background-image:
-    linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0.95)),
-    url("music-img.png");
+  background-image: url("music-img.png");
   background-size: cover;
   background-position: center;
-  box-shadow: 0 26px 80px rgba(0,0,0,0.9);
 }
 
-/* Neon grid overlay */
+/* dark veil for contrast (no gradient) */
+.music-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 0;
+}
+
+/* grid lines overlay */
 .music-hero-grid {
   position: absolute;
   inset: 0;
+  z-index: 1;
   pointer-events: none;
   background-image:
-    linear-gradient(
-      to right,
-      rgba(91, 206, 250, 0.15) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to bottom,
-      rgba(255, 111, 244, 0.18) 1px,
-      transparent 1px
-    );
-  background-size: 80px 80px;
-  mix-blend-mode: screen;
-  opacity: 0.55;
+    linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.4;
 }
 
-/* Content inside hero */
+/* text on top of the image */
 .music-hero-inner {
   position: relative;
-  padding: 3.5rem 2.5rem 3.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  max-width: 560px;
+  z-index: 2;
+  max-width: 680px;
+  padding: 60px 24px;
 }
 
 .music-eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+  opacity: 0.9;
 }
 
 .music-title {
-  font-family: "Introvert", system-ui, sans-serif;
-  font-size: clamp(2.25rem, 4vw, 3rem);
-  line-height: 1.05;
-  color: #ffffff;
-  text-shadow:
-    0 0 18px rgba(80, 227, 255, 0.65),
-    0 0 40px rgba(255, 0, 200, 0.45);
+  margin-top: 8px;
+  font-family: "Introvert", sans-serif;
+  font-size: clamp(2.7rem, 5vw, 3.5rem);
+  line-height: 1.02;
+  text-transform: uppercase;
 }
 
 .music-title span {
-  background: linear-gradient(90deg, #4cf2ff, #ff4ff3);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #ffffff; /* no gradient text */
 }
 
 .music-subtitle {
-  font-size: 0.98rem;
-  color: rgba(240, 240, 250, 0.85);
-  max-width: 30rem;
+  margin-top: 10px;
+  font-size: 1rem;
+  max-width: 32rem;
+  opacity: 0.9;
 }
 
 /* Streaming grid section */
 .music-platforms {
-  max-width: 1120px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .music-platforms-title {
-  font-family: "Introvert", system-ui, sans-serif;
-  font-size: 1.4rem;
-  letter-spacing: 0.12em;
+  font-family: "Introvert", sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  margin-bottom: 1.8rem;
-  color: #ffffff;
+  margin-bottom: 26px;
 }
 
+/* 3-column grid that fills more of the screen */
 .music-platforms-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.4rem;
+  gap: 1.75rem;
 }
 
 @media (max-width: 900px) {
@@ -395,58 +391,38 @@ nav.site-nav a {
   }
 }
 
-/* Individual platform cards */
+/* Platform cards – square, outlined, no gradients */
 .platform-card {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1.2rem 1.4rem;
-  border-radius: 24px;
-  background: radial-gradient(circle at top left, rgba(76, 242, 255, 0.18), transparent 55%),
-              radial-gradient(circle at bottom right, rgba(255, 79, 243, 0.16), transparent 55%),
-              rgba(10, 10, 18, 0.96);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.85);
-  text-decoration: none;
-  color: inherit;
-  overflow: hidden;
-  backdrop-filter: blur(10px);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease,
-    background 0.2s ease;
-}
+  gap: 1.2rem;
+  padding: 1.6rem 1.4rem;
 
-.platform-card::after {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(76, 242, 255, 0.3), rgba(255, 79, 243, 0.3));
-  opacity: 0;
-  mix-blend-mode: screen;
-  transition: opacity 0.2s ease;
+  border-radius: 0;
+  border: 3px solid #ffffff;
+  background: rgba(0, 0, 0, 0.9);
+  box-shadow: #ffffff 8px 8px 0 0, #000000 8px 8px 0 1px;
+
+  text-decoration: none;
+  color: #ffffff;
+
+  transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
 }
 
 .platform-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 26px 70px rgba(0,0,0,0.95);
-  border-color: rgba(255, 255, 255, 0.3);
+  transform: translate(4px, 4px);
+  box-shadow: #ffffff 4px 4px 0 0, #000000 4px 4px 0 1px;
 }
 
-.platform-card:hover::after {
-  opacity: 0.5;
-}
-
+/* icon wrapper – simple circle, no gradient */
 .platform-icon-wrap {
   flex: 0 0 auto;
-  width: 52px;
-  height: 52px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.35), transparent 55%),
-              rgba(15, 23, 42, 0.95);
+  border: 2px solid #ffffff;
+  background: #000000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -454,44 +430,29 @@ nav.site-nav a {
 }
 
 .platform-icon {
-  width: 65%;
+  width: 75%;
   height: auto;
   display: block;
 }
 
-/* Platform text */
+/* text inside cards – big + thick */
 .platform-text {
   display: flex;
   flex-direction: column;
-  gap: 0.18rem;
+  gap: 4px;
 }
 
 .platform-label {
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-family: "Introvert", sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 .platform-tagline {
-  font-size: 0.8rem;
-  color: rgba(220, 220, 240, 0.8);
-}
-
-/* Optional tiny color nuances per platform (very subtle) */
-.platform-spotify .platform-icon-wrap {
-  background: radial-gradient(circle at 30% 20%, rgba(163, 255, 203, 0.55), transparent 55%),
-              rgba(7, 18, 12, 0.96);
-}
-
-.platform-apple .platform-icon-wrap {
-  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.6), transparent 55%),
-              rgba(10, 10, 18, 0.96);
-}
-
-.platform-soundcloud .platform-icon-wrap {
-  background: radial-gradient(circle at 30% 20%, rgba(255, 196, 134, 0.65), transparent 55%),
-              rgba(24, 13, 5, 0.96);
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 0.87rem;
+  opacity: 0.9;
 }
 
   </style>

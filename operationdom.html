@@ -817,27 +817,50 @@
               <!-- Type -->
               <div class="form-group">
                 <label class="booking-label" for="book-type">What are you booking Dom for?</label>
-                <select class="booking-select" id="book-type" name="bookingType">
-                  <option value="">Select an option</option>
-                  <option value="live">
-                    Live performances – weddings, galas, corporate, private events
-                  </option>
-                  <option value="studio">
-                    Studio sessions &amp; collaborations – hooks, BGVs, features
-                  </option>
-                  <option value="coaching">
-                    Vocal coaching &amp; artist development
-                  </option>
-                  <option value="creative">
-                    Creative direction &amp; styling
-                  </option>
-                  <option value="brand">
-                    Brand collaborations &amp; partnerships
-                  </option>
-                  <option value="other">
-                    Other / not listed
-                  </option>
-                </select>
+<select class="booking-select" id="book-type" name="bookingType">
+  <option value="">Select a service</option>
+
+  <!-- Base Performance -->
+  <option value="local-performance">
+    Local Solo Performance — 2 Songs (30 Minutes) — $250
+  </option>
+
+  <!-- Add-ons -->
+  <option value="additional-time">
+    Additional 30 Minutes — +$50
+  </option>
+  <option value="custom-music">
+    Custom Music / Song Selection — +$50
+  </option>
+  <option value="rehearsal">
+    Rehearsal Time — +$50 per session
+  </option>
+
+  <!-- Studio Work -->
+  <option value="studio-session">
+    Studio Session (BGVs, Adlibs, Vocal Production) — $75/hr
+  </option>
+  <option value="vocal-recording">
+    Vocal Recording (Sync / Film / Television) — $300+
+  </option>
+
+  <!-- Travel -->
+  <option value="travel-outside-borough">
+    Travel — Outside Borough/City — +$50
+  </option>
+  <option value="travel-2hr-drive">
+    Travel — Over 2hr + Drive — +$100–$300
+  </option>
+  <option value="travel-flight">
+    Travel — Flight + Hotel Required (Quote)
+  </option>
+
+  <!-- Rush -->
+  <option value="rush-fee">
+    Rush Fee (Under 48 hrs notice) — +$100+
+  </option>
+</select>
+
               </div>
 
               <!-- Budget -->
@@ -862,6 +885,21 @@
                   placeholder="Share the vibe, set length, outfit / styling notes, collaborators, or anything else we should know."
                 ></textarea>
               </div>
+<div class="form-group">
+  <label class="booking-label">Add-Ons (optional)</label>
+
+  <label><input type="checkbox" name="addon_additional" value="Additional 30 Minutes (+$50)">
+    Additional 30 Minutes — +$50</label>
+
+  <label><input type="checkbox" name="addon_custom" value="Custom Song Selection (+$50)">
+    Custom Song / Music Selection — +$50</label>
+
+  <label><input type="checkbox" name="addon_rehearsal" value="Rehearsal (+$50/session)">
+    Rehearsal Time — +$50 per session</label>
+
+  <label><input type="checkbox" name="addon_rush" value="Rush Fee (+$100+)">
+    Rush Fee (Under 48 hrs) — +$100+</label>
+</div>
 
               <p class="booking-note">
                 Submitting this form does not confirm a booking. A member of the team will follow up
@@ -874,74 +912,46 @@
             </form>
           </div>
 
-          <!-- Aside copy -->
-          <aside class="booking-aside">
-            <p>
-              <strong>Perfect for:</strong> corporate events, brand activations, private parties,
-              live band sets, studio features, and more.
-            </p>
-            <p>
-              Sets are tailored to your crowd – from 90s/00s R&amp;B and pop, to current anthems and
-              original records.
-            </p>
-            <p>
-              Tell us your vision and Dom will help you build a performance that feels cinematic,
-              intentional, and unforgettable.
-            </p>
-          </aside>
-        </div>
-      </div>
-    </section>
+        <aside class="booking-aside">
+  <h3 style="font-size:1.3rem; margin-bottom:10px; color:#fff;">Price Menu</h3>
 
-    <!-- SHOWCASE -->
-    <section id="showcase" class="section">
-      <div class="section-inner">
-        <div class="section-header">
-          <div class="section-tag">
-            <svg class="tag-icon" viewBox="0 0 32 32" aria-hidden="true">
-              <path d="M4 16h24M16 4v24" stroke="var(--accent-green)" stroke-width="2" stroke-linecap="round" />
-              <circle cx="16" cy="16" r="6" fill="none" stroke="var(--accent-green)" stroke-width="2" />
-            </svg>
-            <span>Live with the band</span>
-          </div>
-          <h2 class="section-title">Showcase</h2>
-          <p class="section-subtitle">
-            Tap into the OperationDom experience – live vocals, band chemistry, and the kind of
-            performance that lingers after the last note.
-          </p>
-        </div>
+  <p><strong>BASE RATE</strong></p>
+  <p>Local Solo Performance (2 Songs, 30 Minutes) — <strong>$250</strong></p>
 
-        <div class="showcase-layout">
-          <div class="showcase-video-card">
-            <div class="video-frame">
-              <iframe
-                src="https://www.youtube.com/embed/nUiGw0PV7j4"
-                title="OperationDom – Live Performance"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              ></iframe>
-            </div>
-          </div>
+  <br>
 
-          <div class="showcase-copy">
-            <p>
-              From intimate stages to full-room takeovers, Dom commands every space with control,
-              texture, and storytelling. This reel captures the blend of raw emotion and technical
-              precision she brings to each set.
-            </p>
-            <p>
-              Expect tight arrangements, dynamic moments, and vocals that sit right at the center of
-              the mix – supported by a band built to move with her in real time.
-            </p>
-            <div class="showcase-pills">
-              <span class="showcase-pill">R&amp;B • Soul • Pop</span>
-              <span class="showcase-pill">Full band or scaled set</span>
-              <span class="showcase-pill">NYC-based • traveling</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <p><strong>TRAVEL FEES</strong></p>
+  <p>Within Brooklyn — <strong>Included</strong></p>
+  <p>Outside Borough/City — <strong>+$50</strong></p>
+  <p>Over 2hr + Drive — <strong>+$100–$300</strong></p>
+  <p>Flight + Hotel Required — <strong>Quote Upon Request</strong></p>
+
+  <br>
+
+  <p><strong>TIME-BASED ADD-ONS</strong></p>
+  <p>Each Additional 30 Minutes — <strong>+$50</strong><br>
+  <span style="opacity:0.8;">(Includes delays of any kind)</span></p>
+  <p>Custom Music / Song Selection — <strong>+$50</strong></p>
+  <p>Rehearsal Time — <strong>+$50 per session</strong></p>
+
+  <br>
+
+  <p><strong>STUDIO / TV / SYNC WORK</strong></p>
+  <p>Studio Session (BGVs, adlibs, reference tracks, harmony creation, vocal production, coaching) — <strong>$75/hr</strong></p>
+  <p>Vocal Recording (Sync / Film / Television) — <strong>$300+</strong></p>
+
+  <br>
+
+  <p><strong>PAYMENT TERMS</strong></p>
+  <p>50% deposit to book</p>
+  <p>Final balance due on booking date</p>
+  <p>Buyout license for TV/Film — <strong>Quote upon request</strong></p>
+  <p>Zelle | Apple Pay | Invoice available</p>
+  <p>Rush Fee (Under 48 hrs notice) — <strong>+$100+</strong></p>
+
+  <br>
+  <p style="opacity:0.7; font-size:0.9rem;">Contact: domsmi1@gmail.com</p>
+</aside>
 
     <!-- MUSIC -->
     <section id="music-section" class="section">

@@ -1095,5 +1095,25 @@
       </div>
     </section>
   </div>
+  
+  <script>
+  window.addEventListener("load", function () {
+    const video = document.querySelector(".hero-video");
+    if (!video) return;
+
+    // Try to play on load
+    video.play().catch(() => {
+      // If the browser blocks it, try again on first click/tap
+      const unlock = () => {
+        video.play().catch(() => {});
+        window.removeEventListener("click", unlock);
+        window.removeEventListener("touchstart", unlock);
+      };
+      window.addEventListener("click", unlock, { once: true });
+      window.addEventListener("touchstart", unlock, { once: true });
+    });
+  });
+</script>
+
 </body>
 </html>

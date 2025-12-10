@@ -1096,14 +1096,14 @@
     </section>
   </div>
   
-  <script>
+<script>
   window.addEventListener("load", function () {
     const video = document.querySelector(".hero-video");
     if (!video) return;
 
-    // Try to play on load
+    // Try to autoplay
     video.play().catch(() => {
-      // If the browser blocks it, try again on first click/tap
+      // If browser blocks it, try again on first user interaction
       const unlock = () => {
         video.play().catch(() => {});
         window.removeEventListener("click", unlock);
@@ -1114,6 +1114,7 @@
     });
   });
 </script>
+
 
 </body>
 </html>

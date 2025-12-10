@@ -17,6 +17,15 @@
       src: url("Introvert.otf") format("opentype");
     }
 
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
     :root {
       --accent-blue: #1f45ff; /* darker neon blue */
       --text-color: #ffffff;
@@ -25,9 +34,20 @@
     }
 
     body {
-      background: black;
-      color: white;
+      background: #000000;
+      color: #ffffff;
       font-family: "Introvert", sans-serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
     }
 
     /* HERO VIDEO */
@@ -40,436 +60,527 @@
       z-index: 0;
     }
 
-    .page { position: relative; z-index: 5; }
-
-    /* ============================
-       NAVIGATION (NEW)
-    ============================ */
-nav.site-nav {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 28px;
-  z-index: 20;
-}
-
-nav.site-nav a {
-  font-family: "Shrikhand", cursive;
-  font-size: 24px;
-  text-decoration: none;
-  color: white;
-  letter-spacing: 2px;
-
-  /* remove blue/neon glow */
-  text-shadow: 0 0 6px rgba(255,255,255,0.6);
-}
-
-    /* HERO SECTION */
-    header.dom-hero {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
+    .page {
+      position: relative;
+      z-index: 5;
     }
 
-.hero-btn {
-  background: #ffffff;            /* solid white */
-  border: 3px solid #ffffff;      /* NO BLUE OUTLINE */
-  color: #000000;                 /* black for contrast */
-  font-family: "Introvert", sans-serif;
-  padding: 22px 70px;
-  font-size: 26px;
-  letter-spacing: 0.08em;
-  border-radius: 0;
+    /* ============================
+       NAVIGATION
+    ============================ */
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
 
-  box-shadow: #ffffff 8px 8px 0 0, #000000 8px 8px 0 1px;
-  transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
-}
+      display: flex;
+      justify-content: center;
+      gap: 40px;
 
-.hero-btn.outline {
-  background: transparent;
-  border: 3px solid #ffffff;      /* white outline only */
-  color: #ffffff;                 /* white text */
-  box-shadow: #ffffff 8px 8px 0 0, #000000 8px 8px 0 1px;
-}
+      padding: 16px 24px;
+      background: rgba(0, 0, 0, 0.9);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(10px);
+    }
 
+    .site-nav a {
+      font-family: "Shrikhand", system-ui, sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--text-color);
+      text-decoration: none;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.15s ease-out, color 0.15s ease-out, transform 0.1s ease-out;
+    }
+
+    .site-nav a:hover {
+      color: var(--accent-blue);
+      border-color: var(--accent-blue);
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 700px) {
+      .site-nav {
+        gap: 20px;
+        font-size: 0.8rem;
+      }
+
+      .site-nav a {
+        font-size: 0.85rem;
+      }
+    }
+
+    /* ============================
+       HERO
+    ============================ */
+    .dom-hero {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      padding: 120px 24px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+      /* subtle overlay so text reads on top of video */
+      background: radial-gradient(circle at top, rgba(0,0,0,0.5), rgba(0,0,0,0.95));
+    }
+
+    .hero-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .hero-title {
+      font-family: "Introvert", system-ui, sans-serif;
+      font-size: clamp(3rem, 6vw, 4.2rem);
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      margin-bottom: 32px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .hero-btn {
+      padding: 14px 26px;
+      font-family: "Introvert", system-ui, sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      border: 2px solid #ffffff;
+      background: #ffffff;
+      color: #000000;
+      cursor: pointer;
+      box-shadow: #ffffff 4px 4px 0 0, #000000 4px 4px 0 1px;
+      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out, background 0.1s ease-out, color 0.1s ease-out;
+    }
+
+    .hero-btn.outline {
+      background: transparent;
+      color: #ffffff;
+    }
+
+    .hero-btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: #ffffff 5px 5px 0 0, #000000 5px 5px 0 1px;
+    }
+
+    .hero-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: #ffffff 2px 2px 0 0, #000000 2px 2px 0 1px;
+    }
+
+    @media (max-width: 600px) {
+      .dom-hero {
+        padding-top: 140px;
+      }
+
+      .hero-title {
+        letter-spacing: 0.16em;
+        font-size: clamp(2.6rem, 9vw, 3.2rem);
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .hero-btn {
+        width: 100%;
+      }
+    }
 
     /* ============================
        BOOKING SECTION
     ============================ */
+    #booking {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      padding: 80px 16px;
 
-    /* ===== BOOKING SECTION ===== */
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-#booking {
-  position: relative;
-  min-height: 100vh;
-  width: 100%;
-  padding: 80px 16px;
+      background-image: url("hero-book.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    #booking::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
 
-  background-image: url("hero-book.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-/* GRID LINES OVERLAY FOR BOOKING SECTION */
-#booking::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;                      /* sits above the image, below the form */
-  pointer-events: none;
+    /* dark veil for contrast */
+    #booking::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 0;
+    }
 
-  background-image:
-    linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px);
+    .booking-card {
+      position: relative;
+      z-index: 1;
 
-  background-size: 40px 40px;      /* size of each square */
-  opacity: 0.4;                    /* grid visibility */
-}
+      width: min(780px, 100% - 32px);
+      border: 3px solid #ffffff;
+      border-radius: 0;
+      background: rgba(0, 0, 0, 0.9);
 
-/* dark veil for contrast */
-#booking::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  z-index: 0;
-}
+      box-shadow: #ffffff 8px 8px 0 0, #000000 8px 8px 0 1px;
 
-/* square booking card */
-.booking-card {
-  position: relative;
-  z-index: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 32px 28px;
+      gap: 20px;
 
-  width: 520px;
-  max-width: 95vw;
-  aspect-ratio: 1 / 1;       /* perfect square */
-  border: 3px solid #ffffff;
-  border-radius: 0;          /* 0 corner radius */
-  background: rgba(0, 0, 0, 0.85);
+      font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
 
-  box-shadow: #ffffff 8px 8px 0 0, #000000 8px 8px 0 1px;
+    .booking-card-title {
+      font-family: "Introvert", system-ui, sans-serif;
+      font-size: 26px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
 
-  display: flex;
-  flex-direction: column;
-  padding: 28px 24px;
-  gap: 18px;
+    .booking-card-subtitle {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 420px;
+    }
 
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
+    .booking-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 6px;
+    }
 
-/* heading inside the card */
-.booking-card-title {
-  font-family: "Introvert", system-ui, sans-serif;
-  font-size: 26px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #ffffff;
-}
+    .form-row {
+      display: flex;
+      gap: 12px;
+    }
 
-/* little subtitle under heading */
-.booking-card-subtitle {
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  opacity: 0.85;
-}
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+    }
 
-/* layout */
-.booking-form {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-top: 6px;
-}
+    .booking-label {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #f5f5f5;
+    }
 
-.form-row {
-  display: flex;
-  gap: 12px;
-}
+    .booking-input,
+    .booking-select,
+    .booking-textarea {
+      width: 100%;
+      padding: 14px 14px;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 0;
+      border: 2px solid rgba(255, 255, 255, 0.85);
+      background: rgba(0, 0, 0, 0.8);
+      color: #ffffff;
+      outline: none;
+      font-family: "DM Sans", system-ui, sans-serif;
+    }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  width: 100%;
-}
+    .booking-input::placeholder,
+    .booking-textarea::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
 
-/* labels + inputs */
-.booking-label {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #f5f5f5;
-}
+    .booking-textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
 
-.booking-input,
-.booking-select,
-.booking-textarea {
-  width: 100%;
-  padding: 10px 11px;
-  font-size: 14px;
-  font-weight: 500;
-  border-radius: 0;               /* square edges */
-  border: 2px solid rgba(255, 255, 255, 0.8);
-  background: rgba(0, 0, 0, 0.75);
-  color: #ffffff;
-  outline: none;
-}
+    .booking-note {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.75;
+    }
 
-.booking-input::placeholder,
-.booking-textarea::placeholder {
-  color: rgba(255, 255, 255, 0.6);
-}
+    .booking-submit {
+      margin-top: 4px;
 
-.booking-textarea {
-  min-height: 90px;
-  resize: vertical;
-}
+      align-self: flex-start;
+      padding: 12px 24px;
+      font-family: "Introvert", system-ui, sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
 
-/* helper text */
-.booking-note {
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  opacity: 0.75;
-}
+      background: #ffffff;
+      color: #000000;
+      border: 2px solid #ffffff;
+      border-radius: 999px;
 
-/* submit button */
-.booking-submit {
-  margin-top: 4px;
-  align-self: flex-start;
+      box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
+      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out, background 0.1s ease-out, color 0.1s ease-out;
+    }
 
-  background: #ffffff;
-  color: #000000;
-  padding: 14px 36px;
+    .booking-submit:hover {
+      background: #000000;
+      color: #ffffff;
+      box-shadow: #ffffff 7px 7px 0 0, #000000 7px 7px 0 1px;
+      transform: translate(-1px, -1px);
+    }
 
-  border-radius: 0;
-  border: 3px solid #ffffff;
+    .booking-submit:active {
+      transform: translate(4px, 4px);
+      box-shadow: #ffffff 3px 3px 0 0, #000000 3px 3px 0 1px;
+    }
 
-  font-family: "Introvert", system-ui, sans-serif;
-  font-size: 16px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  cursor: pointer;
+    @media (max-width: 600px) {
+      .booking-card {
+        aspect-ratio: auto;
+        height: auto;
+        padding: 22px 18px;
+      }
 
-  box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
-  transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
-}
+      .form-row {
+        flex-direction: column;
+      }
+    }
 
-.booking-submit:active {
-  transform: translate(4px, 4px);
-  box-shadow: #ffffff 3px 3px 0 0, #000000 3px 3px 0 1px;
-}
+    /* ============================
+       MUSIC SECTION
+    ============================ */
 
-/* responsive tweak */
-@media (max-width: 600px) {
-  .booking-card {
-    aspect-ratio: auto;
-    height: auto;
-    padding: 22px 18px;
-  }
+    #music-section {
+      position: relative;
+      width: 100%;
+      padding: 80px 16px 100px;
+      background: #000000;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      font-family: "DM Sans", system-ui, sans-serif;
+    }
 
-  .form-row {
-    flex-direction: column;
-  }
-}
+    #music-section > * {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-/* =============== MUSIC SECTION =============== */
+    #music-section header {
+      text-align: center;
+      font-family: "Introvert", sans-serif;
+    }
 
-#music-section {
-  background: #000;
-  color: #ffffff;
-  min-height: 100vh;
-  padding: 80px 16px 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-family: "Introvert", sans-serif;
-}
+    .music-hero {
+      position: relative;
+      width: 100%;
+      min-height: 60vh;
+      margin: 0 auto 60px;
+      overflow: hidden;
+      background-image: url("music-img.png");
+      background-size: cover;
+      background-position: center;
+    }
 
-/* Top banner: full-width image, no gradients */
-.music-hero {
-  position: relative;
-  width: 100%;
-  min-height: 60vh;
-  margin: 0 auto 60px;
-  overflow: hidden;
-  background-image: url("music-img.png");
-  background-size: cover;
-  background-position: center;
-}
+    /* show the image cleanly, no veil */
+    .music-hero::before {
+      content: none;
+    }
 
-/* dark veil for contrast (no gradient) */
-.music-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  z-index: 0;
-}
+    .music-hero-grid {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
 
-/* grid lines overlay */
-.music-hero-grid {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px);
-  background-size: 50px 50px;
-  opacity: 0.4;
-}
+    .music-hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      padding: 60px 24px;
+    }
 
-/* text on top of the image */
-.music-hero-inner {
-  position: relative;
-  z-index: 2;
-  max-width: 680px;
-  padding: 60px 24px;
-}
+    .music-eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
 
-.music-eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 0.85rem;
-  opacity: 0.9;
-}
+    .music-title {
+      margin-top: 8px;
+      font-family: "Introvert", sans-serif;
+      font-size: clamp(2.7rem, 5vw, 3.5rem);
+      line-height: 1.02;
+      text-transform: uppercase;
+    }
 
-.music-title {
-  margin-top: 8px;
-  font-family: "Introvert", sans-serif;
-  font-size: clamp(2.7rem, 5vw, 3.5rem);
-  line-height: 1.02;
-  text-transform: uppercase;
-}
+    .music-title span {
+      color: #ffffff;
+    }
 
-.music-title span {
-  color: #ffffff; /* no gradient text */
-}
+    .music-subtitle {
+      margin-top: 10px;
+      font-size: 1rem;
+      max-width: 32rem;
+      opacity: 0.9;
+    }
 
-.music-subtitle {
-  margin-top: 10px;
-  font-size: 1rem;
-  max-width: 32rem;
-  opacity: 0.9;
-}
+    .music-platforms {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-/* Streaming grid section */
-.music-platforms {
-  max-width: 1200px;
-  margin: 0 auto;
-}
+    .music-platforms-title {
+      font-family: "Introvert", sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 26px;
+    }
 
-.music-platforms-title {
-  font-family: "Introvert", sans-serif;
-  font-size: 1.8rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  margin-bottom: 26px;
-}
+    .music-platforms-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.75rem;
+    }
 
-/* 3-column grid that fills more of the screen */
-.music-platforms-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.75rem;
-}
+    @media (max-width: 900px) {
+      .music-platforms-grid {
+        grid-template-columns: 1fr;
+      }
 
-@media (max-width: 900px) {
-  .music-platforms-grid {
-    grid-template-columns: 1fr;
-  }
-}
+      .music-hero-inner {
+        padding: 40px 16px;
+      }
 
-/* Platform cards – square, outlined, no gradients */
-.platform-card {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-  padding: 1.6rem 1.4rem;
+      .music-title {
+        font-size: clamp(2.2rem, 7vw, 2.8rem);
+      }
+    }
 
-  border-radius: 0;
-  border: 3px solid #ffffff;
-  background: rgba(0, 0, 0, 0.9);
-  box-shadow: #ffffff 8px 8px 0 0, #000000 8px 8px 0 1px;
+    .platform-card {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 18px;
+      border-radius: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.85);
+      background: rgba(0, 0, 0, 0.92);
+      box-shadow: #ffffff 5px 5px 0 0, #000000 5px 5px 0 1px;
+      cursor: pointer;
+      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out, border-color 0.1s ease-out, background 0.1s ease-out;
+    }
 
-  text-decoration: none;
-  color: #ffffff;
+    .platform-card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: #ffffff 7px 7px 0 0, #000000 7px 7px 0 1px;
+      border-color: var(--accent-blue);
+      background: #050505;
+    }
 
-  transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
-}
+    .platform-icon-wrap {
+      width: 50px;
+      height: 50px;
+      border-radius: 999px;
+      border: 2px solid rgba(255, 255, 255, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000000;
+    }
 
-.platform-card:hover {
-  transform: translate(4px, 4px);
-  box-shadow: #ffffff 4px 4px 0 0, #000000 4px 4px 0 1px;
-}
+    .platform-icon {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+    }
 
-/* icon wrapper – simple circle, no gradient */
-.platform-icon-wrap {
-  flex: 0 0 auto;
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  border: 2px solid #ffffff;
-  background: #000000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
+    .platform-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
 
-.platform-icon {
-  width: 75%;
-  height: auto;
-  display: block;
-}
+    .platform-label {
+      font-family: "Introvert", sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
 
-/* text inside cards – big + thick */
-.platform-text {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
+    .platform-tagline {
+      font-family: "DM Sans", system-ui, sans-serif;
+      font-size: 0.87rem;
+      opacity: 0.9;
+    }
 
-.platform-label {
-  font-family: "Introvert", sans-serif;
-  font-size: 1.3rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
+    @media (min-width: 900px) {
+      .booking-form {
+        gap: 20px;
+      }
 
-.platform-tagline {
-  font-family: "DM Sans", system-ui, sans-serif;
-  font-size: 0.87rem;
-  opacity: 0.9;
-}
+      .form-row {
+        gap: 20px;
+      }
 
+      .booking-label {
+        font-size: 16px;
+      }
+
+      .booking-input,
+      .booking-select,
+      .booking-textarea {
+        font-size: 17px;
+        padding: 16px 16px;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- ============================
-       NAVIGATION (NEW)
-  ============================ -->
+  <!-- NAVIGATION -->
   <nav class="site-nav">
     <a href="#hero">Home</a>
     <a href="#booking">Booking</a>
-    <a href="#music">Music</a>
+    <a href="#music-section">Music</a>
   </nav>
 
-  <!-- HERO VIDEO -->
+  <!-- HERO VIDEO BACKGROUND -->
   <video class="hero-video" src="Green Light Promo Final.mp4" autoplay muted loop playsinline></video>
 
   <div class="page">
@@ -481,215 +592,195 @@ nav.site-nav a {
 
         <div class="hero-buttons">
           <button class="hero-btn" onclick="location.href='#booking'">Book OperationDom</button>
-          <button class="hero-btn outline" onclick="location.href='#music'">Stream Music</button>
+          <button class="hero-btn outline" onclick="location.href='#music-section'">Stream Music</button>
         </div>
       </div>
     </header>
 
     <!-- BOOKING SECTION -->
     <section id="booking" class="section">
-  <div class="booking-card">
-    <h2 class="booking-card-title">Book OperationDom</h2>
-    <p class="booking-card-subtitle">
-      Live performances • studio sessions • coaching • creative direction • brand work
-    </p>
+      <div class="booking-card">
+        <h2 class="booking-card-title">Book OperationDom</h2>
+        <p class="booking-card-subtitle">
+          Live performances • studio sessions • coaching • creative direction • brand work
+        </p>
 
-    <form class="booking-form">
-      <!-- Name + Email -->
-      <div class="form-row">
-        <div class="form-group">
-          <label class="booking-label" for="book-name">Name</label>
-          <input
-            class="booking-input"
-            id="book-name"
-            type="text"
-            name="name"
-            placeholder="Your name"
-          />
-        </div>
-        <div class="form-group">
-          <label class="booking-label" for="book-email">Email</label>
-          <input
-            class="booking-input"
-            id="book-email"
-            type="email"
-            name="email"
-            placeholder="you@example.com"
-          />
+        <form class="booking-form">
+          <!-- Name + Email -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="booking-label" for="book-name">Name</label>
+              <input
+                class="booking-input"
+                id="book-name"
+                type="text"
+                name="name"
+                placeholder="First &amp; last name"
+              />
+            </div>
+            <div class="form-group">
+              <label class="booking-label" for="book-email">Email</label>
+              <input
+                class="booking-input"
+                id="book-email"
+                type="email"
+                name="email"
+                placeholder="you@example.com"
+              />
+            </div>
+          </div>
+
+          <!-- Phone + Date -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="booking-label" for="book-phone">Phone</label>
+              <input
+                class="booking-input"
+                id="book-phone"
+                type="tel"
+                name="phone"
+                placeholder="+1 (___) ___-____"
+              />
+            </div>
+            <div class="form-group">
+              <label class="booking-label" for="book-date">Event / Session Date</label>
+              <input
+                class="booking-input"
+                id="book-date"
+                type="date"
+                name="date"
+              />
+            </div>
+          </div>
+
+          <!-- Location -->
+          <div class="form-group">
+            <label class="booking-label" for="book-location">Location</label>
+            <input
+              class="booking-input"
+              id="book-location"
+              type="text"
+              name="location"
+              placeholder="Venue / Studio / City"
+            />
+          </div>
+
+          <!-- What are you booking Dom for? -->
+          <div class="form-group">
+            <label class="booking-label" for="book-type">What are you booking Dom for?</label>
+            <select class="booking-select" id="book-type" name="bookingType">
+              <option value="">Select an option</option>
+              <option value="live">
+                Live Performances – Weddings, Galas, Corporate, Private Events
+              </option>
+              <option value="studio">
+                Studio Sessions &amp; Collaborations – Hooks, BGVs, Features (In-Studio / Remote)
+              </option>
+              <option value="coaching">
+                Vocal Coaching &amp; Artist Development
+              </option>
+              <option value="creative">
+                Creative Direction &amp; Styling
+              </option>
+              <option value="brand">
+                Brand Collaborations &amp; Partnerships
+              </option>
+              <option value="other">
+                Other / Not Listed
+              </option>
+            </select>
+          </div>
+
+          <!-- Budget -->
+          <div class="form-group">
+            <label class="booking-label" for="book-budget">Budget Range (Optional)</label>
+            <input
+              class="booking-input"
+              id="book-budget"
+              type="text"
+              name="budget"
+              placeholder="ex: $1,500–$3,000"
+            />
+          </div>
+
+          <!-- Details -->
+          <div class="form-group">
+            <label class="booking-label" for="book-details">Event / Project Details</label>
+            <textarea
+              class="booking-textarea"
+              id="book-details"
+              name="details"
+              placeholder="Share the vibe, set length, outfit / styling notes, collaborators, or anything else we should know."
+            ></textarea>
+          </div>
+
+          <p class="booking-note">
+            Submitting this form does not confirm a booking. A member of the team will follow up
+            with availability, rates, and next steps.
+          </p>
+
+          <button type="submit" class="booking-submit">
+            Submit Request
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- MUSIC SECTION -->
+    <section id="music-section">
+      <!-- Top banner with music image -->
+      <div class="music-hero">
+        <div class="music-hero-grid"></div>
+
+        <div class="music-hero-inner">
+          <p class="music-eyebrow">New Single • Out Now</p>
+          <h2 class="music-title">Stream <span>OperationDom</span></h2>
+          <p class="music-subtitle">
+            Late night drives, heartbreak healing, main-character moments.
+          </p>
         </div>
       </div>
 
-      <!-- Phone + Date -->
-      <div class="form-row">
-        <div class="form-group">
-          <label class="booking-label" for="book-phone">Phone</label>
-          <input
-            class="booking-input"
-            id="book-phone"
-            type="tel"
-            name="phone"
-            placeholder="+1 (___) ___-____"
-          />
-        </div>
-        <div class="form-group">
-          <label class="booking-label" for="book-date">Event / Session Date</label>
-          <input
-            class="booking-input"
-            id="book-date"
-            type="date"
-            name="date"
-          />
+      <!-- Streaming links grid -->
+      <div class="music-platforms">
+        <h3 class="music-platforms-title">Listen everywhere</h3>
+
+        <div class="music-platforms-grid">
+          <!-- Spotify -->
+          <a href="https://open.spotify.com" target="_blank" class="platform-card platform-spotify">
+            <div class="platform-icon-wrap">
+              <img src="spotify.png" alt="Listen on Spotify" class="platform-icon" />
+            </div>
+            <div class="platform-text">
+              <span class="platform-label">Spotify</span>
+              <span class="platform-tagline">Queue it up on repeat</span>
+            </div>
+          </a>
+
+          <!-- Apple Music -->
+          <a href="https://music.apple.com" target="_blank" class="platform-card platform-apple">
+            <div class="platform-icon-wrap">
+              <img src="apple.png" alt="Listen on Apple Music" class="platform-icon" />
+            </div>
+            <div class="platform-text">
+              <span class="platform-label">Apple Music</span>
+              <span class="platform-tagline">Stream in your library</span>
+            </div>
+          </a>
+
+          <!-- SoundCloud -->
+          <a href="https://soundcloud.com" target="_blank" class="platform-card platform-soundcloud">
+            <div class="platform-icon-wrap">
+              <img src="soundcloud-img.png" alt="Listen on SoundCloud" class="platform-icon" />
+            </div>
+            <div class="platform-text">
+              <span class="platform-label">SoundCloud</span>
+              <span class="platform-tagline">Tap in with the originals</span>
+            </div>
+          </a>
         </div>
       </div>
-
-      <!-- Location -->
-      <div class="form-group">
-        <label class="booking-label" for="book-location">Location</label>
-        <input
-          class="booking-input"
-          id="book-location"
-          type="text"
-          name="location"
-          placeholder="Venue / Studio / City"
-        />
-      </div>
-
-      <!-- What are you booking Dom for? -->
-      <div class="form-group">
-        <label class="booking-label" for="book-type">What are you booking Dom for?</label>
-        <select class="booking-select" id="book-type" name="bookingType">
-          <option value="">Select an option</option>
-          <option value="live">
-            Live Performances – Weddings, Galas, Corporate, Private Events
-          </option>
-          <option value="studio">
-            Studio Sessions & Collaborations – Hooks, BGVs, Features (In-Studio / Remote)
-          </option>
-          <option value="coaching">
-            Vocal Coaching & Artist Development
-          </option>
-          <option value="creative">
-            Creative Direction & Styling
-          </option>
-          <option value="brand">
-            Brand Collaborations & Partnerships
-          </option>
-          <option value="custom-music">
-            Custom Music & Jingles
-          </option>
-        </select>
-      </div>
-
-      <!-- Event / project type -->
-      <div class="form-group">
-        <label class="booking-label" for="book-context">Event / Project Context</label>
-        <select class="booking-select" id="book-context" name="context">
-          <option value="">Select one</option>
-          <option value="wedding">Wedding</option>
-          <option value="gala">Gala / Fundraiser</option>
-          <option value="corporate">Corporate Function</option>
-          <option value="private">Private Celebration</option>
-          <option value="brand-campaign">Brand Campaign / Collaboration</option>
-          <option value="content">
-            Content / Shoot / Visual Project
-          </option>
-          <option value="podcast">Podcast / Show Theme</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-
-      <!-- Budget -->
-      <div class="form-group">
-        <label class="booking-label" for="book-budget">Estimated Budget (USD)</label>
-        <select class="booking-select" id="book-budget" name="budget">
-          <option value="">Select a range</option>
-          <option value="under-1500">$500 – $1,500</option>
-          <option value="1500-3000">$1,500 – $3,000</option>
-          <option value="3000-5000">$3,000 – $5,000</option>
-          <option value="5000-plus">$5,000+</option>
-        </select>
-      </div>
-
-      <!-- Details -->
-      <div class="form-group">
-        <label class="booking-label" for="book-details">Details</label>
-        <textarea
-          class="booking-textarea"
-          id="book-details"
-          name="details"
-          placeholder="Share the vibe, set length, outfit / styling notes, collaborators, or anything else we should know."
-        ></textarea>
-      </div>
-
-      <p class="booking-note">
-        Submitting this form does not confirm a booking. A member of the team will follow up
-        with availability, rates, and next steps.
-      </p>
-
-      <button type="submit" class="booking-submit">
-        Submit Request
-      </button>
-    </form>
-  </div>
-</section>
-    
-<!-- MUSIC SECTION -->
-<section id="music-section">
-  <!-- Top banner with music image + grid overlay -->
-  <div class="music-hero">
-    <div class="music-hero-grid"></div>
-
-    <div class="music-hero-inner">
-      <p class="music-eyebrow">New Single • Out Now</p>
-      <h2 class="music-title">Stream <span>OperationDom</span></h2>
-      <p class="music-subtitle">
-        Late night drives, heartbreak healing, main-character moments.
-      </p>
-    </div>
-  </div>
-
-  <!-- Streaming links grid -->
-  <div class="music-platforms">
-    <h3 class="music-platforms-title">Listen on your favorite platform</h3>
-
-    <div class="music-platforms-grid">
-      <!-- Spotify -->
-      <a href="https://open.spotify.com" target="_blank" class="platform-card platform-spotify">
-        <div class="platform-icon-wrap">
-          <img src="spotify.png" alt="Listen on Spotify" class="platform-icon" />
-        </div>
-        <div class="platform-text">
-          <span class="platform-label">Spotify</span>
-          <span class="platform-tagline">Follow & add to your playlists</span>
-        </div>
-      </a>
-
-      <!-- Apple Music -->
-      <a href="https://music.apple.com" target="_blank" class="platform-card platform-apple">
-        <div class="platform-icon-wrap">
-          <img src="apple.png" alt="Listen on Apple Music" class="platform-icon" />
-        </div>
-        <div class="platform-text">
-          <span class="platform-label">Apple Music</span>
-          <span class="platform-tagline">Stream in your library</span>
-        </div>
-      </a>
-
-      <!-- SoundCloud -->
-      <a href="https://soundcloud.com" target="_blank" class="platform-card platform-soundcloud">
-        <div class="platform-icon-wrap">
-          <img src="soundcloud.png" alt="Listen on SoundCloud" class="platform-icon" />
-        </div>
-        <div class="platform-text">
-          <span class="platform-label">SoundCloud</span>
-          <span class="platform-tagline">Tap in with the originals</span>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-
+    </section>
 
   </div>
 </body>

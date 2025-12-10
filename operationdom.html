@@ -206,7 +206,6 @@
       position: relative;
     }
 
-    /* kill the old circular accents */
     .hero-inner::before,
     .hero-inner::after {
       content: none;
@@ -331,8 +330,8 @@
     }
 
     .booking-card {
-      background: var(--panel-bg);  /* more solid */
-      border-radius: 12px;          /* squarer corners */
+      background: var(--panel-bg);
+      border-radius: 12px;
       border: 2px solid var(--border-strong);
       box-shadow: 0 18px 60px rgba(0, 0, 0, 0.9);
       padding: 26px 24px 24px;
@@ -358,8 +357,8 @@
 
     .booking-card-subtitle {
       font-family: "DM Sans", system-ui, sans-serif;
-      font-size: 1.06rem;     /* bigger */
-      font-weight: 600;       /* thicker */
+      font-size: 1.06rem;
+      font-weight: 600;
       color: var(--muted-ink);
       max-width: 480px;
       margin-bottom: 18px;
@@ -399,12 +398,12 @@
     .booking-textarea {
       width: 100%;
       padding: 16px 14px;
-      font-size: 1.05rem;     /* bigger */
+      font-size: 1.05rem;
       font-family: "DM Sans", system-ui, sans-serif;
-      font-weight: 600;       /* thicker */
-      border-radius: 10px;    /* more square */
+      font-weight: 600;
+      border-radius: 10px;
       border: 1px solid rgba(255, 255, 255, 0.85);
-      background: rgba(0, 0, 0, 0.96);  /* more opaque */
+      background: rgba(0, 0, 0, 0.96);
       color: #ffffff;
       outline: none;
       transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out, background 0.15s ease-out;
@@ -430,8 +429,8 @@
 
     .booking-note {
       font-family: "DM Sans", system-ui, sans-serif;
-      font-size: 0.9rem;      /* bigger */
-      font-weight: 600;       /* thicker */
+      font-size: 0.9rem;
+      font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       color: rgba(255, 255, 255, 0.8);
@@ -475,22 +474,47 @@
     }
 
     .booking-aside {
-      background: rgba(0, 0, 0, 0.96); /* more solid */
-      border-radius: 10px;             /* squarer */
+      background: rgba(0, 0, 0, 0.96);
+      border-radius: 10px;
       border: 1px solid var(--accent-green-soft);
-      padding: 18px 18px 16px;
+      padding: 20px 20px 18px;
       font-family: "DM Sans", system-ui, sans-serif;
-      font-size: 1rem;         /* bigger */
-      font-weight: 600;        /* thicker */
+      font-size: 1rem;
+      font-weight: 600;
       color: var(--muted-ink);
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 14px; /* more even spacing */
+    }
+
+    .booking-aside h3 {
+      margin: 0 0 4px;
+      font-size: 1.3rem;
+      color: #fff;
+    }
+
+    .price-block {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .price-block:first-of-type {
+      border-top: none;
+      padding-top: 0;
     }
 
     .booking-aside strong {
       color: var(--accent-green);
       font-weight: 700;
+    }
+
+    .booking-aside-footer {
+      opacity: 0.8;
+      font-size: 0.9rem;
+      margin-top: 4px;
     }
 
     @media (max-width: 600px) {
@@ -530,7 +554,7 @@
     }
 
     .showcase-video-card {
-      background: var(--panel-bg);  /* more opaque */
+      background: var(--panel-bg);
       border-radius: 12px;
       border: 2px solid var(--border-strong);
       padding: 18px 18px 20px;
@@ -556,13 +580,13 @@
 
     .showcase-copy {
       font-family: "DM Sans", system-ui, sans-serif;
-      font-size: 1.02rem;   /* bigger */
-      font-weight: 600;     /* thicker */
+      font-size: 1.02rem;
+      font-weight: 600;
       color: var(--muted-ink);
       display: flex;
       flex-direction: column;
       gap: 10px;
-      background: rgba(0, 0, 0, 0.9); /* extra readability */
+      background: rgba(0, 0, 0, 0.9);
       border-radius: 10px;
       border: 1px solid var(--accent-green-soft);
       padding: 16px 16px 14px;
@@ -589,18 +613,21 @@
     ============================ */
     #music-section .section-inner {
       gap: 28px;
+      width: min(1200px, 100% - 32px); /* a bit wider so grid fills nicely */
     }
 
     .music-platforms-title {
       font-size: 1.7rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
+      margin-bottom: 18px;
     }
 
     .music-platforms-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1.75rem;
+      width: 100%; /* ensure it spans full container */
     }
 
     @media (max-width: 900px) {
@@ -615,9 +642,9 @@
       align-items: center;
       gap: 14px;
       padding: 18px 18px;
-      border-radius: 12px; /* squarer */
+      border-radius: 12px;
       border: 2px solid rgba(255, 255, 255, 0.85);
-      background: rgba(0, 0, 0, 0.96); /* more solid */
+      background: rgba(0, 0, 0, 0.96);
       box-shadow: #ffffff 5px 5px 0 0, #000000 5px 5px 0 1px;
       cursor: pointer;
       transition: transform 0.1s ease-out,
@@ -678,8 +705,8 @@
 
     .platform-tagline {
       font-family: "DM Sans", system-ui, sans-serif;
-      font-size: 0.95rem;   /* bigger */
-      font-weight: 600;     /* thicker */
+      font-size: 0.95rem;
+      font-weight: 600;
       color: var(--muted-ink);
     }
   </style>
@@ -817,50 +844,49 @@
               <!-- Type -->
               <div class="form-group">
                 <label class="booking-label" for="book-type">What are you booking Dom for?</label>
-<select class="booking-select" id="book-type" name="bookingType">
-  <option value="">Select a service</option>
+                <select class="booking-select" id="book-type" name="bookingType">
+                  <option value="">Select a service</option>
 
-  <!-- Base Performance -->
-  <option value="local-performance">
-    Local Solo Performance — 2 Songs (30 Minutes) — $250
-  </option>
+                  <!-- Base Performance -->
+                  <option value="local-performance">
+                    Local Solo Performance — 2 Songs (30 Minutes) — $250
+                  </option>
 
-  <!-- Add-ons -->
-  <option value="additional-time">
-    Additional 30 Minutes — +$50
-  </option>
-  <option value="custom-music">
-    Custom Music / Song Selection — +$50
-  </option>
-  <option value="rehearsal">
-    Rehearsal Time — +$50 per session
-  </option>
+                  <!-- Add-ons -->
+                  <option value="additional-time">
+                    Additional 30 Minutes — +$50
+                  </option>
+                  <option value="custom-music">
+                    Custom Music / Song Selection — +$50
+                  </option>
+                  <option value="rehearsal">
+                    Rehearsal Time — +$50 per session
+                  </option>
 
-  <!-- Studio Work -->
-  <option value="studio-session">
-    Studio Session (BGVs, Adlibs, Vocal Production) — $75/hr
-  </option>
-  <option value="vocal-recording">
-    Vocal Recording (Sync / Film / Television) — $300+
-  </option>
+                  <!-- Studio Work -->
+                  <option value="studio-session">
+                    Studio Session (BGVs, Adlibs, Vocal Production) — $75/hr
+                  </option>
+                  <option value="vocal-recording">
+                    Vocal Recording (Sync / Film / Television) — $300+
+                  </option>
 
-  <!-- Travel -->
-  <option value="travel-outside-borough">
-    Travel — Outside Borough/City — +$50
-  </option>
-  <option value="travel-2hr-drive">
-    Travel — Over 2hr + Drive — +$100–$300
-  </option>
-  <option value="travel-flight">
-    Travel — Flight + Hotel Required (Quote)
-  </option>
+                  <!-- Travel -->
+                  <option value="travel-outside-borough">
+                    Travel — Outside Borough/City — +$50
+                  </option>
+                  <option value="travel-2hr-drive">
+                    Travel — Over 2hr + Drive — +$100–$300
+                  </option>
+                  <option value="travel-flight">
+                    Travel — Flight + Hotel Required (Quote)
+                  </option>
 
-  <!-- Rush -->
-  <option value="rush-fee">
-    Rush Fee (Under 48 hrs notice) — +$100+
-  </option>
-</select>
-
+                  <!-- Rush -->
+                  <option value="rush-fee">
+                    Rush Fee (Under 48 hrs notice) — +$100+
+                  </option>
+                </select>
               </div>
 
               <!-- Budget -->
@@ -885,21 +911,23 @@
                   placeholder="Share the vibe, set length, outfit / styling notes, collaborators, or anything else we should know."
                 ></textarea>
               </div>
-<div class="form-group">
-  <label class="booking-label">Add-Ons (optional)</label>
 
-  <label><input type="checkbox" name="addon_additional" value="Additional 30 Minutes (+$50)">
-    Additional 30 Minutes — +$50</label>
+              <!-- Add-ons checkboxes -->
+              <div class="form-group">
+                <label class="booking-label">Add-Ons (optional)</label>
 
-  <label><input type="checkbox" name="addon_custom" value="Custom Song Selection (+$50)">
-    Custom Song / Music Selection — +$50</label>
+                <label><input type="checkbox" name="addon_additional" value="Additional 30 Minutes (+$50)">
+                  Additional 30 Minutes — +$50</label>
 
-  <label><input type="checkbox" name="addon_rehearsal" value="Rehearsal (+$50/session)">
-    Rehearsal Time — +$50 per session</label>
+                <label><input type="checkbox" name="addon_custom" value="Custom Song Selection (+$50)">
+                  Custom Song / Music Selection — +$50</label>
 
-  <label><input type="checkbox" name="addon_rush" value="Rush Fee (+$100+)">
-    Rush Fee (Under 48 hrs) — +$100+</label>
-</div>
+                <label><input type="checkbox" name="addon_rehearsal" value="Rehearsal (+$50/session)">
+                  Rehearsal Time — +$50 per session</label>
+
+                <label><input type="checkbox" name="addon_rush" value="Rush Fee (+$100+)">
+                  Rush Fee (Under 48 hrs) — +$100+</label>
+              </div>
 
               <p class="booking-note">
                 Submitting this form does not confirm a booking. A member of the team will follow up
@@ -912,46 +940,101 @@
             </form>
           </div>
 
-        <aside class="booking-aside">
-  <h3 style="font-size:1.3rem; margin-bottom:10px; color:#fff;">Price Menu</h3>
+          <!-- Price aside -->
+          <aside class="booking-aside">
+            <h3>Price Menu</h3>
 
-  <p><strong>BASE RATE</strong></p>
-  <p>Local Solo Performance (2 Songs, 30 Minutes) — <strong>$250</strong></p>
+            <div class="price-block">
+              <p><strong>BASE RATE</strong></p>
+              <p>Local Solo Performance (2 Songs, 30 Minutes) — <strong>$250</strong></p>
+            </div>
 
-  <br>
+            <div class="price-block">
+              <p><strong>TRAVEL FEES</strong></p>
+              <p>Within Brooklyn — <strong>Included</strong></p>
+              <p>Outside Borough/City — <strong>+$50</strong></p>
+              <p>Over 2hr + Drive — <strong>+$100–$300</strong></p>
+              <p>Flight + Hotel Required — <strong>Quote Upon Request</strong></p>
+            </div>
 
-  <p><strong>TRAVEL FEES</strong></p>
-  <p>Within Brooklyn — <strong>Included</strong></p>
-  <p>Outside Borough/City — <strong>+$50</strong></p>
-  <p>Over 2hr + Drive — <strong>+$100–$300</strong></p>
-  <p>Flight + Hotel Required — <strong>Quote Upon Request</strong></p>
+            <div class="price-block">
+              <p><strong>TIME-BASED ADD-ONS</strong></p>
+              <p>Each Additional 30 Minutes — <strong>+$50</strong></p>
+              <p style="opacity:0.8;">Includes delays of any kind</p>
+              <p>Custom Music / Song Selection — <strong>+$50</strong></p>
+              <p>Rehearsal Time — <strong>+$50 per session</strong></p>
+            </div>
 
-  <br>
+            <div class="price-block">
+              <p><strong>STUDIO / TV / SYNC WORK</strong></p>
+              <p>Studio Session (BGVs, adlibs, reference tracks, harmony creation, vocal production, coaching) — <strong>$75/hr</strong></p>
+              <p>Vocal Recording (Sync / Film / Television) — <strong>$300+</strong></p>
+            </div>
 
-  <p><strong>TIME-BASED ADD-ONS</strong></p>
-  <p>Each Additional 30 Minutes — <strong>+$50</strong><br>
-  <span style="opacity:0.8;">(Includes delays of any kind)</span></p>
-  <p>Custom Music / Song Selection — <strong>+$50</strong></p>
-  <p>Rehearsal Time — <strong>+$50 per session</strong></p>
+            <div class="price-block">
+              <p><strong>PAYMENT TERMS</strong></p>
+              <p>50% deposit to book</p>
+              <p>Final balance due on booking date</p>
+              <p>Buyout license for TV/Film — <strong>Quote upon request</strong></p>
+              <p>Zelle | Apple Pay | Invoice available</p>
+              <p>Rush Fee (Under 48 hrs notice) — <strong>+$100+</strong></p>
+            </div>
 
-  <br>
+            <p class="booking-aside-footer">Contact: domsmi1@gmail.com</p>
+          </aside>
+        </div>
+      </div>
+    </section>
 
-  <p><strong>STUDIO / TV / SYNC WORK</strong></p>
-  <p>Studio Session (BGVs, adlibs, reference tracks, harmony creation, vocal production, coaching) — <strong>$75/hr</strong></p>
-  <p>Vocal Recording (Sync / Film / Television) — <strong>$300+</strong></p>
+    <!-- SHOWCASE -->
+    <section id="showcase" class="section">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-tag">
+            <svg class="tag-icon" viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M4 16h24M16 4v24" stroke="var(--accent-green)" stroke-width="2" stroke-linecap="round" />
+              <circle cx="16" cy="16" r="6" fill="none" stroke="var(--accent-green)" stroke-width="2" />
+            </svg>
+            <span>Live with the band</span>
+          </div>
+          <h2 class="section-title">Showcase</h2>
+          <p class="section-subtitle">
+            Tap into the OperationDom experience – live vocals, band chemistry, and the kind of
+            performance that lingers after the last note.
+          </p>
+        </div>
 
-  <br>
+        <div class="showcase-layout">
+          <div class="showcase-video-card">
+            <div class="video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/nUiGw0PV7j4"
+                title="OperationDom – Live Performance"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
 
-  <p><strong>PAYMENT TERMS</strong></p>
-  <p>50% deposit to book</p>
-  <p>Final balance due on booking date</p>
-  <p>Buyout license for TV/Film — <strong>Quote upon request</strong></p>
-  <p>Zelle | Apple Pay | Invoice available</p>
-  <p>Rush Fee (Under 48 hrs notice) — <strong>+$100+</strong></p>
-
-  <br>
-  <p style="opacity:0.7; font-size:0.9rem;">Contact: domsmi1@gmail.com</p>
-</aside>
+          <div class="showcase-copy">
+            <p>
+              From intimate stages to full-room takeovers, Dom commands every space with control,
+              texture, and storytelling. This reel captures the blend of raw emotion and technical
+              precision she brings to each set.
+            </p>
+            <p>
+              Expect tight arrangements, dynamic moments, and vocals that sit right at the center of
+              the mix – supported by a band built to move with her in real time.
+            </p>
+            <div class="showcase-pills">
+              <span class="showcase-pill">R&amp;B • Soul • Pop</span>
+              <span class="showcase-pill">Full band or scaled set</span>
+              <span class="showcase-pill">NYC-based • traveling</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- MUSIC -->
     <section id="music-section" class="section">

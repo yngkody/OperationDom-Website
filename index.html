@@ -29,7 +29,7 @@
     }
 
     /* =========================
-       Page Background (Desktop Default)
+       Page Background
     ========================== */
     body {
       min-height: 100vh;
@@ -44,12 +44,9 @@
       background-attachment: fixed;
 
       overflow-x: hidden;
-      position: relative;
     }
 
-    /* =========================
-       Mobile Hero Image Swap
-    ========================== */
+    /* Mobile hero image */
     @media (max-width: 768px) {
       body {
         background-image: url("dom-hero-mobile.png");
@@ -62,26 +59,27 @@
        Hero Wrapper
     ========================== */
     .dom-hero {
-      position: relative;
       min-height: 100vh;
-      padding: 20px;
+      padding: 24px;
 
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
 
-      z-index: 3;
+      position: relative;
     }
 
     /* =========================
-       Button Section
+       Button Section (Bottom Anchored)
     ========================== */
     .button-wrapper {
+      margin-top: auto;
+      margin-bottom: 32px;
+
       display: flex;
       flex-direction: column;
       gap: 28px;
       align-items: center;
-      z-index: 4;
     }
 
     .hero-btn {
@@ -114,9 +112,7 @@
       border: 3px solid #ffffff;
     }
 
-    /* =========================
-       Tablet Adjustments
-    ========================== */
+    /* Tablet */
     @media (max-width: 768px) {
       .hero-btn {
         padding: 20px 40px;
@@ -126,18 +122,16 @@
       }
     }
 
-    /* =========================
-       Small Mobile
-    ========================== */
+    /* Small Mobile */
     @media (max-width: 480px) {
       .button-wrapper {
         width: 100%;
         padding-inline: 12px;
+        margin-bottom: 24px;
       }
 
       .hero-btn {
         width: 100%;
-        max-width: 100%;
         text-align: center;
       }
     }
@@ -147,17 +141,11 @@
 <body>
   <header class="dom-hero">
     <div class="button-wrapper">
-      <button
-        class="hero-btn"
-        onclick="location.href='dominiquesmith.html'"
-      >
+      <button class="hero-btn" onclick="location.href='dominiquesmith.html'">
         Dominique Smith
       </button>
 
-      <button
-        class="hero-btn filled"
-        onclick="location.href='operationdom.html'"
-      >
+      <button class="hero-btn filled" onclick="location.href='operationdom.html'">
         OperationDom
       </button>
     </div>

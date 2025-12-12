@@ -58,29 +58,33 @@
     /* =========================
        Hero Wrapper
     ========================== */
-    .dom-hero {
-      min-height: 100vh;
-      padding: 24px;
+.dom-hero {
+  min-height: 100svh; /* better than 100vh on mobile */
+  padding: 24px;
 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-      position: relative;
-    }
+  position: relative;
+}
+
 
     /* =========================
        Button Section (Bottom Anchored)
     ========================== */
-    .button-wrapper {
-      margin-top: auto;
-      margin-bottom: 32px;
+.button-wrapper {
+  margin-top: auto;
 
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-      align-items: center;
-    }
+  /* MOVE CONTENT UP */
+  margin-bottom: clamp(80px, 14vh, 140px);
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
 
     .hero-btn {
       background: transparent;
@@ -121,6 +125,11 @@
         box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
       }
     }
+@media (max-width: 768px) {
+  .dom-hero {
+    padding-top: 12px;
+  }
+}
 
     /* Small Mobile */
     @media (max-width: 480px) {

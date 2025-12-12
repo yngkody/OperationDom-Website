@@ -67,6 +67,14 @@
       z-index: 0;
     }
 
+    /* default: show desktop, hide mobile */
+    .hero-video-desktop {
+      display: block;
+    }
+    .hero-video-mobile {
+      display: none;
+    }
+
     .page {
       position: relative;
       z-index: 5;
@@ -129,6 +137,14 @@
       .site-nav a {
         font-size: 0.78rem;
         letter-spacing: 0.14em;
+      }
+
+      /* on mobile: use mobile promo video */
+      .hero-video-desktop {
+        display: none;
+      }
+      .hero-video-mobile {
+        display: block;
       }
     }
 
@@ -312,6 +328,17 @@
 
       .hero-btn {
         width: 100%;
+      }
+
+      /* tighten letter-spacing / size so "OperationDom" feels centered and fits */
+      .hero-title {
+        font-size: 2.8rem;
+        letter-spacing: 0.18em;
+      }
+
+      /* center hero content within the section on mobile */
+      #hero .section-inner {
+        align-items: center;
       }
     }
 
@@ -728,9 +755,20 @@
 </head>
 <body>
   <!-- VIDEO BACKGROUND -->
+  <!-- Desktop video -->
   <video
-    class="hero-video"
+    class="hero-video hero-video-desktop"
     src="Green Light.mp4"
+    autoplay
+    muted
+    loop
+    playsinline
+  ></video>
+
+  <!-- Mobile video -->
+  <video
+    class="hero-video hero-video-mobile"
+    src="Green Light Promo Mobile.mp4"
     autoplay
     muted
     loop
@@ -1119,19 +1157,29 @@
   </div>
 
   <script>
+    // Only try to autoplay the active video for the current viewport
     window.addEventListener("load", function () {
-      const video = document.querySelector(".hero-video");
-      if (!video) return;
+      const desktopVideo = document.querySelector(".hero-video-desktop");
+      const mobileVideo = document.querySelector(".hero-video-mobile");
+      if (!desktopVideo || !mobileVideo) return;
 
-      video.play().catch(() => {
-        const unlock = () => {
-          video.play().catch(() => {});
-          window.removeEventListener("click", unlock);
-          window.removeEventListener("touchstart", unlock);
-        };
-        window.addEventListener("click", unlock, { once: true });
-        window.addEventListener("touchstart", unlock, { once: true });
-      });
+      const mq = window.matchMedia("(max-width: 700px)");
+      const activeVideo = mq.matches ? mobileVideo : desktopVideo;
+
+      const tryPlay = (videoEl) => {
+        if (!videoEl) return;
+        videoEl.play().catch(() => {
+          const unlock = () => {
+            videoEl.play().catch(() => {});
+            window.removeEventListener("click", unlock);
+            window.removeEventListener("touchstart", unlock);
+          };
+          window.addEventListener("click", unlock, { once: true });
+          window.addEventListener("touchstart", unlock, { once: true });
+        });
+      };
+
+      tryPlay(activeVideo);
     });
   </script>
 </body>

@@ -553,6 +553,28 @@
         transition: none;
       }
     }
+
+    @media (max-width: 768px) {
+  header.dom-hero {
+    display: flex;
+    align-items: center;      /* vertically center */
+    justify-content: center;  /* horizontally center */
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* center content block */
+    min-height: 100svh;
+  }
+
+  .hero-buttons {
+    margin-top: 24px;
+  }
+}
+
   </style>
 </head>
 

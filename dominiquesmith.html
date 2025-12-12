@@ -53,35 +53,42 @@
     /* ============================
        HERO – IMAGE
     ============================ */
-    header.dom-hero {
-      min-height: 100vh;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      position: relative;
-      padding: 80px 16px 40px;
-      background-image: url("domsmith-section.png");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
+  /* HERO IMAGE */
+header.dom-hero {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;   /* align content to top */
+  align-items: flex-start;       /* align content to top */
+  text-align: center;
+  position: relative;
+  padding: 40px 16px 40px;       /* top padding */
+  background-image: url("domsmith-hero.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
-    header.dom-hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top, rgba(0,0,0,0.2) 0, transparent 50%),
-                  linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.9));
-      mix-blend-mode: multiply;
-    }
+/* overlay */
+header.dom-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.7));
+  z-index: 0;
+}
 
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 720px;
-    }
+/* INNER WRAPPER */
+.hero-inner.top-align {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-top: 20px;            /* moves content down just a little */
+  text-align: center;
+}
+
 
     .hero-title {
       font-size: clamp(40px, 6vw, 70px);
@@ -424,23 +431,25 @@
 <body>
   <div class="page">
     <!-- HERO WITH IMAGE -->
-    <header id="hero" class="dom-hero">
-      <div class="hero-inner">
-        <h1 class="hero-title">Dominique Smith</h1>
-        <p class="hero-subtitle">
-          National anthems • corporate ceremonies • galas • luxury private events
-        </p>
+<header id="hero" class="dom-hero">
+  <div class="hero-inner top-align">
+    <h1 class="hero-title">Dominique Smith</h1>
 
-        <div class="hero-buttons">
-          <button class="hero-btn" onclick="location.href='#booking'">
-            Book Dominique
-          </button>
-          <button class="hero-btn outline" onclick="location.href='#showcase'">
-            Watch Showcase
-          </button>
-        </div>
-      </div>
-    </header>
+    <p class="hero-subtitle">
+      National anthems • corporate ceremonies • galas • luxury private events
+    </p>
+
+    <div class="hero-buttons">
+      <button class="hero-btn" onclick="location.href='#booking'">
+        Book Dominique
+      </button>
+      <button class="hero-btn outline" onclick="location.href='#showcase'">
+        Watch Showcase
+      </button>
+    </div>
+  </div>
+</header>
+
 
     <!-- NAV BUTTONS UNDER HERO -->
     <div class="hero-nav">

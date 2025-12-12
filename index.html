@@ -51,33 +51,8 @@
     ========================== */
  
 
-    @keyframes gridDrift {
-      0% { background-position: 0 0, 0 0; }
-      100% { background-position: 80px 40px, 40px 80px; }
-    }
 
-    /* =========================
-       STATIC / NOISE Overlay
-    ========================== */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 2;
-
-      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAD9CzEMAAAArklEQVR4Ae3WsQmDQBQF0OE2no0RvrRZtGJPD7W82dManIeZDVAD6QdlqzTeWY5Avzkdxl3pNGdisz8Iky3Uczdlz7YT1DoP70uQgmO6wwLJrVN6a8GN28AL5soNqd7qV3CyMfCVx/gvBy06SnVAk0nnNAOkCTQec0B6QJNB5zQDpAk0HnNAekCTQec0A7oP4Jrped1IovnHgYHGawEq+y3OC/YLXg4Wr9PXgYMGf4AH92nee0vOB0fOkHn2qxd6QAAAABJRU5ErkJggg==");
-      opacity: 0.19;
-      mix-blend-mode: overlay;
-      animation: staticFlicker 0.8s steps(6) infinite;
-    }
-
-    @keyframes staticFlicker {
-      0% { opacity: 0.13; }
-      50% { opacity: 0.19; }
-      100% { opacity: 0.16; }
-    }
-
+   
     /* =========================
        Hero Wrapper
     ========================== */
@@ -91,14 +66,7 @@
       z-index: 3;
     }
 
-    /* dark veil */
-    .dom-hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.3);
-      z-index: -1;
-    }
+    
 
     /* =========================
        Button Section

@@ -554,26 +554,55 @@
       }
     }
 
-    @media (max-width: 768px) {
+@media (max-width: 768px) {
+  /* Hero container */
   header.dom-hero {
     display: flex;
-    align-items: center;      /* vertically center */
-    justify-content: center;  /* horizontally center */
-    padding-top: 0;
+    align-items: flex-start;   /* keep top content at top */
+    justify-content: center;
+    padding-top: 22px;
     padding-bottom: 0;
   }
 
+  /* Stack layout */
   .hero-inner {
+    position: relative;
+    min-height: 100svh;
+    width: 100%;
+    max-width: 520px;
     display: flex;
     flex-direction: column;
-    justify-content: center;  /* center content block */
-    min-height: 100svh;
   }
 
+  /* TOP: title + subtitle */
+  .hero-title {
+    margin-top: 0;
+    margin-bottom: 6px;
+  }
+
+  .hero-subtitle {
+    margin-bottom: 0;
+  }
+
+  /* MIDDLE: buttons */
   .hero-buttons {
-    margin-top: 24px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .hero-btn {
+    width: 100%;
+    max-width: 340px;
   }
 }
+
 
   </style>
 </head>

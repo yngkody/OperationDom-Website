@@ -5,7 +5,7 @@
   <title>Dominique Smith – Live Performance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Shrikhand (still loaded if you want to use later) -->
+  <!-- Optional font for future use -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
@@ -17,10 +17,9 @@
     }
 
     :root {
-      --accent-blue: #1f45ff; /* darker neon blue */
+      --accent-blue: #1f45ff;
       --text-color: #ffffff;
       --border-color: #ffffff;
-      --input-bg: rgba(0,0,0,0.7);
     }
 
     * {
@@ -29,9 +28,9 @@
 
     body {
       margin: 0;
-      background: black;
-      color: white;
-      /* readable base font */
+      background: #000000;
+      color: #ffffff;
+      /* readable base font for paragraphs and form text */
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
@@ -42,9 +41,7 @@
     h4,
     h5,
     h6,
-    .hero-title,
-    .booking-card-title,
-    #music h2 {
+    .hero-title {
       font-family: "Introvert", sans-serif;
     }
 
@@ -54,53 +51,87 @@
     }
 
     /* ============================
-       HERO – YOUTUBE VIDEO
+       HERO – IMAGE
     ============================ */
     header.dom-hero {
+      min-height: 100vh;
       width: 100%;
-      background: #000000;
-      padding: 80px 16px 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      padding: 80px 16px 40px;
+      background-image: url("domsmith-hero.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    header.dom-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(0,0,0,0.2) 0, transparent 50%),
+                  linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.9));
+      mix-blend-mode: multiply;
     }
 
     .hero-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      text-align: center;
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
     }
 
     .hero-title {
-      font-size: clamp(40px, 6vw, 68px);
+      font-size: clamp(40px, 6vw, 70px);
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: #ffffff;
-      text-shadow: 0 0 22px rgba(255,255,255,0.9);
-      margin-bottom: 10px;
+      text-shadow: 0 0 22px rgba(0,0,0,0.9), 0 0 26px rgba(255,255,255,0.4);
+      margin: 0 0 10px;
     }
 
     .hero-subtitle {
       font-size: 14px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      opacity: 0.9;
+      opacity: 0.95;
       max-width: 540px;
-      margin: 0 auto 20px;
+      margin: 0 auto 24px;
     }
 
-    .hero-video-wrapper {
-      position: relative;
-      width: 100%;
-      padding-bottom: 56.25%; /* 16:9 */
-      margin: 0 auto;
-      box-shadow: 0 0 40px rgba(0,0,0,0.6);
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .hero-btn {
+      background: #ffffff;
+      color: #000000;
+      border-radius: 0;
+      border: 3px solid #ffffff;
+      padding: 14px 40px;
+      font-size: 18px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
+      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+    }
+
+    .hero-btn.outline {
+      background: transparent;
+      color: #ffffff;
       border: 3px solid #ffffff;
     }
 
-    .hero-video-wrapper iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
+    .hero-btn:active {
+      transform: translate(4px, 4px);
+      box-shadow: #ffffff 3px 3px 0 0, #000000 3px 3px 0 1px;
     }
 
     /* ============================
@@ -136,6 +167,49 @@
     }
 
     /* ============================
+       SHOWCASE – VIDEO
+    ============================ */
+    #showcase {
+      padding: 60px 16px 80px;
+      background: #050505;
+      text-align: center;
+    }
+
+    #showcase h2 {
+      font-size: 28px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    #showcase p {
+      max-width: 540px;
+      margin: 0 auto 24px;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    .showcase-video-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 960px;
+      padding-bottom: 56.25%; /* 16:9 */
+      margin: 0 auto;
+      border: 3px solid #ffffff;
+      box-shadow: 0 0 40px rgba(0,0,0,0.6);
+    }
+
+    .showcase-video-wrapper iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* ============================
        BOOKING SECTION
     ============================ */
     #booking {
@@ -152,7 +226,14 @@
       background-repeat: no-repeat;
     }
 
-    /* GRID LINES OVERLAY */
+    #booking::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 0;
+    }
+
     #booking::after {
       content: "";
       position: absolute;
@@ -166,20 +247,10 @@
       opacity: 0.4;
     }
 
-    /* dark veil */
-    #booking::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.45);
-      z-index: 0;
-    }
-
-    /* bigger booking card */
     .booking-card {
       position: relative;
       z-index: 2;
-      width: 640px;
+      width: 720px;
       max-width: 95vw;
       border: 3px solid #ffffff;
       border-radius: 0;
@@ -190,16 +261,15 @@
       flex-direction: column;
       padding: 32px 26px;
       gap: 20px;
-
-      /* readable font for all body/form text */
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     .booking-card-title {
+      font-family: "Introvert", sans-serif;
       font-size: 32px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: #ffffff;
+      margin: 0;
     }
 
     .booking-card-subtitle {
@@ -207,6 +277,7 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       opacity: 0.85;
+      margin: 0;
     }
 
     .booking-form {
@@ -266,6 +337,7 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       opacity: 0.75;
+      margin: 0;
     }
 
     .booking-submit {
@@ -276,7 +348,6 @@
       padding: 16px 40px;
       border-radius: 0;
       border: 3px solid #ffffff;
-      /* readable font for button text */
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 18px;
       letter-spacing: 0.16em;
@@ -292,7 +363,7 @@
     }
 
     /* ============================
-       MUSIC SECTION PLACEHOLDER
+       MUSIC SECTION (placeholder)
     ============================ */
     #music {
       padding: 80px 24px 120px;
@@ -301,6 +372,7 @@
     }
 
     #music h2 {
+      font-family: "Introvert", sans-serif;
       font-size: 28px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -316,10 +388,19 @@
       opacity: 0.8;
     }
 
-    /* responsive tweaks */
+    /* Responsive tweaks */
     @media (max-width: 768px) {
       .hero-title {
         font-size: 40px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .hero-btn {
+        width: 100%;
+        max-width: 320px;
       }
 
       .hero-nav-button {
@@ -342,7 +423,7 @@
 
 <body>
   <div class="page">
-    <!-- HERO WITH YOUTUBE VIDEO -->
+    <!-- HERO WITH IMAGE -->
     <header id="hero" class="dom-hero">
       <div class="hero-inner">
         <h1 class="hero-title">Dominique Smith</h1>
@@ -350,14 +431,13 @@
           National anthems • corporate ceremonies • galas • luxury private events
         </p>
 
-        <div class="hero-video-wrapper">
-          <iframe
-            src="https://www.youtube.com/embed/XNsNou7JNwE"
-            title="Dominique Smith Performance Reel"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+        <div class="hero-buttons">
+          <button class="hero-btn" onclick="location.href='#booking'">
+            Book Dominique
+          </button>
+          <button class="hero-btn outline" onclick="location.href='#showcase'">
+            Watch Showcase
+          </button>
         </div>
       </div>
     </header>
@@ -374,6 +454,22 @@
         Music
       </button>
     </div>
+
+    <!-- SHOWCASE SECTION WITH YOUTUBE VIDEO -->
+    <section id="showcase">
+      <h2>Showcase Performance Reel</h2>
+      <p>Experience Dominique’s live presence, range, and control in this performance highlight reel.</p>
+
+      <div class="showcase-video-wrapper">
+        <iframe
+          src="https://www.youtube.com/embed/XNsNou7JNwE"
+          title="Dominique Smith Performance Reel"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
 
     <!-- BOOKING SECTION -->
     <section id="booking">

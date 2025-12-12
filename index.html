@@ -29,30 +29,35 @@
     }
 
     /* =========================
-       Page + Background Image
+       Page Background (Desktop Default)
     ========================== */
     body {
       min-height: 100vh;
       font-family: "Introvert", system-ui, -apple-system, BlinkMacSystemFont,
         "Segoe UI", sans-serif;
-      /*background-color: var(--bg-color);*/
+      color: var(--text-color);
+
       background-image: url("hero-img.png");
       background-position: center center;
       background-size: cover;
       background-repeat: no-repeat;
       background-attachment: fixed;
-      color: var(--text-color);
-      overflow: hidden;
+
+      overflow-x: hidden;
       position: relative;
     }
 
     /* =========================
-       Neon Grid Overlay
+       Mobile Hero Image Swap
     ========================== */
- 
+    @media (max-width: 768px) {
+      body {
+        background-image: url("dom-hero-mobile.png");
+        background-attachment: scroll;
+        background-position: center top;
+      }
+    }
 
-
-   
     /* =========================
        Hero Wrapper
     ========================== */
@@ -60,13 +65,13 @@
       position: relative;
       min-height: 100vh;
       padding: 20px;
+
       display: flex;
       justify-content: center;
       align-items: center;
+
       z-index: 3;
     }
-
-    
 
     /* =========================
        Button Section
@@ -103,13 +108,15 @@
       transform: translate(4px, 4px);
     }
 
-    /* Filled second button */
     .hero-btn.filled {
       background: #000000;
       color: #ffffff;
       border: 3px solid #ffffff;
     }
 
+    /* =========================
+       Tablet Adjustments
+    ========================== */
     @media (max-width: 768px) {
       .hero-btn {
         padding: 20px 40px;
@@ -119,6 +126,9 @@
       }
     }
 
+    /* =========================
+       Small Mobile
+    ========================== */
     @media (max-width: 480px) {
       .button-wrapper {
         width: 100%;
@@ -137,12 +147,17 @@
 <body>
   <header class="dom-hero">
     <div class="button-wrapper">
-      <button class="hero-btn" onclick="location.href='dominiquesmith.html'">
+      <button
+        class="hero-btn"
+        onclick="location.href='dominiquesmith.html'"
+      >
         Dominique Smith
       </button>
 
-      <!-- NOTE: now points to OperationDom.html -->
-      <button class="hero-btn filled" onclick="location.href='operationdom.html'">
+      <button
+        class="hero-btn filled"
+        onclick="location.href='operationdom.html'"
+      >
         OperationDom
       </button>
     </div>

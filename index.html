@@ -49,25 +49,7 @@
     /* =========================
        Neon Grid Overlay
     ========================== */
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.12) 2px, transparent 2px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.12) 2px, transparent 2px);
-      background-size: 70px 70px;
-
-      /*filter:
-        drop-shadow(0 0 6px rgba(80, 140, 255, 0.3))
-        drop-shadow(0 0 5px rgba(255, 80, 200, 0.22));
-        opacity: 0.4;*/
-
-      animation: gridDrift 45s linear infinite;
-    }
+ 
 
     @keyframes gridDrift {
       0% { background-position: 0 0, 0 0; }

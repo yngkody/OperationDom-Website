@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Dominique Smith – Live Performance</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
   <!-- Optional font for future use -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,40 +14,47 @@
     @font-face {
       font-family: "Introvert";
       src: url("Introvert.otf") format("opentype");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
     }
 
     :root {
       --accent-blue: #1f45ff;
       --text-color: #ffffff;
       --border-color: #ffffff;
+
+      --shadow-w: 6px 6px 0 0;
+      --shadow-b: 6px 6px 0 1px;
+
+      --max: 980px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
+
+    html, body { height: 100%; }
 
     body {
       margin: 0;
       background: #000000;
       color: #ffffff;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
+    a { color: inherit; }
+
     /* Headings + hero title use Introvert */
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    .hero-title {
+    h1, h2, h3, h4, h5, h6,
+    .hero-title,
+    .hero-btn,
+    .hero-nav-button,
+    .booking-card-title {
       font-family: "Introvert", sans-serif;
     }
 
-    .page {
-      position: relative;
-      z-index: 1;
-    }
+    .page { position: relative; z-index: 1; }
 
     /* ============================
        GLOBAL SECTION BACKGROUND
@@ -62,23 +69,29 @@
     }
 
     /* ============================
-       HERO – IMAGE (TOP-ALIGNED CONTENT)
+       HERO
     ============================ */
     header.dom-hero {
       min-height: 100vh;
+      min-height: 100svh; /* better mobile viewport */
       width: 100%;
       display: flex;
       justify-content: flex-start;
       align-items: flex-start;
       text-align: center;
-      padding: 40px 16px 40px;
+      padding: 46px 16px 34px;
     }
 
     header.dom-hero::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.7));
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.68),
+        rgba(0,0,0,0.18) 42%,
+        rgba(0,0,0,0.72)
+      );
       z-index: 0;
     }
 
@@ -86,17 +99,17 @@
       position: relative;
       z-index: 1;
       width: 100%;
-      max-width: 800px;
+      max-width: 860px;
       margin: 0 auto;
-      padding-top: 10px;
+      padding-top: 6px;
     }
 
     .hero-title {
-      font-size: clamp(40px, 6vw, 70px);
+      font-size: clamp(44px, 6vw, 74px);
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: #ffffff;
-      text-shadow: 0 0 22px rgba(0,0,0,0.9), 0 0 26px rgba(255,255,255,0.4);
+      text-shadow: 0 0 22px rgba(0,0,0,0.9), 0 0 26px rgba(255,255,255,0.35);
       margin: 0 0 12px;
     }
 
@@ -105,8 +118,9 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       opacity: 0.95;
-      max-width: 540px;
+      max-width: 640px;
       margin: 0 auto 24px;
+      line-height: 1.35;
     }
 
     .hero-buttons {
@@ -114,6 +128,7 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 14px;
+      margin-top: 6px;
     }
 
     .hero-btn {
@@ -126,9 +141,10 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       cursor: pointer;
-      box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
+      box-shadow: #ffffff var(--shadow-w), #000000 var(--shadow-b);
       transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
-      font-family: "Introvert", sans-serif;
+      min-height: 52px; /* better tap target */
+      -webkit-tap-highlight-color: transparent;
     }
 
     .hero-btn.outline {
@@ -150,23 +166,26 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 16px;
-      padding: 24px 16px 40px;
+      padding: 24px 16px 44px;
       background: #000000;
+      position: relative;
+      z-index: 2;
     }
 
     .hero-nav-button {
       background: #ffffff;
       border: 3px solid #ffffff;
       color: #000000;
-      font-family: "Introvert", sans-serif;
       padding: 14px 40px;
       font-size: 18px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       border-radius: 0;
-      box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
+      box-shadow: #ffffff var(--shadow-w), #000000 var(--shadow-b);
       transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
       cursor: pointer;
+      min-height: 52px;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .hero-nav-button:active {
@@ -178,7 +197,7 @@
        SHOWCASE – VIDEO SECTION
     ============================ */
     #showcase {
-      padding: 60px 16px 80px;
+      padding: 70px 16px 90px;
       text-align: center;
     }
 
@@ -186,7 +205,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.52);
       z-index: 0;
     }
 
@@ -196,30 +215,33 @@
     }
 
     #showcase h2 {
-      font-size: 28px;
+      font-size: 30px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      margin: 0 0 10px;
     }
 
     #showcase p {
-      max-width: 540px;
-      margin: 0 auto 24px;
+      max-width: 680px;
+      margin: 0 auto 26px;
       font-size: 14px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      opacity: 0.8;
+      opacity: 0.85;
+      line-height: 1.45;
+      padding: 0 6px;
     }
 
     .showcase-video-wrapper {
       position: relative;
       width: 100%;
-      max-width: 960px;
+      max-width: 980px;
       padding-bottom: 56.25%; /* 16:9 */
       margin: 0 auto;
       border: 3px solid #ffffff;
       box-shadow: 0 0 40px rgba(0,0,0,0.7);
       background: #000000;
+      overflow: hidden;
     }
 
     .showcase-video-wrapper iframe {
@@ -235,8 +257,9 @@
     ============================ */
     #booking {
       min-height: 100vh;
+      min-height: 100svh;
       width: 100%;
-      padding: 80px 16px;
+      padding: 86px 16px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -246,47 +269,49 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.45);
+      background: rgba(0, 0, 0, 0.46);
       z-index: 0;
     }
 
     .booking-card {
       position: relative;
       z-index: 1;
-      width: 760px;
-      max-width: 95vw;
+      width: 820px;
+      max-width: 96vw;
       border: 3px solid #ffffff;
       border-radius: 0;
-      background: rgba(0, 0, 0, 0.88);
+      background: rgba(0, 0, 0, 0.90);
       box-shadow: #ffffff 8px 8px 0 0, #000000 8px 8px 0 1px;
 
       display: flex;
       flex-direction: column;
-      padding: 32px 26px;
-      gap: 20px;
+      padding: 34px 28px;
+      gap: 18px;
     }
 
     .booking-card-title {
-      font-size: 32px;
+      font-size: 34px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: #ffffff;
       margin: 0;
+      line-height: 1.05;
     }
 
     .booking-card-subtitle {
       font-size: 14px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      opacity: 0.85;
+      opacity: 0.88;
       margin: 0;
+      line-height: 1.4;
     }
 
     .booking-form {
       display: flex;
       flex-direction: column;
       gap: 18px;
-      margin-top: 8px;
+      margin-top: 6px;
     }
 
     .form-row {
@@ -303,7 +328,7 @@
 
     .booking-label {
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: #f5f5f5;
@@ -313,15 +338,22 @@
     .booking-select,
     .booking-textarea {
       width: 100%;
-      padding: 13px 13px;
+      padding: 14px 14px;
       font-size: 16px;
-      font-weight: 500;
+      font-weight: 600;
       border-radius: 0;
       border: 2px solid rgba(255, 255, 255, 0.95);
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(0, 0, 0, 0.86);
       color: #ffffff;
       outline: none;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .booking-input:focus,
+    .booking-select:focus,
+    .booking-textarea:focus {
+      border-color: rgba(255, 255, 255, 1);
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.18);
     }
 
     .booking-input::placeholder,
@@ -330,7 +362,7 @@
     }
 
     .booking-textarea {
-      min-height: 120px;
+      min-height: 130px;
       resize: vertical;
     }
 
@@ -338,12 +370,13 @@
       font-size: 11px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      opacity: 0.75;
+      opacity: 0.78;
       margin: 0;
+      line-height: 1.5;
     }
 
     .booking-submit {
-      margin-top: 8px;
+      margin-top: 10px;
       align-self: flex-start;
       background: #ffffff;
       color: #000000;
@@ -355,8 +388,10 @@
       letter-spacing: 0.16em;
       text-transform: uppercase;
       cursor: pointer;
-      box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
+      box-shadow: #ffffff var(--shadow-w), #000000 var(--shadow-b);
       transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+      min-height: 54px;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .booking-submit:active {
@@ -368,7 +403,7 @@
        MUSIC SECTION (PLACEHOLDER)
     ============================ */
     #music {
-      padding: 80px 24px 120px;
+      padding: 86px 24px 130px;
       text-align: center;
     }
 
@@ -376,7 +411,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.62);
       z-index: 0;
     }
 
@@ -386,51 +421,136 @@
     }
 
     #music h2 {
-      font-size: 28px;
+      font-size: 30px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      margin: 0 0 10px;
     }
 
     #music p {
-      max-width: 540px;
+      max-width: 680px;
       margin: 0 auto;
       font-size: 14px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      opacity: 0.8;
+      opacity: 0.85;
+      line-height: 1.45;
     }
 
     /* ============================
-       RESPONSIVE
+       RESPONSIVE (MOBILE FRIENDLY)
     ============================ */
     @media (max-width: 768px) {
+      /* MOBILE HERO IMAGE SWAP (desktop stays the same) */
+      header.dom-hero {
+        background-image: url("domsmith-hero-mobile.png");
+        background-position: top center; /* usually better for portraits */
+        min-height: 100svh;
+
+        /* Pull everything UP */
+        padding: 26px 14px 18px;
+        align-items: flex-start;
+      }
+
+      .hero-inner {
+        padding-top: 0;
+        margin-top: 0;
+        max-width: 520px;
+      }
+
       .hero-title {
-        font-size: 40px;
+        font-size: 38px;
+        margin-bottom: 8px;
+        letter-spacing: 0.14em;
+      }
+
+      .hero-subtitle {
+        font-size: 13px;
+        margin-bottom: 16px;
+        padding: 0 4px;
       }
 
       .hero-buttons {
         flex-direction: column;
+        gap: 12px;
+        margin-top: 6px;
       }
 
       .hero-btn {
         width: 100%;
-        max-width: 320px;
+        max-width: 340px;
+        margin: 0 auto;
+        padding: 14px 18px;
+        font-size: 16px;
+      }
+
+      .hero-nav {
+        padding: 20px 14px 34px;
+        gap: 12px;
       }
 
       .hero-nav-button {
         width: 100%;
-        max-width: 320px;
+        max-width: 340px;
+        padding: 14px 18px;
+        font-size: 16px;
       }
-    }
 
-    @media (max-width: 600px) {
+      #showcase {
+        padding: 58px 14px 74px;
+      }
+
+      #showcase h2,
+      #music h2 {
+        font-size: 26px;
+      }
+
+      .showcase-video-wrapper {
+        border-width: 3px;
+      }
+
+      #booking {
+        padding: 70px 14px;
+      }
+
       .booking-card {
         padding: 24px 18px;
+        max-width: 94vw;
+      }
+
+      .booking-card-title {
+        font-size: 28px;
+      }
+
+      .booking-card-subtitle {
+        font-size: 13px;
       }
 
       .form-row {
         flex-direction: column;
+      }
+
+      .booking-submit {
+        width: 100%;
+        align-self: stretch;
+        text-align: center;
+        padding: 16px 18px;
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .hero-title { font-size: 34px; }
+      .hero-btn, .hero-nav-button { max-width: 100%; }
+      .booking-card-title { font-size: 26px; }
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-btn,
+      .hero-nav-button,
+      .booking-submit {
+        transition: none;
       }
     }
   </style>
@@ -448,10 +568,10 @@
         </p>
 
         <div class="hero-buttons">
-          <button class="hero-btn" onclick="location.href='#booking'">
+          <button class="hero-btn" type="button" onclick="location.href='#booking'">
             Book Dominique
           </button>
-          <button class="hero-btn outline" onclick="location.href='#showcase'">
+          <button class="hero-btn outline" type="button" onclick="location.href='#showcase'">
             Watch Showcase
           </button>
         </div>
@@ -459,7 +579,7 @@
     </header>
 
     <!-- NAV BUTTONS UNDER HERO -->
-    <div class="hero-nav">
+    <div class="hero-nav" role="navigation" aria-label="Site navigation">
       <button class="hero-nav-button" type="button" onclick="location.href='#hero'">
         Home
       </button>
@@ -506,6 +626,7 @@
                 type="text"
                 name="name"
                 placeholder="Your name"
+                autocomplete="name"
               />
             </div>
             <div class="form-group">
@@ -516,6 +637,7 @@
                 type="email"
                 name="email"
                 placeholder="you@example.com"
+                autocomplete="email"
               />
             </div>
           </div>
@@ -530,6 +652,7 @@
                 type="tel"
                 name="phone"
                 placeholder="+1 (___) ___-____"
+                autocomplete="tel"
               />
             </div>
             <div class="form-group">
@@ -552,6 +675,7 @@
               type="text"
               name="company"
               placeholder="Company / Organization name"
+              autocomplete="organization"
             />
           </div>
 
@@ -564,6 +688,7 @@
               type="text"
               name="location"
               placeholder="Venue / City / Country"
+              autocomplete="off"
             />
           </div>
 

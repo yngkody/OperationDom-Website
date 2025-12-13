@@ -58,33 +58,29 @@
     /* =========================
        Hero Wrapper
     ========================== */
-.dom-hero {
-  min-height: 100svh; /* better than 100vh on mobile */
-  padding: 24px;
+    .dom-hero {
+      min-height: 100svh;
+      padding: 24px;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-  position: relative;
-}
-
+      position: relative;
+    }
 
     /* =========================
        Button Section (Bottom Anchored)
     ========================== */
-.button-wrapper {
-  margin-top: auto;
+    .button-wrapper {
+      margin-top: auto;
+      margin-bottom: clamp(80px, 14vh, 140px);
 
-  /* MOVE CONTENT UP */
-  margin-bottom: clamp(80px, 14vh, 140px);
-
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  align-items: center;
-}
-
+      display: flex;
+      flex-direction: column; /* mobile default */
+      gap: 24px;
+      align-items: center;
+    }
 
     .hero-btn {
       background: transparent;
@@ -116,6 +112,15 @@
       border: 3px solid #ffffff;
     }
 
+    /* =========================
+       DESKTOP: buttons side-by-side
+    ========================== */
+    @media (min-width: 1024px) {
+      .button-wrapper {
+        flex-direction: row;
+      }
+    }
+
     /* Tablet */
     @media (max-width: 768px) {
       .hero-btn {
@@ -124,12 +129,11 @@
         line-height: 24px;
         box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
       }
+
+      .dom-hero {
+        padding-top: 12px;
+      }
     }
-@media (max-width: 768px) {
-  .dom-hero {
-    padding-top: 12px;
-  }
-}
 
     /* Small Mobile */
     @media (max-width: 480px) {
@@ -144,39 +148,19 @@
         text-align: center;
       }
     }
-
-    .mode-buttons {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 90%;
-  max-width: 400px;
-}
-@media (min-width: 768px) {
-  .mode-buttons {
-    flex-direction: row;
-    justify-content: center;
-    max-width: none;
-    width: auto;
-  }
-
-  .mode-btn {
-    min-width: 220px;
-  }
-}
-
   </style>
 </head>
 
 <body>
   <header class="dom-hero">
-    <div class="mode-buttons">
-      <a href="operationdom.html" class="mode-btn">OperationDom</a>
-      <a href="dominiquesmith.html" class="mode-btn">Dominique Smith</a>
+    <div class="button-wrapper">
+      <button class="hero-btn" onclick="location.href='dominiquesmith.html'">
+        Dominique Smith
+      </button>
+
+      <button class="hero-btn filled" onclick="location.href='operationdom.html'">
+        OperationDom
+      </button>
     </div>
   </header>
 </body>

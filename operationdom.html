@@ -18,9 +18,7 @@
       font-style: normal;
     }
 
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
+    *, *::before, *::after { box-sizing: border-box; }
 
     html, body {
       margin: 0;
@@ -39,21 +37,14 @@
     }
 
     body {
-      /* DM Sans everywhere by default for readability */
       font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: #000000;
       color: var(--ink);
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
+    img { max-width: 100%; display: block; }
 
     /* ============================
        VIDEO BACKGROUND
@@ -67,27 +58,17 @@
       z-index: 0;
     }
 
-    /* default: show desktop, hide mobile */
-    .hero-video-desktop {
-      display: block;
-    }
-    .hero-video-mobile {
-      display: none;
-    }
+    .hero-video-desktop { display: block; }
+    .hero-video-mobile { display: none; }
 
-    .page {
-      position: relative;
-      z-index: 5;
-    }
+    .page { position: relative; z-index: 5; }
 
     /* ============================
        NAVIGATION
     ============================ */
     .site-nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 10;
 
       display: flex;
@@ -129,23 +110,11 @@
     }
 
     @media (max-width: 700px) {
-      .site-nav {
-        gap: 16px;
-        padding: 10px 10px;
-      }
+      .site-nav { gap: 16px; padding: 10px 10px; }
+      .site-nav a { font-size: 0.78rem; letter-spacing: 0.14em; }
 
-      .site-nav a {
-        font-size: 0.78rem;
-        letter-spacing: 0.14em;
-      }
-
-      /* on mobile: use mobile promo video */
-      .hero-video-desktop {
-        display: none;
-      }
-      .hero-video-mobile {
-        display: block;
-      }
+      .hero-video-desktop { display: none; }
+      .hero-video-mobile { display: block; }
     }
 
     /* Shared section shell */
@@ -157,7 +126,6 @@
       justify-content: center;
     }
 
-    /* Bigger, more obvious dividers between sections */
     .section + .section {
       border-top: 3px solid rgba(255, 255, 255, 0.25);
     }
@@ -190,15 +158,11 @@
       color: var(--muted-ink);
     }
 
-    .tag-icon {
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
-    }
+    .tag-icon { width: 18px; height: 18px; flex-shrink: 0; }
 
     .section-title {
       font-family: "Introvert", system-ui, sans-serif;
-      font-size: clamp(2.8rem, 4.2vw, 3.6rem); /* bigger */
+      font-size: clamp(2.8rem, 4.2vw, 3.6rem);
       text-transform: uppercase;
       letter-spacing: 0.22em;
     }
@@ -213,9 +177,7 @@
     /* ============================
        HERO SECTION
     ============================ */
-    #hero {
-      text-align: center;
-    }
+    #hero { text-align: center; }
 
     .hero-inner {
       width: min(900px, 100%);
@@ -226,11 +188,6 @@
       border: none;
       box-shadow: none;
       position: relative;
-    }
-
-    .hero-inner::before,
-    .hero-inner::after {
-      content: none;
     }
 
     .hero-eyebrow {
@@ -244,7 +201,7 @@
 
     .hero-title {
       font-family: "Introvert", system-ui, sans-serif;
-      font-size: clamp(3.6rem, 7vw, 4.8rem); /* bigger */
+      font-size: clamp(3.6rem, 7vw, 4.8rem);
       letter-spacing: 0.26em;
       text-transform: uppercase;
       margin-bottom: 12px;
@@ -268,9 +225,9 @@
     }
 
     .hero-btn {
-      padding: 22px 40px; /* bigger button */
+      padding: 22px 40px;
       font-family: "Introvert", system-ui, sans-serif;
-      font-size: 1.18rem;       /* bigger text */
+      font-size: 1.18rem;
       letter-spacing: 0.24em;
       text-transform: uppercase;
       border-radius: 999px;
@@ -313,41 +270,98 @@
     }
 
     @media (max-width: 600px) {
-      .section {
-        padding-top: 130px;
-        padding-bottom: 70px;
-      }
+      .section { padding-top: 130px; padding-bottom: 70px; }
+      .hero-inner { padding: 32px 18px 28px; }
+      .hero-buttons { flex-direction: column; }
+      .hero-btn { width: 100%; }
+      .hero-title { font-size: 2.8rem; letter-spacing: 0.18em; }
+      #hero .section-inner { align-items: center; }
+    }
 
-      .hero-inner {
-        padding: 32px 18px 28px;
-      }
+    /* ============================
+       SHOWCASE SECTION (RESTORED + BIGGER VIDEO ON DESKTOP)
+    ============================ */
+    #showcase .section-inner {
+      /* slightly wider container just for showcase so the video feels BIG */
+      width: min(1240px, 100%);
+      gap: 32px;
+    }
 
-      .hero-buttons {
-        flex-direction: column;
-      }
+    .showcase-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2.35fr) minmax(0, 1.15fr); /* video column bigger */
+      gap: 28px;
+      align-items: start;
+    }
 
-      .hero-btn {
-        width: 100%;
-      }
+    @media (max-width: 900px) {
+      #showcase .section-inner { width: min(1100px, 100%); }
+      .showcase-layout { grid-template-columns: minmax(0, 1fr); }
+    }
 
-      /* tighten letter-spacing / size so "OperationDom" feels centered and fits */
-      .hero-title {
-        font-size: 2.8rem;
-        letter-spacing: 0.18em;
-      }
+    .showcase-video-card {
+      background: var(--panel-bg);
+      border-radius: 12px;
+      border: 2px solid var(--border-strong);
+      padding: 16px; /* slightly tighter so the video area is bigger */
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.9);
+    }
 
-      /* center hero content within the section on mobile */
-      #hero .section-inner {
-        align-items: center;
-      }
+    /* Make the video physically taller on desktop without breaking aspect ratio */
+    .video-frame {
+      position: relative;
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--accent-green-soft);
+
+      /* key change: use aspect-ratio + height clamp */
+      aspect-ratio: 16 / 9;
+      height: clamp(420px, 58vh, 680px); /* bigger than before on desktop */
+      max-height: 720px;
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .showcase-copy {
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: var(--muted-ink);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.9);
+      border-radius: 10px;
+      border: 1px solid var(--accent-green-soft);
+      padding: 16px 16px 14px;
+    }
+
+    .showcase-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .showcase-pill {
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-green-soft);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
 
     /* ============================
        BOOKING SECTION
     ============================ */
-    #booking .section-inner {
-      gap: 36px;
-    }
+    #booking .section-inner { gap: 36px; }
 
     .booking-layout {
       display: grid;
@@ -357,9 +371,7 @@
     }
 
     @media (max-width: 900px) {
-      .booking-layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
+      .booking-layout { grid-template-columns: minmax(0, 1fr); }
     }
 
     .booking-card {
@@ -383,7 +395,7 @@
 
     .booking-card-title {
       font-family: "Introvert", system-ui, sans-serif;
-      font-size: 2.1rem; /* bigger */
+      font-size: 2.1rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       margin-bottom: 10px;
@@ -406,10 +418,7 @@
       z-index: 1;
     }
 
-    .form-row {
-      display: flex;
-      gap: 14px;
-    }
+    .form-row { display: flex; gap: 14px; }
 
     .form-group {
       display: flex;
@@ -443,9 +452,7 @@
     }
 
     .booking-input::placeholder,
-    .booking-textarea::placeholder {
-      color: rgba(255, 255, 255, 0.7);
-    }
+    .booking-textarea::placeholder { color: rgba(255, 255, 255, 0.7); }
 
     .booking-input:focus,
     .booking-select:focus,
@@ -455,12 +462,8 @@
       background: rgba(0, 0, 0, 0.98);
     }
 
-    .booking-textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
+    .booking-textarea { min-height: 100px; resize: vertical; }
 
-    /* Add-ons text: explicitly DM Sans & readable */
     .form-group label:not(.booking-label) {
       font-family: "DM Sans", system-ui, sans-serif;
       font-size: 0.95rem;
@@ -480,9 +483,9 @@
     .booking-submit {
       margin-top: 6px;
       align-self: flex-start;
-      padding: 18px 34px;        /* bigger button */
+      padding: 18px 34px;
       font-family: "DM Sans", system-ui, sans-serif;
-      font-size: 1.08rem;        /* bigger text */
+      font-size: 1.08rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       cursor: pointer;
@@ -528,7 +531,7 @@
 
     .booking-aside h3 {
       margin: 0 0 4px;
-      font-size: 1.5rem; /* a bit bigger */
+      font-size: 1.5rem;
       font-family: "Introvert", system-ui, sans-serif;
       letter-spacing: 0.16em;
       text-transform: uppercase;
@@ -543,69 +546,18 @@
       gap: 4px;
     }
 
-    .price-block:first-of-type {
-      border-top: none;
-      padding-top: 0;
-    }
+    .price-block:first-of-type { border-top: none; padding-top: 0; }
 
-    .booking-aside strong {
-      color: var(--accent-green);
-      font-weight: 700;
-    }
+    .booking-aside strong { color: var(--accent-green); font-weight: 700; }
 
-    .booking-aside-footer {
-      opacity: 0.8;
-      font-size: 0.9rem;
-      margin-top: 4px;
-    }
+    .booking-aside-footer { opacity: 0.8; font-size: 0.9rem; margin-top: 4px; }
 
     @media (max-width: 600px) {
-      .booking-card {
-        padding: 22px 18px 20px;
-        border-radius: 10px;
-      }
-
-      .booking-card::after {
-        inset: 8px;
-        border-radius: 8px;
-      }
-
-      .form-row {
-        flex-direction: column;
-      }
+      .booking-card { padding: 22px 18px 20px; border-radius: 10px; }
+      .booking-card::after { inset: 8px; border-radius: 8px; }
+      .form-row { flex-direction: column; }
+      .video-frame { height: auto; aspect-ratio: 16 / 9; } /* keep clean on mobile */
     }
-/* ============================
-   SHOWCASE — FULL BLEED VIDEO
-============================ */
-#showcase.section {
-  padding: 0;
-  min-height: 100vh;
-}
-
-#showcase .section-inner {
-  width: 100%;
-  height: 100vh;
-  margin: 0;
-  max-width: none;
-  gap: 0;
-}
-
-/* Fullscreen video wrapper */
-.showcase-video {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
-
-/* YouTube iframe fills screen */
-.showcase-video iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
 
     /* ============================
        MUSIC SECTION
@@ -631,9 +583,7 @@
     }
 
     @media (max-width: 900px) {
-      .music-platforms-grid {
-        grid-template-columns: 1fr;
-      }
+      .music-platforms-grid { grid-template-columns: 1fr; }
     }
 
     .platform-card {
@@ -670,9 +620,7 @@
       background: #050505;
     }
 
-    .platform-card:hover::after {
-      opacity: 1;
-    }
+    .platform-card:hover::after { opacity: 1; }
 
     .platform-icon-wrap {
       width: 54px;
@@ -685,17 +633,9 @@
       background: #000000;
     }
 
-    .platform-icon {
-      width: 32px;
-      height: 32px;
-      object-fit: contain;
-    }
+    .platform-icon { width: 32px; height: 32px; object-fit: contain; }
 
-    .platform-text {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
+    .platform-text { display: flex; flex-direction: column; gap: 2px; }
 
     .platform-label {
       font-family: "Introvert", system-ui, sans-serif;
@@ -711,29 +651,13 @@
     }
   </style>
 </head>
+
 <body>
   <!-- VIDEO BACKGROUND -->
-  <!-- Desktop video -->
-  <video
-    class="hero-video hero-video-desktop"
-    src="Green Light.mp4"
-    autoplay
-    muted
-    loop
-    playsinline
-  ></video>
+  <video class="hero-video hero-video-desktop" src="Green Light.mp4" autoplay muted loop playsinline></video>
+  <video class="hero-video hero-video-mobile" src="Green Light Promo Mobile II.mp4" autoplay muted loop playsinline></video>
 
-  <!-- Mobile video -->
-  <video
-    class="hero-video hero-video-mobile"
-    src="Green Light Promo Mobile II.mp4"
-    autoplay
-    muted
-    loop
-    playsinline
-  ></video>
-
-  <!-- NAV (reordered: Showcase before Booking) -->
+  <!-- NAV -->
   <nav class="site-nav">
     <a href="index.html">Home</a>
     <a href="#showcase">Showcase</a>
@@ -754,31 +678,64 @@
           </p>
 
           <div class="hero-buttons">
-            <button class="hero-btn" onclick="location.href='#booking'">
-              Book OperationDom
-            </button>
-            <button class="hero-btn outline" onclick="location.href='#showcase'">
-              Watch performance
-            </button>
+            <button class="hero-btn" onclick="location.href='#booking'">Book OperationDom</button>
+            <button class="hero-btn outline" onclick="location.href='#showcase'">Watch performance</button>
           </div>
         </div>
       </div>
     </section>
 
- <section id="showcase" class="section">
-  <div class="section-inner">
-    <div class="showcase-video">
-      <iframe
-        src="https://www.youtube.com/embed/Gla5-zsCdXc?rel=0&modestbranding=1"
-        title="OperationDom – Live Performance"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-      ></iframe>
-    </div>
-  </div>
-</section>
+    <!-- SHOWCASE -->
+    <section id="showcase" class="section">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-tag">
+            <svg class="tag-icon" viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M4 16h24M16 4v24" stroke="var(--accent-green)" stroke-width="2" stroke-linecap="round" />
+              <circle cx="16" cy="16" r="6" fill="none" stroke="var(--accent-green)" stroke-width="2" />
+            </svg>
+            <span>Live with the band</span>
+          </div>
+          <h2 class="section-title">Showcase</h2>
+          <p class="section-subtitle">
+            Tap into the OperationDom experience – live vocals, band chemistry, and the kind of
+            performance that lingers after the last note.
+          </p>
+        </div>
 
-    <!-- BOOKING (now after showcase) -->
+        <div class="showcase-layout">
+          <div class="showcase-video-card">
+            <div class="video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/Gla5-zsCdXc?rel=0&modestbranding=1"
+                title="OperationDom – Live Performance"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+
+          <div class="showcase-copy">
+            <p>
+              From intimate stages to full-room takeovers, Dom commands every space with control,
+              texture, and storytelling. This reel captures the blend of raw emotion and technical
+              precision she brings to each set.
+            </p>
+            <p>
+              Expect tight arrangements, dynamic moments, and vocals that sit right at the center of
+              the mix – supported by a band built to move with her in real time.
+            </p>
+            <div class="showcase-pills">
+              <span class="showcase-pill">R&amp;B • Soul • Pop</span>
+              <span class="showcase-pill">Full band or scaled set</span>
+              <span class="showcase-pill">NYC-based • traveling</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKING -->
     <section id="booking" class="section">
       <div class="section-inner">
         <div class="section-header">
@@ -797,7 +754,6 @@
         </div>
 
         <div class="booking-layout">
-          <!-- Form card -->
           <div class="booking-card">
             <h3 class="booking-card-title">Booking request</h3>
             <p class="booking-card-subtitle">
@@ -806,159 +762,67 @@
             </p>
 
             <form class="booking-form">
-              <!-- Name + Email -->
               <div class="form-row">
                 <div class="form-group">
                   <label class="booking-label" for="book-name">Name</label>
-                  <input
-                    class="booking-input"
-                    id="book-name"
-                    type="text"
-                    name="name"
-                    placeholder="First &amp; last name"
-                  />
+                  <input class="booking-input" id="book-name" type="text" name="name" placeholder="First &amp; last name" />
                 </div>
                 <div class="form-group">
                   <label class="booking-label" for="book-email">Email</label>
-                  <input
-                    class="booking-input"
-                    id="book-email"
-                    type="email"
-                    name="email"
-                    placeholder="you@example.com"
-                  />
+                  <input class="booking-input" id="book-email" type="email" name="email" placeholder="you@example.com" />
                 </div>
               </div>
 
-              <!-- Phone + Date -->
               <div class="form-row">
                 <div class="form-group">
                   <label class="booking-label" for="book-phone">Phone</label>
-                  <input
-                    class="booking-input"
-                    id="book-phone"
-                    type="tel"
-                    name="phone"
-                    placeholder="+1 (___) ___-____"
-                  />
+                  <input class="booking-input" id="book-phone" type="tel" name="phone" placeholder="+1 (___) ___-____" />
                 </div>
                 <div class="form-group">
                   <label class="booking-label" for="book-date">Event / session date</label>
-                  <input
-                    class="booking-input"
-                    id="book-date"
-                    type="date"
-                    name="date"
-                  />
+                  <input class="booking-input" id="book-date" type="date" name="date" />
                 </div>
               </div>
 
-              <!-- Location -->
               <div class="form-group">
                 <label class="booking-label" for="book-location">Location</label>
-                <input
-                  class="booking-input"
-                  id="book-location"
-                  type="text"
-                  name="location"
-                  placeholder="Venue / studio / city"
-                />
+                <input class="booking-input" id="book-location" type="text" name="location" placeholder="Venue / studio / city" />
               </div>
 
-              <!-- Type -->
               <div class="form-group">
                 <label class="booking-label" for="book-type">What are you booking Dom for?</label>
                 <select class="booking-select" id="book-type" name="bookingType">
                   <option value="">Select a service</option>
-
-                  <!-- Base Performance -->
-                  <option value="local-performance">
-                    Local Solo Performance — 2 Songs (30 Minutes) — $250
-                  </option>
-
-                  <!-- Add-ons -->
-                  <option value="additional-time">
-                    Additional 30 Minutes — +$50
-                  </option>
-                  <option value="custom-music">
-                    Custom Music / Song Selection — +$50
-                  </option>
-                  <option value="rehearsal">
-                    Rehearsal Time — +$50 per session
-                  </option>
-
-                  <!-- Studio Work -->
-                  <option value="studio-session">
-                    Studio Session (BGVs, Adlibs, Vocal Production) — $75/hr
-                  </option>
-                  <option value="vocal-recording">
-                    Vocal Recording (Sync / Film / Television) — $300+
-                  </option>
-
-                  <!-- Travel -->
-                  <option value="travel-outside-borough">
-                    Travel — Outside Borough/City — +$50
-                  </option>
-                  <option value="travel-2hr-drive">
-                    Travel — Over 2hr + Drive — +$100–$300
-                  </option>
-                  <option value="travel-flight">
-                    Travel — Flight + Hotel Required (Quote)
-                  </option>
-
-                  <!-- Rush -->
-                  <option value="rush-fee">
-                    Rush Fee (Under 48 hrs notice) — +$100+
-                  </option>
+                  <option value="local-performance">Local Solo Performance — 2 Songs (30 Minutes) — $250</option>
+                  <option value="additional-time">Additional 30 Minutes — +$50</option>
+                  <option value="custom-music">Custom Music / Song Selection — +$50</option>
+                  <option value="rehearsal">Rehearsal Time — +$50 per session</option>
+                  <option value="studio-session">Studio Session (BGVs, Adlibs, Vocal Production) — $75/hr</option>
+                  <option value="vocal-recording">Vocal Recording (Sync / Film / Television) — $300+</option>
+                  <option value="travel-outside-borough">Travel — Outside Borough/City — +$50</option>
+                  <option value="travel-2hr-drive">Travel — Over 2hr + Drive — +$100–$300</option>
+                  <option value="travel-flight">Travel — Flight + Hotel Required (Quote)</option>
+                  <option value="rush-fee">Rush Fee (Under 48 hrs notice) — +$100+</option>
                 </select>
               </div>
 
-              <!-- Budget -->
               <div class="form-group">
                 <label class="booking-label" for="book-budget">Budget range (optional)</label>
-                <input
-                  class="booking-input"
-                  id="book-budget"
-                  type="text"
-                  name="budget"
-                  placeholder="ex: $1,500–$3,000"
-                />
+                <input class="booking-input" id="book-budget" type="text" name="budget" placeholder="ex: $1,500–$3,000" />
               </div>
 
-              <!-- Details -->
               <div class="form-group">
                 <label class="booking-label" for="book-details">Event / project details</label>
-                <textarea
-                  class="booking-textarea"
-                  id="book-details"
-                  name="details"
-                  placeholder="Share the vibe, set length, outfit / styling notes, collaborators, or anything else we should know."
-                ></textarea>
+                <textarea class="booking-textarea" id="book-details" name="details" placeholder="Share the vibe, set length, outfit / styling notes, collaborators, or anything else we should know."></textarea>
               </div>
 
-              <!-- Add-ons checkboxes -->
               <div class="form-group">
                 <label class="booking-label">Add-Ons (optional)</label>
 
-                <label>
-                  <input type="checkbox" name="addon_additional" value="Additional 30 Minutes (+$50)">
-                  Additional 30 Minutes — +$50
-                </label>
-
-                <label>
-                  <input type="checkbox" name="addon_custom" value="Custom Song Selection (+$50)">
-                  Custom Song / Music Selection — +$50
-                </label>
-
-                <label>
-                  <input type="checkbox" name="addon_rehearsal" value="Rehearsal (+$50/session)">
-                  Rehearsal Time — +$50 per session
-                </label>
-
-                <label>
-                  <input type="checkbox" name="addon_rush" value="Rush Fee (+$100+)">
-                  Rush Fee (Under 48 hrs) — +$100+
-                </label>
+                <label><input type="checkbox" name="addon_additional" value="Additional 30 Minutes (+$50)"> Additional 30 Minutes — +$50</label>
+                <label><input type="checkbox" name="addon_custom" value="Custom Song Selection (+$50)"> Custom Song / Music Selection — +$50</label>
+                <label><input type="checkbox" name="addon_rehearsal" value="Rehearsal (+$50/session)"> Rehearsal Time — +$50 per session</label>
+                <label><input type="checkbox" name="addon_rush" value="Rush Fee (+$100+)"> Rush Fee (Under 48 hrs) — +$100+</label>
               </div>
 
               <p class="booking-note">
@@ -966,13 +830,10 @@
                 with availability, rates, and next steps.
               </p>
 
-              <button type="submit" class="booking-submit">
-                Submit request
-              </button>
+              <button type="submit" class="booking-submit">Submit request</button>
             </form>
           </div>
 
-          <!-- Price aside -->
           <aside class="booking-aside">
             <h3>Price Menu</h3>
 
@@ -1039,8 +900,7 @@
         <div>
           <h3 class="music-platforms-title">Listen everywhere</h3>
           <div class="music-platforms-grid">
-            <!-- Spotify -->
-            <a href="https://open.spotify.com/artist/3qWTtM0AN7KdlfS8exCEy6?si=qNRHmzcST9GJJsB-owpgzQ&nd=1&dlsi=da7d38211b064397" target="_blank" class="platform-card platform-spotify">
+            <a href="https://open.spotify.com/artist/3qWTtM0AN7KdlfS8exCEy6?si=qNRHmzcST9GJJsB-owpgzQ&nd=1&dlsi=da7d38211b064397" target="_blank" class="platform-card">
               <div class="platform-icon-wrap">
                 <img src="spotify.png" alt="Listen on Spotify" class="platform-icon" />
               </div>
@@ -1050,8 +910,7 @@
               </div>
             </a>
 
-            <!-- Apple Music -->
-            <a href="https://music.apple.com/us/artist/dominique-smith/1453321173" target="_blank" class="platform-card platform-apple">
+            <a href="https://music.apple.com/us/artist/dominique-smith/1453321173" target="_blank" class="platform-card">
               <div class="platform-icon-wrap">
                 <img src="apple.png" alt="Listen on Apple Music" class="platform-icon" />
               </div>
@@ -1061,8 +920,7 @@
               </div>
             </a>
 
-            <!-- SoundCloud -->
-            <a href="https://soundcloud.com/dominique-smith-892170035?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank" class="platform-card platform-soundcloud">
+            <a href="https://soundcloud.com/dominique-smith-892170035?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank" class="platform-card">
               <div class="platform-icon-wrap">
                 <img src="soundcloud-img.png" alt="Listen on SoundCloud" class="platform-icon" />
               </div>
@@ -1078,7 +936,6 @@
   </div>
 
   <script>
-    // Only try to autoplay the active video for the current viewport
     window.addEventListener("load", function () {
       const desktopVideo = document.querySelector(".hero-video-desktop");
       const mobileVideo = document.querySelector(".hero-video-mobile");

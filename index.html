@@ -144,19 +144,39 @@
         text-align: center;
       }
     }
+
+    .mode-buttons {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 90%;
+  max-width: 400px;
+}
+@media (min-width: 768px) {
+  .mode-buttons {
+    flex-direction: row;
+    justify-content: center;
+    max-width: none;
+    width: auto;
+  }
+
+  .mode-btn {
+    min-width: 220px;
+  }
+}
+
   </style>
 </head>
 
 <body>
   <header class="dom-hero">
-    <div class="button-wrapper">
-      <button class="hero-btn" onclick="location.href='dominiquesmith.html'">
-        Dominique Smith
-      </button>
-
-      <button class="hero-btn filled" onclick="location.href='operationdom.html'">
-        OperationDom
-      </button>
+    <div class="mode-buttons">
+      <a href="operationdom.html" class="mode-btn">OperationDom</a>
+      <a href="dominiquesmith.html" class="mode-btn">Dominique Smith</a>
     </div>
   </header>
 </body>

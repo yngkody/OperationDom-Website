@@ -6,9 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
-    /* =========================
-       Custom Font
-    ========================== */
     @font-face {
       font-family: "Introvert";
       src: url("Introvert.otf") format("opentype");
@@ -22,19 +19,11 @@
       --bg-color: #000000;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* =========================
-       Page Background
-    ========================== */
     body {
       min-height: 100vh;
-      font-family: "Introvert", system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", sans-serif;
+      font-family: "Introvert", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text-color);
 
       background-image: url("hero-img-iv.png");
@@ -46,7 +35,6 @@
       overflow-x: hidden;
     }
 
-    /* Mobile hero image */
     @media (max-width: 768px) {
       body {
         background-image: url("dom-hero-mobile-v.png");
@@ -55,53 +43,35 @@
       }
     }
 
-    /* =========================
-       Hero Wrapper
-    ========================== */
     .dom-hero {
       min-height: 100svh;
       padding: 24px;
-
       display: flex;
       flex-direction: column;
       align-items: center;
-
       position: relative;
     }
 
-    /* =========================
-       Button Section (Bottom Anchored)
-    ========================== */
     .button-wrapper {
       margin-top: auto;
       margin-bottom: clamp(80px, 14vh, 140px);
 
       display: flex;
-      flex-direction: column; /* mobile default */
+      flex-direction: column;
       gap: 24px;
       align-items: center;
 
-      /* entrance animation */
       opacity: 0;
       transform: translateY(18px);
     }
 
-    /* When page is ready */
     body.is-ready .button-wrapper {
       animation: floatIn 700ms cubic-bezier(.2,.9,.2,1) forwards;
     }
 
     @keyframes floatIn {
-      from {
-        opacity: 0;
-        transform: translateY(18px);
-        filter: blur(2px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
-      }
+      from { opacity: 0; transform: translateY(18px); filter: blur(2px); }
+      to   { opacity: 1; transform: translateY(0);  filter: blur(0); }
     }
 
     .hero-btn {
@@ -131,7 +101,7 @@
       transform: translateZ(0);
     }
 
-    /* Stagger entrance (each button floats in slightly after) */
+    /* Stagger entrance */
     body.is-ready .hero-btn {
       opacity: 0;
       transform: translateY(16px);
@@ -145,14 +115,12 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* Desktop hover feels "alive" */
     @media (hover: hover) and (pointer: fine) {
       .hero-btn:hover {
         transform: translateY(-4px);
         box-shadow: #ffffff 10px 10px 0 0, #000000 10px 10px 0 1px;
         filter: drop-shadow(0 0 10px rgba(255,255,255,0.12));
       }
-
       .hero-btn:focus-visible {
         outline: none;
         filter: drop-shadow(0 0 14px rgba(255,255,255,0.18));
@@ -169,9 +137,13 @@
       color: #ffffff;
       border: 3px solid #ffffff;
       position: relative;
+
+      /* needed for the chrome overlay */
+      overflow: hidden;
+      isolation: isolate; /* makes overlay blend cleanly */
     }
 
-    /* Subtle "breathing" glow for the filled CTA */
+    /* Soft “breathe” glow */
     body.is-ready .hero-btn.filled {
       animation:
         btnIn 720ms cubic-bezier(.2,.9,.2,1) forwards,
@@ -179,17 +151,53 @@
     }
 
     @keyframes breathe {
-      0%, 100% {
-        filter: drop-shadow(0 0 0 rgba(255,255,255,0));
-      }
-      50% {
-        filter: drop-shadow(0 0 14px rgba(255,255,255,0.18));
-      }
+      0%, 100% { filter: drop-shadow(0 0 0 rgba(255,255,255,0)); }
+      50%      { filter: drop-shadow(0 0 14px rgba(255,255,255,0.18)); }
     }
 
     /* =========================
-       DESKTOP: buttons side-by-side
+       Chrome Sweep (Shine)
     ========================== */
+    .hero-btn.filled::before {
+      content: "";
+      position: absolute;
+      inset: -40% -60%; /* oversized so it can sweep across */
+      transform: translateX(-60%) rotate(18deg);
+
+      background: linear-gradient(
+        90deg,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.18) 35%,
+        rgba(255,255,255,0.55) 50%,
+        rgba(255,255,255,0.18) 65%,
+        rgba(255,255,255,0) 100%
+      );
+
+      opacity: 0;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      will-change: transform, opacity;
+    }
+
+    /* trigger on hover/focus */
+    @media (hover: hover) and (pointer: fine) {
+      .hero-btn.filled:hover::before,
+      .hero-btn.filled:focus-visible::before {
+        animation: shine 900ms cubic-bezier(.2,.9,.2,1) forwards;
+      }
+    }
+
+    /* trigger periodically via JS (class toggle) */
+    .hero-btn.filled.shine::before {
+      animation: shine 900ms cubic-bezier(.2,.9,.2,1) forwards;
+    }
+
+    @keyframes shine {
+      0%   { opacity: 0; transform: translateX(-70%) rotate(18deg); }
+      10%  { opacity: 1; }
+      100% { opacity: 0; transform: translateX(70%) rotate(18deg); }
+    }
+
     @media (min-width: 1024px) {
       .button-wrapper {
         flex-direction: row;
@@ -197,7 +205,6 @@
       }
     }
 
-    /* Tablet */
     @media (max-width: 768px) {
       .hero-btn {
         padding: 20px 40px;
@@ -205,54 +212,30 @@
         line-height: 24px;
         box-shadow: #ffffff 6px 6px 0 0, #000000 6px 6px 0 1px;
       }
-
-      .dom-hero {
-        padding-top: 12px;
-      }
+      .dom-hero { padding-top: 12px; }
     }
 
-    /* Small Mobile */
     @media (max-width: 480px) {
       .button-wrapper {
         width: 100%;
         padding-inline: 12px;
         margin-bottom: 24px;
       }
-
-      .hero-btn {
-        width: 100%;
-        text-align: center;
-      }
+      .hero-btn { width: 100%; text-align: center; }
     }
 
-    /* =========================
-       Optional: subtle background drift
-       (remove if you want it static)
-    ========================== */
-    body.is-ready {
-      animation: bgDrift 14s ease-in-out infinite alternate;
-    }
-
+    /* subtle bg drift (optional) */
+    body.is-ready { animation: bgDrift 14s ease-in-out infinite alternate; }
     @keyframes bgDrift {
       from { background-position: 50% 50%; }
       to   { background-position: 50% 46%; }
     }
 
-    /* =========================
-       Accessibility: Reduce Motion
-    ========================== */
+    /* Reduce motion */
     @media (prefers-reduced-motion: reduce) {
-      * {
-        animation: none !important;
-        transition: none !important;
-        scroll-behavior: auto !important;
-      }
-      .button-wrapper,
-      .hero-btn {
-        opacity: 1 !important;
-        transform: none !important;
-        filter: none !important;
-      }
+      * { animation: none !important; transition: none !important; }
+      .button-wrapper, .hero-btn { opacity: 1 !important; transform: none !important; filter: none !important; }
+      .hero-btn.filled::before { display: none !important; }
     }
   </style>
 </head>
@@ -264,17 +247,28 @@
         Dominique Smith
       </button>
 
-      <button class="hero-btn filled" onclick="location.href='operationdom.html'">
+      <button class="hero-btn filled" id="ctaBtn" onclick="location.href='operationdom.html'">
         OperationDom
       </button>
     </div>
   </header>
 
   <script>
-    // Flip on animations after first paint (prevents janky load)
-    requestAnimationFrame(() => {
-      document.body.classList.add("is-ready");
-    });
+    // Enable entrance animations after first paint
+    requestAnimationFrame(() => document.body.classList.add("is-ready"));
+
+    // Auto-sweep the CTA every few seconds (subtle)
+    const cta = document.getElementById("ctaBtn");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (cta && !reduceMotion) {
+      setInterval(() => {
+        cta.classList.remove("shine"); // reset if it was mid-animation
+        // force reflow so animation can retrigger
+        void cta.offsetWidth;
+        cta.classList.add("shine");
+      }, 5200);
+    }
   </script>
 </body>
 </html>

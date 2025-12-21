@@ -80,6 +80,28 @@
       flex-direction: column; /* mobile default */
       gap: 24px;
       align-items: center;
+
+      /* entrance animation */
+      opacity: 0;
+      transform: translateY(18px);
+    }
+
+    /* When page is ready */
+    body.is-ready .button-wrapper {
+      animation: floatIn 700ms cubic-bezier(.2,.9,.2,1) forwards;
+    }
+
+    @keyframes floatIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+        filter: blur(2px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
     }
 
     .hero-btn {
@@ -97,8 +119,44 @@
       border-radius: 0;
 
       box-shadow: #ffffff 8px 8px 0 0, #000000 8px 8px 0 1px;
-      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+      transition:
+        transform 160ms cubic-bezier(.2,.9,.2,1),
+        box-shadow 160ms cubic-bezier(.2,.9,.2,1),
+        filter 160ms ease,
+        background-color 160ms ease,
+        color 160ms ease;
+
       white-space: nowrap;
+      will-change: transform;
+      transform: translateZ(0);
+    }
+
+    /* Stagger entrance (each button floats in slightly after) */
+    body.is-ready .hero-btn {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: btnIn 720ms cubic-bezier(.2,.9,.2,1) forwards;
+    }
+    body.is-ready .hero-btn:nth-child(1) { animation-delay: 120ms; }
+    body.is-ready .hero-btn:nth-child(2) { animation-delay: 220ms; }
+
+    @keyframes btnIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Desktop hover feels "alive" */
+    @media (hover: hover) and (pointer: fine) {
+      .hero-btn:hover {
+        transform: translateY(-4px);
+        box-shadow: #ffffff 10px 10px 0 0, #000000 10px 10px 0 1px;
+        filter: drop-shadow(0 0 10px rgba(255,255,255,0.12));
+      }
+
+      .hero-btn:focus-visible {
+        outline: none;
+        filter: drop-shadow(0 0 14px rgba(255,255,255,0.18));
+      }
     }
 
     .hero-btn:active {
@@ -110,6 +168,23 @@
       background: #000000;
       color: #ffffff;
       border: 3px solid #ffffff;
+      position: relative;
+    }
+
+    /* Subtle "breathing" glow for the filled CTA */
+    body.is-ready .hero-btn.filled {
+      animation:
+        btnIn 720ms cubic-bezier(.2,.9,.2,1) forwards,
+        breathe 2200ms ease-in-out 900ms infinite;
+    }
+
+    @keyframes breathe {
+      0%, 100% {
+        filter: drop-shadow(0 0 0 rgba(255,255,255,0));
+      }
+      50% {
+        filter: drop-shadow(0 0 14px rgba(255,255,255,0.18));
+      }
     }
 
     /* =========================
@@ -118,15 +193,9 @@
     @media (min-width: 1024px) {
       .button-wrapper {
         flex-direction: row;
+        margin-bottom: clamp(40px, 6vh, 80px);
       }
     }
-
-    @media (min-width: 1024px) {
-  .button-wrapper {
-    flex-direction: row;
-    margin-bottom: clamp(40px, 6vh, 80px);
-  }
-}
 
     /* Tablet */
     @media (max-width: 768px) {
@@ -155,6 +224,36 @@
         text-align: center;
       }
     }
+
+    /* =========================
+       Optional: subtle background drift
+       (remove if you want it static)
+    ========================== */
+    body.is-ready {
+      animation: bgDrift 14s ease-in-out infinite alternate;
+    }
+
+    @keyframes bgDrift {
+      from { background-position: 50% 50%; }
+      to   { background-position: 50% 46%; }
+    }
+
+    /* =========================
+       Accessibility: Reduce Motion
+    ========================== */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+      .button-wrapper,
+      .hero-btn {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+      }
+    }
   </style>
 </head>
 
@@ -170,5 +269,12 @@
       </button>
     </div>
   </header>
+
+  <script>
+    // Flip on animations after first paint (prevents janky load)
+    requestAnimationFrame(() => {
+      document.body.classList.add("is-ready");
+    });
+  </script>
 </body>
 </html>

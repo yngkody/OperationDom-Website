@@ -710,6 +710,46 @@
       color: var(--muted);
       line-height: 1.45;
     }
+
+    /* ============================
+   SHOWCASE: airy + centered
+============================ */
+#showcase.section{
+  align-items: center;
+  padding-top: 120px;
+  padding-bottom: 110px;
+}
+
+/* Let more background video show through */
+#showcase .section-inner{
+  gap: 22px;
+  align-items: center;
+}
+
+/* Make the YouTube container consistent + not too tall */
+.showcase-card{
+  width: min(1100px, 92vw);
+  background: rgba(0,0,0,0.18);
+  border: 1px solid rgba(255,255,255,0.28);
+}
+
+/* ✅ This is what prevents the “cropped differently” look */
+.showcase-frame{
+  aspect-ratio: 16 / 9;
+  max-height: min(62vh, 640px);
+}
+
+/* Mobile: keep it big but not overwhelming */
+@media (max-width: 700px){
+  #showcase.section{
+    padding-top: 130px;
+    padding-bottom: 90px;
+  }
+  .showcase-frame{
+    max-height: none;
+  }
+}
+
   </style>
 </head>
 
@@ -754,10 +794,21 @@
 </section>
 
 <section id="showcase" class="section">
-    <div class="section-inner">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">
+        <svg class="tag-icon" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="16" r="10" fill="none" stroke="var(--accent-pink)" stroke-width="2" />
+          <path d="M11 14l10-4v10" stroke="var(--accent-pink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span>Live performance</span>
+      </div>
+      <h2 class="section-title">Showcase</h2>
+      <p class="section-subtitle">Watch the latest live clip.</p>
+    </div>
 
-      <div class="hero-video-card">
-      <div class="hero-video-frame">
+    <div class="hero-video-card showcase-card">
+      <div class="hero-video-frame showcase-frame">
         <iframe
           src="https://www.youtube.com/embed/Gla5-zsCdXc?rel=0&modestbranding=1"
           title="OperationDom – Live Performance"
@@ -766,9 +817,9 @@
         ></iframe>
       </div>
     </div>
-    </div>
+  </div>
+</section>
 
-    </section>
 
     <!-- BOOKING -->
     <section id="booking" class="section">

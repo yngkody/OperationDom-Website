@@ -122,29 +122,29 @@
       transform: translateY(-1px);
     }
 
-    /* Mobile nav fix (same behavior as homepage) */
-    @media (max-width: 700px){
-      .site-nav{
-        justify-content: flex-start;
-        gap: 12px;
-        padding: calc(10px + env(safe-area-inset-top)) 10px 10px;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-      }
-      .site-nav::-webkit-scrollbar{ display:none; }
+/* Mobile nav = SAME AS DESKTOP (no pills, no horizontal scroll) */
+@media (max-width: 700px){
+  .site-nav{
+    justify-content: center;
+    gap: 32px;
+    overflow-x: visible;
+    -webkit-overflow-scrolling: auto;
+    padding: 14px 20px;
+    padding-top: calc(14px + env(safe-area-inset-top));
+  }
 
-      .site-nav a,
-      .site-nav button{
-        flex: 0 0 auto;
-        white-space: nowrap;
-        padding: 10px 12px;
-        border-radius: 999px;
-        background: rgba(255,255,255,0.06);
-        border: 1px solid rgba(255,255,255,0.18);
-        border-bottom: 1px solid rgba(255,255,255,0.18);
-      }
-    }
+  .site-nav a,
+  .site-nav button{
+    white-space: normal;
+    flex: initial;
+    padding-bottom: 2px;
+    border-radius: 0;
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid transparent;
+  }
+}
+
 
     /* ============================
        SECTION SHELL (spacing like music: let background show through)
@@ -391,14 +391,34 @@
     padding-top: 88px;
     grid-template-rows: minmax(90px, 18vh) auto auto;
     gap: 14px;
+
+    /* ✅ hard center everything */
+    justify-items: center;
+    align-items: center;
+  }
+
+  .hero-bottom{
+    width: min(560px, 92vw);
+    margin: 0 auto;
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+  }
+
+  .hero-actions{
+    width: 100%;
+    justify-content: center;
   }
 
   .hero-actions .btn,
   .hero-actions a.btn{
     width: 100%;
     max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
+
 
 
     /* ============================

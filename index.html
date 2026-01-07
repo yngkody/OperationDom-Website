@@ -258,138 +258,92 @@
     }
 
 /* ============================
-   HERO: EVERYTHING PINNED TO BOTTOM
+   HERO — TRUE CENTER + TRUE BOTTOM
 ============================ */
-/* ============================
-   HERO: bottom-pinned dock + clean YouTube sizing
-============================ */
-#hero{
+#hero {
   min-height: 100vh;
-  padding: 0 16px;
+  padding: 0;
   align-items: stretch;
 }
 
-#hero .section-inner{
-  width: min(1200px, 100% - 32px);
-  margin: 0 auto;
+/* Let hero escape layout constraints */
+#hero .section-inner {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 96px 0 0; /* space for nav */
   position: relative;
-
-  /* space for fixed nav */
-  padding-top: 96px;
-
-  /* reserve space for dock so video never sits behind it */
-  padding-bottom: calc(110px + env(safe-area-inset-bottom));
   min-height: 100vh;
 }
 
-/* VIDEO CARD (centered) */
-.hero-video-card{
+/* VIDEO — CENTERED IN VIEWPORT */
+.hero-video-card {
+  width: min(1100px, 92vw);
   margin: 0 auto;
-  width: min(1100px, 100%);
+  padding: 12px;
+
   background: rgba(0,0,0,0.18);
   border: 1px solid rgba(255,255,255,0.28);
   border-radius: 16px;
-  padding: 12px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 18px 60px rgba(0,0,0,0.65);
+  backdrop-filter: blur(8px);
+
+  position: relative;
+  top: 6vh; /* subtle vertical lift */
 }
 
-/* ✅ The key: don’t force a weird height. Keep 16:9. */
-.hero-video-frame{
-  position: relative;
+.hero-video-frame {
   width: 100%;
-  aspect-ratio: 16 / 9;      /* keeps correct shape */
+  aspect-ratio: 16 / 9;
+  max-height: 70vh;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--accent-soft);
-
-  /* prevent it from getting too tall and feeling “cropped” */
-  max-height: min(70vh, 720px);
 }
 
-.hero-video-frame iframe{
-  position: absolute;
-  inset: 0;
+.hero-video-frame iframe {
   width: 100%;
   height: 100%;
   border: 0;
 }
 
-/* ✅ Dock pinned to bottom (not side) */
-.hero-dock{
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: calc(22px + env(safe-area-inset-bottom));
-  margin: 0 auto;
+/* ============================
+   BOTTOM DOCK — FIXED + CENTERED
+============================ */
+.hero-dock {
+  position: fixed;
+  left: 50%;
+  bottom: calc(20px + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
 
-  width: min(1100px, 100%);
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
-  justify-items: center;
-  text-align: center;
+  width: min(1100px, 94vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 
   padding: 14px 16px;
   border-radius: 18px;
-  background: rgba(0,0,0,0.26);
+
+  background: rgba(0,0,0,0.28);
   border: 1px solid rgba(255,255,255,0.22);
   backdrop-filter: blur(10px);
+  z-index: 20;
 }
 
-/* Dock copy */
-.hero-dock .kicker{
-  font-size: 0.78rem;
+/* Dock text */
+.hero-dock .kicker {
+  font-size: 0.75rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.9);
 }
 
-.hero-dock .title{
+.hero-dock .title {
   font-family: "Introvert", system-ui, sans-serif;
-  font-size: clamp(1.3rem, 2.2vw, 2rem);
-  letter-spacing: 0.20em;
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  margin: 0;
-  line-height: 1.05;
-  text-shadow: 0 0 12px rgba(0,0,0,0.9);
-}
-
-.hero-dock .micro{
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: rgba(255,255,255,0.88);
-  margin: 0;
-}
-
-/* Buttons centered */
-.hero-actions{
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-  margin-top: 4px;
-}
-
-@media (max-width: 700px){
-  #hero .section-inner{
-    padding-top: 88px;
-    padding-bottom: calc(160px + env(safe-area-inset-bottom));
-  }
-
-  /* give the dock more room on mobile */
-  .hero-dock{
-    bottom: calc(14px + env(safe-area-inset-bottom));
-    padding: 12px 12px;
-  }
-
-  .hero-actions .btn,
-  .hero-actions a.btn{
-    width: 100%;
-    max-width: 520px;
-  }
-}
+  mar
 
     /* ============================
        BOOKING (dropdown + no prices + sends email)
@@ -719,11 +673,11 @@
 
   <div class="page">
     <!-- HERO -->
- <section id="hero" class="section">
+<section id="hero" class="section">
   <div class="section-inner">
 
-    <!-- Video stays clean + centered -->
-    <div class="hero-video-card" id="hero-video">
+    <!-- CENTERED VIDEO -->
+    <div class="hero-video-card">
       <div class="hero-video-frame">
         <iframe
           src="https://www.youtube.com/embed/Gla5-zsCdXc?rel=0&modestbranding=1"
@@ -734,20 +688,21 @@
       </div>
     </div>
 
-    <!-- Everything pinned to bottom -->
-    <div class="hero-dock">
-      <div class="kicker">Where soul meets style</div>
-      <h1 class="title">OperationDom</h1>
-      <p class="micro">Live vocals • Booking + studio sessions</p>
-
-      <div class="hero-actions">
-        <button class="btn" onclick="location.href='#booking'">Request a Quote</button>
-        <a class="btn outline" href="#music-section">Listen</a>
-      </div>
-    </div>
-
   </div>
 </section>
+
+<!-- FIXED BOTTOM DOCK (outside section on purpose) -->
+<div class="hero-dock">
+  <div class="kicker">Where soul meets style</div>
+  <h1 class="title">OperationDom</h1>
+  <p class="micro">Live vocals • Booking + studio sessions</p>
+
+  <div class="hero-actions">
+    <button class="btn" onclick="location.href='#booking'">Request a Quote</button>
+    <a class="btn outline" href="#music-section">Listen</a>
+  </div>
+</div>
+
 
     <!-- BOOKING -->
     <section id="booking" class="section">

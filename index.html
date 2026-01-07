@@ -261,105 +261,82 @@
        HERO (pushed down, decluttered)
     ============================ */
     #hero{
-      padding-top: 170px; /* ✅ push down so background video is visible */
-    }
+    padding-top: 160px; /* keep pushed down below nav */
+  }
 
-    .hero-stack{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 14px;
-    }
+  .hero-stack{
+    gap: 18px;
+  }
 
-    .hero-kicker{
-      font-size: 0.82rem;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.9);
-      background: rgba(0,0,0,0.35);
-      border: 1px solid var(--accent-soft);
-      padding: 8px 12px;
-      border-radius: 999px;
-      backdrop-filter: blur(10px);
-    }
+  /* Pull the heavy text OFF the center and keep it minimal */
+  .hero-topline{
+    display:flex;
+    justify-content:center;
+    width:100%;
+  }
 
-    .hero-title{
-      font-family: "Introvert", system-ui, sans-serif;
-      font-size: clamp(3rem, 6.2vw, 4.6rem);
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      margin: 0;
-      text-shadow: 0 0 18px rgba(0,0,0,0.95);
-    }
+  .hero-kicker{
+    max-width: 520px;
+  }
 
-    .hero-line{
-      font-size: 1.08rem;
-      font-weight: 800;
-      color: rgba(255,255,255,0.9);
-      max-width: 760px;
-      margin: 0;
-      text-shadow: 0 0 14px rgba(0,0,0,0.9);
-    }
+  /* Put CTA + microcopy into a slim floating bar so the video stays visible */
+  .hero-floatbar{
+    width: min(980px, 100%);
+    margin-top: 10px;
 
-    .hero-actions{
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      justify-content: center; /* ✅ centered */
-      margin-top: 6px;
-    }
+    display:flex;
+    flex-wrap: wrap;
+    align-items:center;
+    justify-content: center;
+    gap: 12px;
 
-    .hero-video-card{
-      width: min(980px, 100%);
-      margin-top: 18px;
+    padding: 12px 14px;
+    border-radius: 999px;
 
-      background: rgba(0, 0, 0, 0.40);
-      border: 2px solid rgba(255, 255, 255, 0.75);
+    background: rgba(0,0,0,0.28);
+    border: 1px solid rgba(255,255,255,0.22);
+    backdrop-filter: blur(10px);
+  }
+
+  .hero-floatbar .micro{
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: 0.06em;
+    text-align:center;
+    margin: 0;
+  }
+
+  /* Make the main title lighter/cleaner (no extra paragraph under it) */
+  .hero-title{
+    margin-top: 6px;
+    margin-bottom: 2px;
+  }
+
+  /* Keep video the hero. Add breathing room and reduce panel presence */
+  .hero-video-card{
+    margin-top: 14px;
+    background: rgba(0,0,0,0.22);
+    border: 1px solid rgba(255,255,255,0.35);
+    padding: 12px;
+  }
+
+  .hero-video-card::after{
+    opacity: 0.6;
+  }
+
+  /* On mobile: stack the floatbar and keep the video large */
+  @media (max-width: 600px){
+    .hero-floatbar{
       border-radius: 16px;
-      padding: 14px;
-      backdrop-filter: blur(10px);
-
-      box-shadow: 0 18px 60px rgba(0,0,0,0.85);
-      position: relative;
-      overflow: hidden;
+      padding: 12px;
+      gap: 10px;
     }
-
-    .hero-video-card::after{
-      content:"";
-      position:absolute;
-      inset: 10px;
-      border-radius: 12px;
-      border: 1px solid var(--accent-soft);
-      pointer-events:none;
-    }
-
-    .hero-video-frame{
-      position: relative;
+    .hero-floatbar .btn,
+    .hero-floatbar a.btn{
       width: 100%;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--accent-soft);
-      aspect-ratio: 16 / 9;
-      height: clamp(300px, 56vh, 720px);
-      max-height: 72vh;
     }
-
-    .hero-video-frame iframe{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      border:0;
-    }
-
-    @media (max-width: 600px){
-      #hero{ padding-top: 150px; }
-      .hero-actions{ flex-direction: column; width: 100%; }
-      .hero-actions .btn{ width: 100%; }
-      .hero-title{ font-size: 2.7rem; letter-spacing: 0.18em; }
-      .hero-video-frame{ height: auto; max-height: none; }
-    }
+  }
 
     /* ============================
        BOOKING (dropdown + no prices + sends email)
@@ -689,32 +666,38 @@
 
   <div class="page">
     <!-- HERO -->
-    <section id="hero" class="section">
-      <div class="section-inner">
-        <div class="hero-stack">
-          <div class="hero-kicker">Where soul meets style</div>
-          <h1 class="hero-title">OperationDom</h1>
-          <p class="hero-line">Live vocals. Big presence. Bookings + studio sessions.</p>
+   <section id="hero" class="section">
+  <div class="section-inner">
+    <div class="hero-stack">
 
-          <div class="hero-actions">
-            <button class="btn" onclick="location.href='#booking'">Request a Quote</button>
-            <a class="btn outline" href="#music-section">Listen</a>
-          </div>
+      <div class="hero-topline">
+        <div class="hero-kicker">Where soul meets style</div>
+      </div>
 
-          <div class="hero-video-card" id="hero-video">
-            <div class="hero-video-frame">
-              <iframe
-                src="https://www.youtube.com/embed/Gla5-zsCdXc?rel=0&modestbranding=1"
-                title="OperationDom – Live Performance"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              ></iframe>
-            </div>
-          </div>
+      <h1 class="hero-title">OperationDom</h1>
+
+      <!-- ✅ Minimal floating bar (keeps text off the video) -->
+      <div class="hero-floatbar">
+        <p class="micro">Live vocals • Booking + studio sessions</p>
+        <button class="btn" onclick="location.href='#booking'">Request a Quote</button>
+        <a class="btn outline" href="#music-section">Listen</a>
+      </div>
+
+      <!-- ✅ Video stays dominant -->
+      <div class="hero-video-card" id="hero-video">
+        <div class="hero-video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/Gla5-zsCdXc?rel=0&modestbranding=1"
+            title="OperationDom – Live Performance"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
         </div>
       </div>
-    </section>
 
+    </div>
+  </div>
+</section>
     <!-- BOOKING -->
     <section id="booking" class="section">
       <div class="section-inner">
@@ -733,7 +716,7 @@
         </div>
 
         <div class="dropdown">
-          <details class="dropdown-card" open>
+          <details class="dropdown-card" close>
             <summary>
               <span class="summary-title">Request a quote</span>
               <span class="chev" aria-hidden="true"></span>

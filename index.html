@@ -258,92 +258,132 @@
     }
 
 /* ============================
-   HERO — TRUE CENTER + TRUE BOTTOM
+   HERO — SPACER + CLEAN CENTER
 ============================ */
-#hero {
+#hero{
   min-height: 100vh;
-  padding: 0;
+  padding: 0 16px;
+  display: flex;
+  justify-content: center;
   align-items: stretch;
 }
 
-/* Let hero escape layout constraints */
-#hero .section-inner {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  padding: 96px 0 0; /* space for nav */
-  position: relative;
+/* Hero uses a 3-row grid: spacer / video / bottom CTA */
+#hero .section-inner{
+  width: min(1200px, 100% - 32px);
+  margin: 0 auto;
+
+  /* space for nav */
+  padding-top: 96px;
+  padding-bottom: 40px;
+
   min-height: 100vh;
+
+  display: grid;
+  grid-template-rows: minmax(120px, 22vh) auto auto; /* ✅ SPACER IS THE KEY */
+  gap: 18px;
+  align-items: center;
+  justify-items: center;
 }
 
-/* VIDEO — CENTERED IN VIEWPORT */
-.hero-video-card {
+/* Optional: make the spacer clickable area or just a visual gap */
+.hero-spacer{
+  width: 100%;
+}
+
+/* Video card centered and consistent */
+.hero-video-card{
   width: min(1100px, 92vw);
-  margin: 0 auto;
+  margin: 0;
   padding: 12px;
 
-  background: rgba(0,0,0,0.18);
-  border: 1px solid rgba(255,255,255,0.28);
+  background: rgba(0,0,0,0.22);
+  border: 1px solid rgba(255,255,255,0.30);
   border-radius: 16px;
-  backdrop-filter: blur(8px);
-
-  position: relative;
-  top: 6vh; /* subtle vertical lift */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.75);
 }
 
-.hero-video-frame {
+/* ✅ Keep YouTube perfectly 16:9 so it doesn’t look “cropped weird” */
+.hero-video-frame{
   width: 100%;
   aspect-ratio: 16 / 9;
-  max-height: 70vh;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--accent-soft);
 }
 
-.hero-video-frame iframe {
+.hero-video-frame iframe{
   width: 100%;
   height: 100%;
   border: 0;
 }
 
-/* ============================
-   BOTTOM DOCK — FIXED + CENTERED
-============================ */
-.hero-dock {
-  position: fixed;
-  left: 50%;
-  bottom: calc(20px + env(safe-area-inset-bottom));
-  transform: translateX(-50%);
-
-  width: min(1100px, 94vw);
+/* Bottom hero content — centered, compact, NOT blocking video */
+.hero-bottom{
+  width: min(980px, 92vw);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  text-align: center;
+  gap: 10px;
 
-  padding: 14px 16px;
+  padding: 14px 14px;
   border-radius: 18px;
 
-  background: rgba(0,0,0,0.28);
-  border: 1px solid rgba(255,255,255,0.22);
+  background: rgba(0,0,0,0.18);
+  border: 1px solid rgba(255,255,255,0.18);
   backdrop-filter: blur(10px);
-  z-index: 20;
 }
 
-/* Dock text */
-.hero-dock .kicker {
+.hero-kicker{
   font-size: 0.75rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.9);
 }
 
-.hero-dock .title {
+.hero-title{
   font-family: "Introvert", system-ui, sans-serif;
-  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-size: clamp(1.6rem, 3.2vw, 2.4rem);
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  mar
+  margin: 0;
+  line-height: 1.05;
+  text-shadow: 0 0 12px rgba(0,0,0,0.9);
+}
+
+.hero-micro{
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: rgba(255,255,255,0.88);
+}
+
+.hero-actions{
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 6px;
+}
+
+/* Mobile tweaks */
+@media (max-width: 700px){
+  #hero .section-inner{
+    padding-top: 88px;
+    grid-template-rows: minmax(90px, 18vh) auto auto;
+    gap: 14px;
+  }
+
+  .hero-actions .btn,
+  .hero-actions a.btn{
+    width: 100%;
+    max-width: 520px;
+  }
+}
+
 
     /* ============================
        BOOKING (dropdown + no prices + sends email)
@@ -676,7 +716,10 @@
 <section id="hero" class="section">
   <div class="section-inner">
 
-    <!-- CENTERED VIDEO -->
+    <!-- ✅ SPACER: lets the background video be seen/read -->
+    <div class="hero-spacer" aria-hidden="true"></div>
+
+    <!-- ✅ Centered YouTube (no weird crop) -->
     <div class="hero-video-card">
       <div class="hero-video-frame">
         <iframe
@@ -688,20 +731,21 @@
       </div>
     </div>
 
+    <!-- ✅ Everything centered at bottom, not floating over her face -->
+    <div class="hero-bottom">
+      <div class="hero-kicker">Where soul meets style</div>
+      <h1 class="hero-title">OperationDom</h1>
+      <p class="hero-micro">Live vocals • Booking + studio sessions</p>
+
+      <div class="hero-actions">
+        <button class="btn" onclick="location.href='#booking'">Request a Quote</button>
+        <a class="btn outline" href="#music-section">Listen</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- FIXED BOTTOM DOCK (outside section on purpose) -->
-<div class="hero-dock">
-  <div class="kicker">Where soul meets style</div>
-  <h1 class="title">OperationDom</h1>
-  <p class="micro">Live vocals • Booking + studio sessions</p>
-
-  <div class="hero-actions">
-    <button class="btn" onclick="location.href='#booking'">Request a Quote</button>
-    <a class="btn outline" href="#music-section">Listen</a>
-  </div>
-</div>
 
 
     <!-- BOOKING -->

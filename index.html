@@ -59,14 +59,18 @@
       filter: contrast(1.08) saturate(1.05);
     }
     .hero-video-desktop { display: block; }
-    .hero-video-mobile { display: none; }
+    .hero-video-mobile  { display: none; }
+
+    @media (max-width: 700px){
+      .hero-video-desktop { display: none; }
+      .hero-video-mobile  { display: block; }
+    }
 
     .page { position: relative; z-index: 5; }
 
     /* ============================
-       NAVIGATION
+       NAVIGATION (SAME ON MOBILE + DESKTOP)
     ============================ */
-
     .site-nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -105,6 +109,7 @@
       border-left: 0;
       border-right: 0;
       cursor: pointer;
+      white-space: nowrap;
     }
 
     .site-nav a::after{
@@ -112,42 +117,19 @@
       width: 6px;
       height: 6px;
       border-radius: 999px;
-      background: var(--accent-green-soft);
+      background: var(--accent-pink);
+      opacity: 0.95;
     }
 
     .site-nav a:hover,
     .site-nav button:hover {
-      color: var(--accent-green);
-      border-bottom-color: var(--accent-green);
+      color: var(--accent-pink);
+      border-bottom-color: var(--accent-pink);
       transform: translateY(-1px);
     }
 
-/* Mobile nav = SAME AS DESKTOP (no pills, no horizontal scroll) */
-@media (max-width: 700px){
-  .site-nav{
-    justify-content: center;
-    gap: 32px;
-    overflow-x: visible;
-    -webkit-overflow-scrolling: auto;
-    padding: 14px 20px;
-    padding-top: calc(14px + env(safe-area-inset-top));
-  }
-
-  .site-nav a,
-  .site-nav button{
-    white-space: normal;
-    flex: initial;
-    padding-bottom: 2px;
-    border-radius: 0;
-    background: transparent;
-    border: 0;
-    border-bottom: 2px solid transparent;
-  }
-}
-
-
     /* ============================
-       SECTION SHELL (spacing like music: let background show through)
+       SECTION SHELL
     ============================ */
     .section{
       padding: 120px 16px 96px;
@@ -156,7 +138,6 @@
       align-items: flex-start;
     }
 
-    /* ✅ bigger dividers */
     .section + .section{
       border-top: 6px solid rgba(255, 255, 255, 0.28);
     }
@@ -171,7 +152,7 @@
     .section-header{
       display: flex;
       flex-direction: column;
-      align-items: center; /* ✅ center all titles */
+      align-items: center;
       text-align: center;
       gap: 12px;
     }
@@ -273,156 +254,132 @@
       border-color: var(--accent-pink);
     }
 
-/* ============================
-   HERO — SPACER + CLEAN CENTER
-============================ */
-#hero{
-  min-height: 100vh;
-  padding: 0 16px;
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-}
+    /* ============================
+       HERO — SPACER + CLEAN CENTER
+    ============================ */
+    #hero{
+      min-height: 100vh;
+      padding: 0 16px;
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+    }
 
-/* Hero uses a 3-row grid: spacer / video / bottom CTA */
-#hero .section-inner{
-  width: min(1200px, 100% - 32px);
-  margin: 0 auto;
+    #hero .section-inner{
+      width: min(1200px, 100% - 32px);
+      margin: 0 auto;
 
-  /* space for nav */
-  padding-top: 96px;
-  padding-bottom: 40px;
+      /* space for nav */
+      padding-top: 96px;
+      padding-bottom: 40px;
 
-  min-height: 100vh;
+      min-height: 100vh;
 
-  display: grid;
-  grid-template-rows: minmax(300px, 22vh) auto auto; /* ✅ SPACER IS THE KEY */
-  gap: 18px;
-  align-items: center;
-  justify-items: center;
-}
+      display: grid;
+      grid-template-rows: minmax(300px, 22vh) auto auto; /* spacer / (empty) / bottom */
+      gap: 18px;
+      align-items: center;
 
-/* Optional: make the spacer clickable area or just a visual gap */
-.hero-spacer{
-  width: 100%;
-}
+      /* ✅ hard center grid items */
+      justify-items: center;
+    }
 
-/* Video card centered and consistent */
-.hero-video-card{
-  width: min(1100px, 92vw);
-  margin: 0;
-  padding: 12px;
+    .hero-spacer{ width: 100%; }
 
-  background: rgba(0,0,0,0.22);
-  border: 1px solid rgba(255,255,255,0.30);
-  border-radius: 16px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 18px 60px rgba(0,0,0,0.75);
-}
+    /* Bottom hero content — centered */
+    .hero-bottom{
+      width: min(980px, 92vw);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
 
-/* ✅ Keep YouTube perfectly 16:9 so it doesn’t look “cropped weird” */
-.hero-video-frame{
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid var(--accent-soft);
-}
+      padding: 14px 14px;
+      border-radius: 18px;
 
-.hero-video-frame iframe{
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(10px);
 
-/* Bottom hero content — centered, compact, NOT blocking video */
-.hero-bottom{
-  width: min(980px, 92vw);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 10px;
+      /* ✅ force center in grid */
+      justify-self: center;
+      align-self: center;
+      margin: 0 auto;
+    }
 
-  padding: 14px 14px;
-  border-radius: 18px;
+    .hero-kicker{
+      font-size: 0.75rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+    }
 
-  background: rgba(0,0,0,0.18);
-  border: 1px solid rgba(255,255,255,0.18);
-  backdrop-filter: blur(10px);
-}
+    .hero-title{
+      font-family: "Introvert", system-ui, sans-serif;
+      font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin: 0;
+      line-height: 1.05;
+      text-shadow: 0 0 12px rgba(0,0,0,0.9);
+    }
 
-.hero-kicker{
-  font-size: 0.75rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.9);
-}
+    .hero-micro{
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: rgba(255,255,255,0.88);
+    }
 
-.hero-title{
-  font-family: "Introvert", system-ui, sans-serif;
-  font-size: clamp(1.6rem, 3.2vw, 2.4rem);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  margin: 0;
-  line-height: 1.05;
-  text-shadow: 0 0 12px rgba(0,0,0,0.9);
-}
+    .hero-actions{
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
 
-.hero-micro{
-  margin: 0;
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: rgba(255,255,255,0.88);
-}
+      flex-wrap: wrap;
+      width: 100%;
+      margin-top: 6px;
 
-.hero-actions{
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 100%;
-  margin-top: 6px;
-}
+      /* ✅ extra safety */
+      text-align: center;
+    }
 
-/* Mobile tweaks */
-@media (max-width: 700px){
-  #hero .section-inner{
-    padding-top: 88px;
-    grid-template-rows: minmax(90px, 18vh) auto auto;
-    gap: 14px;
+    /* ✅ mobile: keep nav same, but make hero buttons PERFECTLY centered */
+    @media (max-width: 700px){
+      #hero .section-inner{
+        padding-top: 88px;
+        grid-template-rows: minmax(90px, 18vh) auto auto;
+        gap: 14px;
 
-    /* ✅ hard center everything */
-    justify-items: center;
-    align-items: center;
-  }
+        justify-items: center;
+        align-items: center;
+      }
 
-  .hero-bottom{
-    width: min(560px, 92vw);
-    margin: 0 auto;
-    align-self: center;
-    justify-self: center;
-    text-align: center;
-  }
+      .hero-bottom{
+        width: min(560px, 92vw);
+      }
 
-  .hero-actions{
-    width: 100%;
-    justify-content: center;
-  }
+      .hero-actions{
+        justify-content: center;
+      }
 
-  .hero-actions .btn,
-  .hero-actions a.btn{
-    width: 100%;
-    max-width: 520px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
+      .hero-actions .btn,
+      .hero-actions a.btn{
+        width: 100%;
+        max-width: 520px;
 
-
+        /* ✅ this is the “no excuses” center */
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        justify-content: center;
+      }
+    }
 
     /* ============================
-       BOOKING (dropdown + no prices + sends email)
+       BOOKING
     ============================ */
     .card{
       background: var(--glass);
@@ -476,7 +433,7 @@
       padding: 18px 18px;
       display:flex;
       align-items:center;
-      justify-content: center; /* ✅ centered */
+      justify-content: center;
       gap: 12px;
       position: relative;
       z-index: 1;
@@ -581,10 +538,11 @@
 
     .center{
       display:flex;
-      justify-content:center; /* ✅ center all buttons */
+      justify-content:center;
       gap: 12px;
       flex-wrap: wrap;
       margin-top: 6px;
+      text-align: center;
     }
 
     /* ============================
@@ -611,8 +569,7 @@
       background: rgba(0,0,0,0.40);
       backdrop-filter: blur(10px);
 
-      box-shadow:
-        rgba(0,0,0,0.85) 0 18px 60px;
+      box-shadow: rgba(0,0,0,0.85) 0 18px 60px;
 
       transition: transform 0.1s ease-out, border-color 0.1s ease-out, box-shadow 0.1s ease-out;
     }
@@ -667,7 +624,7 @@
       display:flex;
       gap: 12px;
       flex-wrap: wrap;
-      justify-content:center; /* ✅ center */
+      justify-content:center;
       width: 100%;
       margin-top: 6px;
     }
@@ -732,51 +689,71 @@
     }
 
     /* ============================
-   SHOWCASE: airy + centered
-============================ */
-#showcase.section{
-  align-items: center;
-  padding-top: 120px;
-  padding-bottom: 110px;
-}
+       SHOWCASE
+    ============================ */
+    #showcase.section{
+      align-items: center;
+      padding-top: 120px;
+      padding-bottom: 110px;
+    }
 
-/* Let more background video show through */
-#showcase .section-inner{
-  gap: 22px;
-  align-items: center;
-}
+    #showcase .section-inner{
+      gap: 22px;
+      align-items: center;
+    }
 
-/* Make the YouTube container consistent + not too tall */
-.showcase-card{
-  width: min(1100px, 92vw);
-  background: rgba(0,0,0,0.18);
-  border: 1px solid rgba(255,255,255,0.28);
-}
+    .hero-video-card{
+      width: min(1100px, 92vw);
+      margin: 0;
+      padding: 12px;
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.30);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 60px rgba(0,0,0,0.75);
+    }
 
-/* ✅ This is what prevents the “cropped differently” look */
-.showcase-frame{
-  aspect-ratio: 16 / 9;
-  max-height: min(62vh, 640px);
-}
+    .hero-video-frame{
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--accent-soft);
+    }
 
-/* Mobile: keep it big but not overwhelming */
-@media (max-width: 700px){
-  #showcase.section{
-    padding-top: 130px;
-    padding-bottom: 90px;
-  }
-  .showcase-frame{
-    max-height: none;
-  }
-}
+    .hero-video-frame iframe{
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
 
+    .showcase-card{
+      width: min(1100px, 92vw);
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.28);
+    }
+
+    .showcase-frame{
+      aspect-ratio: 16 / 9;
+      max-height: min(62vh, 640px);
+    }
+
+    @media (max-width: 700px){
+      #showcase.section{
+        padding-top: 130px;
+        padding-bottom: 90px;
+      }
+      .showcase-frame{
+        max-height: none;
+      }
+    }
   </style>
 </head>
 
 <body>
   <!-- VIDEO BACKGROUND -->
   <video class="hero-video hero-video-desktop" src="Green Light.mp4" autoplay muted loop playsinline></video>
-  <video class="hero-video hero-video-mobile" src="Green Light Promo Mobile IV.mp4" autoplay muted loop playsinline></video>
+  <video class="hero-video hero-video-mobile"  src="Green Light Promo Mobile IV.mp4" autoplay muted loop playsinline></video>
 
   <!-- NAV -->
   <nav class="site-nav">
@@ -789,52 +766,55 @@
 
   <div class="page">
     <!-- HERO -->
-<section id="hero" class="section">
-  <div class="section-inner">
+    <section id="hero" class="section">
+      <div class="section-inner">
 
-    <!-- ✅ SPACER: lets the background video be seen/read -->
-    <div class="hero-spacer" aria-hidden="true"></div>
+        <!-- SPACER: lets the background video be seen/read -->
+        <div class="hero-spacer" aria-hidden="true"></div>
 
-    <!-- ✅ Centered YouTube (no weird crop) -->
+        <!-- HERO BOTTOM -->
+        <div class="hero-bottom">
+          <div class="hero-kicker">Where soul meets style</div>
+          <h1 class="hero-title">OperationDom</h1>
+          <p class="hero-micro">Live vocals • Booking + studio sessions</p>
 
+          <div class="hero-actions">
+            <button class="btn" onclick="location.href='#booking'">Request a Quote</button>
+            <a class="btn outline" href="#music-section">Listen</a>
+          </div>
+        </div>
 
-    <!-- ✅ Everything centered at bottom, not floating over her face -->
-    <div class="hero-bottom">
-      <div class="hero-kicker">Where soul meets style</div>
-      <h1 class="hero-title">OperationDom</h1>
-      <p class="hero-micro">Live vocals • Booking + studio sessions</p>
-
-      <div class="hero-actions">
-        <button class="btn" onclick="location.href='#booking'">Request a Quote</button>
-        <a class="btn outline" href="#music-section">Listen</a>
       </div>
-    </div>
+    </section>
 
-  </div>
-</section>
+    <!-- SHOWCASE -->
+    <section id="showcase" class="section">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-tag">
+            <svg class="tag-icon" viewBox="0 0 32 32" aria-hidden="true">
+              <circle cx="16" cy="16" r="10" fill="none" stroke="var(--accent-pink)" stroke-width="2" />
+              <path d="M11 14l10-4v10" stroke="var(--accent-pink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span>Live performance</span>
+          </div>
+          <h2 class="section-title">Showcase</h2>
+          <p class="section-subtitle">Watch the latest live clip.</p>
+        </div>
 
-<section id="showcase" class="section">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-tag">
-        <svg class="tag-icon" viewBox="0 0 32 32" aria-hidden="true">
-          <circle cx="16" cy="16" r="10" fill="none" stroke="var(--accent-pink)" stroke-width="2" />
-          <path d="M11 14l10-4v10" stroke="var(--accent-pink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-        <span>Live performance</span>
+        <div class="hero-video-card showcase-card">
+          <div class="hero-video-frame showcase-frame">
+            <iframe
+              src="https://www.youtube.com/embed/Gla5-zsCdXc?si=2-zHeqquzCkvOEFX&amp;start=2"
+              title="OperationDom – Live Performance"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
       </div>
-      <h2 class="section-title">Showcase</h2>
-      <p class="section-subtitle">Watch the latest live clip.</p>
-    </div>
-
-    <div class="hero-video-card showcase-card">
-      <div class="hero-video-frame showcase-frame">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/Gla5-zsCdXc?si=2-zHeqquzCkvOEFX&amp;start=2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-    </div>
-  </div>
-</section>
-
+    </section>
 
     <!-- BOOKING -->
     <section id="booking" class="section">
@@ -854,7 +834,7 @@
         </div>
 
         <div class="dropdown">
-          <details class="dropdown-card" close>
+          <details class="dropdown-card">
             <summary>
               <span class="summary-title">Request a quote</span>
               <span class="chev" aria-hidden="true"></span>
@@ -1065,14 +1045,13 @@
   </div>
 
   <script>
-    // Background video autoplay helper
+    // Background video autoplay helper (plays the correct one based on breakpoint)
     window.addEventListener("load", function () {
       const desktopVideo = document.querySelector(".hero-video-desktop");
-      const mobileVideo = document.querySelector(".hero-video-mobile");
+      const mobileVideo  = document.querySelector(".hero-video-mobile");
       if (!desktopVideo || !mobileVideo) return;
 
       const mq = window.matchMedia("(max-width: 700px)");
-      const activeVideo = mq.matches ? mobileVideo : desktopVideo;
 
       const tryPlay = (videoEl) => {
         if (!videoEl) return;
@@ -1087,10 +1066,22 @@
         });
       };
 
-      tryPlay(activeVideo);
+      const syncVideos = () => {
+        const useMobile = mq.matches;
+
+        // pause both first
+        desktopVideo.pause();
+        mobileVideo.pause();
+
+        // then play the active one
+        tryPlay(useMobile ? mobileVideo : desktopVideo);
+      };
+
+      syncVideos();
+      mq.addEventListener?.("change", syncVideos);
     });
 
-    // Booking dropdown form -> opens email with details (no prices shown anywhere)
+    // Booking dropdown form -> opens email with details
     (function(){
       const form = document.getElementById("bookingForm");
       if (!form) return;

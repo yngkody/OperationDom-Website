@@ -71,45 +71,82 @@
     /* ============================
        NAVIGATION (SAME ON MOBILE + DESKTOP)
     ============================ */
-   /* ✅ FIX 2: NAV wraps on mobile + can scroll if still too long */
+/* ✅ NAV — wraps on mobile, scrolls if needed, NEVER disappears */
 .site-nav{
-  flex-wrap: wrap;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 20px;
+  flex-wrap: wrap;          /* ✅ allow wrap */
   row-gap: 10px;
 
-  /* fallback: if it still can’t fit, it scrolls instead of breaking layout */
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  padding: 14px 16px;
+  padding-top: calc(14px + env(safe-area-inset-top));
 
-  /* keeps it looking intentional */
-  padding-left: 14px;
-  padding-right: 14px;
+  background: rgba(0, 0, 0, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+
+  /* ✅ IMPORTANT: don't clip wrapped rows */
+  overflow: visible;
+
+  /* ✅ fallback: if it still overflows, allow horizontal scroll */
+  /* (we do this via a media query so desktop stays clean) */
 }
 
-/* keep each nav item on one line */
 .site-nav a,
 .site-nav button{
-  white-space: nowrap;
+  font-family: "Introvert", system-ui, sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+
+  color: var(--ink);
+  transition: border-color 0.15s ease-out, color 0.15s ease-out, transform 0.1s ease-out;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  background: transparent;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  cursor: pointer;
+  white-space: nowrap; /* ✅ keep each item on one line */
 }
 
-/* hide scrollbar (still scrollable) */
-.site-nav::-webkit-scrollbar{ height: 0; }
-.site-nav{ scrollbar-width: none; }
-
-/* ✅ mobile tuning: smaller gap + font so it fits cleaner */
 @media (max-width: 700px){
   .site-nav{
     gap: 14px;
     justify-content: center;
+
+    /* ✅ allow scroll ONLY on mobile if wrap still isn't enough */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
+  .site-nav::-webkit-scrollbar{ height: 0; }
+
   .site-nav a,
   .site-nav button{
-    font-size: 1.15rem;  /* was 1.5rem */
+    font-size: 1.15rem;   /* smaller so it fits */
     letter-spacing: 0.12em;
   }
+
   .site-nav a::after{
-    display: none; /* optional: removes the dot so it fits easier */
+    display: none; /* optional: remove the dot to save space */
   }
 }
+
 
     /* ============================
        SECTION SHELL

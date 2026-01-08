@@ -71,62 +71,45 @@
     /* ============================
        NAVIGATION (SAME ON MOBILE + DESKTOP)
     ============================ */
-    .site-nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 10;
+   /* ✅ FIX 2: NAV wraps on mobile + can scroll if still too long */
+.site-nav{
+  flex-wrap: wrap;
+  row-gap: 10px;
 
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      padding: 14px 20px;
+  /* fallback: if it still can’t fit, it scrolls instead of breaking layout */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 
-      background: rgba(0, 0, 0, 0.9);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-      backdrop-filter: blur(10px);
+  /* keeps it looking intentional */
+  padding-left: 14px;
+  padding-right: 14px;
+}
 
-      padding-top: calc(14px + env(safe-area-inset-top));
-    }
+/* keep each nav item on one line */
+.site-nav a,
+.site-nav button{
+  white-space: nowrap;
+}
 
-    .site-nav a,
-    .site-nav button {
-      font-family: "Introvert", system-ui, sans-serif;
-      font-size: 1.5rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
+/* hide scrollbar (still scrollable) */
+.site-nav::-webkit-scrollbar{ height: 0; }
+.site-nav{ scrollbar-width: none; }
 
-      padding-bottom: 2px;
-      border-bottom: 2px solid transparent;
-
-      color: var(--ink);
-      transition: border-color 0.15s ease-out, color 0.15s ease-out, transform 0.1s ease-out;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-
-      background: transparent;
-      border-top: 0;
-      border-left: 0;
-      border-right: 0;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    .site-nav a::after{
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--accent-pink);
-      opacity: 0.95;
-    }
-
-    .site-nav a:hover,
-    .site-nav button:hover {
-      color: var(--accent-pink);
-      border-bottom-color: var(--accent-pink);
-      transform: translateY(-1px);
-    }
+/* ✅ mobile tuning: smaller gap + font so it fits cleaner */
+@media (max-width: 700px){
+  .site-nav{
+    gap: 14px;
+    justify-content: center;
+  }
+  .site-nav a,
+  .site-nav button{
+    font-size: 1.15rem;  /* was 1.5rem */
+    letter-spacing: 0.12em;
+  }
+  .site-nav a::after{
+    display: none; /* optional: removes the dot so it fits easier */
+  }
+}
 
     /* ============================
        SECTION SHELL
@@ -143,7 +126,7 @@
     }
 
     .section-inner{
-      width: min(1200px, 100% - 32px);
+  width: min(1200px, calc(100% - 32px));
       display: flex;
       flex-direction: column;
       gap: 26px;
@@ -266,7 +249,7 @@
     }
 
     #hero .section-inner{
-      width: min(1200px, 100% - 32px);
+      width: min(1200px, calc(100% - 32px));
       margin: 0 auto;
 
       /* space for nav */
@@ -288,7 +271,7 @@
 
     /* Bottom hero content — centered */
     .hero-bottom{
-      width: min(980px, 92vw);
+      width: min(980px, calc(100vw - 32px));
       display: flex;
       flex-direction: column;
       align-items: center;
